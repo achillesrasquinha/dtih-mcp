@@ -75,4 +75,12 @@ describe("parseXml", () => {
     assert.equal(result.item._text, "test");
     assert.equal(result.item.id, "1");
   });
+
+  it("converts leaf to array when same tag appears as nested", () => {
+    const xml = "<data>text</data><data><child>nested</child></data>";
+    const result = parseXml(xml);
+    assert.ok(Array.isArray(result.data));
+    assert.equal(result.data[0], "text");
+    assert.equal(result.data[1].child, "nested");
+  });
 });

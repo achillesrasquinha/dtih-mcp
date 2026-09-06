@@ -71,6 +71,7 @@ export function parseXml(text) {
     const inner = content.trim();
     if (inner.includes("<")) {
       if (!result[tag]) result[tag] = [];
+      else if (!Array.isArray(result[tag])) result[tag] = [result[tag]];
       const child = parseXml(inner);
       if (attrs.trim()) {
         attrs.replace(/([\w.-]+)=["']([^"']*?)["']/g, (_, k, v) => { child[k] = v; });
