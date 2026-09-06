@@ -169,4 +169,4 @@ A unified MCP server for 110 life science APIs and databases.
 
 ## License
 
-Proprietary — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).

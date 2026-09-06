@@ -20,7 +20,7 @@
     "genomics",
     "proteomics"
   ],
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "@toon-format/toon": "^4.1.1",
