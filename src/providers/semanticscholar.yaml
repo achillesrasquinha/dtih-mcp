@@ -1,15 +1,21 @@
 name: semanticscholar
 displayName: Semantic Scholar
 description: Semantic Scholar academic paper search — find research papers, citations, and author information
-tags: [literature, citations, academic, semanticscholar, papers]
+tags:
+  - literature
+  - citations
+  - academic
+  - semanticscholar
+  - papers
 baseUrl: https://api.semanticscholar.org/graph/v1
 rateLimit:
   requestsPerSecond: 1
-
 tools:
   searchPapers:
     description: Search for academic papers by keyword query
-    tags: [paper-search, literature-search]
+    tags:
+      - paper-search
+      - literature-search
     method: GET
     path: /paper/search
     params:
@@ -24,14 +30,15 @@ tools:
         description: Number of results to return
       fields:
         type: string
-        default: "title,abstract,year,citationCount"
+        default: title,abstract,year,citationCount
         description: Comma-separated fields to return
     response:
       format: json
-
   getPaper:
     description: Get details of a specific paper by Semantic Scholar paper ID
-    tags: [paper-details, citation-info]
+    tags:
+      - paper-details
+      - citation-info
     method: GET
     path: /paper/{paperId}
     params:
@@ -41,7 +48,24 @@ tools:
         description: Semantic Scholar paper ID or DOI
       fields:
         type: string
-        default: "title,abstract,authors,year,citationCount"
+        default: title,abstract,authors,year,citationCount
         description: Comma-separated fields to return
     response:
       format: json
+tests:
+  searchPapers:
+    - name: searches for CRISPR Cas9 papers
+      params:
+        query: CRISPR Cas9
+      assert:
+        - path: data
+          minLength: 1
+        - path: data.0.title
+  getPaper:
+    - name: gets a known paper by ID
+      params:
+        paperId: 649def34f8be52c8b66281af98ae884c09aef38b
+      assert:
+        - path: title
+        - path: paperId
+          equals: 649def34f8be52c8b66281af98ae884c09aef38b

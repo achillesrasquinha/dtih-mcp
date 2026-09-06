@@ -1,13 +1,19 @@
 name: wikipathways
 displayName: WikiPathways
 description: Open biological pathway database — community-curated pathway data
-tags: [pathway, biology, community, wiki, curation]
+tags:
+  - pathway
+  - biology
+  - community
+  - wiki
+  - curation
 baseUrl: https://cdn.jsdelivr.net/gh/wikipathways/wikipathways-assets@main
-
 tools:
   getPathway:
     description: Get pathway graph data (nodes and edges) by WikiPathways ID
-    tags: [pathway-info, pathway-details]
+    tags:
+      - pathway-info
+      - pathway-details
     method: GET
     path: /pathways/{pwId}/{pwId}.json
     params:
@@ -17,10 +23,11 @@ tools:
         description: WikiPathways ID (e.g. "WP254" for apoptosis)
     response:
       format: json
-
   getDataNodes:
     description: Get pathway gene/protein/metabolite data nodes as TSV
-    tags: [pathway-genes, pathway-nodes]
+    tags:
+      - pathway-genes
+      - pathway-nodes
     method: GET
     path: /pathways/{pwId}/{pwId}-datanodes.tsv
     params:
@@ -30,3 +37,19 @@ tools:
         description: WikiPathways ID (e.g. "WP254")
     response:
       format: text
+tests:
+  getPathway:
+    - name: gets pathway graph data for WP254 (apoptosis)
+      params:
+        pwId: WP254
+      assert:
+        - anyOf:
+            - entitiesById
+            - entities
+  getDataNodes:
+    - name: gets data nodes for WP254
+      params:
+        pwId: WP254
+      assert:
+        - path: raw
+          minLength: 1

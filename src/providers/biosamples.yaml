@@ -1,13 +1,19 @@
 name: biosamples
 displayName: BioSamples
 description: EBI BioSamples database — biological sample metadata and attributes
-tags: [sample, metadata, biobank, specimen, biosamples]
+tags:
+  - sample
+  - metadata
+  - biobank
+  - specimen
+  - biosamples
 baseUrl: https://www.ebi.ac.uk/biosamples
-
 tools:
   search:
     description: Search BioSamples for biological samples by keyword
-    tags: [sample-search, specimen-search]
+    tags:
+      - sample-search
+      - specimen-search
     method: GET
     path: /samples
     params:
@@ -22,10 +28,11 @@ tools:
         description: Number of results to return
     response:
       format: json
-
   getSample:
     description: Get a specific BioSample by accession
-    tags: [sample-info, specimen-info]
+    tags:
+      - sample-info
+      - specimen-info
     method: GET
     path: /samples/{accession}
     params:
@@ -35,3 +42,20 @@ tools:
         description: BioSample accession (e.g. SAMD00065372)
     response:
       format: json
+tests:
+  search:
+    - name: searches for human liver samples
+      params:
+        query: human liver
+      assert:
+        - path: _embedded.samples
+          minLength: 1
+        - path: _embedded.samples.0.accession
+  getSample:
+    - name: gets sample by accession SAMD00065372
+      params:
+        accession: SAMD00065372
+      assert:
+        - path: accession
+          equals: SAMD00065372
+        - path: characteristics

@@ -1,13 +1,19 @@
 name: empiar
 displayName: EMPIAR
 description: Electron Microscopy Public Image Archive for raw EM data
-tags: [electron-microscopy, imaging, empiar, ebi, structure]
+tags:
+  - electron-microscopy
+  - imaging
+  - empiar
+  - ebi
+  - structure
 baseUrl: https://www.ebi.ac.uk/empiar/api
-
 tools:
   getEntries:
     description: List EMPIAR entries
-    tags: [em-entries, em-list]
+    tags:
+      - em-entries
+      - em-list
     method: GET
     path: /entry/list
     params:
@@ -19,16 +25,29 @@ tools:
         default: 10
     response:
       format: json
-
   getEntry:
     description: Get EMPIAR entry details by ID
-    tags: [em-entry, em-detail]
+    tags:
+      - em-entry
+      - em-detail
     method: GET
     path: /entry/{empiarId}
     params:
       empiarId:
         type: string
         required: true
-        description: "EMPIAR ID e.g. 'EMPIAR-10028'"
+        description: EMPIAR ID e.g. 'EMPIAR-10028'
     response:
       format: json
+tests:
+  getEntries:
+    - name: lists EMPIAR entries
+      params: {}
+      assert:
+        - {}
+  getEntry:
+    - name: gets a specific EMPIAR entry
+      params:
+        empiarId: EMPIAR-10028
+      assert:
+        - {}

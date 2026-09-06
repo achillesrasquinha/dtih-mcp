@@ -1,13 +1,19 @@
 name: pubmed
 displayName: PubMed
 description: Biomedical literature search engine (NCBI)
-tags: [literature, publications, abstracts, ncbi, medline]
+tags:
+  - literature
+  - publications
+  - abstracts
+  - ncbi
+  - medline
 baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
-
 tools:
   search:
     description: Search PubMed for biomedical literature
-    tags: [literature-search, paper-search]
+    tags:
+      - literature-search
+      - paper-search
     method: GET
     path: /esearch.fcgi
     params:
@@ -28,10 +34,12 @@ tools:
         default: json
     response:
       format: json
-
   getSummary:
     description: Get article summaries by PubMed IDs
-    tags: [article-info, abstract, citation]
+    tags:
+      - article-info
+      - abstract
+      - citation
     method: GET
     path: /esummary.fcgi
     params:
@@ -48,3 +56,17 @@ tools:
         default: json
     response:
       format: json
+tests:
+  search:
+    - name: searches for CRISPR papers
+      params:
+        query: CRISPR cas9 therapy
+      assert:
+        - path: esearchresult.idlist
+          minLength: 1
+  getSummary:
+    - name: gets article summary by PMID
+      params:
+        ids: "33086985"
+      assert:
+        - path: result.33086985.title

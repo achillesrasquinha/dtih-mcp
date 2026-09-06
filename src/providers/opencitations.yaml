@@ -1,13 +1,19 @@
 name: opencitations
 displayName: OpenCitations
 description: OpenCitations COCI citation index — open bibliographic citation data for DOIs
-tags: [citations, bibliometrics, opencitations, doi, references]
+tags:
+  - citations
+  - bibliometrics
+  - opencitations
+  - doi
+  - references
 baseUrl: https://opencitations.net/index/coci/api/v1
-
 tools:
   getCitations:
     description: Get all citations for a DOI (papers that cite this work)
-    tags: [citation-lookup, cited-by]
+    tags:
+      - citation-lookup
+      - cited-by
     method: GET
     path: /citations/{doi}
     params:
@@ -17,10 +23,11 @@ tools:
         description: DOI to look up citations for (e.g. "10.1038/nature12373")
     response:
       format: json
-
   getReferences:
     description: Get all references from a DOI (papers this work cites)
-    tags: [reference-lookup, cites]
+    tags:
+      - reference-lookup
+      - cites
     method: GET
     path: /references/{doi}
     params:
@@ -30,3 +37,18 @@ tools:
         description: DOI to look up references for (e.g. "10.1038/nature12373")
     response:
       format: json
+tests:
+  getCitations:
+    - name: gets citations for a CRISPR paper DOI
+      params:
+        doi: 10.1038/nature12373
+      assert:
+        - isArray: true
+        - path: 0.citing
+        - path: 0.cited
+  getReferences:
+    - name: gets references for a CRISPR paper DOI
+      params:
+        doi: 10.1038/nature12373
+      assert:
+        - isArray: true

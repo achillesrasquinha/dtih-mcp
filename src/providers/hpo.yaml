@@ -1,13 +1,19 @@
 name: hpo
 displayName: Human Phenotype Ontology
 description: Human Phenotype Ontology — standardized vocabulary of human phenotypic abnormalities
-tags: [phenotype, ontology, hpo, disease, clinical]
+tags:
+  - phenotype
+  - ontology
+  - hpo
+  - disease
+  - clinical
 baseUrl: https://ontology.jax.org/api/hp
-
 tools:
   searchTerms:
     description: Search the Human Phenotype Ontology by keyword
-    tags: [phenotype-search, hpo-search]
+    tags:
+      - phenotype-search
+      - hpo-search
     method: GET
     path: /search
     params:
@@ -22,10 +28,11 @@ tools:
         description: Maximum number of results
     response:
       format: json
-
   getTerm:
     description: Get a specific HPO term by its identifier
-    tags: [phenotype-info, hpo-term]
+    tags:
+      - phenotype-info
+      - hpo-term
     method: GET
     path: /terms/{id}
     params:
@@ -35,3 +42,22 @@ tools:
         description: HPO term identifier (e.g. HP:0001250, HP:0001263)
     response:
       format: json
+tests:
+  searchTerms:
+    - name: searches for epilepsy phenotype terms
+      params:
+        query: epilepsy
+        max: 5
+      assert:
+        - path: terms
+          minLength: 1
+        - path: terms.0.id
+        - path: terms.0.name
+  getTerm:
+    - name: gets HPO term HP:0001250 (Seizure)
+      params:
+        id: HP:0001250
+      assert:
+        - path: id
+          equals: HP:0001250
+        - path: name

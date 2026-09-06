@@ -1,13 +1,19 @@
 name: gtex
 displayName: GTEx Portal
 description: Genotype-Tissue Expression project — gene expression across human tissues
-tags: [gene-expression, tissue, eqtl, gtex, transcriptomics]
+tags:
+  - gene-expression
+  - tissue
+  - eqtl
+  - gtex
+  - transcriptomics
 baseUrl: https://gtexportal.org/api/v2
-
 tools:
   getGene:
     description: Look up gene reference information by gene symbol
-    tags: [gene-lookup, gene-reference]
+    tags:
+      - gene-lookup
+      - gene-reference
     method: GET
     path: /reference/gene
     params:
@@ -25,10 +31,11 @@ tools:
         description: Genome build
     response:
       format: json
-
   getExpression:
     description: Get median gene expression across tissues
-    tags: [expression-data, tissue-expression]
+    tags:
+      - expression-data
+      - tissue-expression
     method: GET
     path: /expression/medianGeneExpression
     params:
@@ -42,3 +49,21 @@ tools:
         description: GTEx dataset version
     response:
       format: json
+tests:
+  getGene:
+    - name: looks up BRCA1 gene reference info
+      params:
+        geneId: BRCA1
+      assert:
+        - path: data
+          minLength: 1
+        - path: data.0.geneSymbol
+          equals: BRCA1
+  getExpression:
+    - name: gets median gene expression for BRCA1 across tissues
+      params:
+        gencodeId: ENSG00000012048.20
+      assert:
+        - path: data
+          minLength: 1
+        - path: data.0.tissueSiteDetailId

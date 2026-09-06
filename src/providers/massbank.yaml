@@ -1,13 +1,19 @@
 name: massbank
 displayName: MassBank
 description: Public repository of mass spectra for metabolite identification
-tags: [mass-spectrometry, metabolites, spectra, metabolomics, chemistry]
+tags:
+  - mass-spectrometry
+  - metabolites
+  - spectra
+  - metabolomics
+  - chemistry
 baseUrl: https://massbank.eu/MassBank/api
-
 tools:
   search:
     description: Search MassBank mass spectra records by compound name
-    tags: [spectra-search, compound-search]
+    tags:
+      - spectra-search
+      - compound-search
     method: GET
     path: /records
     params:
@@ -23,10 +29,11 @@ tools:
         description: Maximum number of records to return
     response:
       format: json
-
   getRecord:
     description: Get a specific MassBank record by accession number
-    tags: [spectra-info, record-info]
+    tags:
+      - spectra-info
+      - record-info
     method: GET
     path: /records/{accession}
     params:
@@ -36,3 +43,24 @@ tools:
         description: MassBank accession number (e.g. EA000101)
     response:
       format: json
+tests:
+  search:
+    - name: searches records for caffeine
+      params:
+        compound: caffeine
+        limit: 10
+      assert:
+        - {}
+        - anyOf:
+            - isArray: true
+              minLength: 1
+            - path: records
+  getRecord:
+    - name: gets a specific record by accession
+      params:
+        accession: EA000101
+      assert:
+        - {}
+        - anyOf:
+            - accession
+            - compound

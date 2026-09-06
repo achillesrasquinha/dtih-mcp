@@ -1,32 +1,46 @@
 name: allen-brain
 displayName: Allen Brain Atlas
 description: Allen Institute brain gene expression and connectivity data
-tags: [brain, neuroscience, gene-expression, allen-institute, mouse, human]
+tags:
+  - brain
+  - neuroscience
+  - gene-expression
+  - allen-institute
+  - mouse
+  - human
 baseUrl: https://api.brain-map.org/api/v2
-
 tools:
   searchGene:
     description: Search gene expression data
-    tags: [gene-search, brain-expression]
+    tags:
+      - gene-search
+      - brain-expression
     method: GET
     path: /data/query.json
     params:
       criteria:
         type: string
         required: true
-        description: "RMA query e.g. 'model::Gene,rma::criteria,[acronym$eq'BDNF']'"
+        description: RMA query e.g. 'model::Gene,rma::criteria,[acronym$eq'BDNF']'
     response:
       format: json
-
   getStructures:
     description: Get brain structures
-    tags: [brain-structures, anatomy]
+    tags:
+      - brain-structures
+      - anatomy
     method: GET
     path: /data/Structure/query.json
     params:
       criteria:
         type: string
-        default: "model::Structure,rma::criteria,[ontology_id$eq1]"
+        default: model::Structure,rma::criteria,[ontology_id$eq1]
         description: RMA criteria for brain structures
     response:
       format: json
+tests:
+  getStructures:
+    - name: gets brain structures with default criteria
+      params: {}
+      assert:
+        - {}

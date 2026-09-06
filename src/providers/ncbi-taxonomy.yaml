@@ -1,13 +1,19 @@
 name: ncbi-taxonomy
 displayName: NCBI Taxonomy
 description: Taxonomic classification and nomenclature database
-tags: [taxonomy, species, classification, ncbi, phylogeny]
+tags:
+  - taxonomy
+  - species
+  - classification
+  - ncbi
+  - phylogeny
 baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
-
 tools:
   search:
     description: Search NCBI Taxonomy database for organisms
-    tags: [taxonomy-search, species-search]
+    tags:
+      - taxonomy-search
+      - species-search
     method: GET
     path: /esearch.fcgi
     params:
@@ -28,10 +34,11 @@ tools:
         default: json
     response:
       format: json
-
   getSummary:
     description: Get taxonomic summary by NCBI Taxonomy ID
-    tags: [taxonomy-info, species-info]
+    tags:
+      - taxonomy-info
+      - species-info
     method: GET
     path: /esummary.fcgi
     params:
@@ -47,3 +54,17 @@ tools:
         default: json
     response:
       format: json
+tests:
+  search:
+    - name: searches for Homo sapiens
+      params:
+        query: Homo sapiens
+      assert:
+        - path: esearchresult.idlist
+          minLength: 1
+  getSummary:
+    - name: gets taxonomy summary for human (taxid 9606)
+      params:
+        id: "9606"
+      assert:
+        - path: result.9606

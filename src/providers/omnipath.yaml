@@ -1,13 +1,19 @@
 name: omnipath
 displayName: OmniPath
 description: OmniPath — comprehensive signaling network and enzyme-substrate interactions
-tags: [signaling, interactions, omnipath, pathways, network]
+tags:
+  - signaling
+  - interactions
+  - omnipath
+  - pathways
+  - network
 baseUrl: https://omnipathdb.org
-
 tools:
   getInteractions:
     description: Get signaling interactions for a gene from the OmniPath database
-    tags: [interaction-search, signaling-network]
+    tags:
+      - interaction-search
+      - signaling-network
     method: GET
     path: /interactions
     params:
@@ -17,7 +23,7 @@ tools:
         description: Gene symbol to query (e.g. TP53, EGFR)
       genesymbols:
         type: string
-        default: "yes"
+        default: yes
         description: Return gene symbols instead of UniProt IDs
       limit:
         type: integer
@@ -29,10 +35,11 @@ tools:
         description: Response format (json or tsv)
     response:
       format: json
-
   getEnzSubstrate:
     description: Get enzyme-substrate relationships for a gene
-    tags: [enzyme-substrate, phosphorylation]
+    tags:
+      - enzyme-substrate
+      - phosphorylation
     method: GET
     path: /enzsub
     params:
@@ -42,7 +49,7 @@ tools:
         description: Gene symbol to query (e.g. TP53, AKT1)
       genesymbols:
         type: string
-        default: "yes"
+        default: yes
         description: Return gene symbols instead of UniProt IDs
       limit:
         type: integer
@@ -54,3 +61,21 @@ tools:
         description: Response format (json or tsv)
     response:
       format: json
+tests:
+  getInteractions:
+    - name: gets signaling interactions for TP53
+      params:
+        partners: TP53
+        limit: 5
+      assert:
+        - isArray: true
+        - anyOf:
+            - 0.source_genesymbol
+            - 0.target_genesymbol
+  getEnzSubstrate:
+    - name: gets enzyme-substrate relationships for AKT1
+      params:
+        partners: AKT1
+        limit: 5
+      assert:
+        - isArray: true

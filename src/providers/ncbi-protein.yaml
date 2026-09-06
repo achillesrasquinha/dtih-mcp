@@ -1,13 +1,19 @@
 name: ncbi-protein
 displayName: NCBI Protein
 description: Protein sequence database including RefSeq, UniProt, and PDB sequences
-tags: [protein, sequence, refseq, ncbi, amino-acid]
+tags:
+  - protein
+  - sequence
+  - refseq
+  - ncbi
+  - amino-acid
 baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
-
 tools:
   search:
     description: Search NCBI Protein database for protein sequences
-    tags: [protein-search, sequence-search]
+    tags:
+      - protein-search
+      - sequence-search
     method: GET
     path: /esearch.fcgi
     params:
@@ -28,10 +34,11 @@ tools:
         default: json
     response:
       format: json
-
   getSummary:
     description: Get protein summary by NCBI Protein ID or accession
-    tags: [protein-info, sequence-info]
+    tags:
+      - protein-info
+      - sequence-info
     method: GET
     path: /esummary.fcgi
     params:
@@ -47,3 +54,17 @@ tools:
         default: json
     response:
       format: json
+tests:
+  search:
+    - name: searches for hemoglobin human proteins
+      params:
+        query: hemoglobin human
+      assert:
+        - path: esearchresult.idlist
+          minLength: 1
+  getSummary:
+    - name: gets protein summary by ID
+      params:
+        id: "4504349"
+      assert:
+        - path: result.4504349

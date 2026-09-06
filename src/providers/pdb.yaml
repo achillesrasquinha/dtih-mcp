@@ -1,13 +1,20 @@
 name: pdb
 displayName: RCSB PDB
 description: Protein Data Bank — 3D structural data for biological macromolecules
-tags: [protein-structure, 3d-structure, x-ray, cryo-em, nmr, pdb]
+tags:
+  - protein-structure
+  - 3d-structure
+  - x-ray
+  - cryo-em
+  - nmr
+  - pdb
 baseUrl: https://data.rcsb.org
-
 tools:
   getEntry:
     description: Get PDB entry metadata by ID
-    tags: [structure-info, entry]
+    tags:
+      - structure-info
+      - entry
     method: GET
     path: /rest/v1/core/entry/{entryId}
     params:
@@ -17,10 +24,12 @@ tools:
         description: PDB entry ID (e.g. 4HHB for hemoglobin)
     response:
       format: json
-
   getPolymerEntity:
     description: Get polymer entity details (protein/DNA chain info)
-    tags: [structure-info, polymer, chain]
+    tags:
+      - structure-info
+      - polymer
+      - chain
     method: GET
     path: /rest/v1/core/polymer_entity/{entryId}/{entityId}
     params:
@@ -34,3 +43,19 @@ tools:
         description: Entity ID (e.g. 1)
     response:
       format: json
+tests:
+  getEntry:
+    - name: gets entry for hemoglobin (4HHB)
+      params:
+        entryId: 4HHB
+      assert:
+        - anyOf:
+            - struct.title
+            - rcsb_entry_info
+  getPolymerEntity:
+    - name: gets polymer entity
+      params:
+        entryId: 4HHB
+        entityId: "1"
+      assert:
+        - path: entity_poly.pdbx_seq_one_letter_code

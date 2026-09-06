@@ -1,13 +1,20 @@
 name: openalex
 displayName: OpenAlex
 description: OpenAlex — open catalog of scholarly works, authors, institutions, and concepts
-tags: [literature, scholarly, citations, openalex, publications, open-access]
+tags:
+  - literature
+  - scholarly
+  - citations
+  - openalex
+  - publications
+  - open-access
 baseUrl: https://api.openalex.org
-
 tools:
   searchWorks:
     description: Search scholarly works by keyword
-    tags: [work-search, publication-search]
+    tags:
+      - work-search
+      - publication-search
     method: GET
     path: /works
     params:
@@ -23,10 +30,11 @@ tools:
         description: Filter e.g. 'publication_year:2024'
     response:
       format: json
-
   getWork:
     description: Get a specific scholarly work by OpenAlex ID
-    tags: [work-info, publication-detail]
+    tags:
+      - work-info
+      - publication-detail
     method: GET
     path: /works/{id}
     params:
@@ -36,10 +44,11 @@ tools:
         description: OpenAlex work ID e.g. 'W2741809807'
     response:
       format: json
-
   searchAuthors:
     description: Search authors by name
-    tags: [author-search, researcher-search]
+    tags:
+      - author-search
+      - researcher-search
     method: GET
     path: /authors
     params:
@@ -52,3 +61,13 @@ tools:
         default: 5
     response:
       format: json
+tests:
+  searchWorks:
+    - name: searches works for CRISPR
+      params:
+        search: CRISPR
+      assert:
+        - path: meta.count
+          gt: 0
+        - path: results
+          minLength: 1

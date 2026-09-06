@@ -1,13 +1,19 @@
 name: biorxiv
 displayName: bioRxiv
 description: bioRxiv preprint server — access preprints in biology and related sciences
-tags: [preprints, biorxiv, medrxiv, literature, open-access]
+tags:
+  - preprints
+  - biorxiv
+  - medrxiv
+  - literature
+  - open-access
 baseUrl: https://api.biorxiv.org
-
 tools:
   getRecent:
     description: Get recent bioRxiv preprints from a date range
-    tags: [preprint-search, recent-papers]
+    tags:
+      - preprint-search
+      - recent-papers
     method: GET
     path: /details/biorxiv/{startDate}/{endDate}/{cursor}
     params:
@@ -25,10 +31,11 @@ tools:
         description: Pagination cursor (0-based offset)
     response:
       format: json
-
   getByDoi:
     description: Get a specific bioRxiv preprint by DOI suffix
-    tags: [preprint-lookup, doi-lookup]
+    tags:
+      - preprint-lookup
+      - doi-lookup
     method: GET
     path: /details/biorxiv/10.1101/{doiSuffix}/na/json
     params:
@@ -38,3 +45,14 @@ tools:
         description: DOI suffix after 10.1101/ (e.g. "2024.01.01.573838")
     response:
       format: json
+tests:
+  getRecent:
+    - name: gets recent preprints from a date range
+      params:
+        startDate: 2024-01-01
+        endDate: 2024-01-02
+      assert:
+        - path: collection
+          minLength: 1
+        - path: collection.0.title
+        - path: collection.0.doi

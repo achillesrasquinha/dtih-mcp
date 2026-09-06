@@ -21,6 +21,8 @@ jobs:
       - run: npm install
       - name: Registry and loader tests
         run: node --test test/registry.test.js
+      - name: Provider schema validation
+        run: node --test test/providers.unit.test.js
 
   integration:
     name: API integration tests (Node ${{ matrix.node-version }})
@@ -36,5 +38,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - name: Live API tests
-        run: npm test
+        run: node --test test/providers.integration.test.js
         timeout-minutes: 10

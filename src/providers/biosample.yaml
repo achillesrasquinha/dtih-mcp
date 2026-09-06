@@ -1,13 +1,18 @@
 name: biosample
 displayName: NCBI BioSample
 description: Database of biological sample metadata used in experimental assays
-tags: [biosample, sample-metadata, ncbi, experimental-data]
+tags:
+  - biosample
+  - sample-metadata
+  - ncbi
+  - experimental-data
 baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
-
 tools:
   search:
     description: Search NCBI BioSample for biological sample records
-    tags: [sample-search, biosample-search]
+    tags:
+      - sample-search
+      - biosample-search
     method: GET
     path: /esearch.fcgi
     params:
@@ -28,10 +33,11 @@ tools:
         default: json
     response:
       format: json
-
   getSummary:
     description: Get BioSample summary by BioSample ID
-    tags: [sample-info, biosample-info]
+    tags:
+      - sample-info
+      - biosample-info
     method: GET
     path: /esummary.fcgi
     params:
@@ -47,3 +53,17 @@ tools:
         default: json
     response:
       format: json
+tests:
+  search:
+    - name: searches for human liver biosamples
+      params:
+        query: human liver
+      assert:
+        - path: esearchresult.idlist
+          minLength: 1
+  getSummary:
+    - name: gets BioSample summary by ID
+      params:
+        id: "3737421"
+      assert:
+        - path: result.3737421

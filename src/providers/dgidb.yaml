@@ -1,14 +1,20 @@
 name: dgidb
 displayName: DGIdb
 description: Drug-Gene Interaction Database — mining drug-gene interaction data
-tags: [drug, gene, interaction, pharmacogenomics, druggable-genome]
+tags:
+  - drug
+  - gene
+  - interaction
+  - pharmacogenomics
+  - druggable-genome
 baseUrl: https://dgidb.org/api/graphql
 protocol: graphql
-
 tools:
   search:
     description: Search for drug-gene interactions by gene name
-    tags: [drug-gene-search, interaction-search]
+    tags:
+      - drug-gene-search
+      - interaction-search
     query: |
       query ($names: [String!]!) {
         genes(names: $names) {
@@ -28,10 +34,11 @@ tools:
         type: array
         required: true
         description: Gene name(s) to search for interactions (e.g. ["EGFR"])
-
   getGene:
     description: Get gene details including drug interactions
-    tags: [gene-info, drug-gene-info]
+    tags:
+      - gene-info
+      - drug-gene-info
     query: |
       query ($names: [String!]!) {
         genes(names: $names) {
@@ -51,3 +58,24 @@ tools:
         type: array
         required: true
         description: Gene name(s) to look up (e.g. ["EGFR"])
+tests:
+  search:
+    - name: searches for EGFR drug-gene interactions
+      params:
+        names:
+          - EGFR
+      assert:
+        - path: genes.nodes
+          minLength: 1
+        - path: genes.nodes.0.interactions
+          minLength: 1
+  getGene:
+    - name: gets gene details for BRAF
+      params:
+        names:
+          - BRAF
+      assert:
+        - path: genes.nodes
+          minLength: 1
+        - path: genes.nodes.0.name
+          equals: BRAF

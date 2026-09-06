@@ -1,13 +1,19 @@
 name: pubtator
 displayName: PubTator
 description: PubTator3 biomedical text mining — named entity recognition and annotation of PubMed articles
-tags: [text-mining, ner, annotation, pubtator, biomedical-nlp]
+tags:
+  - text-mining
+  - ner
+  - annotation
+  - pubtator
+  - biomedical-nlp
 baseUrl: https://www.ncbi.nlm.nih.gov/research/pubtator3-api
-
 tools:
   annotate:
     description: Get NER annotations for a PubMed article by PMID (returns BioC JSON)
-    tags: [annotation, ner-annotation]
+    tags:
+      - annotation
+      - ner-annotation
     method: GET
     path: /publications/export/biocjson
     params:
@@ -18,10 +24,11 @@ tools:
         description: PubMed ID (e.g. "35153516")
     response:
       format: json
-
   search:
     description: Search PubTator for annotated articles by text query
-    tags: [article-search, entity-search]
+    tags:
+      - article-search
+      - entity-search
     method: GET
     path: /search/
     params:
@@ -32,7 +39,22 @@ tools:
         description: Search text (e.g. "BRCA1 cancer")
       sort:
         type: string
-        default: "score desc"
+        default: score desc
         description: Sort order (e.g. "score desc", "date desc")
     response:
       format: json
+tests:
+  annotate:
+    - name: annotates PMID 35153516
+      params:
+        pmid: "35153516"
+      assert:
+        - path: PubTator3
+          minLength: 1
+  search:
+    - name: searches for BRCA1 cancer
+      params:
+        query: BRCA1 cancer
+      assert:
+        - path: results
+          minLength: 1

@@ -1,13 +1,19 @@
 name: who-gho
 displayName: WHO Global Health Observatory
 description: WHO Global Health Observatory — global health indicators, statistics, and country-level health data
-tags: [health-statistics, who, global-health, epidemiology, indicators]
+tags:
+  - health-statistics
+  - who
+  - global-health
+  - epidemiology
+  - indicators
 baseUrl: https://ghoapi.azureedge.net/api
-
 tools:
   getIndicators:
     description: Search WHO health indicators by name
-    tags: [indicator-search, health-data]
+    tags:
+      - indicator-search
+      - health-data
     method: GET
     path: /Indicator
     params:
@@ -18,10 +24,11 @@ tools:
         description: OData filter expression (e.g. "contains(IndicatorName,'malaria')")
     response:
       format: json
-
   getData:
     description: Get data for a specific WHO health indicator optionally filtered by country
-    tags: [indicator-data, country-data]
+    tags:
+      - indicator-data
+      - country-data
     method: GET
     path: /{indicatorCode}
     params:
@@ -40,3 +47,20 @@ tools:
         description: Number of records to return
     response:
       format: json
+tests:
+  getIndicators:
+    - name: lists indicators containing malaria
+      params:
+        query: contains(IndicatorName,'malaria')
+      assert:
+        - path: value
+          minLength: 1
+        - path: value.0.IndicatorCode
+        - path: value.0.IndicatorName
+  getData:
+    - name: gets data for indicator WHOSIS_000001
+      params:
+        indicatorCode: WHOSIS_000001
+      assert:
+        - path: value
+          minLength: 1

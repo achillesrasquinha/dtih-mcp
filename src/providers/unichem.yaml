@@ -1,13 +1,18 @@
 name: unichem
 displayName: UniChem
 description: UniChem compound cross-referencing — map chemical identifiers across databases
-tags: [chemistry, cross-reference, compound-mapping, unichem]
+tags:
+  - chemistry
+  - cross-reference
+  - compound-mapping
+  - unichem
 baseUrl: https://www.ebi.ac.uk/unichem/api/v1
-
 tools:
   getCompound:
     description: Look up a compound by source ID and find cross-references across databases
-    tags: [compound-lookup, cross-reference]
+    tags:
+      - compound-lookup
+      - cross-reference
     method: POST
     path: /compounds
     params:
@@ -27,10 +32,11 @@ tools:
         description: Type of identifier (sourceID or inchikey)
     response:
       format: json
-
   getConnectivity:
     description: Find all compounds connected to a given compound across databases
-    tags: [connectivity, compound-network]
+    tags:
+      - connectivity
+      - compound-network
     method: POST
     path: /connectivity
     params:
@@ -50,3 +56,26 @@ tools:
         description: Type of identifier (sourceID or inchikey)
     response:
       format: json
+tests:
+  getConnectivity:
+    - name: finds connectivity for CHEMBL25 (aspirin)
+      params:
+        compound: CHEMBL25
+        sourceID: 1
+        type: sourceID
+      assert:
+        - path: response
+          equals: Success
+        - path: sources
+          minLength: 1
+  getCompound:
+    - name: looks up compound CHEMBL25
+      params:
+        compound: CHEMBL25
+        sourceID: 1
+        type: sourceID
+      assert:
+        - path: compounds
+        - path: compounds
+          minLength: 1
+      allowError: true

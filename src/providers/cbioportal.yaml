@@ -1,13 +1,19 @@
 name: cbioportal
 displayName: cBioPortal
 description: Cancer genomics portal — explore multidimensional cancer genomics data
-tags: [cancer, genomics, mutations, clinical, cbioportal]
+tags:
+  - cancer
+  - genomics
+  - mutations
+  - clinical
+  - cbioportal
 baseUrl: https://www.cbioportal.org/api
-
 tools:
   getStudies:
     description: List available cancer genomics studies
-    tags: [cancer-studies, study-list]
+    tags:
+      - cancer-studies
+      - study-list
     method: GET
     path: /studies
     params:
@@ -25,10 +31,11 @@ tools:
         description: Sort direction (ASC or DESC)
     response:
       format: json
-
   getGenes:
     description: Get gene details by Hugo gene symbol
-    tags: [gene-info, cancer-gene]
+    tags:
+      - gene-info
+      - cancer-gene
     method: GET
     path: /genes/{geneId}
     params:
@@ -38,3 +45,20 @@ tools:
         description: Hugo gene symbol (e.g. BRCA1, TP53, EGFR)
     response:
       format: json
+tests:
+  getStudies:
+    - name: lists available cancer studies
+      params:
+        pageSize: 5
+      assert:
+        - isArray: true
+        - path: 0.studyId
+  getGenes:
+    - name: gets BRCA1 gene info
+      params:
+        geneId: BRCA1
+      assert:
+        - path: hugoGeneSymbol
+          equals: BRCA1
+        - path: entrezGeneId
+          equals: 672

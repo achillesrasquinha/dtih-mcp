@@ -1,13 +1,19 @@
 name: quickgo
 displayName: QuickGO
 description: Gene Ontology browser — fast access to GO term information (EBI)
-tags: [gene-ontology, go, annotation, function, quickgo]
+tags:
+  - gene-ontology
+  - go
+  - annotation
+  - function
+  - quickgo
 baseUrl: https://www.ebi.ac.uk/QuickGO/services
-
 tools:
   search:
     description: Search Gene Ontology terms by keyword
-    tags: [go-search, ontology-search]
+    tags:
+      - go-search
+      - ontology-search
     method: GET
     path: /ontology/go/search
     params:
@@ -22,16 +28,39 @@ tools:
         description: Maximum number of results
     response:
       format: json
-
   getTerm:
     description: Get a Gene Ontology term by GO ID
-    tags: [go-term, ontology-info]
+    tags:
+      - go-term
+      - ontology-info
     method: GET
     path: /ontology/go/terms/{goId}
     params:
       goId:
         type: string
         required: true
-        description: "GO term ID (e.g. GO:0006915)"
+        description: GO term ID (e.g. GO:0006915)
     response:
       format: json
+tests:
+  search:
+    - name: searches for apoptosis GO terms
+      params:
+        query: apoptosis
+      assert:
+        - path: numberOfHits
+          gt: 0
+        - path: results
+          minLength: 1
+        - path: results.0.name
+  getTerm:
+    - name: gets GO term GO:0006915 (apoptotic process)
+      params:
+        goId: GO:0006915
+      assert:
+        - path: numberOfHits
+          gte: 1
+        - path: results.0.id
+          equals: GO:0006915
+        - path: results.0.name
+          equals: apoptotic process

@@ -1,13 +1,18 @@
 name: pdbe
 displayName: PDBe
 description: Protein Data Bank in Europe — macromolecular structure data
-tags: [protein-structure, 3d-structure, crystallography, pdbe]
+tags:
+  - protein-structure
+  - 3d-structure
+  - crystallography
+  - pdbe
 baseUrl: https://www.ebi.ac.uk/pdbe/api
-
 tools:
   getSummary:
     description: Get PDB entry summary by PDB ID
-    tags: [structure-summary, entry-info]
+    tags:
+      - structure-summary
+      - entry-info
     method: GET
     path: /pdb/entry/summary/{pdbId}
     params:
@@ -17,10 +22,11 @@ tools:
         description: PDB entry ID in lowercase (e.g. 1cbs, 4hhb)
     response:
       format: json
-
   getMolecules:
     description: Get molecule information for a PDB entry
-    tags: [molecule-info, chain-info]
+    tags:
+      - molecule-info
+      - chain-info
     method: GET
     path: /pdb/entry/molecules/{pdbId}
     params:
@@ -30,3 +36,18 @@ tools:
         description: PDB entry ID in lowercase (e.g. 1cbs, 4hhb)
     response:
       format: json
+tests:
+  getSummary:
+    - name: gets summary for PDB entry 1cbs
+      params:
+        pdbId: 1cbs
+      assert:
+        - path: 1cbs
+        - path: 1cbs.0.title
+  getMolecules:
+    - name: gets molecules for PDB entry 1cbs
+      params:
+        pdbId: 1cbs
+      assert:
+        - path: 1cbs
+        - path: 1cbs.0.molecule_name

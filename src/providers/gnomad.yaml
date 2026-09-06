@@ -1,14 +1,19 @@
 name: gnomad
 displayName: gnomAD
 description: Genome Aggregation Database — population variant frequencies and annotations
-tags: [variants, population-genetics, allele-frequency, gnomad]
+tags:
+  - variants
+  - population-genetics
+  - allele-frequency
+  - gnomad
 baseUrl: https://gnomad.broadinstitute.org/api
 protocol: graphql
-
 tools:
   searchVariant:
     description: Search for gene information and variant summary by gene symbol
-    tags: [variant-search, gene-lookup]
+    tags:
+      - variant-search
+      - gene-lookup
     query: |
       query($geneSymbol: String!, $referenceGenome: ReferenceGenomeId!) {
         gene(gene_symbol: $geneSymbol, reference_genome: $referenceGenome) {
@@ -29,10 +34,11 @@ tools:
         type: string
         default: GRCh37
         description: Reference genome (GRCh37 or GRCh38)
-
   getVariant:
     description: Get a specific variant by its gnomAD variant ID
-    tags: [variant-info, allele-frequency]
+    tags:
+      - variant-info
+      - allele-frequency
     query: |
       query($variantId: String!, $dataset: DatasetId!) {
         variant(variantId: $variantId, dataset: $dataset) {
@@ -59,3 +65,21 @@ tools:
         type: string
         default: gnomad_r2_1
         description: Dataset version (e.g. gnomad_r2_1, gnomad_r4)
+tests:
+  searchVariant:
+    - name: searches for PCSK9 gene information
+      params:
+        geneSymbol: PCSK9
+      assert:
+        - path: gene
+        - path: gene.gene_id
+        - path: gene.symbol
+          equals: PCSK9
+  getVariant:
+    - name: gets a specific variant by ID
+      params:
+        variantId: 1-55516888-G-A
+      assert:
+        - path: variant
+        - path: variant.variantId
+          equals: 1-55516888-G-A

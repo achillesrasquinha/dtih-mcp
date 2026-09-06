@@ -1,13 +1,20 @@
 name: drugcentral
 displayName: DailyMed
 description: NLM DailyMed drug labeling and packaging information from FDA SPL data
-tags: [drugs, drug-labels, fda, packaging, pharmacology, nlm]
+tags:
+  - drugs
+  - drug-labels
+  - fda
+  - packaging
+  - pharmacology
+  - nlm
 baseUrl: https://dailymed.nlm.nih.gov/dailymed/services/v2
-
 tools:
   search:
     description: Search drug names in DailyMed
-    tags: [drug-search, drug-names]
+    tags:
+      - drug-search
+      - drug-names
     method: GET
     path: /drugnames.json
     params:
@@ -23,10 +30,11 @@ tools:
         description: Number of results per page
     response:
       format: json
-
   getLabel:
     description: Search drug product labels (SPLs) by drug name
-    tags: [drug-labels, spl]
+    tags:
+      - drug-labels
+      - spl
     method: GET
     path: /spls.json
     params:
@@ -42,3 +50,20 @@ tools:
         description: Number of results per page
     response:
       format: json
+tests:
+  search:
+    - name: searches drug names for metformin
+      params:
+        query: metformin
+      assert:
+        - path: data
+          minLength: 1
+        - path: data.0.drug_name
+  getLabel:
+    - name: gets drug product labels for aspirin
+      params:
+        query: aspirin
+      assert:
+        - path: data
+          minLength: 1
+        - path: data.0.title

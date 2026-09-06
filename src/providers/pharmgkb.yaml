@@ -1,13 +1,19 @@
 name: pharmgkb
 displayName: PharmGKB (CPIC)
 description: CPIC pharmacogenomics knowledge base — drug-gene pairs, clinical guidelines, and pharmacogenomic recommendations
-tags: [pharmacogenomics, drug-gene, pharmgkb, clinical, pgx]
+tags:
+  - pharmacogenomics
+  - drug-gene
+  - pharmgkb
+  - clinical
+  - pgx
 baseUrl: https://api.cpicpgx.org/v1
-
 tools:
   searchDrugs:
     description: Search for drugs by name in the CPIC pharmacogenomics database
-    tags: [drug-search, pgx-drug]
+    tags:
+      - drug-search
+      - pgx-drug
     method: GET
     path: /drug
     params:
@@ -18,10 +24,11 @@ tools:
         description: Drug name filter using PostgREST eq operator (e.g. "eq.warfarin")
     response:
       format: json
-
   getDrugGenePairs:
     description: Get drug-gene interaction pairs for a specific drug
-    tags: [drug-gene-pairs, pgx-pairs]
+    tags:
+      - drug-gene-pairs
+      - pgx-pairs
     method: GET
     path: /pair
     params:
@@ -32,3 +39,19 @@ tools:
         description: Drug ID filter using PostgREST eq operator (e.g. "eq.RxNorm:11289" for warfarin)
     response:
       format: json
+tests:
+  searchDrugs:
+    - name: searches for warfarin
+      params:
+        name: eq.warfarin
+      assert:
+        - isArray: true
+        - path: 0.name
+          equals: warfarin
+  getDrugGenePairs:
+    - name: gets drug-gene pairs for warfarin (RxNorm:11289)
+      params:
+        drugid: eq.RxNorm:11289
+      assert:
+        - isArray: true
+        - path: 0.genesymbol

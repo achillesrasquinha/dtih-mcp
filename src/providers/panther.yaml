@@ -1,13 +1,19 @@
 name: panther
 displayName: PANTHER
 description: PANTHER — protein classification, gene ontology, and phylogenetic analysis
-tags: [protein-classification, gene-ontology, panther, phylogenetics, functional]
+tags:
+  - protein-classification
+  - gene-ontology
+  - panther
+  - phylogenetics
+  - functional
 baseUrl: https://pantherdb.org/services/oai/pantherdb
-
 tools:
   searchGenes:
     description: Search PANTHER for gene information and ortholog classification
-    tags: [gene-search, ortholog-search]
+    tags:
+      - gene-search
+      - ortholog-search
     method: GET
     path: /geneinfo
     params:
@@ -25,10 +31,12 @@ tools:
         description: Search type (ortholog, paralog, etc.)
     response:
       format: json
-
   getEnrichment:
     description: Run gene ontology enrichment analysis via PANTHER overrepresentation test
-    tags: [enrichment, gene-ontology, overrepresentation]
+    tags:
+      - enrichment
+      - gene-ontology
+      - overrepresentation
     method: GET
     path: /enrich/overrep
     params:
@@ -42,7 +50,7 @@ tools:
         description: NCBI taxonomy ID
       annotDataSet:
         type: string
-        default: "GO:0008150"
+        default: GO:0008150
         description: Annotation data set (GO biological process by default)
       enrichmentTestType:
         type: string
@@ -54,3 +62,18 @@ tools:
         description: Multiple test correction method
     response:
       format: json
+tests:
+  searchGenes:
+    - name: searches gene info for BRCA1
+      params:
+        geneInputList: BRCA1
+      assert:
+        - path: search
+        - path: search.mapped_genes
+  getEnrichment:
+    - name: runs enrichment analysis for BRCA1,TP53
+      params:
+        geneInputList: BRCA1,TP53
+      assert:
+        - path: results
+        - path: results.reference

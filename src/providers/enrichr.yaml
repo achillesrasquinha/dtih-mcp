@@ -1,13 +1,19 @@
 name: enrichr
 displayName: Enrichr
 description: Enrichr — gene set enrichment analysis against curated gene-set libraries
-tags: [enrichment, gene-set, pathways, enrichr, functional-analysis]
+tags:
+  - enrichment
+  - gene-set
+  - pathways
+  - enrichr
+  - functional-analysis
 baseUrl: https://maayanlab.cloud/Enrichr
-
 tools:
   viewList:
     description: View a previously submitted gene list by userListId
-    tags: [gene-list, gene-set-view]
+    tags:
+      - gene-list
+      - gene-set-view
     method: GET
     path: /view
     params:
@@ -17,10 +23,11 @@ tools:
         description: User list ID returned from the addList endpoint
     response:
       format: json
-
   enrich:
     description: Get enrichment results for a gene list against a specified library
-    tags: [enrichment-results, pathway-enrichment]
+    tags:
+      - enrichment-results
+      - pathway-enrichment
     method: GET
     path: /enrich
     params:
@@ -34,10 +41,11 @@ tools:
         description: Gene-set library name (e.g. KEGG_2021_Human, GO_Biological_Process_2023)
     response:
       format: json
-
   export:
     description: Export enrichment results as a table for a gene list and library
-    tags: [enrichment-export, enrichment-table]
+    tags:
+      - enrichment-export
+      - enrichment-table
     method: GET
     path: /export
     params:
@@ -55,3 +63,19 @@ tools:
         description: Output filename prefix
     response:
       format: text
+tests:
+  viewList:
+    - name: views a previously submitted gene list
+      params: {}
+      assert:
+        - path: genes
+        - path: genes
+          minLength: 1
+  enrich:
+    - name: gets KEGG enrichment results for a gene list
+      params:
+        backgroundType: KEGG_2021_Human
+      assert:
+        - path: KEGG_2021_Human
+        - path: KEGG_2021_Human
+          minLength: 1

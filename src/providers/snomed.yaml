@@ -1,15 +1,21 @@
 name: snomed
 displayName: SNOMED CT
 description: SNOMED CT clinical terminology via FHIR terminology server — look up and search clinical concepts
-tags: [terminology, snomed, clinical, medical-coding, ontology]
+tags:
+  - terminology
+  - snomed
+  - clinical
+  - medical-coding
+  - ontology
 baseUrl: https://tx.fhir.org/r4
 headers:
   Accept: application/fhir+json
-
 tools:
   searchConcepts:
     description: Search SNOMED CT concepts by term using FHIR ValueSet expansion
-    tags: [concept-search, terminology-search]
+    tags:
+      - concept-search
+      - terminology-search
     method: GET
     path: /ValueSet/$expand
     params:
@@ -24,7 +30,7 @@ tools:
         description: Number of results to return
       url:
         type: string
-        default: "http://snomed.info/sct?fhir_vs"
+        default: http://snomed.info/sct?fhir_vs
         description: ValueSet URL for SNOMED CT
       _format:
         type: string
@@ -32,10 +38,11 @@ tools:
         description: Response format
     response:
       format: json
-
   getConcept:
     description: Look up a specific SNOMED CT concept by code
-    tags: [concept-lookup, code-lookup]
+    tags:
+      - concept-lookup
+      - code-lookup
     method: GET
     path: /CodeSystem/$lookup
     params:
@@ -45,7 +52,7 @@ tools:
         description: SNOMED CT concept code (e.g. "73211009" for diabetes mellitus)
       system:
         type: string
-        default: "http://snomed.info/sct"
+        default: http://snomed.info/sct
         description: Code system URI
       _format:
         type: string
@@ -53,3 +60,20 @@ tools:
         description: Response format
     response:
       format: json
+tests:
+  searchConcepts:
+    - name: searches for diabetes concepts
+      params:
+        term: diabetes
+      assert:
+        - path: resourceType
+          equals: ValueSet
+        - path: expansion.contains
+          minLength: 1
+  getConcept:
+    - name: looks up concept 73211009 (diabetes mellitus)
+      params:
+        code: "73211009"
+      assert:
+        - path: resourceType
+          equals: Parameters

@@ -1,13 +1,19 @@
 name: guidetopharmacology
 displayName: Guide to Pharmacology
 description: IUPHAR/BPS Guide to Pharmacology database of drug targets and ligands
-tags: [pharmacology, drug-targets, ligands, receptors, iuphar]
+tags:
+  - pharmacology
+  - drug-targets
+  - ligands
+  - receptors
+  - iuphar
 baseUrl: https://www.guidetopharmacology.org/services
-
 tools:
   searchTargets:
     description: Search pharmacological targets by name
-    tags: [target-search, receptor-search]
+    tags:
+      - target-search
+      - receptor-search
     method: GET
     path: /targets
     params:
@@ -18,10 +24,11 @@ tools:
         description: Target name to search for (e.g. EGFR, dopamine)
     response:
       format: json
-
   searchLigands:
     description: Search pharmacological ligands by name
-    tags: [ligand-search, drug-search]
+    tags:
+      - ligand-search
+      - drug-search
     method: GET
     path: /ligands
     params:
@@ -32,3 +39,24 @@ tools:
         description: Ligand name to search for (e.g. erlotinib, morphine)
     response:
       format: json
+tests:
+  searchTargets:
+    - name: searches targets for EGFR
+      params:
+        name: EGFR
+      assert:
+        - {}
+        - anyOf:
+            - isArray: true
+              minLength: 1
+            - path: targets
+  searchLigands:
+    - name: searches ligands for erlotinib
+      params:
+        name: erlotinib
+      assert:
+        - {}
+        - anyOf:
+            - isArray: true
+              minLength: 1
+            - path: ligands

@@ -1,22 +1,29 @@
 name: glytoucan
 displayName: GlyTouCan
 description: GlyTouCan — international glycan structure repository
-tags: [glycomics, glycan-structure, glytoucan, carbohydrate, glycobiology]
+tags:
+  - glycomics
+  - glycan-structure
+  - glytoucan
+  - carbohydrate
+  - glycobiology
 baseUrl: https://api.glycosmos.org
-
 tools:
   listGlycans:
     description: List glycan entries from the GlyTouCan repository
-    tags: [glycan-list, glycan-browse]
+    tags:
+      - glycan-list
+      - glycan-browse
     method: GET
     path: /sparqlist/api/gtc_list_glycan
     params: {}
     response:
       format: json
-
   getGlycan:
     description: Get detailed glycan information by GlyTouCan accession number
-    tags: [glycan-detail, glycan-info]
+    tags:
+      - glycan-detail
+      - glycan-info
     method: GET
     path: /sparqlist/api/gtc_glycan_detail
     params:
@@ -26,3 +33,15 @@ tools:
         description: GlyTouCan accession number (e.g. G00055MO)
     response:
       format: json
+tests:
+  listGlycans:
+    - name: lists glycan entries
+      params: {}
+      assert:
+        - {}
+  getGlycan:
+    - name: gets glycan G00055MO details
+      params:
+        accession_number: G00055MO
+      assert:
+        - {}

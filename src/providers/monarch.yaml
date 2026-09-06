@@ -1,13 +1,19 @@
 name: monarch
 displayName: Monarch Initiative
 description: Knowledge graph integrating biological and clinical data for disease discovery
-tags: [disease, phenotype, gene, knowledge-graph, ontology]
+tags:
+  - disease
+  - phenotype
+  - gene
+  - knowledge-graph
+  - ontology
 baseUrl: https://api.monarchinitiative.org/v3/api
-
 tools:
   search:
     description: Search the Monarch knowledge graph for entities
-    tags: [entity-search, disease-search]
+    tags:
+      - entity-search
+      - disease-search
     method: GET
     path: /search
     params:
@@ -22,10 +28,11 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
-
   getEntity:
     description: Get detailed information for a Monarch entity by ID
-    tags: [entity-info, disease-info]
+    tags:
+      - entity-info
+      - disease-info
     method: GET
     path: /entity/{id}
     params:
@@ -35,3 +42,19 @@ tools:
         description: Entity ID (e.g. "MONDO:0007947" for Marfan syndrome)
     response:
       format: json
+tests:
+  search:
+    - name: searches for Marfan syndrome
+      params:
+        query: Marfan syndrome
+      assert:
+        - path: items
+          minLength: 1
+  getEntity:
+    - name: gets entity details for MONDO:0007947
+      params:
+        id: MONDO:0007947
+      assert:
+        - anyOf:
+            - id
+            - name

@@ -1,13 +1,18 @@
 name: orthodb
 displayName: OrthoDB
 description: Hierarchical catalog of orthologs — gene evolutionary relationships
-tags: [orthology, evolution, comparative-genomics, orthodb]
+tags:
+  - orthology
+  - evolution
+  - comparative-genomics
+  - orthodb
 baseUrl: https://data.orthodb.org/v12
-
 tools:
   search:
     description: Search orthologous groups by gene name
-    tags: [ortholog-search, gene-search]
+    tags:
+      - ortholog-search
+      - gene-search
     method: GET
     path: /search
     params:
@@ -25,10 +30,11 @@ tools:
         description: NCBI taxonomy ID for species filter (9606=human)
     response:
       format: json
-
   getGroup:
     description: Get orthologous group details by OrthoDB group ID
-    tags: [ortholog-group, group-info]
+    tags:
+      - ortholog-group
+      - group-info
     method: GET
     path: /group
     params:
@@ -38,3 +44,21 @@ tools:
         description: OrthoDB group ID (e.g. 733642at2759)
     response:
       format: json
+tests:
+  search:
+    - name: searches for BRCA1 orthologous groups
+      params:
+        query: BRCA1
+      assert:
+        - path: data
+          minLength: 1
+        - path: status
+          equals: ok
+  getGroup:
+    - name: gets orthologous group details
+      params:
+        id: 733642at2759
+      assert:
+        - path: data.id
+          equals: 733642at2759
+        - path: data.name

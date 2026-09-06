@@ -1,13 +1,19 @@
 name: string
 displayName: STRING
 description: Protein-protein interaction network database
-tags: [protein, interaction, network, ppi, functional-association]
+tags:
+  - protein
+  - interaction
+  - network
+  - ppi
+  - functional-association
 baseUrl: https://string-db.org/api
-
 tools:
   getInteractions:
     description: Get protein-protein interaction network for given protein(s)
-    tags: [interaction-network, ppi]
+    tags:
+      - interaction-network
+      - ppi
     method: GET
     path: /json/network
     params:
@@ -25,10 +31,12 @@ tools:
         description: Maximum number of interaction partners to return
     response:
       format: json
-
   getEnrichment:
     description: Get functional enrichment analysis for protein(s)
-    tags: [enrichment, go-terms, pathways]
+    tags:
+      - enrichment
+      - go-terms
+      - pathways
     method: GET
     path: /json/enrichment
     params:
@@ -42,3 +50,24 @@ tools:
         description: NCBI taxon ID (9606 for human)
     response:
       format: json
+tests:
+  getInteractions:
+    - name: gets protein-protein interactions for TP53
+      params:
+        identifiers: TP53
+      assert:
+        - isArray: true
+          minLength: 1
+        - anyOf:
+            - 0.preferredName_A
+            - 0.stringId_A
+  getEnrichment:
+    - name: gets functional enrichment for TP53
+      params:
+        identifiers: TP53
+      assert:
+        - isArray: true
+          minLength: 1
+        - anyOf:
+            - 0.term
+            - 0.category

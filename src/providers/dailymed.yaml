@@ -1,13 +1,19 @@
 name: dailymed
 displayName: DailyMed
 description: DailyMed drug label information from the National Library of Medicine — SPL documents and prescribing information
-tags: [drug-labels, prescribing, dailymed, fda, medication]
+tags:
+  - drug-labels
+  - prescribing
+  - dailymed
+  - fda
+  - medication
 baseUrl: https://dailymed.nlm.nih.gov/dailymed/services
-
 tools:
   searchDrugs:
     description: Search DailyMed for drug labels by drug name
-    tags: [drug-search, label-search]
+    tags:
+      - drug-search
+      - label-search
     method: GET
     path: /v2/spls.json
     params:
@@ -18,10 +24,11 @@ tools:
         description: Drug name to search for (e.g. "aspirin", "metformin")
     response:
       format: json
-
   getSpl:
     description: Get a specific SPL drug label by set ID
-    tags: [drug-label, spl]
+    tags:
+      - drug-label
+      - spl
     method: GET
     path: /v2/spls.json
     params:
@@ -32,3 +39,22 @@ tools:
         description: SPL set ID (UUID)
     response:
       format: json
+tests:
+  searchDrugs:
+    - name: searches for aspirin drug labels
+      params:
+        name: aspirin
+      assert:
+        - path: data
+          minLength: 1
+        - path: data.0.title
+        - path: data.0.setid
+  getSpl:
+    - name: gets a specific SPL by set ID
+      params:
+        setid: 2777beea-06d7-4ff5-ae4a-ad7a117dfb62
+      assert:
+        - path: data
+          minLength: 1
+        - path: data.0.setid
+          equals: 2777beea-06d7-4ff5-ae4a-ad7a117dfb62

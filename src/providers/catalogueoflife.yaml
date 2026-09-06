@@ -1,13 +1,19 @@
 name: catalogueoflife
 displayName: Catalogue of Life
 description: Catalogue of Life — global checklist of all known species with authoritative taxonomy
-tags: [taxonomy, species-catalog, nomenclature, catalogueoflife, classification]
+tags:
+  - taxonomy
+  - species-catalog
+  - nomenclature
+  - catalogueoflife
+  - classification
 baseUrl: https://api.catalogueoflife.org
-
 tools:
   searchTaxa:
     description: Search Catalogue of Life for taxa by name
-    tags: [taxon-search, species-search]
+    tags:
+      - taxon-search
+      - species-search
     method: GET
     path: /dataset/3/nameusage/search
     params:
@@ -22,10 +28,11 @@ tools:
         description: Maximum number of results
     response:
       format: json
-
   getTaxon:
     description: Get detailed taxon information from Catalogue of Life by ID
-    tags: [taxon-info, classification-detail]
+    tags:
+      - taxon-info
+      - classification-detail
     method: GET
     path: /dataset/3/taxon/{id}
     params:
@@ -35,3 +42,19 @@ tools:
         description: Catalogue of Life taxon ID
     response:
       format: json
+tests:
+  searchTaxa:
+    - name: searches taxa for Felis catus
+      params:
+        query: Felis catus
+      assert:
+        - path: result
+          minLength: 1
+        - path: total
+          gt: 0
+    - name: gets taxon by ID
+      params:
+        query: Felis catus
+      assert:
+        - path: id
+        - path: name

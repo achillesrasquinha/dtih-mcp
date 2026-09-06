@@ -1,13 +1,18 @@
 name: reactome
 displayName: Reactome
 description: Curated biological pathway and reaction database
-tags: [pathways, reactions, metabolism, signaling, reactome]
+tags:
+  - pathways
+  - reactions
+  - metabolism
+  - signaling
+  - reactome
 baseUrl: https://reactome.org
-
 tools:
   search:
     description: Search Reactome for pathways by keyword
-    tags: [pathway-search]
+    tags:
+      - pathway-search
     method: GET
     path: /ContentService/search/query
     params:
@@ -18,7 +23,7 @@ tools:
         description: Search keyword (e.g. "apoptosis", "insulin signaling")
       species:
         type: string
-        default: "Homo sapiens"
+        default: Homo sapiens
         mapsTo: species
       types:
         type: string
@@ -26,10 +31,11 @@ tools:
         mapsTo: types
     response:
       format: json
-
   getPathway:
     description: Get pathway details by Reactome stable ID
-    tags: [pathway-info, pathway-details]
+    tags:
+      - pathway-info
+      - pathway-details
     method: GET
     path: /ContentService/data/query/{pathwayId}
     params:
@@ -39,3 +45,16 @@ tools:
         description: Reactome stable ID (e.g. R-HSA-109581)
     response:
       format: json
+tests:
+  search:
+    - name: searches for apoptosis pathways
+      params:
+        query: apoptosis
+      assert:
+        - path: results
+          minLength: 1
+  getPathway:
+    - name: gets pathway by stable ID
+      params:
+        pathwayId: R-HSA-109581
+      assert: []

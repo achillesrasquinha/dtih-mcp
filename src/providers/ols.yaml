@@ -1,13 +1,18 @@
 name: ols
 displayName: OLS
 description: Ontology Lookup Service — search and browse biomedical ontologies (GO, EFO, HPO, etc.)
-tags: [ontology, terminology, ols, controlled-vocabulary]
+tags:
+  - ontology
+  - terminology
+  - ols
+  - controlled-vocabulary
 baseUrl: https://www.ebi.ac.uk/ols4/api
-
 tools:
   searchTerms:
     description: Search across ontologies for terms matching a query
-    tags: [term-search, ontology-search]
+    tags:
+      - term-search
+      - ontology-search
     method: GET
     path: /search
     params:
@@ -22,10 +27,11 @@ tools:
         description: Number of results to return
     response:
       format: json
-
   getOntology:
     description: Get metadata about a specific ontology
-    tags: [ontology-info, ontology-metadata]
+    tags:
+      - ontology-info
+      - ontology-metadata
     method: GET
     path: /ontologies/{id}
     params:
@@ -35,3 +41,21 @@ tools:
         description: Ontology identifier (e.g. go, efo, hp, mondo)
     response:
       format: json
+tests:
+  searchTerms:
+    - name: searches for apoptosis terms
+      params:
+        query: apoptosis
+      assert:
+        - path: response.docs
+          minLength: 1
+        - path: response.docs.0.iri
+  getOntology:
+    - name: gets GO ontology metadata
+      params:
+        id: go
+      assert:
+        - path: ontologyId
+          equals: go
+        - path: numberOfTerms
+          gt: 0

@@ -1,13 +1,19 @@
 name: lipidmaps
 displayName: LIPID MAPS
 description: LIPID MAPS Structure Database for lipid classification and structures
-tags: [lipids, lipidomics, metabolites, structures, chemistry]
+tags:
+  - lipids
+  - lipidomics
+  - metabolites
+  - structures
+  - chemistry
 baseUrl: https://www.lipidmaps.org/rest
-
 tools:
   getCompound:
     description: Get lipid compound details by LIPID MAPS ID
-    tags: [lipid-info, compound-info]
+    tags:
+      - lipid-info
+      - compound-info
     method: GET
     path: /compound/lm_id/{lmId}/all/json
     params:
@@ -17,10 +23,11 @@ tools:
         description: LIPID MAPS identifier (e.g. LMFA01010001)
     response:
       format: json
-
   getByName:
     description: Search lipids by abbreviated chain name
-    tags: [lipid-search, name-search]
+    tags:
+      - lipid-search
+      - name-search
     method: GET
     path: /compound/abbrev_chains/{name}/all/json
     params:
@@ -30,3 +37,20 @@ tools:
         description: Abbreviated lipid chain name (e.g. DHA, AA, EPA)
     response:
       format: json
+tests:
+  getCompound:
+    - name: gets compound by LIPID MAPS ID
+      params:
+        lmId: LMFA01010001
+      assert:
+        - {}
+        - anyOf:
+            - isArray: true
+              minLength: 1
+            - path: name
+  getByName:
+    - name: searches lipids by abbreviated chain name
+      params:
+        name: DHA
+      assert:
+        - {}

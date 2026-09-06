@@ -1,13 +1,18 @@
 name: expression-atlas
 displayName: Expression Atlas
 description: Gene expression patterns across species and biological conditions (EBI)
-tags: [gene-expression, transcriptomics, atlas, ebi]
+tags:
+  - gene-expression
+  - transcriptomics
+  - atlas
+  - ebi
 baseUrl: https://www.ebi.ac.uk/gxa/json
-
 tools:
   listExperiments:
     description: List Expression Atlas experiments, optionally filtered by species
-    tags: [experiment-list, expression-search]
+    tags:
+      - experiment-list
+      - expression-search
     method: GET
     path: /experiments
     params:
@@ -17,10 +22,11 @@ tools:
         description: Species filter (e.g. "Homo sapiens", "Mus musculus")
     response:
       format: json
-
   getExperiment:
     description: Get detailed expression data for a specific experiment
-    tags: [experiment-info, expression-data]
+    tags:
+      - experiment-info
+      - expression-data
     method: GET
     path: /experiments/{experimentId}
     params:
@@ -30,3 +36,19 @@ tools:
         description: Experiment accession (e.g. E-MTAB-513)
     response:
       format: json
+tests:
+  listExperiments:
+    - name: lists available experiments
+      params: {}
+      assert:
+        - path: experiments
+          minLength: 1
+        - path: experiments.0.experimentAccession
+  getExperiment:
+    - name: gets experiment E-MTAB-513 details
+      params:
+        experimentId: E-MTAB-513
+      assert:
+        - anyOf:
+            - columnHeaders
+            - profiles

@@ -1,13 +1,20 @@
 name: clinicaltrials
 displayName: ClinicalTrials.gov
 description: Registry of clinical studies conducted around the world
-tags: [clinical-trials, drugs, diseases, interventions, fda]
+tags:
+  - clinical-trials
+  - drugs
+  - diseases
+  - interventions
+  - fda
 baseUrl: https://clinicaltrials.gov/api/v2
-
 tools:
   search:
     description: Search clinical trials by condition, drug, or keyword
-    tags: [trial-search, condition, intervention]
+    tags:
+      - trial-search
+      - condition
+      - intervention
     method: GET
     path: /studies
     params:
@@ -22,10 +29,11 @@ tools:
         mapsTo: pageSize
     response:
       format: json
-
   getStudy:
     description: Get details of a specific clinical trial by NCT ID
-    tags: [trial-info, nct]
+    tags:
+      - trial-info
+      - nct
     method: GET
     path: /studies/{nctId}
     params:
@@ -35,3 +43,11 @@ tools:
         description: NCT identifier (e.g. NCT04280705)
     response:
       format: json
+tests:
+  search:
+    - name: searches for lung cancer trials
+      params:
+        query: lung cancer pembrolizumab
+      assert:
+        - path: studies
+          minLength: 1

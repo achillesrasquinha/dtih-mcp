@@ -1,13 +1,20 @@
 name: classyfire
 displayName: RxNorm
 description: NLM RxNorm normalized drug naming system for clinical drugs
-tags: [drugs, rxnorm, nlm, drug-names, clinical, prescriptions]
+tags:
+  - drugs
+  - rxnorm
+  - nlm
+  - drug-names
+  - clinical
+  - prescriptions
 baseUrl: https://rxnav.nlm.nih.gov/REST
-
 tools:
   search:
     description: Search RxNorm for drugs by name
-    tags: [drug-search, drug-names]
+    tags:
+      - drug-search
+      - drug-names
     method: GET
     path: /drugs.json
     params:
@@ -18,10 +25,11 @@ tools:
         description: Drug name to search for (e.g. metformin, aspirin)
     response:
       format: json
-
   getRxcui:
     description: Get RxNorm concept identifier (RXCUI) for a drug name
-    tags: [drug-id, rxcui]
+    tags:
+      - drug-id
+      - rxcui
     method: GET
     path: /rxcui.json
     params:
@@ -32,3 +40,19 @@ tools:
         description: Drug name to look up (e.g. metformin)
     response:
       format: json
+tests:
+  search:
+    - name: searches drugs by name
+      params:
+        name: metformin
+      assert:
+        - path: drugGroup
+        - path: drugGroup.conceptGroup
+          minLength: 1
+  getRxcui:
+    - name: gets RXCUI for a drug name
+      params:
+        name: metformin
+      assert:
+        - path: idGroup.rxnormId
+          minLength: 1

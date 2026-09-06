@@ -1,13 +1,19 @@
 name: gbif
 displayName: GBIF
 description: Global Biodiversity Information Facility — species occurrence and taxonomy data worldwide
-tags: [biodiversity, species, occurrence, gbif, ecology]
+tags:
+  - biodiversity
+  - species
+  - occurrence
+  - gbif
+  - ecology
 baseUrl: https://api.gbif.org/v1
-
 tools:
   searchSpecies:
     description: Search GBIF for species by name or keyword
-    tags: [species-search, taxonomy-search]
+    tags:
+      - species-search
+      - taxonomy-search
     method: GET
     path: /species/search
     params:
@@ -22,10 +28,11 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
-
   getOccurrences:
     description: Search GBIF for species occurrence records by taxon key
-    tags: [occurrence-search, distribution]
+    tags:
+      - occurrence-search
+      - distribution
     method: GET
     path: /occurrence/search
     params:
@@ -39,10 +46,11 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
-
   getSpecies:
     description: Get detailed species information by GBIF taxon key
-    tags: [species-info, taxonomy-detail]
+    tags:
+      - species-info
+      - taxonomy-detail
     method: GET
     path: /species/{key}
     params:
@@ -52,3 +60,26 @@ tools:
         description: GBIF species key
     response:
       format: json
+tests:
+  searchSpecies:
+    - name: searches for Panthera leo
+      params:
+        query: Panthera leo
+      assert:
+        - path: results
+          minLength: 1
+        - path: results.0.scientificName
+  getOccurrences:
+    - name: gets occurrence records for a taxon key
+      params:
+        taxonKey: 5219404
+      assert:
+        - path: results
+          minLength: 1
+  getSpecies:
+    - name: gets species detail by key
+      params:
+        key: 5219404
+      assert:
+        - path: species
+          equals: Panthera leo

@@ -1,13 +1,19 @@
 name: emdb
 displayName: EMDB
 description: Electron Microscopy Data Bank — 3D cryo-EM density maps and tomograms
-tags: [electron-microscopy, structure, emdb, cryoem, 3d-reconstruction]
+tags:
+  - electron-microscopy
+  - structure
+  - emdb
+  - cryoem
+  - 3d-reconstruction
 baseUrl: https://www.ebi.ac.uk/emdb/api
-
 tools:
   search:
     description: Search EMDB for electron microscopy entries by keyword
-    tags: [em-search, structure-search]
+    tags:
+      - em-search
+      - structure-search
     method: GET
     path: /search/*{query}
     params:
@@ -21,10 +27,11 @@ tools:
         description: Number of results to return
     response:
       format: json
-
   getEntry:
     description: Get a specific EMDB entry by ID
-    tags: [entry-info, em-detail]
+    tags:
+      - entry-info
+      - em-detail
     method: GET
     path: /entry/{id}
     params:
@@ -34,3 +41,19 @@ tools:
         description: EMDB entry ID (e.g. EMD-1234)
     response:
       format: json
+tests:
+  search:
+    - name: searches for ribosome entries
+      params:
+        query: ribosome
+      assert:
+        - isArray: true
+  getEntry:
+    - name: gets entry EMD-1234
+      params:
+        id: EMD-1234
+      assert:
+        - {}
+        - anyOf:
+            - admin
+            - _id

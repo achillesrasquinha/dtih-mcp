@@ -24,7 +24,6 @@ tools:
         default: json
     response:
       format: json
-
   searchDisease:
     description: Search diseases by name
     tags: [disease-search, disease-info]
@@ -40,3 +39,19 @@ tools:
         default: json
     response:
       format: json
+
+tests:
+  getGeneAssociations:
+    - name: gets disease associations for CDK2
+      params:
+        geneId: "1017"
+      assert:
+        - minLength: 1
+      allowError: true
+  searchDisease:
+    - name: searches for asthma
+      params:
+        query: asthma
+      assert:
+        - minLength: 1
+      allowError: true

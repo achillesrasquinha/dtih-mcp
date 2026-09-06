@@ -1,13 +1,19 @@
 name: iedb
 displayName: IEDB
 description: Immune Epitope Database — curated epitope data for immune research
-tags: [epitope, immunology, antigen, mhc, iedb]
+tags:
+  - epitope
+  - immunology
+  - antigen
+  - mhc
+  - iedb
 baseUrl: https://query-api.iedb.org
-
 tools:
   searchEpitopes:
     description: Search for epitopes by linear peptide sequence (uses PostgREST eq operator)
-    tags: [epitope-search, peptide-search]
+    tags:
+      - epitope-search
+      - peptide-search
     method: GET
     path: /epitope_search
     params:
@@ -15,17 +21,18 @@ tools:
         type: string
         required: true
         mapsTo: linear_sequence
-        description: "Peptide sequence to search (e.g. eq.SIINFEKL). Prefix value with eq."
+        description: Peptide sequence to search (e.g. eq.SIINFEKL). Prefix value with eq.
       select:
         type: string
-        default: "structure_id,structure_descriptions,curated_source_antigens"
+        default: structure_id,structure_descriptions,curated_source_antigens
         description: Columns to return
     response:
       format: json
-
   getEpitope:
     description: Get a specific epitope by its structure ID
-    tags: [epitope-info, epitope-detail]
+    tags:
+      - epitope-info
+      - epitope-detail
     method: GET
     path: /epitope_search
     params:
@@ -33,6 +40,22 @@ tools:
         type: integer
         required: true
         mapsTo: structure_id
-        description: "Epitope structure ID (e.g. eq.35572). Prefix value with eq."
+        description: Epitope structure ID (e.g. eq.35572). Prefix value with eq.
     response:
       format: json
+tests:
+  searchEpitopes:
+    - name: searches for SIINFEKL epitope
+      params:
+        sequence: eq.SIINFEKL
+      assert:
+        - isArray: true
+        - path: 0.structure_id
+  getEpitope:
+    - name: gets epitope 35572
+      params:
+        id: eq.35572
+      assert:
+        - isArray: true
+        - path: 0.structure_id
+          equals: 35572

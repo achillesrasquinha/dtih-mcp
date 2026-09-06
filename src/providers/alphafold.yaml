@@ -1,13 +1,18 @@
 name: alphafold
 displayName: AlphaFold DB
 description: AI-predicted protein structures from DeepMind
-tags: [protein-structure, prediction, alphafold, 3d-structure]
+tags:
+  - protein-structure
+  - prediction
+  - alphafold
+  - 3d-structure
 baseUrl: https://alphafold.ebi.ac.uk/api
-
 tools:
   getPrediction:
     description: Get AlphaFold structure prediction by UniProt accession
-    tags: [structure-prediction, protein-structure]
+    tags:
+      - structure-prediction
+      - protein-structure
     method: GET
     path: /prediction/{accession}
     params:
@@ -17,10 +22,12 @@ tools:
         description: UniProt accession (e.g. P00533 for EGFR)
     response:
       format: json
-
   getConfidence:
     description: Get per-residue confidence (pLDDT) summary
-    tags: [structure-quality, confidence, plddt]
+    tags:
+      - structure-quality
+      - confidence
+      - plddt
     method: GET
     path: /prediction/{accession}
     params:
@@ -30,3 +37,15 @@ tools:
         description: UniProt accession (e.g. Q9Y6K9)
     response:
       format: json
+tests:
+  getPrediction:
+    - name: gets prediction for EGFR (P00533)
+      params:
+        accession: P00533
+      assert:
+        - isArray: true
+        - path: 0.uniprotAccession
+          equals: P00533
+        - anyOf:
+            - 0.pdbUrl
+            - 0.cifUrl

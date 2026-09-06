@@ -1,13 +1,18 @@
 name: bgee
 displayName: Bgee
 description: Gene expression evolution database — expression across species and tissues
-tags: [gene-expression, evolution, comparative-genomics, bgee]
+tags:
+  - gene-expression
+  - evolution
+  - comparative-genomics
+  - bgee
 baseUrl: https://www.bgee.org/api
-
 tools:
   search:
     description: Search genes across species by keyword
-    tags: [gene-search, expression-search]
+    tags:
+      - gene-search
+      - expression-search
     method: GET
     path: /
     params:
@@ -29,10 +34,11 @@ tools:
         description: Response format
     response:
       format: json
-
   getGene:
     description: Get detailed gene expression info by Ensembl gene ID
-    tags: [gene-info, expression-info]
+    tags:
+      - gene-info
+      - expression-info
     method: GET
     path: /
     params:
@@ -54,3 +60,20 @@ tools:
         description: Response format
     response:
       format: json
+tests:
+  search:
+    - name: searches for BRCA1 gene
+      params:
+        query: BRCA1
+      assert:
+        - path: data.result.geneMatches
+          minLength: 1
+  getGene:
+    - name: gets gene info for BRCA1 by Ensembl ID
+      params:
+        gene_id: ENSG00000012048
+      assert:
+        - path: data.genes
+          minLength: 1
+        - path: data.genes.0.name
+          equals: BRCA1

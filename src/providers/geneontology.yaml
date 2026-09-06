@@ -1,13 +1,18 @@
 name: geneontology
 displayName: Gene Ontology
 description: Gene Ontology API — GO terms, annotations, and bioentity information
-tags: [gene-ontology, go, functional-annotation, biological-process]
+tags:
+  - gene-ontology
+  - go
+  - functional-annotation
+  - biological-process
 baseUrl: https://api.geneontology.org/api
-
 tools:
   search:
     description: Search Gene Ontology for terms by keyword using autocomplete
-    tags: [go-term-search, ontology-search]
+    tags:
+      - go-term-search
+      - ontology-search
     method: GET
     path: /search/entity/autocomplete/{query}
     params:
@@ -21,10 +26,11 @@ tools:
         description: Number of results to return
     response:
       format: json
-
   getTerm:
     description: Get detailed information about a specific GO term
-    tags: [go-term-detail, ontology-term]
+    tags:
+      - go-term-detail
+      - ontology-term
     method: GET
     path: /ontology/term/{go_id}
     params:
@@ -34,3 +40,20 @@ tools:
         description: GO term identifier (e.g. GO:0006915 for apoptotic process)
     response:
       format: json
+tests:
+  search:
+    - name: searches for apoptosis GO terms
+      params:
+        query: apoptosis
+      assert:
+        - path: docs
+          minLength: 1
+  getTerm:
+    - name: gets GO:0006915 apoptotic process term
+      params:
+        go_id: GO:0006915
+      assert:
+        - path: label
+          equals: apoptotic process
+        - path: goid
+          equals: GO:0006915

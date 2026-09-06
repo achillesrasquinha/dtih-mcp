@@ -56,7 +56,10 @@ server.tool(
       );
       const keyed = {};
       batch.forEach((call, i) => {
-        const key = `${call.source}.${call.tool}`;
+        let base = `${call.source}.${call.tool}`;
+        let key = base;
+        let n = 1;
+        while (key in keyed) key = `${base}.${n++}`;
         const r = results[i];
         keyed[key] = r.status === "fulfilled" ? r.value : { error: r.reason?.message || String(r.reason) };
       });

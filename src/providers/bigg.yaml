@@ -1,22 +1,29 @@
 name: bigg
 displayName: BiGG Models
 description: BiGG Models — genome-scale metabolic network reconstructions
-tags: [metabolic-model, flux-balance, bigg, systems-biology, metabolism]
+tags:
+  - metabolic-model
+  - flux-balance
+  - bigg
+  - systems-biology
+  - metabolism
 baseUrl: https://bigg.ucsd.edu/api/v2
-
 tools:
   listModels:
     description: List all available genome-scale metabolic models in BiGG
-    tags: [model-list, metabolic-network]
+    tags:
+      - model-list
+      - metabolic-network
     method: GET
     path: /models
     params: {}
     response:
       format: json
-
   getModel:
     description: Get details of a specific metabolic model by BiGG identifier
-    tags: [model-detail, metabolic-network]
+    tags:
+      - model-detail
+      - metabolic-network
     method: GET
     path: /models/{bigg_id}
     params:
@@ -26,10 +33,11 @@ tools:
         description: BiGG model identifier (e.g. iJO1366, e_coli_core)
     response:
       format: json
-
   searchMetabolites:
     description: Search BiGG for metabolites by name or identifier
-    tags: [metabolite-search, compound-search]
+    tags:
+      - metabolite-search
+      - compound-search
     method: GET
     path: /search
     params:
@@ -43,3 +51,29 @@ tools:
         description: Type of search (metabolites, reactions, genes, models)
     response:
       format: json
+tests:
+  listModels:
+    - name: lists available metabolic models
+      params: {}
+      assert:
+        - path: results_count
+          gt: 0
+        - path: results
+          minLength: 1
+        - path: results.0.bigg_id
+  getModel:
+    - name: gets model iJO1366 details
+      params:
+        bigg_id: iJO1366
+      assert:
+        - path: organism
+          equals: Escherichia coli str. K-12 substr. MG1655
+        - path: reaction_count
+          gt: 0
+  searchMetabolites:
+    - name: searches for glucose metabolites
+      params:
+        query: glucose
+      assert:
+        - path: results_count
+          gt: 0

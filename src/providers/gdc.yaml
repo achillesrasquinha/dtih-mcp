@@ -1,13 +1,19 @@
 name: gdc
 displayName: GDC
 description: NCI Genomic Data Commons — cancer genomics data from TCGA and other programs
-tags: [cancer, genomics, tcga, gdc, tumor]
+tags:
+  - cancer
+  - genomics
+  - tcga
+  - gdc
+  - tumor
 baseUrl: https://api.gdc.cancer.gov
-
 tools:
   searchCases:
     description: Search cancer cases in the Genomic Data Commons
-    tags: [case-search, cancer-cases]
+    tags:
+      - case-search
+      - cancer-cases
     method: GET
     path: /cases
     params:
@@ -24,10 +30,11 @@ tools:
         description: Number of results
     response:
       format: json
-
   searchGenes:
     description: Search genes in the Genomic Data Commons
-    tags: [gene-search, cancer-genes]
+    tags:
+      - gene-search
+      - cancer-genes
     method: GET
     path: /genes
     params:
@@ -41,10 +48,11 @@ tools:
         description: Number of results
     response:
       format: json
-
   searchProjects:
     description: Search cancer research projects in GDC
-    tags: [project-search, cancer-projects]
+    tags:
+      - project-search
+      - cancer-projects
     method: GET
     path: /projects
     params:
@@ -58,3 +66,28 @@ tools:
         description: Number of results
     response:
       format: json
+tests:
+  searchCases:
+    - name: searches for cancer cases
+      params:
+        size: 3
+      assert:
+        - path: data.hits
+          minLength: 1
+        - path: data.hits.0.case_id
+  searchProjects:
+    - name: lists cancer research projects
+      params:
+        size: 3
+      assert:
+        - path: data.hits
+          minLength: 1
+        - path: data.hits.0.project_id
+  searchGenes:
+    - name: searches for genes
+      params:
+        size: 3
+      assert:
+        - path: data.hits
+          minLength: 1
+        - path: data.hits.0.gene_id

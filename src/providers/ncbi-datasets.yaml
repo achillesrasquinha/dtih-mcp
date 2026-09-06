@@ -1,13 +1,20 @@
 name: ncbi-datasets
 displayName: NCBI Datasets
 description: NCBI Datasets API v2 — modern REST interface for genes, genomes, and taxonomy
-tags: [ncbi, gene, genome, assembly, taxonomy, datasets]
+tags:
+  - ncbi
+  - gene
+  - genome
+  - assembly
+  - taxonomy
+  - datasets
 baseUrl: https://api.ncbi.nlm.nih.gov/datasets/v2
-
 tools:
   getGeneBySymbol:
     description: Get gene info by symbol and taxon
-    tags: [gene-info, gene-symbol]
+    tags:
+      - gene-info
+      - gene-symbol
     method: GET
     path: /gene/symbol/{symbol}/taxon/{taxon}
     params:
@@ -22,10 +29,11 @@ tools:
         description: Taxon name or ID e.g. 'human', '9606'
     response:
       format: json
-
   getGenomeByAccession:
     description: Get genome assembly report by accession
-    tags: [genome-info, assembly-report]
+    tags:
+      - genome-info
+      - assembly-report
     method: GET
     path: /genome/accession/{accession}/dataset_report
     params:
@@ -35,10 +43,11 @@ tools:
         description: Assembly accession e.g. 'GCF_000001405.40'
     response:
       format: json
-
   searchTaxonomy:
     description: Get taxonomy info by taxon name or ID
-    tags: [taxonomy-info, taxonomy-search]
+    tags:
+      - taxonomy-info
+      - taxonomy-search
     method: GET
     path: /taxonomy/taxon/{taxon}
     params:
@@ -48,3 +57,14 @@ tools:
         description: Taxon name or NCBI tax ID e.g. 'Homo sapiens', '9606'
     response:
       format: json
+tests:
+  getGeneBySymbol:
+    - name: gets gene info for TP53 in human
+      params:
+        symbol: TP53
+        taxon: human
+      assert:
+        - path: reports
+          minLength: 1
+        - path: reports.0.gene.symbol
+          equals: TP53

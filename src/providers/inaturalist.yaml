@@ -1,13 +1,19 @@
 name: inaturalist
 displayName: iNaturalist
 description: iNaturalist — citizen-science biodiversity observations and taxa worldwide
-tags: [biodiversity, citizen-science, observations, inaturalist, ecology]
+tags:
+  - biodiversity
+  - citizen-science
+  - observations
+  - inaturalist
+  - ecology
 baseUrl: https://api.inaturalist.org/v1
-
 tools:
   searchObservations:
     description: Search iNaturalist for biodiversity observations by keyword
-    tags: [observation-search, sighting-search]
+    tags:
+      - observation-search
+      - sighting-search
     method: GET
     path: /observations
     params:
@@ -22,10 +28,11 @@ tools:
         description: Number of results per page
     response:
       format: json
-
   getTaxon:
     description: Get detailed taxon information by iNaturalist taxon ID
-    tags: [taxon-info, species-detail]
+    tags:
+      - taxon-info
+      - species-detail
     method: GET
     path: /taxa/{id}
     params:
@@ -35,10 +42,11 @@ tools:
         description: iNaturalist taxon ID
     response:
       format: json
-
   searchTaxa:
     description: Search iNaturalist taxa by name or keyword
-    tags: [taxon-search, species-search]
+    tags:
+      - taxon-search
+      - species-search
     method: GET
     path: /taxa
     params:
@@ -53,3 +61,28 @@ tools:
         description: Number of results per page
     response:
       format: json
+tests:
+  searchObservations:
+    - name: searches observations for Monarch butterfly
+      params:
+        query: Monarch butterfly
+      assert:
+        - path: results
+          minLength: 1
+  searchTaxa:
+    - name: searches taxa for Danaus plexippus
+      params:
+        query: Danaus plexippus
+      assert:
+        - path: results
+          minLength: 1
+        - path: results.0.name
+  getTaxon:
+    - name: gets taxon by ID (Monarch butterfly = 48662)
+      params:
+        id: 48662
+      assert:
+        - path: results
+          minLength: 1
+        - path: results.0.name
+          equals: Danaus plexippus

@@ -1,13 +1,18 @@
 name: uniref
 displayName: UniRef
 description: UniProt Reference Clusters — clustered sets of related protein sequences
-tags: [protein, sequence-clusters, uniref, uniprot]
+tags:
+  - protein
+  - sequence-clusters
+  - uniref
+  - uniprot
 baseUrl: https://rest.uniprot.org/uniref
-
 tools:
   search:
     description: Search UniRef clusters by keyword
-    tags: [cluster-search, protein-search]
+    tags:
+      - cluster-search
+      - protein-search
     method: GET
     path: /search
     params:
@@ -24,10 +29,11 @@ tools:
         description: Number of results to return
     response:
       format: json
-
   getCluster:
     description: Get UniRef cluster details by cluster ID
-    tags: [cluster-info, protein-cluster]
+    tags:
+      - cluster-info
+      - protein-cluster
     method: GET
     path: /{clusterId}
     params:
@@ -37,3 +43,20 @@ tools:
         description: UniRef cluster ID (e.g. UniRef90_P01308 for insulin)
     response:
       format: json
+tests:
+  search:
+    - name: searches for insulin clusters
+      params:
+        query: insulin
+      assert:
+        - path: results
+          minLength: 1
+        - path: results.0.id
+  getCluster:
+    - name: gets insulin cluster by ID
+      params:
+        clusterId: UniRef90_P01308
+      assert:
+        - path: id
+          equals: UniRef90_P01308
+        - path: name
