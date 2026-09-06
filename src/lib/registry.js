@@ -20,6 +20,7 @@ export function loadRegistry(providersDir) {
         tool: toolName,
         description: tool.description || "",
         tags: [...(source.tags || []), ...(tool.tags || [])],
+        params: compactParams(tool.params),
       });
     }
   }
@@ -27,14 +28,26 @@ export function loadRegistry(providersDir) {
   return { sources, toolIndex };
 }
 
-export function searchTools(toolIndex, query, tags) {
+function compactParams(params) {
+  if (!params) return "";
+  return Object.entries(params)
+    .map(([name, def]) => {
+      const type = def.type || "string";
+      const req = def.required ? "*" : "";
+      const dflt = def.default !== undefined ? `=${def.default}` : "";
+      return `${name}${req} (${type}${dflt})`;
+    })
+    .join(", ");
+}
+
+export function findTools(toolIndex, query, tags) {
   const q = (query || "").toLowerCase();
   const filterTags = (tags || []).map((t) => t.toLowerCase());
 
   return toolIndex
     .map((entry) => {
       let score = 0;
-      const haystack = `${entry.source} ${entry.tool} ${entry.description} ${entry.tags.join(" ")}`.toLowerCase();
+      const haystack = `${entry.source} ${entry.displayName} ${entry.tool} ${entry.description} ${entry.tags.join(" ")}`.toLowerCase();
 
       if (q) {
         for (const word of q.split(/\s+/)) {
