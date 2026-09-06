@@ -5,8 +5,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { loadRegistry, findTools } from "./lib/registry.js";
-import { request } from "./lib/http.js";
+import { loadRegistry, findTools } from "./lib/registry/index.js";
+import { request } from "./lib/http/index.js";
 import { encode as toon } from "@toon-format/toon";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

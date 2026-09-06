@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "test": "node --test test/providers.integration.test.js",
-    "test:unit": "node --test test/registry.test.js test/providers.unit.test.js"
+    "test": "node --test test/auth.test.js test/params.test.js test/pluck.test.js test/parsers.test.js test/registry.test.js test/providers.unit.test.js",
+    "test:integration": "node --test test/providers.integration.test.js"
   },
   "files": [
     "src"
