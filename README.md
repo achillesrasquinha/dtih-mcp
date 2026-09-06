@@ -166,6 +166,8 @@ A unified MCP server for 133 life science APIs and databases.
 | Clinical trials | *Are there any clinical trials currently recruiting for glioblastoma immunotherapy?* |
 | Pathway intro | *Walk me through the glycolysis pathway — what are the rate-limiting enzymes and are any of them drug targets?* |
 | Variant intro | *My 23andMe report flagged a variant in BRCA2 — what does it mean clinically and how common is it?* |
+| Literature | *What are the most-cited papers on CRISPR gene editing in the last two years?* |
+| Sequencing data | *Is there publicly available RNA-seq data for human liver tissue I could use for my thesis?* |
 
 ### Intermediate
 
@@ -180,7 +182,9 @@ A unified MCP server for 133 life science APIs and databases.
 | Cancer dependencies | *Which genes are selectively essential in pancreatic cancer cell lines but not in normal cells? Do any of those represent druggable vulnerabilities, and what somatic mutations do they carry in TCGA samples?* |
 | Diagnostic odyssey | *A child presents with seizures, intellectual disability, and microcephaly — what genes could explain all three phenotypes together, which of those have known pathogenic variants, and could any match a described rare disease?* |
 | Neuroimmunology | *Multiple sclerosis lesions show clonally expanded T cells — what antigens might they be recognizing, what epitopes have been characterized in MS, and is there single-cell data showing what those T cells look like transcriptomically?* |
-| Toxicology | *A cluster of liver injuries appeared near an industrial site — what chemicals in the EPA's CompTox database are hepatotoxic, which ones are plausible environmental exposures, and what are their known gene targets and metabolic pathways?* |
+| Toxicology | *A cluster of liver injuries appeared near an industrial site — what chemicals are hepatotoxic, which ones are plausible environmental exposures, and what are their known gene targets and metabolic pathways?* |
+| Non-coding regulation | *A risk variant for schizophrenia falls in an intergenic region — is it in a regulatory element, does it alter any transcription factor binding site, and what's the regulome score telling us about its likely functional impact?* |
+| Gene set analysis | *I have a list of 200 upregulated genes from a differential expression experiment in Alzheimer's brain tissue — what pathways and hallmark signatures are enriched, and do any overlap with known drug target gene sets?* |
 
 ### Expert
 
@@ -190,9 +194,11 @@ A unified MCP server for 133 life science APIs and databases.
 | Resistance mechanism | *A melanoma patient responded to vemurafenib for 8 months then progressed — what bypass signaling mechanisms are reported, do any involve kinases with existing approved inhibitors, what does the crystal structure of drug-resistant BRAF look like compared to wild-type, and are there combination trials actively enrolling patients with acquired BRAF inhibitor resistance?* |
 | Gut-brain axis | *SLC6A4 (the serotonin transporter) keeps appearing in both depression GWAS and microbiome association studies — is there a real mechanistic link? I need its expression profile across gut and brain regions, which microbial metabolites feed into serotonin pathways, whether SLC6A4 polymorphisms actually change transporter kinetics, and any clinical evidence connecting gut microbiome composition to SSRI treatment response.* |
 | Neoantigen design | *A tumor exome shows a novel frameshift in TP53 — before I design a neoantigen vaccine, I need to know: what peptides does the frameshift generate, which HLA alleles can present them and how common are those alleles, is the mutant region structurally ordered or floppy, is TP53 actually expressed in this tumor type, and could any of these peptides cross-react with self-proteins?* |
-| Cryptic species | *We pulled DNA barcodes from a deep-sea hydrothermal vent that match nothing in GenBank — what's the closest known organism, where does it fall on the tree of life, has this vent system been surveyed before, do related taxa have sequenced genomes or metagenomes, and has anyone posted preprints from this region recently?* |
+| Cryptic species | *We pulled DNA barcodes from a deep-sea hydrothermal vent that match nothing in any sequence archive — what's the closest known organism, where does it fall on the tree of life, has this vent system been surveyed before, do related taxa have sequenced genomes or metagenomes, and has anyone posted preprints from this region recently?* |
 | Polypharmacy | *An 82-year-old takes metformin, atorvastatin, amlodipine, and omeprazole daily — I need a full interaction map: which CYP enzymes metabolize each drug, where do they compete, does this patient's pharmacogenomic profile put them at risk, and which pairwise combinations show adverse event signals that aren't covered by existing clinical guidelines?* |
 | Multi-omics | *I want to build a comprehensive molecular map of Type 2 Diabetes — gene-disease associations, GWAS risk loci, tissue-specific expression of the top hits, enriched pathways, protein interaction networks, metabolite biomarkers, druggable targets, rare disease overlaps with shared biology, and active clinical trials. Pull it all together.* |
+| Pandemic preparedness | *A novel coronavirus with an unusual spike protein just got sequenced — what are the closest known sequences, which host receptor is it likely using, what immune epitopes from related strains might offer cross-reactive protection, are there existing antivirals targeting similar proteases, and what does the preprint landscape look like in the last 48 hours?* |
+| Agricultural threat | *A new wheat rust strain is spreading across East Africa — what's known about its virulence genes, which resistance loci in modern wheat cultivars might hold up, what's the pathogen's phylogenetic relationship to historical outbreaks, are there fungicide targets in its metabolic pathways, and what do FAO crop production trends look like for affected regions?* |
 
 ## License
 
