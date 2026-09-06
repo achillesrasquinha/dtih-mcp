@@ -1,0 +1,32 @@
+name: opentreeoflife
+displayName: Open Tree of Life
+description: Open Tree of Life — comprehensive phylogenetic tree and taxonomy synthesis
+tags: [phylogenetics, taxonomy, tree-of-life, evolution, opentree]
+baseUrl: https://api.opentreeoflife.org/v3
+
+tools:
+  searchTaxa:
+    description: Match taxon names to Open Tree taxonomy using TNRS
+    tags: [taxon-search, name-resolution]
+    method: POST
+    path: /tnrs/match_names
+    params:
+      names:
+        type: array
+        required: true
+        description: List of taxon names to match (e.g. ["Homo sapiens", "Pan troglodytes"])
+    response:
+      format: json
+
+  getSubtree:
+    description: Get a phylogenetic subtree from the synthetic tree rooted at a given OTT taxon
+    tags: [phylogeny, subtree, newick]
+    method: POST
+    path: /tree_of_life/subtree
+    params:
+      ott_id:
+        type: integer
+        required: true
+        description: Open Tree Taxonomy (OTT) identifier for the root node
+    response:
+      format: json

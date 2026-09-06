@@ -1,0 +1,56 @@
+name: omnipath
+displayName: OmniPath
+description: OmniPath — comprehensive signaling network and enzyme-substrate interactions
+tags: [signaling, interactions, omnipath, pathways, network]
+baseUrl: https://omnipathdb.org
+
+tools:
+  getInteractions:
+    description: Get signaling interactions for a gene from the OmniPath database
+    tags: [interaction-search, signaling-network]
+    method: GET
+    path: /interactions
+    params:
+      partners:
+        type: string
+        required: true
+        description: Gene symbol to query (e.g. TP53, EGFR)
+      genesymbols:
+        type: string
+        default: "yes"
+        description: Return gene symbols instead of UniProt IDs
+      limit:
+        type: integer
+        default: 25
+        description: Maximum number of interactions
+      format:
+        type: string
+        default: json
+        description: Response format (json or tsv)
+    response:
+      format: json
+
+  getEnzSubstrate:
+    description: Get enzyme-substrate relationships for a gene
+    tags: [enzyme-substrate, phosphorylation]
+    method: GET
+    path: /enzsub
+    params:
+      partners:
+        type: string
+        required: true
+        description: Gene symbol to query (e.g. TP53, AKT1)
+      genesymbols:
+        type: string
+        default: "yes"
+        description: Return gene symbols instead of UniProt IDs
+      limit:
+        type: integer
+        default: 25
+        description: Maximum number of results
+      format:
+        type: string
+        default: json
+        description: Response format (json or tsv)
+    response:
+      format: json

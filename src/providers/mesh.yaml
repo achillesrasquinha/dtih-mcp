@@ -1,0 +1,49 @@
+name: mesh
+displayName: MeSH
+description: Medical Subject Headings vocabulary for indexing biomedical literature
+tags: [mesh, medical-terminology, vocabulary, ncbi, controlled-vocabulary]
+baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+
+tools:
+  search:
+    description: Search MeSH for medical subject headings and descriptors
+    tags: [mesh-search, terminology-search]
+    method: GET
+    path: /esearch.fcgi
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "asthma", "diabetes mellitus")
+      maxResults:
+        type: integer
+        default: 10
+        mapsTo: retmax
+      db:
+        type: string
+        default: mesh
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get MeSH descriptor summary by MeSH ID
+    tags: [mesh-info, descriptor-info]
+    method: GET
+    path: /esummary.fcgi
+    params:
+      id:
+        type: string
+        required: true
+        description: MeSH database UID (e.g. "68001249" for asthma)
+      db:
+        type: string
+        default: mesh
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json

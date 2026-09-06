@@ -1,0 +1,28 @@
+name: glygen
+displayName: GlyGen
+description: GlyGen — glycoscience data integration and retrieval
+tags: [glycomics, glycan, glycoprotein, glygen, carbohydrate]
+baseUrl: https://api.glygen.org
+
+tools:
+  searchGlycans:
+    description: Get glycan search initialization data including organism list and mass ranges
+    tags: [glycan-search, glycan-init]
+    method: POST
+    path: /glycan/search_init/
+    params: {}
+    response:
+      format: json
+
+  getProtein:
+    description: Get detailed glycoprotein information by UniProt accession
+    tags: [protein-detail, glycoprotein-info]
+    method: POST
+    path: /protein/detail/{accession}/
+    params:
+      accession:
+        type: string
+        required: true
+        description: UniProt accession number (e.g. P00734 for prothrombin)
+    response:
+      format: json

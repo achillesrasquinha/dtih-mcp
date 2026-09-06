@@ -1,0 +1,40 @@
+name: worms
+displayName: WoRMS
+description: World Register of Marine Species — authoritative classification and nomenclature of marine organisms
+tags: [marine, taxonomy, species, worms, nomenclature]
+baseUrl: https://www.marinespecies.org/rest
+
+tools:
+  searchByName:
+    description: Search WoRMS for marine species by scientific name
+    tags: [species-search, marine-taxonomy]
+    method: GET
+    path: /AphiaRecordsByName/{name}
+    params:
+      name:
+        type: string
+        required: true
+        description: Scientific name to search (e.g. "Carcharodon")
+      like:
+        type: string
+        default: "true"
+        description: Enable fuzzy matching
+      marine_only:
+        type: string
+        default: "true"
+        description: Restrict to marine species only
+    response:
+      format: json
+
+  getRecord:
+    description: Get a WoRMS species record by AphiaID
+    tags: [species-info, marine-record]
+    method: GET
+    path: /AphiaRecordByAphiaID/{aphiaId}
+    params:
+      aphiaId:
+        type: integer
+        required: true
+        description: WoRMS AphiaID identifier
+    response:
+      format: json

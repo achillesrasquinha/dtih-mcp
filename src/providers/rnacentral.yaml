@@ -1,0 +1,44 @@
+name: rnacentral
+displayName: RNAcentral
+description: RNAcentral — comprehensive non-coding RNA sequence database
+tags: [rna, noncoding-rna, sequences, rnacentral]
+baseUrl: https://rnacentral.org/api/v1
+
+tools:
+  search:
+    description: Search RNAcentral for non-coding RNA sequences by keyword
+    tags: [rna-search, sequence-search]
+    method: GET
+    path: /rna/
+    params:
+      query:
+        type: string
+        required: true
+        description: Search query (e.g. BRCA1, mir-21, human ribosomal)
+      page_size:
+        type: integer
+        default: 10
+        description: Number of results per page
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json
+
+  getEntry:
+    description: Get a specific RNA entry by its URS identifier
+    tags: [rna-info, sequence-info]
+    method: GET
+    path: /rna/{upi}
+    params:
+      upi:
+        type: string
+        required: true
+        description: URS identifier (e.g. URS0000301B08)
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json

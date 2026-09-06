@@ -1,0 +1,49 @@
+name: ncbi-taxonomy
+displayName: NCBI Taxonomy
+description: Taxonomic classification and nomenclature database
+tags: [taxonomy, species, classification, ncbi, phylogeny]
+baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+
+tools:
+  search:
+    description: Search NCBI Taxonomy database for organisms
+    tags: [taxonomy-search, species-search]
+    method: GET
+    path: /esearch.fcgi
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "Homo sapiens", "Escherichia coli")
+      maxResults:
+        type: integer
+        default: 10
+        mapsTo: retmax
+      db:
+        type: string
+        default: taxonomy
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get taxonomic summary by NCBI Taxonomy ID
+    tags: [taxonomy-info, species-info]
+    method: GET
+    path: /esummary.fcgi
+    params:
+      id:
+        type: string
+        required: true
+        description: NCBI Taxonomy ID (e.g. "9606" for Homo sapiens)
+      db:
+        type: string
+        default: taxonomy
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json

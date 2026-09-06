@@ -1,0 +1,44 @@
+name: gtex
+displayName: GTEx Portal
+description: Genotype-Tissue Expression project — gene expression across human tissues
+tags: [gene-expression, tissue, eqtl, gtex, transcriptomics]
+baseUrl: https://gtexportal.org/api/v2
+
+tools:
+  getGene:
+    description: Look up gene reference information by gene symbol
+    tags: [gene-lookup, gene-reference]
+    method: GET
+    path: /reference/gene
+    params:
+      geneId:
+        type: string
+        required: true
+        description: Gene symbol (e.g. BRCA1, TP53)
+      gencodeVersion:
+        type: string
+        default: v26
+        description: GENCODE version
+      genomeBuild:
+        type: string
+        default: GRCh38/hg38
+        description: Genome build
+    response:
+      format: json
+
+  getExpression:
+    description: Get median gene expression across tissues
+    tags: [expression-data, tissue-expression]
+    method: GET
+    path: /expression/medianGeneExpression
+    params:
+      gencodeId:
+        type: string
+        required: true
+        description: GENCODE gene ID (e.g. ENSG00000012048.20 for BRCA1)
+      datasetId:
+        type: string
+        default: gtex_v8
+        description: GTEx dataset version
+    response:
+      format: json

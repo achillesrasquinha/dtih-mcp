@@ -1,0 +1,55 @@
+name: inaturalist
+displayName: iNaturalist
+description: iNaturalist — citizen-science biodiversity observations and taxa worldwide
+tags: [biodiversity, citizen-science, observations, inaturalist, ecology]
+baseUrl: https://api.inaturalist.org/v1
+
+tools:
+  searchObservations:
+    description: Search iNaturalist for biodiversity observations by keyword
+    tags: [observation-search, sighting-search]
+    method: GET
+    path: /observations
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Search query (e.g. "Monarch butterfly")
+      per_page:
+        type: integer
+        default: 5
+        description: Number of results per page
+    response:
+      format: json
+
+  getTaxon:
+    description: Get detailed taxon information by iNaturalist taxon ID
+    tags: [taxon-info, species-detail]
+    method: GET
+    path: /taxa/{id}
+    params:
+      id:
+        type: integer
+        required: true
+        description: iNaturalist taxon ID
+    response:
+      format: json
+
+  searchTaxa:
+    description: Search iNaturalist taxa by name or keyword
+    tags: [taxon-search, species-search]
+    method: GET
+    path: /taxa
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Taxon name or keyword to search
+      per_page:
+        type: integer
+        default: 5
+        description: Number of results per page
+    response:
+      format: json

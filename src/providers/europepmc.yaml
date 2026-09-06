@@ -1,0 +1,52 @@
+name: europepmc
+displayName: Europe PMC
+description: Europe PubMed Central — open-access biomedical literature
+tags: [literature, publications, open-access, europe, pmc]
+baseUrl: https://www.ebi.ac.uk/europepmc/webservices/rest
+
+tools:
+  search:
+    description: Search Europe PMC for biomedical literature
+    tags: [literature-search, paper-search]
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: query
+        description: Search query (e.g. "CRISPR", "cancer immunotherapy")
+      pageSize:
+        type: integer
+        default: 10
+        mapsTo: pageSize
+        description: Number of results to return
+      format:
+        type: string
+        default: json
+      resultType:
+        type: string
+        default: lite
+        description: Result detail level (lite or core)
+    response:
+      format: json
+
+  getArticle:
+    description: Get a specific article by PubMed ID
+    tags: [article-info, pmid-lookup]
+    method: GET
+    path: /search
+    params:
+      pmid:
+        type: string
+        required: true
+        mapsTo: query
+        description: PubMed ID to look up (will be wrapped as EXT_ID query)
+      format:
+        type: string
+        default: json
+      resultType:
+        type: string
+        default: core
+    response:
+      format: json

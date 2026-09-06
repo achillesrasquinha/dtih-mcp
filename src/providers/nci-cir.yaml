@@ -1,0 +1,36 @@
+name: nci-cir
+displayName: NCI Chemical Identifier Resolver
+description: NCI CADD Chemical Identifier Resolver — convert between chemical names, SMILES, InChI, and other formats
+tags: [chemistry, identifier, resolver, smiles, inchi, nci]
+baseUrl: https://cactus.nci.nih.gov/chemical/structure
+
+tools:
+  resolveName:
+    description: Resolve a chemical name to SMILES notation
+    tags: [name-to-smiles, chemical-resolve]
+    method: GET
+    path: /{name}/smiles
+    params:
+      name:
+        type: string
+        required: true
+        description: Chemical name to resolve (e.g. aspirin, caffeine, glucose)
+    response:
+      format: text
+
+  convertFormat:
+    description: Convert a chemical identifier to another representation format
+    tags: [format-conversion, chemical-convert]
+    method: GET
+    path: /{identifier}/{format}
+    params:
+      identifier:
+        type: string
+        required: true
+        description: Chemical name, SMILES, or other identifier
+      format:
+        type: string
+        required: true
+        description: Target format (smiles, inchi, names, iupac_name, formula, mw, sdf, etc.)
+    response:
+      format: text

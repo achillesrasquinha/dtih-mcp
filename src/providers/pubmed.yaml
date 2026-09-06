@@ -1,0 +1,50 @@
+name: pubmed
+displayName: PubMed
+description: Biomedical literature search engine (NCBI)
+tags: [literature, publications, abstracts, ncbi, medline]
+baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+
+tools:
+  search:
+    description: Search PubMed for biomedical literature
+    tags: [literature-search, paper-search]
+    method: GET
+    path: /esearch.fcgi
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "CRISPR cas9 therapy")
+      maxResults:
+        type: integer
+        default: 5
+        mapsTo: retmax
+      db:
+        type: string
+        default: pubmed
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get article summaries by PubMed IDs
+    tags: [article-info, abstract, citation]
+    method: GET
+    path: /esummary.fcgi
+    params:
+      ids:
+        type: string
+        required: true
+        mapsTo: id
+        description: Comma-separated PubMed IDs (e.g. "33086985,32015508")
+      db:
+        type: string
+        default: pubmed
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json

@@ -1,0 +1,33 @@
+name: hmdb
+displayName: Human Metabolome Database
+description: HMDB — comprehensive human metabolite and biomarker database
+tags: [metabolomics, metabolite, hmdb, human, biomarker]
+baseUrl: https://hmdb.ca
+
+tools:
+  getMetabolite:
+    description: Get detailed metabolite information by HMDB identifier
+    tags: [metabolite-detail, biomarker-info]
+    method: GET
+    path: /metabolites/{id}.json
+    params:
+      id:
+        type: string
+        required: true
+        description: HMDB metabolite identifier (e.g. HMDB0000001)
+    response:
+      format: json
+
+  search:
+    description: Search HMDB metabolites by keyword
+    tags: [metabolite-search, biomarker-search]
+    method: GET
+    path: /metabolites.json
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: "search[query]"
+        description: Search query (e.g. "glucose", "cholesterol")
+    response:
+      format: json

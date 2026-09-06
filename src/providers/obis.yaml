@@ -1,0 +1,51 @@
+name: obis
+displayName: OBIS
+description: Ocean Biodiversity Information System — marine species occurrence and distribution data
+tags: [marine, ocean, biodiversity, obis, species-distribution]
+baseUrl: https://api.obis.org/v3
+
+tools:
+  searchOccurrences:
+    description: Search OBIS for marine species occurrence records by scientific name
+    tags: [occurrence-search, marine-distribution]
+    method: GET
+    path: /occurrence
+    params:
+      name:
+        type: string
+        required: true
+        mapsTo: scientificname
+        description: Scientific name of the species (e.g. "Carcharodon carcharias")
+      size:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+
+  searchTaxa:
+    description: Search OBIS checklist for marine taxa by scientific name
+    tags: [taxon-search, marine-taxonomy]
+    method: GET
+    path: /checklist
+    params:
+      name:
+        type: string
+        required: true
+        mapsTo: scientificname
+        description: Scientific name to search (e.g. "Carcharodon carcharias")
+    response:
+      format: json
+
+  getTaxon:
+    description: Get OBIS taxon details by AphiaID
+    tags: [taxon-info, marine-record]
+    method: GET
+    path: /taxon/{taxonId}
+    params:
+      taxonId:
+        type: integer
+        required: true
+        description: WoRMS AphiaID of the taxon
+    response:
+      format: json

@@ -1,0 +1,37 @@
+name: mgnify
+displayName: MGnify
+description: MGnify — EBI metagenomics analysis and archiving platform
+tags: [metagenomics, microbiome, mgnify, 16s, shotgun]
+baseUrl: https://www.ebi.ac.uk/metagenomics/api/v1
+
+tools:
+  searchStudies:
+    description: Search MGnify metagenomics studies by keyword
+    tags: [study-search, metagenomics-study]
+    method: GET
+    path: /studies
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: search
+        description: Search query (e.g. "gut microbiome", "soil")
+      page_size:
+        type: integer
+        default: 10
+        description: Number of results per page
+    response:
+      format: json
+
+  getStudy:
+    description: Get details of a specific MGnify study by accession
+    tags: [study-detail, metagenomics-study]
+    method: GET
+    path: /studies/{accession}
+    params:
+      accession:
+        type: string
+        required: true
+        description: MGnify study accession (e.g. MGYS00006822)
+    response:
+      format: json

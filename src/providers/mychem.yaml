@@ -1,0 +1,37 @@
+name: mychem
+displayName: MyChem.info
+description: Chemical and drug annotation query service — aggregates compound data from multiple sources
+tags: [chemical, drug, compound, biothings, pharmacology]
+baseUrl: https://mychem.info/v1
+
+tools:
+  search:
+    description: Search for chemicals or drugs by keyword or query
+    tags: [drug-search, chemical-search]
+    method: GET
+    path: /query
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Search query (e.g. "aspirin", "ibuprofen")
+      size:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+
+  getDrug:
+    description: Get chemical/drug annotation by ID
+    tags: [drug-info, compound-info]
+    method: GET
+    path: /chem/{chemId}
+    params:
+      chemId:
+        type: string
+        required: true
+        description: Chemical ID (e.g. CHEMBL25 for aspirin)
+    response:
+      format: json

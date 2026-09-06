@@ -1,0 +1,37 @@
+name: biosamples
+displayName: BioSamples
+description: EBI BioSamples database — biological sample metadata and attributes
+tags: [sample, metadata, biobank, specimen, biosamples]
+baseUrl: https://www.ebi.ac.uk/biosamples
+
+tools:
+  search:
+    description: Search BioSamples for biological samples by keyword
+    tags: [sample-search, specimen-search]
+    method: GET
+    path: /samples
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: text
+        description: Search text (e.g. "human liver", "cancer cell line")
+      size:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+
+  getSample:
+    description: Get a specific BioSample by accession
+    tags: [sample-info, specimen-info]
+    method: GET
+    path: /samples/{accession}
+    params:
+      accession:
+        type: string
+        required: true
+        description: BioSample accession (e.g. SAMD00065372)
+    response:
+      format: json

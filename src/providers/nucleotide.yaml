@@ -1,0 +1,49 @@
+name: nucleotide
+displayName: NCBI Nucleotide
+description: GenBank and RefSeq nucleotide sequence database
+tags: [nucleotide, sequence, genbank, refseq, ncbi, dna, rna]
+baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+
+tools:
+  search:
+    description: Search NCBI Nucleotide database for DNA and RNA sequences
+    tags: [sequence-search, nucleotide-search]
+    method: GET
+    path: /esearch.fcgi
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "insulin mRNA human", "BRCA2 homo sapiens")
+      maxResults:
+        type: integer
+        default: 10
+        mapsTo: retmax
+      db:
+        type: string
+        default: nucleotide
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get nucleotide sequence summary by GenBank accession or GI
+    tags: [sequence-info, genbank-info]
+    method: GET
+    path: /esummary.fcgi
+    params:
+      id:
+        type: string
+        required: true
+        description: GenBank GI number or accession (e.g. "224589800")
+      db:
+        type: string
+        default: nucleotide
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json

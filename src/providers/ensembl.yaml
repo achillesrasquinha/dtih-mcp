@@ -1,0 +1,39 @@
+name: ensembl
+displayName: Ensembl
+description: Genome browser and annotation database
+tags: [gene, genome, annotation, sequence, ensembl, variant]
+baseUrl: https://rest.ensembl.org
+
+rateLimit:
+  requestsPerSecond: 15
+
+tools:
+  lookupSymbol:
+    description: Look up a gene by symbol and species
+    tags: [gene-lookup, symbol]
+    method: GET
+    path: /lookup/symbol/{species}/{symbol}?content-type=application/json
+    params:
+      symbol:
+        type: string
+        required: true
+        description: Gene symbol (e.g. BRCA2)
+      species:
+        type: string
+        default: homo_sapiens
+        description: Species name
+    response:
+      format: json
+
+  getSequence:
+    description: Get sequence for an Ensembl stable ID
+    tags: [sequence-fetch, nucleotide, protein]
+    method: GET
+    path: /sequence/id/{id}?content-type=application/json
+    params:
+      id:
+        type: string
+        required: true
+        description: Ensembl stable ID (e.g. ENSG00000139618)
+    response:
+      format: json

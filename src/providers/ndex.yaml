@@ -1,0 +1,40 @@
+name: ndex
+displayName: NDEx
+description: NDEx Network Data Exchange for biological network models
+tags: [networks, pathways, signaling, protein-interactions, systems-biology]
+baseUrl: https://www.ndexbio.org/v2
+
+tools:
+  search:
+    description: Search for biological networks by keyword
+    tags: [network-search, pathway-search]
+    method: POST
+    path: /search/network
+    params:
+      searchString:
+        type: string
+        required: true
+        description: Search terms (e.g. "EGFR signaling", "p53 pathway")
+      start:
+        type: integer
+        default: 0
+        description: Offset for pagination
+      size:
+        type: integer
+        default: 5
+        description: Number of results to return
+    response:
+      format: json
+
+  getNetwork:
+    description: Get network summary by NDEx UUID
+    tags: [network-info, network-summary]
+    method: GET
+    path: /network/{networkId}/summary
+    params:
+      networkId:
+        type: string
+        required: true
+        description: NDEx network UUID
+    response:
+      format: json

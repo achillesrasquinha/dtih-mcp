@@ -1,0 +1,19 @@
+name: proteinatlas
+displayName: Human Protein Atlas
+description: Human protein expression and localization data across tissues and cell types
+tags: [protein, expression, tissue, localization, human-protein-atlas]
+baseUrl: https://www.proteinatlas.org
+
+tools:
+  getGene:
+    description: Get protein expression and localization data for a gene by Ensembl ID
+    tags: [protein-expression, tissue-expression, gene-info]
+    method: GET
+    path: /{ensemblId}.json
+    params:
+      ensemblId:
+        type: string
+        required: true
+        description: Ensembl gene ID (e.g. ENSG00000141510 for TP53)
+    response:
+      format: json

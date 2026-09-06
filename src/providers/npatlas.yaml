@@ -1,0 +1,32 @@
+name: npatlas
+displayName: Natural Products Atlas
+description: Database of microbially-derived natural products for drug discovery
+tags: [natural-products, microbial, drug-discovery, chemistry, metabolites]
+baseUrl: https://www.npatlas.org/api/v1
+
+tools:
+  search:
+    description: Search for natural product compounds by name or keyword
+    tags: [compound-search, natural-product-search]
+    method: POST
+    path: /compounds/basicSearch
+    params:
+      query:
+        type: string
+        required: true
+        description: Search query (e.g. tetracycline, vancomycin)
+    response:
+      format: json
+
+  getCompound:
+    description: Get natural product compound details by NP Atlas ID
+    tags: [compound-info]
+    method: GET
+    path: /compound/{npatlasId}
+    params:
+      npatlasId:
+        type: string
+        required: true
+        description: NP Atlas compound ID (e.g. NPA000001)
+    response:
+      format: json

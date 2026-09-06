@@ -1,0 +1,42 @@
+name: uniprot
+displayName: UniProt
+description: Universal Protein Resource — protein sequence and functional information
+tags: [protein, sequence, annotation, function, uniprot]
+baseUrl: https://rest.uniprot.org
+
+tools:
+  search:
+    description: Search UniProt proteins by keyword
+    tags: [protein-search, sequence-search]
+    method: GET
+    path: /uniprotkb/search
+    params:
+      query:
+        type: string
+        required: true
+        description: Search query (e.g. "BRCA1 AND organism_id:9606")
+      format:
+        type: string
+        default: json
+      size:
+        type: integer
+        default: 5
+        description: Number of results to return
+    response:
+      format: json
+
+  getEntry:
+    description: Get a UniProt protein entry by accession
+    tags: [protein-info, accession]
+    method: GET
+    path: /uniprotkb/{accession}
+    params:
+      accession:
+        type: string
+        required: true
+        description: UniProt accession (e.g. P00533)
+      format:
+        type: string
+        default: json
+    response:
+      format: json

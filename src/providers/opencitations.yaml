@@ -1,0 +1,32 @@
+name: opencitations
+displayName: OpenCitations
+description: OpenCitations COCI citation index — open bibliographic citation data for DOIs
+tags: [citations, bibliometrics, opencitations, doi, references]
+baseUrl: https://opencitations.net/index/coci/api/v1
+
+tools:
+  getCitations:
+    description: Get all citations for a DOI (papers that cite this work)
+    tags: [citation-lookup, cited-by]
+    method: GET
+    path: /citations/{doi}
+    params:
+      doi:
+        type: string
+        required: true
+        description: DOI to look up citations for (e.g. "10.1038/nature12373")
+    response:
+      format: json
+
+  getReferences:
+    description: Get all references from a DOI (papers this work cites)
+    tags: [reference-lookup, cites]
+    method: GET
+    path: /references/{doi}
+    params:
+      doi:
+        type: string
+        required: true
+        description: DOI to look up references for (e.g. "10.1038/nature12373")
+    response:
+      format: json

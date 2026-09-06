@@ -1,0 +1,32 @@
+name: kegg
+displayName: KEGG
+description: Kyoto Encyclopedia of Genes and Genomes — pathway and molecular interaction database
+tags: [pathway, gene, compound, metabolism, kegg]
+baseUrl: https://rest.kegg.jp
+
+tools:
+  search:
+    description: Search KEGG for genes matching a keyword
+    tags: [gene-search, kegg-search]
+    method: GET
+    path: /find/genes/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Search term (e.g. "insulin human", "p53")
+    response:
+      format: text
+
+  getEntry:
+    description: Get a KEGG database entry by ID
+    tags: [entry-info, kegg-entry]
+    method: GET
+    path: /get/{entryId}
+    params:
+      entryId:
+        type: string
+        required: true
+        description: KEGG entry ID (e.g. "hsa:3630" for human insulin)
+    response:
+      format: text

@@ -1,0 +1,39 @@
+name: uniparc
+displayName: UniParc
+description: UniProt Archive — comprehensive non-redundant protein sequence archive
+tags: [protein, sequence-archive, uniparc, uniprot]
+baseUrl: https://rest.uniprot.org/uniparc
+
+tools:
+  search:
+    description: Search UniParc entries by keyword or accession
+    tags: [sequence-search, archive-search]
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        description: Search query (e.g. "P00533", "EGFR AND organism_id:9606")
+      format:
+        type: string
+        default: json
+      size:
+        type: integer
+        default: 5
+        description: Number of results to return
+    response:
+      format: json
+
+  getEntry:
+    description: Get UniParc entry by UPI identifier
+    tags: [sequence-info, archive-entry]
+    method: GET
+    path: /{uparcId}
+    params:
+      uparcId:
+        type: string
+        required: true
+        description: UniParc identifier (e.g. UPI0000050F30)
+    response:
+      format: json

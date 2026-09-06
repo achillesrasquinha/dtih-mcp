@@ -1,0 +1,37 @@
+name: quickgo
+displayName: QuickGO
+description: Gene Ontology browser — fast access to GO term information (EBI)
+tags: [gene-ontology, go, annotation, function, quickgo]
+baseUrl: https://www.ebi.ac.uk/QuickGO/services
+
+tools:
+  search:
+    description: Search Gene Ontology terms by keyword
+    tags: [go-search, ontology-search]
+    method: GET
+    path: /ontology/go/search
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: query
+        description: Search keyword (e.g. "apoptosis", "kinase activity")
+      limit:
+        type: integer
+        default: 10
+        description: Maximum number of results
+    response:
+      format: json
+
+  getTerm:
+    description: Get a Gene Ontology term by GO ID
+    tags: [go-term, ontology-info]
+    method: GET
+    path: /ontology/go/terms/{goId}
+    params:
+      goId:
+        type: string
+        required: true
+        description: "GO term ID (e.g. GO:0006915)"
+    response:
+      format: json

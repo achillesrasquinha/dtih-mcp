@@ -1,0 +1,55 @@
+name: civic
+displayName: CIViC
+description: Clinical Interpretations of Variants in Cancer — curated clinical evidence for variants
+tags: [cancer, variants, clinical, civic, precision-medicine]
+baseUrl: https://civicdb.org/api/graphql
+protocol: graphql
+
+tools:
+  searchGenes:
+    description: Search for genes by Entrez symbol in the CIViC database
+    tags: [gene-search, cancer-gene]
+    query: |
+      query($symbols: [String!]!) {
+        genes(entrezSymbols: $symbols, first: 10) {
+          totalCount
+          nodes {
+            id
+            name
+            description
+          }
+        }
+      }
+    params:
+      symbols:
+        type: array
+        required: true
+        description: Gene symbols to search for (e.g. ["BRAF", "EGFR"])
+
+  getEvidence:
+    description: Get clinical evidence items by molecular profile ID
+    tags: [evidence, clinical-evidence]
+    query: |
+      query($molecularProfileId: Int!, $first: Int) {
+        evidenceItems(molecularProfileId: $molecularProfileId, first: $first) {
+          totalCount
+          nodes {
+            id
+            status
+            evidenceType
+            evidenceLevel
+            evidenceDirection
+            significance
+            description
+          }
+        }
+      }
+    params:
+      molecularProfileId:
+        type: integer
+        required: true
+        description: Molecular profile ID to get evidence for
+      first:
+        type: integer
+        default: 10
+        description: Number of evidence items to return

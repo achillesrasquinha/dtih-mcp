@@ -1,0 +1,49 @@
+name: clinvar
+displayName: ClinVar
+description: Variant-disease relationship database linking genetic variants to clinical significance
+tags: [variants, clinical, pathogenicity, ncbi, genetic-testing]
+baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+
+tools:
+  search:
+    description: Search ClinVar for clinically relevant genetic variants
+    tags: [variant-search, clinical-search]
+    method: GET
+    path: /esearch.fcgi
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "BRCA1 pathogenic", "cystic fibrosis")
+      maxResults:
+        type: integer
+        default: 10
+        mapsTo: retmax
+      db:
+        type: string
+        default: clinvar
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get ClinVar variant summary by ClinVar ID
+    tags: [variant-info, clinical-significance]
+    method: GET
+    path: /esummary.fcgi
+    params:
+      id:
+        type: string
+        required: true
+        description: ClinVar ID (e.g. "37722")
+      db:
+        type: string
+        default: clinvar
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json

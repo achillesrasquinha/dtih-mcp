@@ -1,0 +1,37 @@
+name: myvariant
+displayName: MyVariant.info
+description: Variant annotation query service — aggregates genetic variant data from multiple sources
+tags: [variant, snp, mutation, biothings, genomics]
+baseUrl: https://myvariant.info/v1
+
+tools:
+  search:
+    description: Search for genetic variants by keyword or query
+    tags: [variant-search, snp-search]
+    method: GET
+    path: /query
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Search query (e.g. "rs7412", "BRCA1")
+      size:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+
+  getVariant:
+    description: Get variant annotation by HGVS ID
+    tags: [variant-info, variant-annotation]
+    method: GET
+    path: /variant/{variantId}
+    params:
+      variantId:
+        type: string
+        required: true
+        description: HGVS variant ID (e.g. "chr19:g.44908684T>C")
+    response:
+      format: json

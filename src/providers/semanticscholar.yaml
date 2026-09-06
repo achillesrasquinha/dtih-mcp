@@ -1,0 +1,47 @@
+name: semanticscholar
+displayName: Semantic Scholar
+description: Semantic Scholar academic paper search — find research papers, citations, and author information
+tags: [literature, citations, academic, semanticscholar, papers]
+baseUrl: https://api.semanticscholar.org/graph/v1
+rateLimit:
+  requestsPerSecond: 1
+
+tools:
+  searchPapers:
+    description: Search for academic papers by keyword query
+    tags: [paper-search, literature-search]
+    method: GET
+    path: /paper/search
+    params:
+      query:
+        type: string
+        required: true
+        description: Search query (e.g. "CRISPR Cas9", "deep learning protein folding")
+      limit:
+        type: integer
+        default: 5
+        mapsTo: limit
+        description: Number of results to return
+      fields:
+        type: string
+        default: "title,abstract,year,citationCount"
+        description: Comma-separated fields to return
+    response:
+      format: json
+
+  getPaper:
+    description: Get details of a specific paper by Semantic Scholar paper ID
+    tags: [paper-details, citation-info]
+    method: GET
+    path: /paper/{paperId}
+    params:
+      paperId:
+        type: string
+        required: true
+        description: Semantic Scholar paper ID or DOI
+      fields:
+        type: string
+        default: "title,abstract,authors,year,citationCount"
+        description: Comma-separated fields to return
+    response:
+      format: json

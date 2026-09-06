@@ -1,0 +1,42 @@
+name: stitch
+displayName: STITCH
+description: STITCH chemical-protein interaction database — sister project of STRING
+tags: [chemical-protein, interactions, stitch, drug-target, network]
+baseUrl: http://stitch-db.org/api
+
+tools:
+  resolveIdentifier:
+    description: Resolve a chemical name or identifier to STITCH internal IDs
+    tags: [identifier-resolution, chemical-lookup]
+    method: GET
+    path: /json/resolve
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: identifier
+        description: Chemical name or identifier to resolve (e.g. aspirin, ibuprofen)
+      species:
+        type: integer
+        default: 9606
+        description: NCBI taxonomy ID (9606 for human)
+    response:
+      format: json
+
+  getInteractions:
+    description: Get chemical-protein interaction partners for a given chemical
+    tags: [interaction-search, drug-target]
+    method: GET
+    path: /json/interactionsList
+    params:
+      chemical:
+        type: string
+        required: true
+        mapsTo: identifiers
+        description: Chemical identifier (e.g. CIDm000002244 for aspirin)
+      species:
+        type: integer
+        default: 9606
+        description: NCBI taxonomy ID (9606 for human)
+    response:
+      format: json

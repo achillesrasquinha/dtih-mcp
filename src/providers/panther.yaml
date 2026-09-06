@@ -1,0 +1,56 @@
+name: panther
+displayName: PANTHER
+description: PANTHER — protein classification, gene ontology, and phylogenetic analysis
+tags: [protein-classification, gene-ontology, panther, phylogenetics, functional]
+baseUrl: https://pantherdb.org/services/oai/pantherdb
+
+tools:
+  searchGenes:
+    description: Search PANTHER for gene information and ortholog classification
+    tags: [gene-search, ortholog-search]
+    method: GET
+    path: /geneinfo
+    params:
+      geneInputList:
+        type: string
+        required: true
+        description: Gene symbol or ID (e.g. "BRCA1")
+      organism:
+        type: string
+        default: "9606"
+        description: NCBI taxonomy ID (9606 = human)
+      type:
+        type: string
+        default: ortholog
+        description: Search type (ortholog, paralog, etc.)
+    response:
+      format: json
+
+  getEnrichment:
+    description: Run gene ontology enrichment analysis via PANTHER overrepresentation test
+    tags: [enrichment, gene-ontology, overrepresentation]
+    method: GET
+    path: /enrich/overrep
+    params:
+      geneInputList:
+        type: string
+        required: true
+        description: Comma-separated list of gene symbols
+      organism:
+        type: string
+        default: "9606"
+        description: NCBI taxonomy ID
+      annotDataSet:
+        type: string
+        default: "GO:0008150"
+        description: Annotation data set (GO biological process by default)
+      enrichmentTestType:
+        type: string
+        default: FISHER
+        description: Statistical test type
+      correction:
+        type: string
+        default: FDR
+        description: Multiple test correction method
+    response:
+      format: json

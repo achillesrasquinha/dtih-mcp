@@ -1,0 +1,48 @@
+name: ena
+displayName: European Nucleotide Archive
+description: Open-access nucleotide sequence data and associated information
+tags: [nucleotide, sequence, genomics, ena, dna, rna]
+baseUrl: https://www.ebi.ac.uk/ena
+
+tools:
+  search:
+    description: Search ENA for nucleotide sequences
+    tags: [sequence-search, nucleotide-search]
+    method: GET
+    path: /portal/api/search
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: query
+        description: "Search query in ENA syntax (e.g. description=\"*insulin*\")"
+      result:
+        type: string
+        default: sequence
+        description: Result type (sequence, study, sample, etc.)
+      limit:
+        type: integer
+        default: 10
+        description: Maximum number of results
+      fields:
+        type: string
+        default: accession,description,tax_id
+        description: Comma-separated fields to return
+      format:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get summary information for an ENA accession
+    tags: [sequence-info, accession-lookup]
+    method: GET
+    path: /browser/api/summary/{accession}
+    params:
+      accession:
+        type: string
+        required: true
+        description: ENA accession (e.g. AB000100)
+    response:
+      format: json

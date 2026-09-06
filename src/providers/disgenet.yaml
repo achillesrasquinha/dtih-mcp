@@ -1,0 +1,42 @@
+name: disgenet
+displayName: DisGeNET
+description: Gene-disease association database
+tags: [gene-disease, disease-associations, variants, genetics]
+baseUrl: https://www.disgenet.org/api
+
+tools:
+  getGeneAssociations:
+    description: Get diseases associated with a gene by NCBI gene ID
+    tags: [gene-disease, disease-lookup]
+    method: GET
+    path: /gda/gene/{geneId}
+    params:
+      geneId:
+        type: string
+        required: true
+        description: NCBI gene ID (e.g. 1017 for CDK2)
+      source:
+        type: string
+        default: ALL
+        description: Source filter (ALL, CURATED, PREDICTED)
+      format:
+        type: string
+        default: json
+    response:
+      format: json
+
+  searchDisease:
+    description: Search diseases by name
+    tags: [disease-search, disease-info]
+    method: GET
+    path: /disease/search/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Disease name (e.g. asthma)
+      format:
+        type: string
+        default: json
+    response:
+      format: json

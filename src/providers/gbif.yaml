@@ -1,0 +1,54 @@
+name: gbif
+displayName: GBIF
+description: Global Biodiversity Information Facility — species occurrence and taxonomy data worldwide
+tags: [biodiversity, species, occurrence, gbif, ecology]
+baseUrl: https://api.gbif.org/v1
+
+tools:
+  searchSpecies:
+    description: Search GBIF for species by name or keyword
+    tags: [species-search, taxonomy-search]
+    method: GET
+    path: /species/search
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Species name or keyword to search (e.g. "Panthera leo")
+      limit:
+        type: integer
+        default: 5
+        description: Maximum number of results to return
+    response:
+      format: json
+
+  getOccurrences:
+    description: Search GBIF for species occurrence records by taxon key
+    tags: [occurrence-search, distribution]
+    method: GET
+    path: /occurrence/search
+    params:
+      taxonKey:
+        type: integer
+        required: true
+        description: GBIF taxon key (from searchSpecies results)
+      limit:
+        type: integer
+        default: 10
+        description: Maximum number of results to return
+    response:
+      format: json
+
+  getSpecies:
+    description: Get detailed species information by GBIF taxon key
+    tags: [species-info, taxonomy-detail]
+    method: GET
+    path: /species/{key}
+    params:
+      key:
+        type: integer
+        required: true
+        description: GBIF species key
+    response:
+      format: json

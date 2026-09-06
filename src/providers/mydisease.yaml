@@ -1,0 +1,37 @@
+name: mydisease
+displayName: MyDisease.info
+description: Disease annotation query service — aggregates disease data from multiple sources
+tags: [disease, phenotype, biothings, clinical]
+baseUrl: https://mydisease.info/v1
+
+tools:
+  search:
+    description: Search for diseases by keyword or query
+    tags: [disease-search, phenotype-search]
+    method: GET
+    path: /query
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Search query (e.g. "alzheimer", "diabetes")
+      size:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+
+  getDisease:
+    description: Get disease annotation by ID
+    tags: [disease-info, disease-annotation]
+    method: GET
+    path: /disease/{diseaseId}
+    params:
+      diseaseId:
+        type: string
+        required: true
+        description: Disease ID (e.g. "MONDO:0004975" for Alzheimer disease)
+    response:
+      format: json

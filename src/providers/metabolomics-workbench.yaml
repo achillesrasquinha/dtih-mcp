@@ -1,0 +1,32 @@
+name: metabolomics-workbench
+displayName: Metabolomics Workbench
+description: Metabolomics Workbench — metabolomics data repository and metadata
+tags: [metabolomics, metabolomics-workbench, studies, mass-spec]
+baseUrl: https://www.metabolomicsworkbench.org/rest
+
+tools:
+  searchStudies:
+    description: Search Metabolomics Workbench studies by title keyword
+    tags: [study-search, metabolomics-study]
+    method: GET
+    path: /study/study_title/{query}/summary
+    params:
+      query:
+        type: string
+        required: true
+        description: Study title search text (e.g. "diabetes", "cancer")
+    response:
+      format: json
+
+  getMetabolite:
+    description: Get metabolite information from RefMet by name
+    tags: [metabolite-info, refmet]
+    method: GET
+    path: /refmet/name/{name}/all
+    params:
+      name:
+        type: string
+        required: true
+        description: Metabolite name (e.g. "Glucose", "Cholesterol")
+    response:
+      format: json

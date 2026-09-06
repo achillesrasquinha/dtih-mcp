@@ -1,0 +1,62 @@
+name: pubchem
+displayName: PubChem
+description: Open chemistry database with compound, substance, and bioassay data
+tags: [compounds, chemistry, drugs, toxicology, bioassay, smiles, inchi]
+baseUrl: https://pubchem.ncbi.nlm.nih.gov/rest/pug
+
+tools:
+  search:
+    description: Search PubChem compounds by name or SMILES
+    tags: [compound-search, chemical-name]
+    method: GET
+    path: /compound/name/{query}/cids/JSON
+    params:
+      query:
+        type: string
+        required: true
+        description: Compound name (e.g. aspirin) or SMILES string
+    response:
+      format: json
+
+  getCompound:
+    description: Get compound properties by CID
+    tags: [compound-info, properties]
+    method: GET
+    path: /compound/cid/{cid}/property/MolecularFormula,MolecularWeight,IUPACName,InChI,CanonicalSMILES,XLogP,ExactMass/JSON
+    params:
+      cid:
+        type: string
+        required: true
+        description: PubChem Compound ID (e.g. 2244 for aspirin)
+    response:
+      format: json
+
+  getSynonyms:
+    description: Get all known synonyms/names for a compound
+    tags: [compound-info, synonyms, names]
+    method: GET
+    path: /compound/cid/{cid}/synonyms/JSON
+    params:
+      cid:
+        type: string
+        required: true
+        description: PubChem Compound ID
+    response:
+      format: json
+
+  similaritySearch:
+    description: Find structurally similar compounds by SMILES
+    tags: [compound-search, similarity, structure]
+    method: GET
+    path: /compound/similarity/smiles/{smiles}/cids/JSON?Threshold={threshold}
+    params:
+      smiles:
+        type: string
+        required: true
+        description: SMILES string of the query compound
+      threshold:
+        type: integer
+        default: 90
+        description: Similarity threshold (0-100)
+    response:
+      format: json

@@ -1,0 +1,33 @@
+name: sabio-rk
+displayName: SABIO-RK
+description: SABIO-RK enzyme kinetics database — reaction kinetics data and parameters
+tags: [enzyme-kinetics, reaction, sabio-rk, biochemistry, kinetics]
+baseUrl: https://sabiork.h-its.org/sabioRestWebServices
+
+tools:
+  searchReactions:
+    description: Search for kinetic laws by pathway or enzyme (returns SBML XML)
+    tags: [kinetics-search, reaction-search]
+    method: GET
+    path: /searchKineticLaws/sbml
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: "Search query (e.g. Pathway:glycolysis, Organism:Human)"
+    response:
+      format: text
+
+  getEntry:
+    description: Get a specific kinetic law entry by ID
+    tags: [kinetic-law, entry-detail]
+    method: GET
+    path: /kineticLaw/{id}
+    params:
+      id:
+        type: integer
+        required: true
+        description: Kinetic law entry ID
+    response:
+      format: text

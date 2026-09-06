@@ -1,0 +1,50 @@
+name: encode
+displayName: ENCODE
+description: Encyclopedia of DNA Elements — functional annotations of the human genome
+tags: [epigenomics, encode, regulation, chip-seq, dnase]
+baseUrl: https://www.encodeproject.org
+headers:
+  Accept: application/json
+
+tools:
+  search:
+    description: Search ENCODE experiments by keyword and type
+    tags: [experiment-search, encode-search]
+    method: GET
+    path: /search/
+    params:
+      searchTerm:
+        type: string
+        required: true
+        description: Search term (e.g. ChIP-seq, CTCF, K562)
+      type:
+        type: string
+        default: Experiment
+        description: Object type to search for (e.g. Experiment, Biosample)
+      format:
+        type: string
+        default: json
+        description: Response format
+      limit:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+
+  getExperiment:
+    description: Get details of a specific ENCODE experiment by accession
+    tags: [experiment-info, encode-detail]
+    method: GET
+    path: /{accession}/
+    params:
+      accession:
+        type: string
+        required: true
+        description: ENCODE accession (e.g. ENCSR245QRV)
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json

@@ -1,0 +1,44 @@
+name: string
+displayName: STRING
+description: Protein-protein interaction network database
+tags: [protein, interaction, network, ppi, functional-association]
+baseUrl: https://string-db.org/api
+
+tools:
+  getInteractions:
+    description: Get protein-protein interaction network for given protein(s)
+    tags: [interaction-network, ppi]
+    method: GET
+    path: /json/network
+    params:
+      identifiers:
+        type: string
+        required: true
+        description: Protein name(s) (e.g. "TP53", "CDK2%0dCDK3" for multiple)
+      species:
+        type: integer
+        default: 9606
+        description: NCBI taxon ID (9606 for human)
+      limit:
+        type: integer
+        default: 10
+        description: Maximum number of interaction partners to return
+    response:
+      format: json
+
+  getEnrichment:
+    description: Get functional enrichment analysis for protein(s)
+    tags: [enrichment, go-terms, pathways]
+    method: GET
+    path: /json/enrichment
+    params:
+      identifiers:
+        type: string
+        required: true
+        description: Protein name(s) (e.g. "TP53", "CDK2%0dCDK3" for multiple)
+      species:
+        type: integer
+        default: 9606
+        description: NCBI taxon ID (9606 for human)
+    response:
+      format: json

@@ -1,0 +1,33 @@
+name: gpcrdb
+displayName: GPCRdb
+description: GPCR database — G protein-coupled receptor structures, sequences, and pharmacology
+tags: [gpcr, receptor, structure, pharmacology, gpcrdb]
+baseUrl: https://gpcrdb.org/services
+
+tools:
+  getProtein:
+    description: Get detailed information about a GPCR protein by entry name
+    tags: [protein-info, receptor-info]
+    method: GET
+    path: /protein/{entry_name}/
+    params:
+      entry_name:
+        type: string
+        required: true
+        description: UniProt entry name (e.g. adrb2_human, drd2_human)
+    response:
+      format: json
+
+  listFamilies:
+    description: List GPCR receptor family classes (children of the root family)
+    tags: [receptor-family, classification]
+    method: GET
+    path: /proteinfamily/children/{slug}/
+    params:
+      slug:
+        type: string
+        required: true
+        default: "000"
+        description: Parent family slug (use 000 for top-level classes)
+    response:
+      format: json

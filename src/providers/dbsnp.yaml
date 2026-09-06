@@ -1,0 +1,49 @@
+name: dbsnp
+displayName: dbSNP
+description: Database of single nucleotide polymorphisms and other genetic variation
+tags: [snp, variants, polymorphisms, ncbi, genetic-variation]
+baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+
+tools:
+  search:
+    description: Search dbSNP for genetic variants by rsID or keyword
+    tags: [snp-search, variant-search]
+    method: GET
+    path: /esearch.fcgi
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "rs7412", "APOE missense")
+      maxResults:
+        type: integer
+        default: 10
+        mapsTo: retmax
+      db:
+        type: string
+        default: snp
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get SNP summary information by dbSNP ID
+    tags: [snp-info, variant-info]
+    method: GET
+    path: /esummary.fcgi
+    params:
+      id:
+        type: string
+        required: true
+        description: dbSNP numeric ID (e.g. "7412" for rs7412)
+      db:
+        type: string
+        default: snp
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json

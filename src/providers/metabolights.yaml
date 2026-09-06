@@ -1,0 +1,27 @@
+name: metabolights
+displayName: MetaboLights
+description: EMBL-EBI database for metabolomics experiments and derived information
+tags: [metabolomics, metabolites, studies, ebi, mass-spectrometry]
+baseUrl: https://www.ebi.ac.uk/metabolights/ws
+
+tools:
+  getStudy:
+    description: Get details of a MetaboLights study by accession ID
+    tags: [study-info, metabolomics-study]
+    method: GET
+    path: /studies/{studyId}
+    params:
+      studyId:
+        type: string
+        required: true
+        description: MetaboLights study accession (e.g. MTBLS1)
+    response:
+      format: json
+
+  listStudies:
+    description: List public MetaboLights studies
+    tags: [study-search, study-list]
+    method: GET
+    path: /studies
+    response:
+      format: json

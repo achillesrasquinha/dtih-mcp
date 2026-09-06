@@ -1,0 +1,42 @@
+name: fishbase
+displayName: FishBase
+description: FishBase — comprehensive database of fish species biology, ecology, and taxonomy
+tags: [fish, marine, fishbase, ichthyology, species, ecology]
+baseUrl: https://fishbase.ropensci.org
+
+tools:
+  searchSpecies:
+    description: Search FishBase for fish species by genus and species name
+    tags: [species-search, fish-search]
+    method: GET
+    path: /species
+    params:
+      genus:
+        type: string
+        required: true
+        mapsTo: Genus
+        description: Genus name (e.g. "Salmo")
+      species:
+        type: string
+        mapsTo: Species
+        description: Species name (e.g. "trutta")
+    response:
+      format: json
+
+  listByFamily:
+    description: List fish species in FishBase by taxonomic family
+    tags: [family-list, taxonomy-browse]
+    method: GET
+    path: /species
+    params:
+      family:
+        type: string
+        required: true
+        mapsTo: Family
+        description: Family name (e.g. "Salmonidae")
+      limit:
+        type: integer
+        default: 10
+        description: Maximum number of results
+    response:
+      format: json

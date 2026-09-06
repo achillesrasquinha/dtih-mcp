@@ -1,0 +1,44 @@
+name: biomodels
+displayName: BioModels
+description: BioModels repository — mathematical models of biological systems in SBML and other formats
+tags: [mathematical-model, systems-biology, simulation, biomodels, sbml]
+baseUrl: https://biomodels.org
+
+tools:
+  search:
+    description: Search BioModels for mathematical models by keyword
+    tags: [model-search, systems-biology-search]
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        description: Search query (e.g. "apoptosis", "cell cycle", "glycolysis")
+      numResults:
+        type: integer
+        default: 10
+        description: Number of results to return
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json
+
+  getModel:
+    description: Get a specific BioModel by its identifier
+    tags: [model-info, model-detail]
+    method: GET
+    path: /{id}
+    params:
+      id:
+        type: string
+        required: true
+        description: BioModel identifier (e.g. BIOMD0000000012)
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json

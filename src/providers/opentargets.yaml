@@ -1,0 +1,56 @@
+name: opentargets
+displayName: Open Targets
+description: Drug target identification and prioritization platform
+tags: [drug-targets, disease-associations, genetics, opentargets]
+baseUrl: https://api.platform.opentargets.org/api/v4/graphql
+
+protocol: graphql
+
+tools:
+  searchTarget:
+    description: Search for drug targets by keyword
+    tags: [target-search, gene-search]
+    query: |
+      query($queryString: String!) {
+        search(queryString: $queryString, entityNames: ["target"], page: {size: 5, index: 0}) {
+          total
+          hits {
+            id
+            name
+            description
+          }
+        }
+      }
+    params:
+      queryString:
+        type: string
+        required: true
+        description: Search keyword (e.g. EGFR, BRAF, insulin)
+
+  getTarget:
+    description: Get target details and top associated diseases
+    tags: [target-info, disease-association]
+    query: |
+      query($ensemblId: String!) {
+        target(ensemblId: $ensemblId) {
+          id
+          approvedSymbol
+          approvedName
+          biotype
+          associatedDiseases(page: {size: 5, index: 0}) {
+            count
+            rows {
+              disease {
+                id
+                name
+              }
+              score
+            }
+          }
+        }
+      }
+    params:
+      ensemblId:
+        type: string
+        required: true
+        description: Ensembl gene ID (e.g. ENSG00000146648 for EGFR)

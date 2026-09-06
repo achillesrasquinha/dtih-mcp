@@ -1,0 +1,42 @@
+name: chebi
+displayName: ChEBI (via OLS4)
+description: Chemical Entities of Biological Interest — ontology lookup via EBI OLS4
+tags: [chemical, compound, ontology, chebi, molecule]
+baseUrl: https://www.ebi.ac.uk/ols4/api
+
+tools:
+  search:
+    description: Search ChEBI ontology for chemical entities by keyword
+    tags: [chemical-search, compound-search]
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Search keyword (e.g. "aspirin", "glucose")
+      ontology:
+        type: string
+        default: chebi
+        description: Ontology to search (fixed to chebi)
+      rows:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+
+  getTerm:
+    description: Get a ChEBI term by short form identifier
+    tags: [chemical-info, term-info]
+    method: GET
+    path: /ontologies/chebi/terms
+    params:
+      shortForm:
+        type: string
+        required: true
+        mapsTo: short_form
+        description: ChEBI short-form ID (e.g. CHEBI_15365 for aspirin)
+    response:
+      format: json

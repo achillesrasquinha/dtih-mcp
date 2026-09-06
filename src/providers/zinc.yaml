@@ -1,0 +1,33 @@
+name: zinc
+displayName: ZINC
+description: Free database of commercially available compounds for virtual screening
+tags: [compounds, virtual-screening, drug-discovery, chemistry, docking]
+baseUrl: https://zinc15.docking.org
+
+tools:
+  search:
+    description: Search ZINC compound database by name or SMILES
+    tags: [compound-search]
+    method: GET
+    path: /substances/search/
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Search query (compound name or SMILES)
+    response:
+      format: json
+
+  getSubstance:
+    description: Get substance details by ZINC ID
+    tags: [compound-info, substance-info]
+    method: GET
+    path: /substances/{zincId}.json
+    params:
+      zincId:
+        type: string
+        required: true
+        description: ZINC substance ID (e.g. ZINC000000000001)
+    response:
+      format: json

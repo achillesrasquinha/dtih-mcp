@@ -1,0 +1,56 @@
+name: bgee
+displayName: Bgee
+description: Gene expression evolution database — expression across species and tissues
+tags: [gene-expression, evolution, comparative-genomics, bgee]
+baseUrl: https://www.bgee.org/api
+
+tools:
+  search:
+    description: Search genes across species by keyword
+    tags: [gene-search, expression-search]
+    method: GET
+    path: /
+    params:
+      query:
+        type: string
+        required: true
+        description: Gene name or keyword to search (e.g. "BRCA1", "insulin")
+      page:
+        type: string
+        default: gene
+        description: API page type
+      action:
+        type: string
+        default: search
+        description: API action
+      display_type:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json
+
+  getGene:
+    description: Get detailed gene expression info by Ensembl gene ID
+    tags: [gene-info, expression-info]
+    method: GET
+    path: /
+    params:
+      gene_id:
+        type: string
+        required: true
+        description: Ensembl gene ID (e.g. ENSG00000012048 for BRCA1)
+      page:
+        type: string
+        default: gene
+        description: API page type
+      action:
+        type: string
+        default: general_info
+        description: API action
+      display_type:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json

@@ -1,0 +1,34 @@
+name: orphanet
+displayName: Orphanet
+description: Orphanet — reference portal for rare diseases and orphan drugs
+tags: [rare-disease, orphanet, clinical, genetic-disease]
+baseUrl: https://api.orphacode.org
+headers:
+  apikey: test
+
+tools:
+  searchDisease:
+    description: Search Orphanet for rare diseases by name
+    tags: [disease-search, rare-disease-search]
+    method: GET
+    path: /EN/ClinicalEntity/ApproximateName/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Disease name to search (e.g. Marfan, Huntington, cystic fibrosis)
+    response:
+      format: json
+
+  getDisease:
+    description: Get details of a rare disease by its ORPHAcode
+    tags: [disease-info, rare-disease-info]
+    method: GET
+    path: /EN/ClinicalEntity/orphacode/{orphacode}/Name
+    params:
+      orphacode:
+        type: string
+        required: true
+        description: ORPHAcode number (e.g. 558 for Marfan syndrome)
+    response:
+      format: json

@@ -1,0 +1,34 @@
+name: hgnc
+displayName: HGNC
+description: HUGO Gene Nomenclature Committee — approved human gene symbols and names
+tags: [gene, nomenclature, symbol, human, hgnc]
+baseUrl: https://rest.genenames.org
+headers:
+  Accept: application/json
+
+tools:
+  search:
+    description: Search HGNC for gene symbols and names
+    tags: [gene-search, symbol-search]
+    method: GET
+    path: /search/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Search query (e.g. "BRCA1", "kinase")
+    response:
+      format: json
+
+  getGene:
+    description: Get gene record by approved gene symbol
+    tags: [gene-info, symbol-lookup]
+    method: GET
+    path: /fetch/symbol/{symbol}
+    params:
+      symbol:
+        type: string
+        required: true
+        description: Approved gene symbol (e.g. "BRCA1", "TP53")
+    response:
+      format: json

@@ -1,0 +1,41 @@
+name: cellosaurus
+displayName: Cellosaurus
+description: Knowledge resource on cell lines — cell line identification and characterization
+tags: [cell-line, cell-culture, cellosaurus, biobank]
+baseUrl: https://api.cellosaurus.org
+
+tools:
+  search:
+    description: Search cell lines by name or keyword
+    tags: [cell-line-search]
+    method: GET
+    path: /search/cell-line
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Search query (e.g. "HeLa", "MCF-7", "Jurkat")
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json
+
+  getCellLine:
+    description: Get cell line details by Cellosaurus accession
+    tags: [cell-line-info, cell-line-details]
+    method: GET
+    path: /cell-line/{accession}
+    params:
+      accession:
+        type: string
+        required: true
+        description: Cellosaurus accession (e.g. CVCL_0030 for HeLa)
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json

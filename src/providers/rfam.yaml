@@ -1,0 +1,40 @@
+name: rfam
+displayName: Rfam
+description: Database of non-coding RNA families and structured RNA elements
+tags: [rna, non-coding-rna, rna-families, riboswitch, rfam]
+baseUrl: https://rfam.org
+
+tools:
+  search:
+    description: Search RNA families by keyword
+    tags: [rna-search, family-search]
+    method: GET
+    path: /families
+    params:
+      query:
+        type: string
+        required: true
+        description: Search keyword (e.g. "riboswitch", "sRNA", "tRNA")
+      content-type:
+        type: string
+        default: application/json
+        description: Response content type
+    response:
+      format: json
+
+  getFamily:
+    description: Get RNA family details by Rfam accession
+    tags: [rna-family, family-info]
+    method: GET
+    path: /family/{accession}
+    params:
+      accession:
+        type: string
+        required: true
+        description: Rfam accession (e.g. RF00162 for SAM riboswitch)
+      content-type:
+        type: string
+        default: application/json
+        description: Response content type
+    response:
+      format: json

@@ -1,0 +1,49 @@
+name: biosample
+displayName: NCBI BioSample
+description: Database of biological sample metadata used in experimental assays
+tags: [biosample, sample-metadata, ncbi, experimental-data]
+baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+
+tools:
+  search:
+    description: Search NCBI BioSample for biological sample records
+    tags: [sample-search, biosample-search]
+    method: GET
+    path: /esearch.fcgi
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "human liver", "mouse brain tissue")
+      maxResults:
+        type: integer
+        default: 10
+        mapsTo: retmax
+      db:
+        type: string
+        default: biosample
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get BioSample summary by BioSample ID
+    tags: [sample-info, biosample-info]
+    method: GET
+    path: /esummary.fcgi
+    params:
+      id:
+        type: string
+        required: true
+        description: NCBI BioSample ID (e.g. "3737421")
+      db:
+        type: string
+        default: biosample
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json

@@ -1,0 +1,45 @@
+name: jaspar
+displayName: JASPAR
+description: JASPAR — open-access database of transcription factor binding profiles
+tags: [transcription-factors, motifs, binding-sites, jaspar, regulation]
+baseUrl: https://jaspar.elixir.no/api/v2
+
+tools:
+  searchMotifs:
+    description: Search JASPAR for transcription factor binding profiles by name
+    tags: [motif-search, tf-search]
+    method: GET
+    path: /matrix/
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: search
+        description: Transcription factor name to search (e.g. TP53, CTCF)
+      format:
+        type: string
+        default: json
+        description: Response format
+      page_size:
+        type: integer
+        default: 10
+        description: Number of results per page
+    response:
+      format: json
+
+  getMatrix:
+    description: Get a specific binding profile matrix by its JASPAR ID
+    tags: [motif-info, matrix-info]
+    method: GET
+    path: /matrix/{id}/
+    params:
+      id:
+        type: string
+        required: true
+        description: JASPAR matrix ID (e.g. MA0106.1)
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json

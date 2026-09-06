@@ -1,0 +1,40 @@
+name: orthodb
+displayName: OrthoDB
+description: Hierarchical catalog of orthologs — gene evolutionary relationships
+tags: [orthology, evolution, comparative-genomics, orthodb]
+baseUrl: https://data.orthodb.org/v12
+
+tools:
+  search:
+    description: Search orthologous groups by gene name
+    tags: [ortholog-search, gene-search]
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        description: Gene name to search (e.g. "BRCA1", "insulin")
+      level:
+        type: integer
+        default: 2759
+        description: NCBI taxonomy level (2759=Eukaryota, 9606=Homo sapiens, 7742=Vertebrata)
+      species:
+        type: integer
+        default: 9606
+        description: NCBI taxonomy ID for species filter (9606=human)
+    response:
+      format: json
+
+  getGroup:
+    description: Get orthologous group details by OrthoDB group ID
+    tags: [ortholog-group, group-info]
+    method: GET
+    path: /group
+    params:
+      id:
+        type: string
+        required: true
+        description: OrthoDB group ID (e.g. 733642at2759)
+    response:
+      format: json

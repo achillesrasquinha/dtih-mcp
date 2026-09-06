@@ -1,0 +1,49 @@
+name: ncbi-protein
+displayName: NCBI Protein
+description: Protein sequence database including RefSeq, UniProt, and PDB sequences
+tags: [protein, sequence, refseq, ncbi, amino-acid]
+baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+
+tools:
+  search:
+    description: Search NCBI Protein database for protein sequences
+    tags: [protein-search, sequence-search]
+    method: GET
+    path: /esearch.fcgi
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "hemoglobin human", "insulin receptor")
+      maxResults:
+        type: integer
+        default: 10
+        mapsTo: retmax
+      db:
+        type: string
+        default: protein
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get protein summary by NCBI Protein ID or accession
+    tags: [protein-info, sequence-info]
+    method: GET
+    path: /esummary.fcgi
+    params:
+      id:
+        type: string
+        required: true
+        description: NCBI Protein ID or accession (e.g. "4504349")
+      db:
+        type: string
+        default: protein
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json

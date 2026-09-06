@@ -1,0 +1,49 @@
+name: geo
+displayName: Gene Expression Omnibus
+description: Repository of high-throughput gene expression and genomics datasets
+tags: [gene-expression, microarray, rna-seq, ncbi, transcriptomics]
+baseUrl: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+
+tools:
+  search:
+    description: Search GEO for gene expression datasets
+    tags: [expression-search, dataset-search]
+    method: GET
+    path: /esearch.fcgi
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "breast cancer RNA-seq", "Alzheimer expression")
+      maxResults:
+        type: integer
+        default: 10
+        mapsTo: retmax
+      db:
+        type: string
+        default: gds
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getSummary:
+    description: Get GEO dataset summary by GDS ID
+    tags: [dataset-info, expression-info]
+    method: GET
+    path: /esummary.fcgi
+    params:
+      id:
+        type: string
+        required: true
+        description: GEO DataSet ID (e.g. "200053801")
+      db:
+        type: string
+        default: gds
+      retmode:
+        type: string
+        default: json
+    response:
+      format: json

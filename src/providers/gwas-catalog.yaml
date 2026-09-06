@@ -1,0 +1,41 @@
+name: gwas-catalog
+displayName: GWAS Catalog
+description: NHGRI-EBI Catalog of genome-wide association studies
+tags: [gwas, genetic-associations, snp, disease-traits, ebi]
+baseUrl: https://www.ebi.ac.uk/gwas/rest/api
+
+tools:
+  search:
+    description: Search GWAS Catalog studies by disease trait name
+    tags: [gwas-search, association-search]
+    method: GET
+    path: /studies/search/findByDiseaseTrait
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: diseaseTrait
+        description: Disease trait name (e.g. "diabetes", "asthma")
+      page:
+        type: integer
+        default: 0
+        description: Page number (zero-based)
+      size:
+        type: integer
+        default: 5
+        description: Number of results per page
+    response:
+      format: json
+
+  getStudy:
+    description: Get GWAS study details by study accession ID
+    tags: [study-info, gwas-study]
+    method: GET
+    path: /studies/{studyId}
+    params:
+      studyId:
+        type: string
+        required: true
+        description: GWAS study accession (e.g. "GCST90038633")
+    response:
+      format: json

@@ -1,0 +1,33 @@
+name: chembl
+displayName: ChEMBL
+description: Database of bioactive drug-like small molecules
+tags: [compounds, drugs, bioactivity, chemistry, chembl]
+baseUrl: https://www.ebi.ac.uk/chembl/api/data
+
+tools:
+  getMolecule:
+    description: Get molecule details by ChEMBL ID
+    tags: [compound-info, molecule]
+    method: GET
+    path: /molecule/{chemblId}.json
+    params:
+      chemblId:
+        type: string
+        required: true
+        description: ChEMBL molecule ID (e.g. CHEMBL25 for aspirin)
+    response:
+      format: json
+
+  search:
+    description: Search molecules by name or keyword
+    tags: [compound-search, molecule-search]
+    method: GET
+    path: /molecule/search.json
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Search query (e.g. aspirin)
+    response:
+      format: json

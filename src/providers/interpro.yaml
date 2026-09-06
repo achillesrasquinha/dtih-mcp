@@ -1,0 +1,38 @@
+name: interpro
+displayName: InterPro
+description: Protein families, domains, and functional sites classification
+tags: [protein, domain, family, motif, interpro]
+baseUrl: https://www.ebi.ac.uk/interpro/api
+
+tools:
+  search:
+    description: Search InterPro for protein families and domains by keyword
+    tags: [protein-family-search, domain-search]
+    method: GET
+    path: /entry/interpro
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: search
+        description: Search keyword (e.g. "kinase", "zinc finger")
+      pageSize:
+        type: integer
+        default: 10
+        mapsTo: page_size
+        description: Number of results per page
+    response:
+      format: json
+
+  getEntry:
+    description: Get an InterPro entry by accession
+    tags: [protein-family-info, domain-info]
+    method: GET
+    path: /entry/interpro/{accession}
+    params:
+      accession:
+        type: string
+        required: true
+        description: InterPro accession (e.g. IPR000719)
+    response:
+      format: json

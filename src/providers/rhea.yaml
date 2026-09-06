@@ -1,0 +1,44 @@
+name: rhea
+displayName: Rhea
+description: Expert-curated knowledgebase of biochemical reactions
+tags: [reaction, biochemistry, enzyme, metabolism, rhea]
+baseUrl: https://www.rhea-db.org/rhea
+
+tools:
+  search:
+    description: Search Rhea for biochemical reactions by keyword
+    tags: [reaction-search, biochemistry-search]
+    method: GET
+    path: /
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: query
+        description: Search keyword (e.g. "ATP", "glucose")
+      format:
+        type: string
+        default: json
+      columns:
+        type: string
+        default: rhea-id,equation
+        description: Columns to return
+    response:
+      format: json
+
+  getReaction:
+    description: Get a specific Rhea reaction by ID
+    tags: [reaction-info, reaction-lookup]
+    method: GET
+    path: /
+    params:
+      rheaId:
+        type: string
+        required: true
+        mapsTo: query
+        description: Rhea reaction ID (e.g. "RHEA:10000")
+      format:
+        type: string
+        default: json
+    response:
+      format: json

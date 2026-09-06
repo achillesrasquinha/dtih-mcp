@@ -1,0 +1,37 @@
+name: wormbase
+displayName: WormBase
+description: WormBase C. elegans and nematode genomics via the Alliance of Genome Resources API
+tags: [c-elegans, model-organism, wormbase, nematode, genetics]
+baseUrl: https://www.alliancegenome.org/api
+
+tools:
+  getGene:
+    description: Get detailed gene information from WormBase by gene ID (e.g. WB:WBGene00006763 for unc-26)
+    tags: [gene-info, gene-detail]
+    method: GET
+    path: /gene/{geneId}
+    params:
+      geneId:
+        type: string
+        required: true
+        description: "Alliance gene ID with WB prefix (e.g. WB:WBGene00006763)"
+    response:
+      format: json
+
+  searchGene:
+    description: Search WormBase genes by name or keyword via autocomplete
+    tags: [gene-search, name-search]
+    method: GET
+    path: /search_autocomplete
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Gene name or keyword to search (e.g. "unc-26", "daf-2")
+      limit:
+        type: integer
+        default: 5
+        description: Number of results to return
+    response:
+      format: json

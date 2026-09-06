@@ -1,0 +1,44 @@
+name: intact
+displayName: IntAct
+description: Molecular interaction database — curated protein-protein interactions
+tags: [interaction, protein, molecular, binding, intact]
+baseUrl: https://www.ebi.ac.uk/intact/ws
+
+tools:
+  search:
+    description: Search IntAct for molecular interactions by gene or protein name
+    tags: [interaction-search, protein-interaction]
+    method: GET
+    path: /interaction/findInteractions/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Gene or protein name to search (e.g. "TP53", "BRCA1")
+      page:
+        type: integer
+        default: 0
+      pageSize:
+        type: integer
+        default: 10
+    response:
+      format: json
+
+  findInteractor:
+    description: Find interactor details by gene or protein name
+    tags: [interactor-search, protein-info]
+    method: GET
+    path: /interactor/findInteractor/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Gene or protein name (e.g. "TP53")
+      page:
+        type: integer
+        default: 0
+      pageSize:
+        type: integer
+        default: 10
+    response:
+      format: json
