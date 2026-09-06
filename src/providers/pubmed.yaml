@@ -34,6 +34,11 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - esearchresult.count
+        - esearchresult.retmax
+        - esearchresult.idlist
+        - esearchresult.querytranslation
   getSummary:
     description: Get article summaries by PubMed IDs
     tags:
@@ -56,6 +61,17 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - result.uids
+        - result.*.uid
+        - result.*.title
+        - result.*.pubdate
+        - result.*.source
+        - result.*.authors[].name
+        - result.*.fulljournalname
+        - result.*.volume
+        - result.*.issue
+        - result.*.pages
 tests:
   search:
     - name: searches for CRISPR papers

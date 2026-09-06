@@ -28,6 +28,15 @@ tools:
         description: Number of results per page
     response:
       format: json
+      pick:
+        - results[].id
+        - results[].species_guess
+        - results[].observed_on
+        - results[].quality_grade
+        - results[].place_guess
+        - results[].taxon.name
+        - results[].taxon.rank
+        - results[].taxon.preferred_common_name
   getTaxon:
     description: Get detailed taxon information by iNaturalist taxon ID
     tags:
@@ -42,6 +51,15 @@ tools:
         description: iNaturalist taxon ID
     response:
       format: json
+      pick:
+        - results[].id
+        - results[].name
+        - results[].rank
+        - results[].preferred_common_name
+        - results[].observations_count
+        - results[].iconic_taxon_name
+        - results[].conservation_status.status
+        - results[].wikipedia_url
   searchTaxa:
     description: Search iNaturalist taxa by name or keyword
     tags:
@@ -61,6 +79,15 @@ tools:
         description: Number of results per page
     response:
       format: json
+      pick:
+        - results[].id
+        - results[].name
+        - results[].rank
+        - results[].preferred_common_name
+        - results[].observations_count
+        - results[].iconic_taxon_name
+        - results[].conservation_status.status
+        - results[].wikipedia_url
 tests:
   searchObservations:
     - name: searches observations for Monarch butterfly

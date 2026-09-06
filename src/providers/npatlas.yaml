@@ -23,6 +23,14 @@ tools:
         description: Search query (e.g. tetracycline, vancomycin)
     response:
       format: json
+      pick:
+        - "[].npaid"
+        - "[].original_name"
+        - "[].mol_formula"
+        - "[].mol_weight"
+        - "[].exact_mass"
+        - "[].original_type"
+        - "[].original_organism"
   getCompound:
     description: Get natural product compound details by NP Atlas ID
     tags:
@@ -36,6 +44,15 @@ tools:
         description: NP Atlas compound ID (e.g. NPA000001)
     response:
       format: json
+      pick:
+        - npaid
+        - original_name
+        - mol_formula
+        - mol_weight
+        - exact_mass
+        - smiles
+        - origin_organism
+        - origin_reference
 tests:
   search:
     - name: searches for tetracycline

@@ -1,0 +1,38 @@
+name: signalp
+displayName: SignalP 6.0
+description: SignalP 6.0 — signal peptide prediction for protein sequences (DTU BioLib)
+tags:
+  - signal-peptide
+  - prediction
+  - protein
+  - secretion
+  - signalp
+baseUrl: https://api.biolib.com/app/DTU/SignalP-6.0
+tools:
+  predict:
+    description: Submit a protein sequence for signal peptide prediction (async job)
+    tags:
+      - signal-peptide-prediction
+      - sequence-analysis
+    method: POST
+    path: /run
+    params:
+      sequence:
+        type: string
+        required: true
+        description: Protein sequence in FASTA format (e.g. ">sp1\nMKLLILTCLVAVALA...")
+      organism:
+        type: string
+        default: eukarya
+        description: Organism group (eukarya, gram_positive, gram_negative, archaea)
+    response:
+      format: json
+tests:
+  predict:
+    - name: submits a sequence for signal peptide prediction
+      params:
+        sequence: ">test\nMKLLILTCLVAVALACGSS"
+        organism: eukarya
+      assert:
+        - path: id
+      allowError: true

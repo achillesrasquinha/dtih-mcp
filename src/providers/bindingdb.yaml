@@ -1,0 +1,68 @@
+name: bindingdb
+displayName: BindingDB
+description: Public database of measured binding affinities between proteins and drug-like molecules
+tags:
+  - binding-affinity
+  - drugs
+  - targets
+  - ligands
+  - pharmacology
+  - bindingdb
+baseUrl: https://bindingdb.org/axis2/services/BDBService
+tools:
+  searchByTarget:
+    description: Search ligands by protein target name
+    tags:
+      - target-search
+      - ligand-lookup
+    method: GET
+    path: /getLigandsByTarget
+    params:
+      target:
+        type: string
+        required: true
+        description: Protein target name (e.g. "cyclooxygenase", "EGFR")
+      response:
+        type: string
+        default: application/json
+        description: Response format
+    response:
+      format: json
+  searchBySmiles:
+    description: Search similar ligands by SMILES structure with similarity cutoff
+    tags:
+      - similarity-search
+      - structure-search
+    method: GET
+    path: /getLigandsBySimilarity
+    params:
+      smiles:
+        type: string
+        required: true
+        description: SMILES string of query molecule (e.g. "CC(=O)OC1=CC=CC=C1C(=O)O")
+      cutoff:
+        type: number
+        default: 0.85
+        description: Tanimoto similarity cutoff (0.0-1.0)
+      response:
+        type: string
+        default: application/json
+        description: Response format
+    response:
+      format: json
+tests:
+  searchByTarget:
+    - name: searches ligands for cyclooxygenase target
+      params:
+        target: cyclooxygenase
+      assert:
+        - minLength: 1
+      allowError: true
+  searchBySmiles:
+    - name: searches similar compounds by SMILES
+      params:
+        smiles: "CC(=O)OC1=CC=CC=C1C(=O)O"
+        cutoff: 0.85
+      assert:
+        - minLength: 1
+      allowError: true

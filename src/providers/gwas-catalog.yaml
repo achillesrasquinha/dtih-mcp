@@ -32,6 +32,11 @@ tools:
         description: Number of results per page
     response:
       format: json
+      pick:
+        - _embedded.associations[].pvalue
+        - _embedded.associations[].riskFrequency
+        - _embedded.associations[].strongestRiskAlleles[].riskAlleleName
+        - _embedded.associations[].loci[].strongestRiskAlleles[].riskAlleleName
   getStudy:
     description: Get GWAS study details by study accession ID
     tags:

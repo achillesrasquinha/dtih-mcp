@@ -1,0 +1,46 @@
+name: gramene
+displayName: Gramene
+description: Gramene — comparative plant genomics resource for crops and model species
+tags: [plant-genomics, crops, genes, pathways, comparative-genomics, gramene]
+baseUrl: https://data.gramene.org
+
+tools:
+  searchGenes:
+    description: Search Gramene for plant genes by keyword or name
+    tags: [gene-search, plant-gene]
+    method: GET
+    path: /search
+    params:
+      q:
+        type: string
+        required: true
+        description: Gene name or keyword to search (e.g. "WRKY", "drought tolerance")
+      category:
+        type: string
+        default: genes
+        description: Search category (e.g. "genes", "pathways")
+    response:
+      format: json
+
+  getPathway:
+    description: Get details of a plant metabolic or signaling pathway
+    tags: [pathway-detail, plant-pathway]
+    method: GET
+    path: /pathways/{id}
+    params:
+      id:
+        type: string
+        required: true
+        description: Gramene pathway identifier
+    response:
+      format: json
+
+tests:
+  searchGenes:
+    - name: searches for WRKY transcription factors
+      params:
+        q: WRKY
+        category: genes
+      assert:
+        - minLength: 1
+      allowError: true

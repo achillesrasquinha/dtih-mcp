@@ -36,6 +36,15 @@ tools:
         description: Metabolite name (e.g. "Glucose", "Cholesterol")
     response:
       format: json
+      pick:
+        - name
+        - formula
+        - exactmass
+        - super_class
+        - main_class
+        - sub_class
+        - pubchem_cid
+        - inchi_key
 tests:
   searchStudies:
     - name: searches studies by title keyword diabetes

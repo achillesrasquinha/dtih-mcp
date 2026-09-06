@@ -24,6 +24,15 @@ tools:
         description: PubMed ID (e.g. "35153516")
     response:
       format: json
+      pick:
+        - PubTator3[].pmid
+        - PubTator3[].journal
+        - PubTator3[].authors
+        - PubTator3[].date
+        - PubTator3[].passages[].text
+        - PubTator3[].passages[].annotations[].text
+        - PubTator3[].passages[].annotations[].infons.type
+        - PubTator3[].passages[].annotations[].infons.identifier
   search:
     description: Search PubTator for annotated articles by text query
     tags:
@@ -43,6 +52,14 @@ tools:
         description: Sort order (e.g. "score desc", "date desc")
     response:
       format: json
+      pick:
+        - results[].pmid
+        - results[].title
+        - results[].journal
+        - results[].authors
+        - results[].date
+        - results[].doi
+        - results[].score
 tests:
   annotate:
     - name: annotates PMID 35153516

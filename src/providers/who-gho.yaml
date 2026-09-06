@@ -24,6 +24,10 @@ tools:
         description: OData filter expression (e.g. "contains(IndicatorName,'malaria')")
     response:
       format: json
+      pick:
+        - value[].IndicatorCode
+        - value[].IndicatorName
+        - value[].Language
   getData:
     description: Get data for a specific WHO health indicator optionally filtered by country
     tags:
@@ -47,6 +51,14 @@ tools:
         description: Number of records to return
     response:
       format: json
+      pick:
+        - value[].IndicatorCode
+        - value[].SpatialDim
+        - value[].TimeDim
+        - value[].Dim1
+        - value[].NumericValue
+        - value[].Low
+        - value[].High
 tests:
   getIndicators:
     - name: lists indicators containing malaria

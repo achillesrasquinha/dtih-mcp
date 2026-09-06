@@ -28,6 +28,14 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - total
+        - hits[]._id
+        - hits[]._score
+        - hits[].chrom
+        - hits[].dbsnp
+        - hits[].clinvar
+        - hits[].cadd
   getVariant:
     description: Get variant annotation by HGVS ID
     tags:
@@ -42,6 +50,14 @@ tools:
         description: HGVS variant ID (e.g. "chr19:g.44908684T>C")
     response:
       format: json
+      pick:
+        - _id
+        - chrom
+        - dbsnp
+        - clinvar
+        - cadd
+        - dbnsfp
+        - gnomad_exome
 tests:
   search:
     - name: searches for rs7412 variant

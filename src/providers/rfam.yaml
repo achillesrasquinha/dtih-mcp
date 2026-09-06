@@ -27,6 +27,13 @@ tools:
         description: Response content type
     response:
       format: json
+      pick:
+        - families[].acc
+        - families[].id
+        - families[].description
+        - families[].type
+        - families[].num_seed
+        - families[].num_full
   getFamily:
     description: Get RNA family details by Rfam accession
     tags:
@@ -45,6 +52,15 @@ tools:
         description: Response content type
     response:
       format: json
+      pick:
+        - rfam.acc
+        - rfam.id
+        - rfam.description
+        - rfam.comment
+        - rfam.curation.type
+        - rfam.curation.num_seed
+        - rfam.curation.num_full
+        - rfam.curation.num_species
 tests:
   search:
     - name: searches for riboswitch RNA families

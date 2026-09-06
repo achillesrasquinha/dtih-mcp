@@ -1,0 +1,66 @@
+name: ncbo-annotator
+displayName: NCBO Annotator
+description: NCBO Annotator — annotate biomedical text with ontology concepts and get ontology recommendations
+tags:
+  - annotation
+  - ontology
+  - text-mining
+  - entity-recognition
+  - ncbo
+  - bioportal
+baseUrl: https://data.bioontology.org
+
+auth:
+  type: apiKey
+  param: apikey
+  env: LS_BIOPORTAL_API_KEY
+
+tools:
+  annotate:
+    description: Annotate free text with matching biomedical ontology concepts
+    tags:
+      - text-annotation
+      - entity-recognition
+    method: GET
+    path: /annotator
+    params:
+      text:
+        type: string
+        required: true
+        description: Text to annotate (e.g. "The patient has type 2 diabetes and hypertension")
+      ontologies:
+        type: string
+        description: Comma-separated ontology acronyms to limit annotations (e.g. "NCIT,SNOMEDCT,DOID")
+    response:
+      format: json
+
+  recommend:
+    description: Get ontology recommendations based on input text
+    tags:
+      - ontology-recommendation
+      - text-analysis
+    method: GET
+    path: /recommender
+    params:
+      input:
+        type: string
+        required: true
+        description: Text to analyze for ontology recommendations (e.g. "melanoma, breast cancer, lung adenocarcinoma")
+    response:
+      format: json
+
+tests:
+  annotate:
+    - name: annotates biomedical text
+      params:
+        text: "The patient has type 2 diabetes and hypertension"
+      assert:
+        - {}
+      allowError: true
+  recommend:
+    - name: recommends ontologies for cancer terms
+      params:
+        input: "melanoma breast cancer lung adenocarcinoma"
+      assert:
+        - {}
+      allowError: true

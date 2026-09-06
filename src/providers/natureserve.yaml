@@ -1,0 +1,53 @@
+name: natureserve
+displayName: NatureServe
+description: NatureServe Explorer — conservation status and biodiversity data for species across the Americas
+tags: [conservation, biodiversity, endangered-species, ecology, natureserve]
+baseUrl: https://explorer.natureserve.org/api/data
+
+auth:
+  type: apiKey
+  param: token
+  env: LS_NATURESERVE_API_KEY
+
+tools:
+  searchSpecies:
+    description: Search NatureServe for species by scientific taxonomy
+    tags: [species-search, conservation-search]
+    method: GET
+    path: /speciesSearch
+    params:
+      scientificTaxonomy:
+        type: string
+        required: true
+        description: Scientific name or taxonomy query (e.g. "Danaus plexippus", "Canis lupus")
+    response:
+      format: json
+
+  getSpecies:
+    description: Get detailed conservation data for a species by its global element ID
+    tags: [species-detail, conservation-status]
+    method: GET
+    path: /species/{elementGlobalId}
+    params:
+      elementGlobalId:
+        type: string
+        required: true
+        description: NatureServe element global ID (e.g. "ELEMENT_GLOBAL.2.100925")
+    response:
+      format: json
+
+tests:
+  searchSpecies:
+    - name: searches for monarch butterfly
+      params:
+        scientificTaxonomy: Danaus plexippus
+      assert:
+        - minLength: 1
+      allowError: true
+  getSpecies:
+    - name: gets species detail by element ID
+      params:
+        elementGlobalId: ELEMENT_GLOBAL.2.100925
+      assert:
+        - minLength: 1
+      allowError: true

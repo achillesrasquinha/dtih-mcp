@@ -24,6 +24,12 @@ tools:
         description: Target name to search for (e.g. EGFR, dopamine)
     response:
       format: json
+      pick:
+        - "[].targetId"
+        - "[].name"
+        - "[].abbreviation"
+        - "[].type"
+        - "[].familyNames"
   searchLigands:
     description: Search pharmacological ligands by name
     tags:
@@ -39,6 +45,13 @@ tools:
         description: Ligand name to search for (e.g. erlotinib, morphine)
     response:
       format: json
+      pick:
+        - "[].ligandId"
+        - "[].name"
+        - "[].type"
+        - "[].inn"
+        - "[].approved"
+        - "[].approvalSource"
 tests:
   searchTargets:
     - name: searches targets for EGFR

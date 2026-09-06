@@ -34,6 +34,15 @@ tools:
         description: Days back from today (1-30)
     response:
       format: json
+      pick:
+        - "[].speciesCode"
+        - "[].comName"
+        - "[].sciName"
+        - "[].locName"
+        - "[].obsDt"
+        - "[].howMany"
+        - "[].lat"
+        - "[].lng"
 
   notableObservations:
     description: Get notable/rare bird sightings near a location
@@ -58,6 +67,15 @@ tools:
         description: Days back (1-30)
     response:
       format: json
+      pick:
+        - "[].speciesCode"
+        - "[].comName"
+        - "[].sciName"
+        - "[].locName"
+        - "[].obsDt"
+        - "[].howMany"
+        - "[].lat"
+        - "[].lng"
 
   hotspots:
     description: Get birding hotspots near a location
@@ -82,6 +100,13 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - "[].locId"
+        - "[].locName"
+        - "[].lat"
+        - "[].lng"
+        - "[].numSpeciesAllTime"
+        - "[].latestObsDt"
 
   regionObservations:
     description: Get recent observations for a region (country/state)
@@ -101,6 +126,13 @@ tools:
         default: 7
     response:
       format: json
+      pick:
+        - "[].speciesCode"
+        - "[].comName"
+        - "[].sciName"
+        - "[].locName"
+        - "[].obsDt"
+        - "[].howMany"
 
 tests:
   recentObservations:

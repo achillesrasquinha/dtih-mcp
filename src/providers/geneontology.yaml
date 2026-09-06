@@ -26,6 +26,13 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - "docs[].id"
+        - "docs[].label"
+        - "docs[].name"
+        - "docs[].taxon"
+        - "docs[].taxon_label"
+        - "docs[].category"
   getTerm:
     description: Get detailed information about a specific GO term
     tags:
@@ -40,6 +47,13 @@ tools:
         description: GO term identifier (e.g. GO:0006915 for apoptotic process)
     response:
       format: json
+      pick:
+        - "goid"
+        - "label"
+        - "definition"
+        - "synonyms"
+        - "alternativeIds"
+        - "comment"
 tests:
   search:
     - name: searches for apoptosis GO terms

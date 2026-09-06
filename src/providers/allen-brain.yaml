@@ -24,6 +24,13 @@ tools:
         description: RMA query e.g. 'model::Gene,rma::criteria,[acronym$eq'BDNF']'
     response:
       format: json
+      pick:
+        - msg[].id
+        - msg[].acronym
+        - msg[].name
+        - msg[].entrez_id
+        - msg[].chromosome_id
+        - msg[].organism_id
   getStructures:
     description: Get brain structures
     tags:
@@ -38,6 +45,14 @@ tools:
         description: RMA criteria for brain structures
     response:
       format: json
+      pick:
+        - msg[].id
+        - msg[].acronym
+        - msg[].name
+        - msg[].parent_structure_id
+        - msg[].ontology_id
+        - msg[].depth
+        - msg[].structure_id_path
 tests:
   getStructures:
     - name: gets brain structures with default criteria

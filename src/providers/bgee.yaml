@@ -34,6 +34,15 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - data.result.geneMatches[].gene.geneId
+        - data.result.geneMatches[].gene.name
+        - data.result.geneMatches[].gene.description
+        - data.result.geneMatches[].gene.species.name
+        - data.result.geneMatches[].gene.species.id
+        - data.result.geneMatches[].gene.geneBioType.name
+        - data.result.geneMatches[].match
+        - data.result.geneMatches[].matchSource
   getGene:
     description: Get detailed gene expression info by Ensembl gene ID
     tags:
@@ -60,6 +69,15 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - data.genes[].geneId
+        - data.genes[].name
+        - data.genes[].description
+        - data.genes[].expressionSummary
+        - data.genes[].synonyms
+        - data.genes[].species.name
+        - data.genes[].species.id
+        - data.genes[].geneBioType.name
 tests:
   search:
     - name: searches for BRCA1 gene

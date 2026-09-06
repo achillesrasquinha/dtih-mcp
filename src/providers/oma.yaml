@@ -23,6 +23,17 @@ tools:
         description: Protein ID e.g. UniProt accession 'P04637' or OMA ID
     response:
       format: json
+      pick:
+        - entry_nr
+        - omaid
+        - canonicalid
+        - sequence_length
+        - species.species
+        - species.taxon_id
+        - oma_group
+        - oma_hog_id
+        - chromosome
+        - description
   getOrthologs:
     description: Get orthologs for a protein
     tags:
@@ -37,6 +48,16 @@ tools:
         description: Protein ID
     response:
       format: json
+      pick:
+        - '[].entry_nr'
+        - '[].omaid'
+        - '[].canonicalid'
+        - '[].sequence_length'
+        - '[].species.species'
+        - '[].species.taxon_id'
+        - '[].rel_type'
+        - '[].distance'
+        - '[].score'
   getHOG:
     description: Get hierarchical orthologous group details
     tags:
@@ -51,6 +72,12 @@ tools:
         description: Hierarchical orthologous group ID
     response:
       format: json
+      pick:
+        - '[].hog_id'
+        - '[].level'
+        - '[].levels_url'
+        - '[].members_url'
+        - '[].alternative_levels'
 tests:
   getProtein:
     - name: gets protein info for P04637

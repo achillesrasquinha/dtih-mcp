@@ -1,0 +1,54 @@
+name: eu-clinical-trials
+displayName: EU Clinical Trials Register
+description: European Union Clinical Trials Register for searching EU clinical studies
+tags:
+  - clinical-trials
+  - europe
+  - drugs
+  - diseases
+  - eu-ctr
+baseUrl: https://euclinicaltrials.eu/ctis-public/api
+tools:
+  searchTrials:
+    description: Search EU clinical trials by keyword or condition
+    tags:
+      - trial-search
+      - eu-trial
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        description: Search term (e.g. "breast cancer", "pembrolizumab")
+    response:
+      format: json
+  getTrial:
+    description: Get details of a specific EU clinical trial by ID
+    tags:
+      - trial-info
+      - eu-trial-details
+    method: GET
+    path: /clinical-trials/{id}
+    params:
+      id:
+        type: string
+        required: true
+        description: EU clinical trial ID (e.g. 2023-123456-12)
+    response:
+      format: json
+tests:
+  searchTrials:
+    - name: searches for breast cancer trials
+      params:
+        query: breast cancer
+      assert:
+        - minLength: 1
+      allowError: true
+  getTrial:
+    - name: gets trial by EU CT ID
+      params:
+        id: "2023-123456-12"
+      assert:
+        - {}
+      allowError: true

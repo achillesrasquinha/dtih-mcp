@@ -22,6 +22,15 @@ tools:
         description: UniProt accession (e.g. P00533 for EGFR)
     response:
       format: json
+      pick:
+        - "[].uniprotAccession"
+        - "[].gene"
+        - "[].uniprotDescription"
+        - "[].organismScientificName"
+        - "[].globalMetricValue"
+        - "[].modelEntityId"
+        - "[].pdbUrl"
+        - "[].cifUrl"
   getConfidence:
     description: Get per-residue confidence (pLDDT) summary
     tags:
@@ -37,6 +46,14 @@ tools:
         description: UniProt accession (e.g. Q9Y6K9)
     response:
       format: json
+      pick:
+        - "[].uniprotAccession"
+        - "[].gene"
+        - "[].globalMetricValue"
+        - "[].fractionPlddtVeryHigh"
+        - "[].fractionPlddtConfident"
+        - "[].fractionPlddtLow"
+        - "[].fractionPlddtVeryLow"
 tests:
   getPrediction:
     - name: gets prediction for EGFR (P00533)

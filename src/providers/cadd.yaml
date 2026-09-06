@@ -1,0 +1,86 @@
+name: cadd
+displayName: CADD
+description: Combined Annotation Dependent Depletion — variant deleteriousness scoring
+tags:
+  - variant-scoring
+  - pathogenicity
+  - annotation
+  - cadd
+  - deleteriousness
+baseUrl: https://cadd.gs.washington.edu/api/v1.0
+
+tools:
+  score:
+    description: Get CADD deleteriousness score for a specific variant
+    tags:
+      - variant-score
+      - cadd-score
+    method: GET
+    path: /score/{chrom}/{pos}/{ref}/{alt}
+    params:
+      chrom:
+        type: string
+        required: true
+        description: Chromosome (e.g. 1, 22, X)
+      pos:
+        type: integer
+        required: true
+        description: Genomic position (1-based)
+      ref:
+        type: string
+        required: true
+        description: Reference allele (e.g. A, C, G, T)
+      alt:
+        type: string
+        required: true
+        description: Alternate allele (e.g. A, C, G, T)
+    response:
+      format: json
+  getAnnotation:
+    description: Get full CADD annotation details for a specific variant
+    tags:
+      - variant-annotation
+      - cadd-annotation
+    method: GET
+    path: /anno/{chrom}/{pos}/{ref}/{alt}
+    params:
+      chrom:
+        type: string
+        required: true
+        description: Chromosome (e.g. 1, 22, X)
+      pos:
+        type: integer
+        required: true
+        description: Genomic position (1-based)
+      ref:
+        type: string
+        required: true
+        description: Reference allele (e.g. A, C, G, T)
+      alt:
+        type: string
+        required: true
+        description: Alternate allele (e.g. A, C, G, T)
+    response:
+      format: json
+
+tests:
+  score:
+    - name: scores a well-known pathogenic variant
+      params:
+        chrom: "22"
+        pos: 19963748
+        ref: C
+        alt: T
+      assert:
+        - minLength: 1
+      allowError: true
+  getAnnotation:
+    - name: gets annotation for a variant
+      params:
+        chrom: "22"
+        pos: 19963748
+        ref: C
+        alt: T
+      assert:
+        - minLength: 1
+      allowError: true

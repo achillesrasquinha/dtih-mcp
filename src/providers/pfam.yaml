@@ -1,0 +1,89 @@
+name: pfam
+displayName: Pfam
+description: Pfam protein families database — protein domain classification via InterPro
+tags:
+  - protein
+  - domain
+  - family
+  - pfam
+  - classification
+baseUrl: https://www.ebi.ac.uk/interpro/api
+tools:
+  searchFamily:
+    description: Search Pfam protein families by keyword
+    tags:
+      - family-search
+      - domain-search
+    method: GET
+    path: /entry/pfam
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: search
+        description: Search keyword (e.g. "kinase", "globin", "zinc finger")
+      pageSize:
+        type: integer
+        default: 10
+        mapsTo: page_size
+        description: Number of results per page
+    response:
+      format: json
+  getFamily:
+    description: Get detailed information for a specific Pfam family
+    tags:
+      - family-info
+      - domain-info
+    method: GET
+    path: /entry/pfam/{accession}
+    params:
+      accession:
+        type: string
+        required: true
+        description: Pfam accession (e.g. PF00069 for protein kinase domain)
+    response:
+      format: json
+  getProteins:
+    description: Get UniProt proteins associated with a Pfam family
+    tags:
+      - family-proteins
+      - protein-members
+    method: GET
+    path: /entry/pfam/{accession}/protein/UniProt
+    params:
+      accession:
+        type: string
+        required: true
+        description: Pfam accession (e.g. PF00069)
+      pageSize:
+        type: integer
+        default: 10
+        mapsTo: page_size
+        description: Number of results per page
+    response:
+      format: json
+tests:
+  searchFamily:
+    - name: searches for kinase families
+      params:
+        query: kinase
+      assert:
+        - path: results
+          minLength: 1
+      allowError: true
+  getFamily:
+    - name: gets Pfam family PF00069
+      params:
+        accession: PF00069
+      assert:
+        - path: metadata.accession
+          equals: PF00069
+      allowError: true
+  getProteins:
+    - name: gets proteins for Pfam family PF00069
+      params:
+        accession: PF00069
+      assert:
+        - path: results
+          minLength: 1
+      allowError: true

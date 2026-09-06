@@ -32,6 +32,14 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - total
+        - hits[]._id
+        - hits[]._score
+        - hits[].entrezgene
+        - hits[].symbol
+        - hits[].name
+        - hits[].taxid
   getGene:
     description: Get detailed gene annotation by Entrez gene ID
     tags:
@@ -46,6 +54,15 @@ tools:
         description: Entrez gene ID (e.g. 672 for BRCA1)
     response:
       format: json
+      pick:
+        - _id
+        - symbol
+        - name
+        - summary
+        - type_of_gene
+        - map_location
+        - entrezgene
+        - taxid
 tests:
   search:
     - name: searches for kinase genes in human

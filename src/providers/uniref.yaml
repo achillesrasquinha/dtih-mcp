@@ -29,6 +29,14 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - results[].id
+        - results[].name
+        - results[].memberCount
+        - results[].entryType
+        - results[].commonTaxon.scientificName
+        - results[].representativeMember.organismName
+        - results[].representativeMember.proteinName
   getCluster:
     description: Get UniRef cluster details by cluster ID
     tags:
@@ -43,6 +51,15 @@ tools:
         description: UniRef cluster ID (e.g. UniRef90_P01308 for insulin)
     response:
       format: json
+      pick:
+        - id
+        - name
+        - memberCount
+        - entryType
+        - commonTaxon.scientificName
+        - representativeMember.proteinName
+        - representativeMember.organismName
+        - representativeMember.sequenceLength
 tests:
   search:
     - name: searches for insulin clusters

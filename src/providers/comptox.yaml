@@ -24,6 +24,13 @@ tools:
         description: Chemical name prefix to search (e.g. "bisphenol", "atrazine")
     response:
       format: json
+      pick:
+        - "[].dtxsid"
+        - "[].dtxcid"
+        - "[].searchWord"
+        - "[].searchMatch"
+        - "[].rank"
+        - "[].hasStructureImage"
   searchContain:
     description: Search chemicals by name substring in CompTox
     tags:
@@ -38,6 +45,13 @@ tools:
         description: Chemical name substring to search (e.g. "bisphenol", "phthalate")
     response:
       format: json
+      pick:
+        - "[].dtxsid"
+        - "[].dtxcid"
+        - "[].searchWord"
+        - "[].searchMatch"
+        - "[].rank"
+        - "[].hasStructureImage"
 tests:
   searchChemical:
     - name: searches for bisphenol chemicals

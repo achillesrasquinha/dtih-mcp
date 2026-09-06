@@ -29,6 +29,13 @@ tools:
         mapsTo: pageSize
     response:
       format: json
+      pick:
+        - studies[].protocolSection.identificationModule.nctId
+        - studies[].protocolSection.identificationModule.briefTitle
+        - studies[].protocolSection.statusModule.overallStatus
+        - studies[].protocolSection.designModule.phases
+        - studies[].protocolSection.conditionsModule.conditions
+        - studies[].protocolSection.armsInterventionsModule.interventions[].name
   getStudy:
     description: Get details of a specific clinical trial by NCT ID
     tags:

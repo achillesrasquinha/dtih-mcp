@@ -29,6 +29,14 @@ tools:
         description: Genome assembly
     response:
       format: json
+      pick:
+        - total
+        - regulome_score.probability
+        - regulome_score.ranking
+        - variants
+        - nearby_snps
+        - assembly
+        - query_coordinates
 tests:
   search:
     - name: searches for regulatory variants in a region

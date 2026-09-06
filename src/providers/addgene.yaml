@@ -1,0 +1,61 @@
+name: addgene
+displayName: Addgene
+description: Addgene — nonprofit plasmid repository for sharing molecular biology reagents
+tags: [plasmids, molecular-biology, cloning, vectors, reagents, addgene]
+baseUrl: https://www.addgene.org/api
+
+tools:
+  search:
+    description: Search the Addgene plasmid repository by keyword
+    tags: [plasmid-search, reagent-search]
+    method: GET
+    path: /plasmids/
+    params:
+      q:
+        type: string
+        required: true
+        description: Search query (e.g. "GFP", "CRISPR", "lentiviral")
+    response:
+      format: json
+
+  getPlasmid:
+    description: Get detailed information about a specific Addgene plasmid
+    tags: [plasmid-detail, reagent-info]
+    method: GET
+    path: /plasmids/{id}/
+    params:
+      id:
+        type: integer
+        required: true
+        description: Addgene plasmid ID number (e.g. 48138 for pSpCas9)
+    response:
+      format: json
+
+  getSequence:
+    description: Get sequence information for an Addgene plasmid
+    tags: [plasmid-sequence, dna-sequence]
+    method: GET
+    path: /plasmids/{id}/sequences/
+    params:
+      id:
+        type: integer
+        required: true
+        description: Addgene plasmid ID number
+    response:
+      format: json
+
+tests:
+  search:
+    - name: searches for CRISPR plasmids
+      params:
+        q: CRISPR
+      assert:
+        - minLength: 1
+      allowError: true
+  getPlasmid:
+    - name: gets pSpCas9 plasmid details
+      params:
+        id: 48138
+      assert:
+        - minLength: 1
+      allowError: true

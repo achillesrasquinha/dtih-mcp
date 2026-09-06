@@ -40,6 +40,13 @@ tools:
         description: Comma-separated fields to return
     response:
       format: json
+      pick:
+        - total
+        - data[].paperId
+        - data[].title
+        - data[].year
+        - data[].citationCount
+        - data[].abstract
   getPaper:
     description: Get details of a specific paper by Semantic Scholar paper ID
     tags:
@@ -58,6 +65,13 @@ tools:
         description: Comma-separated fields to return
     response:
       format: json
+      pick:
+        - paperId
+        - title
+        - abstract
+        - year
+        - citationCount
+        - authors[].name
 tests:
   searchPapers:
     - name: searches for CRISPR Cas9 papers

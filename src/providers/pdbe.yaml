@@ -22,6 +22,14 @@ tools:
         description: PDB entry ID in lowercase (e.g. 1cbs, 4hhb)
     response:
       format: json
+      pick:
+        - '*.0.title'
+        - '*.0.experimental_method'
+        - '*.0.deposition_date'
+        - '*.0.release_date'
+        - '*.0.entry_authors'
+        - '*.0.number_of_entities'
+        - '*.0.assemblies'
   getMolecules:
     description: Get molecule information for a PDB entry
     tags:
@@ -36,6 +44,15 @@ tools:
         description: PDB entry ID in lowercase (e.g. 1cbs, 4hhb)
     response:
       format: json
+      pick:
+        - '*.0.molecule_name'
+        - '*.0.molecule_type'
+        - '*.0.entity_id'
+        - '*.0.gene_name'
+        - '*.0.length'
+        - '*.0.weight'
+        - '*.0.source[].organism_scientific_name'
+        - '*.0.source[].tax_id'
 tests:
   getSummary:
     - name: gets summary for PDB entry 1cbs

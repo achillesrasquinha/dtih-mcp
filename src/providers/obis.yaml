@@ -28,6 +28,16 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - total
+        - results[].scientificName
+        - results[].species
+        - results[].taxonID
+        - results[].decimalLatitude
+        - results[].decimalLongitude
+        - results[].eventDate
+        - results[].country
+        - results[].depth
   searchTaxa:
     description: Search OBIS checklist for marine taxa by scientific name
     tags:
@@ -43,6 +53,19 @@ tools:
         description: Scientific name to search (e.g. "Carcharodon carcharias")
     response:
       format: json
+      pick:
+        - total
+        - results[].scientificName
+        - results[].taxonID
+        - results[].taxonRank
+        - results[].taxonomicStatus
+        - results[].kingdom
+        - results[].phylum
+        - results[].class
+        - results[].order
+        - results[].family
+        - results[].genus
+        - results[].records
   getTaxon:
     description: Get OBIS taxon details by AphiaID
     tags:
@@ -57,6 +80,16 @@ tools:
         description: WoRMS AphiaID of the taxon
     response:
       format: json
+      pick:
+        - total
+        - results[].scientificName
+        - results[].taxonID
+        - results[].taxonRank
+        - results[].taxonomicStatus
+        - results[].category
+        - results[].family
+        - results[].order
+        - results[].vernacularNames
 tests:
   searchOccurrences:
     - name: searches occurrences for Carcharodon carcharias

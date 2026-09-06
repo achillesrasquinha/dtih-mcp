@@ -26,6 +26,14 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - Cellosaurus.cell-line-list[].accession-list
+        - Cellosaurus.cell-line-list[].name-list
+        - Cellosaurus.cell-line-list[].category
+        - Cellosaurus.cell-line-list[].sex
+        - Cellosaurus.cell-line-list[].age
+        - Cellosaurus.cell-line-list[].species-list
+        - Cellosaurus.cell-line-list[].disease-list
   getCellLine:
     description: Get cell line details by Cellosaurus accession
     tags:
@@ -44,6 +52,15 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - Cellosaurus.cell-line-list[].accession-list
+        - Cellosaurus.cell-line-list[].name-list
+        - Cellosaurus.cell-line-list[].category
+        - Cellosaurus.cell-line-list[].sex
+        - Cellosaurus.cell-line-list[].age
+        - Cellosaurus.cell-line-list[].species-list
+        - Cellosaurus.cell-line-list[].disease-list
+        - Cellosaurus.cell-line-list[].derived-from-site-list
 tests:
   search:
     - name: searches for HeLa cell lines

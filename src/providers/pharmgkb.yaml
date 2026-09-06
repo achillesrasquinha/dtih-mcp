@@ -21,9 +21,17 @@ tools:
         type: string
         required: true
         mapsTo: name
-        description: Drug name filter using PostgREST eq operator (e.g. "eq.warfarin")
+        description: Drug name (e.g. "warfarin")
+        prefix: "eq."
     response:
       format: json
+      pick:
+        - '[].drugid'
+        - '[].name'
+        - '[].rxnormid'
+        - '[].drugbankid'
+        - '[].atcid'
+        - '[].guidelineid'
   getDrugGenePairs:
     description: Get drug-gene interaction pairs for a specific drug
     tags:
@@ -36,9 +44,19 @@ tools:
         type: string
         required: true
         mapsTo: drugid
-        description: Drug ID filter using PostgREST eq operator (e.g. "eq.RxNorm:11289" for warfarin)
+        description: Drug ID (e.g. "RxNorm:11289" for warfarin)
+        prefix: "eq."
     response:
       format: json
+      pick:
+        - '[].pairid'
+        - '[].genesymbol'
+        - '[].drugid'
+        - '[].guidelineid'
+        - '[].usedforrecommendation'
+        - '[].cpiclevel'
+        - '[].clinpgxlevel'
+        - '[].pgxtesting'
 tests:
   searchDrugs:
     - name: searches for warfarin

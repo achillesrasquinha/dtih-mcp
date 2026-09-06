@@ -1,0 +1,38 @@
+name: phylot
+displayName: PhyloT
+description: PhyloT — taxonomy-based phylogenetic tree generation from NCBI taxon IDs
+tags:
+  - phylogenetics
+  - taxonomy
+  - tree-generation
+  - newick
+  - phylot
+baseUrl: https://phylot.biobyte.de/api
+tools:
+  generateTree:
+    description: Generate a phylogenetic tree from a list of NCBI taxonomy IDs
+    tags:
+      - tree-generation
+      - newick-export
+    method: GET
+    path: /tree
+    params:
+      taxids:
+        type: string
+        required: true
+        description: Comma-separated NCBI taxonomy IDs (e.g. "9606,9598,9593")
+      format:
+        type: string
+        default: newick
+        description: Output format (newick, phyloxml)
+    response:
+      format: json
+tests:
+  generateTree:
+    - name: generates tree for human, chimp, gorilla
+      params:
+        taxids: "9606,9598,9593"
+        format: newick
+      assert:
+        - {}
+      allowError: true

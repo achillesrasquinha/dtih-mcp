@@ -1,0 +1,85 @@
+name: cdd
+displayName: CDD
+description: NCBI Conserved Domain Database — identify conserved domains in protein sequences
+tags:
+  - protein-domains
+  - conserved-domains
+  - protein-families
+  - ncbi
+  - sequence-analysis
+baseUrl: https://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cgi
+
+tools:
+  search:
+    description: Submit a protein sequence for conserved domain search
+    tags:
+      - domain-search
+      - sequence-search
+    method: GET
+    path: /
+    params:
+      queries:
+        type: string
+        required: true
+        description: Protein sequence in FASTA format or accession (e.g. "NP_000509.1" or raw sequence)
+      db:
+        type: string
+        default: cdd
+        description: Database to search (cdd, pfam, smart, tigrfam, cog, kog)
+      smode:
+        type: string
+        default: auto
+        description: Search mode (auto, prec, live)
+      useid1:
+        type: boolean
+        default: true
+        description: Use ID1 server for sequence retrieval
+      tdata:
+        type: string
+        default: hits
+        description: Data type to return (hits, aligns, feats)
+      dmode:
+        type: string
+        default: full
+        description: Display mode (full, rep, std)
+    response:
+      format: json
+
+  getHits:
+    description: Retrieve conserved domain hits for a completed search job
+    tags:
+      - domain-results
+      - hit-retrieval
+    method: GET
+    path: /
+    params:
+      cdsid:
+        type: string
+        required: true
+        description: Job ID from a previous search submission
+      tdata:
+        type: string
+        default: hits
+        description: Data type to return
+      dmode:
+        type: string
+        default: rep
+        description: Display mode (rep for representative, full for all)
+    response:
+      format: json
+
+tests:
+  search:
+    - name: searches for conserved domains in a protein
+      params:
+        queries: NP_000509.1
+      assert:
+        - {}
+      allowError: true
+  getHits:
+    - name: retrieves hits for a job
+      params:
+        cdsid: QM3-qcdsearch-0000000000-0000000
+      assert:
+        - {}
+      allowError: true

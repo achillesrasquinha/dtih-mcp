@@ -39,6 +39,13 @@ tools:
         description: EMPIAR ID e.g. 'EMPIAR-10028'
     response:
       format: json
+      pick:
+        - "*.title"
+        - "*.imagesets[].name"
+        - "*.imagesets[].category"
+        - "*.imagesets[].data_format"
+        - "*.imagesets[].num_images_or_tilt_series"
+        - "*.imagesets[].pixel_width"
 tests:
   getEntries:
     - name: lists EMPIAR entries

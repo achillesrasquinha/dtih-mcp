@@ -1,0 +1,69 @@
+name: human-cell-atlas
+displayName: Human Cell Atlas
+description: Human Cell Atlas data portal — single-cell genomics projects and datasets
+tags:
+  - single-cell
+  - genomics
+  - cell-atlas
+  - transcriptomics
+  - hca
+baseUrl: https://service.azul.data.humancellatlas.org
+tools:
+  searchProjects:
+    description: Search Human Cell Atlas projects with optional filters
+    tags:
+      - project-search
+      - single-cell-search
+    method: GET
+    path: /index/projects
+    params:
+      filters:
+        type: string
+        required: false
+        description: JSON-encoded filters (e.g. {"projectTitle":{"is":["immune"]}})
+      size:
+        type: integer
+        default: 10
+        description: Number of results to return
+      catalog:
+        type: string
+        default: dcp2
+        description: Data catalog to search (e.g. dcp2)
+    response:
+      format: json
+  getProject:
+    description: Get details for a specific Human Cell Atlas project by ID
+    tags:
+      - project-info
+      - dataset-info
+    method: GET
+    path: /index/projects/{id}
+    params:
+      id:
+        type: string
+        required: true
+        description: HCA project UUID
+      catalog:
+        type: string
+        default: dcp2
+        description: Data catalog (e.g. dcp2)
+    response:
+      format: json
+tests:
+  searchProjects:
+    - name: searches for HCA projects
+      params:
+        size: 5
+        catalog: dcp2
+      assert:
+        - path: hits
+          minLength: 1
+      allowError: true
+  getProject:
+    - name: gets a specific HCA project
+      params:
+        id: 4a95101c-9ffc-4f30-a809-f04518a23803
+        catalog: dcp2
+      assert:
+        - path: projects
+      allowError: true

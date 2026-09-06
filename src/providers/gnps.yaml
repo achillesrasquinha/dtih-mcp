@@ -1,0 +1,59 @@
+name: gnps
+displayName: GNPS
+description: GNPS — molecular networking and spectral library for mass spectrometry data
+tags:
+  - mass-spectrometry
+  - metabolomics
+  - spectral-library
+  - molecular-networking
+  - natural-products
+baseUrl: https://gnps.ucsd.edu/ProteoSAFe
+tools:
+  searchLibrary:
+    description: Search the GNPS spectral library by compound name or keyword
+    tags:
+      - spectral-search
+      - compound-search
+    method: GET
+    path: /LibraryServlet
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: query
+        description: Search term (e.g. "aspirin", "caffeine", "quercetin")
+      library:
+        type: string
+        default: all
+        description: Library to search (default all)
+    response:
+      format: json
+  getSpectrum:
+    description: Get spectrum details and comments by spectrum ID
+    tags:
+      - spectrum-info
+      - spectrum-details
+    method: GET
+    path: /SpectrumCommentServlet
+    params:
+      SpectrumID:
+        type: string
+        required: true
+        description: GNPS spectrum identifier (e.g. CCMSLIB00005436077)
+    response:
+      format: json
+tests:
+  searchLibrary:
+    - name: searches spectral library for aspirin
+      params:
+        query: aspirin
+      assert:
+        - minLength: 1
+      allowError: true
+  getSpectrum:
+    - name: gets spectrum details by ID
+      params:
+        SpectrumID: CCMSLIB00005436077
+      assert:
+        - minLength: 1
+      allowError: true

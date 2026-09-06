@@ -28,6 +28,13 @@ tools:
         description: Maximum number of results
     response:
       format: json
+      pick:
+        - numberOfHits
+        - results[].id
+        - results[].name
+        - results[].definition.text
+        - results[].aspect
+        - results[].isObsolete
   getTerm:
     description: Get a Gene Ontology term by GO ID
     tags:
@@ -42,6 +49,15 @@ tools:
         description: GO term ID (e.g. GO:0006915)
     response:
       format: json
+      pick:
+        - numberOfHits
+        - results[].id
+        - results[].name
+        - results[].definition.text
+        - results[].aspect
+        - results[].synonyms[].name
+        - results[].synonyms[].type
+        - results[].isObsolete
 tests:
   search:
     - name: searches for apoptosis GO terms

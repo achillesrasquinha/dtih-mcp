@@ -23,6 +23,15 @@ tools:
         description: LIPID MAPS identifier (e.g. LMFA01010001)
     response:
       format: json
+      pick:
+        - lm_id
+        - name
+        - sys_name
+        - formula
+        - exactmass
+        - abbrev
+        - core
+        - main_class
   getByName:
     description: Search lipids by abbreviated chain name
     tags:
@@ -37,6 +46,15 @@ tools:
         description: Abbreviated lipid chain name (e.g. DHA, AA, EPA)
     response:
       format: json
+      pick:
+        - lm_id
+        - name
+        - sys_name
+        - formula
+        - exactmass
+        - abbrev
+        - core
+        - main_class
 tests:
   getCompound:
     - name: gets compound by LIPID MAPS ID

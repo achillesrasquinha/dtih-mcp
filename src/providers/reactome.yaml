@@ -31,6 +31,12 @@ tools:
         mapsTo: types
     response:
       format: json
+      pick:
+        - results[].entries[].stId
+        - results[].entries[].name
+        - results[].entries[].type
+        - results[].entries[].species
+        - results[].entries[].summation
   getPathway:
     description: Get pathway details by Reactome stable ID
     tags:

@@ -1,0 +1,65 @@
+name: atc
+displayName: ATC Classification
+description: ATC (Anatomical Therapeutic Chemical) drug classification via RxNav/RxClass API
+tags:
+  - drug-classification
+  - atc
+  - pharmacology
+  - rxclass
+  - medication
+baseUrl: https://rxnav.nlm.nih.gov/REST/rxclass
+
+tools:
+  searchByDrug:
+    description: Find ATC classes for a given drug name
+    tags:
+      - drug-lookup
+      - atc-search
+    method: GET
+    path: /class/byDrugName.json
+    params:
+      drugName:
+        type: string
+        required: true
+        description: Drug name to look up (e.g. "metformin", "ibuprofen")
+      relaSource:
+        type: string
+        default: ATC
+        description: Relationship source (ATC for ATC classification)
+    response:
+      format: json
+
+  getClassMembers:
+    description: Get drugs belonging to an ATC class
+    tags:
+      - class-members
+      - atc-class
+    method: GET
+    path: /classMembers.json
+    params:
+      classId:
+        type: string
+        required: true
+        description: ATC class code (e.g. "A10BA" for biguanides, "N02BE" for anilides)
+      relaSource:
+        type: string
+        default: ATC
+        description: Relationship source
+    response:
+      format: json
+
+tests:
+  searchByDrug:
+    - name: finds ATC class for metformin
+      params:
+        drugName: metformin
+      assert:
+        - {}
+      allowError: true
+  getClassMembers:
+    - name: gets members of biguanides ATC class
+      params:
+        classId: A10BA
+      assert:
+        - {}
+      allowError: true

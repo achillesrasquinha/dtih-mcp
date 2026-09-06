@@ -38,6 +38,10 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - expansion.contains[].code
+        - expansion.contains[].display
+        - expansion.contains[].system
   getConcept:
     description: Look up a specific SNOMED CT concept by code
     tags:
@@ -60,6 +64,12 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - resourceType
+        - parameter[].name
+        - parameter[].valueString
+        - parameter[].valueCode
+        - parameter[].valueBoolean
 tests:
   searchConcepts:
     - name: searches for diabetes concepts

@@ -35,6 +35,15 @@ tools:
         description: Response format (json or tsv)
     response:
       format: json
+      pick:
+        - '[].source_genesymbol'
+        - '[].target_genesymbol'
+        - '[].is_directed'
+        - '[].is_stimulation'
+        - '[].is_inhibition'
+        - '[].consensus_direction'
+        - '[].consensus_stimulation'
+        - '[].consensus_inhibition'
   getEnzSubstrate:
     description: Get enzyme-substrate relationships for a gene
     tags:
@@ -61,6 +70,12 @@ tools:
         description: Response format (json or tsv)
     response:
       format: json
+      pick:
+        - '[].enzyme_genesymbol'
+        - '[].substrate_genesymbol'
+        - '[].residue_type'
+        - '[].residue_offset'
+        - '[].modification'
 tests:
   getInteractions:
     - name: gets signaling interactions for TP53

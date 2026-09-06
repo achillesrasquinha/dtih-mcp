@@ -1,0 +1,55 @@
+name: toxcast
+displayName: ToxCast
+description: EPA ToxCast high-throughput toxicity assay screening data
+tags:
+  - toxicology
+  - assays
+  - epa
+  - chemical-safety
+  - toxcast
+  - screening
+baseUrl: https://comptox.epa.gov/dashboard/api
+tools:
+  searchChemical:
+    description: Search for chemicals in the ToxCast database
+    tags:
+      - chemical-search
+      - toxcast-search
+    method: GET
+    path: /chemical/search
+    params:
+      query:
+        type: string
+        required: true
+        description: Chemical name or identifier to search (e.g. "bisphenol A", "atrazine")
+    response:
+      format: json
+  getAssays:
+    description: Get ToxCast assay results for a chemical by DTXSID
+    tags:
+      - assay-data
+      - toxicity-screening
+    method: GET
+    path: /assay/chemical/{dtxsid}
+    params:
+      dtxsid:
+        type: string
+        required: true
+        description: DSSTox substance identifier (e.g. DTXSID7020182 for bisphenol A)
+    response:
+      format: json
+tests:
+  searchChemical:
+    - name: searches for bisphenol A
+      params:
+        query: bisphenol A
+      assert:
+        - minLength: 1
+      allowError: true
+  getAssays:
+    - name: gets assay data for bisphenol A
+      params:
+        dtxsid: DTXSID7020182
+      assert:
+        - minLength: 1
+      allowError: true

@@ -38,6 +38,13 @@ tools:
         description: Search query (e.g. aspirin)
     response:
       format: json
+      pick:
+        - molecules[].molecule_chembl_id
+        - molecules[].pref_name
+        - molecules[].molecule_type
+        - molecules[].max_phase
+        - molecules[].molecule_properties.full_mwt
+        - molecules[].molecule_properties.alogp
 tests:
   getMolecule:
     - name: gets molecule by ChEMBL ID

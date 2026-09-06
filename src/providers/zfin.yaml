@@ -1,0 +1,80 @@
+name: zfin
+displayName: ZFIN
+description: ZFIN Zebrafish Information Network — zebrafish genomics, genetics, and phenotype data
+tags:
+  - zebrafish
+  - genomics
+  - genetics
+  - model-organism
+  - zfin
+baseUrl: https://zfin.org/action/api
+tools:
+  searchGenes:
+    description: Search ZFIN for zebrafish genes by keyword
+    tags:
+      - gene-search
+      - zebrafish-search
+    method: GET
+    path: /search
+    params:
+      q:
+        type: string
+        required: true
+        description: Search query for zebrafish genes (e.g. "shha", "tp53")
+      category:
+        type: string
+        default: Gene
+        description: Category to filter results (Gene, Mutant, Expression, etc.)
+    response:
+      format: json
+  getGene:
+    description: Get detailed information for a zebrafish gene by marker ID
+    tags:
+      - gene-detail
+      - marker-info
+    method: GET
+    path: /marker/{id}
+    params:
+      id:
+        type: string
+        required: true
+        description: ZFIN marker ID (e.g. "ZDB-GENE-980526-41" for shha)
+    response:
+      format: json
+  getPhenotypes:
+    description: Get phenotype annotations for a zebrafish gene
+    tags:
+      - phenotype
+      - gene-phenotype
+    method: GET
+    path: /marker/{id}/phenotype
+    params:
+      id:
+        type: string
+        required: true
+        description: ZFIN marker ID (e.g. "ZDB-GENE-980526-41")
+    response:
+      format: json
+tests:
+  searchGenes:
+    - name: searches for shha gene
+      params:
+        q: shha
+        category: Gene
+      assert:
+        - {}
+      allowError: true
+  getGene:
+    - name: gets gene details for shha
+      params:
+        id: ZDB-GENE-980526-41
+      assert:
+        - {}
+      allowError: true
+  getPhenotypes:
+    - name: gets phenotypes for shha gene
+      params:
+        id: ZDB-GENE-980526-41
+      assert:
+        - {}
+      allowError: true

@@ -39,6 +39,11 @@ tools:
         description: Page number
     response:
       format: json
+      pick:
+        - result.results[].ui
+        - result.results[].name
+        - result.results[].rootSource
+        - result.results[].uri
 
   getConcept:
     description: Get concept details by UMLS Concept Unique Identifier (CUI)
@@ -52,6 +57,12 @@ tools:
         description: UMLS CUI (e.g. C0011849 for diabetes mellitus)
     response:
       format: json
+      pick:
+        - result.ui
+        - result.name
+        - result.semanticTypes[].name
+        - result.atomCount
+        - result.definitions[].value
 
   getRelations:
     description: Get related concepts for a given CUI
@@ -68,6 +79,12 @@ tools:
         default: 25
     response:
       format: json
+      pick:
+        - result[].relatedIdName
+        - result[].relationLabel
+        - result[].additionalRelationLabel
+        - result[].ui
+        - result[].rootSource
 
   crosswalk:
     description: Get atoms (alternative names and source mappings) for a concept
@@ -91,6 +108,12 @@ tools:
         default: 25
     response:
       format: json
+      pick:
+        - result[].name
+        - result[].rootSource
+        - result[].termType
+        - result[].ui
+        - result[].sourceConcept
 
 tests:
   searchConcepts:

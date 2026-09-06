@@ -1,0 +1,64 @@
+name: arrayexpress
+displayName: ArrayExpress
+description: ArrayExpress — gene expression and functional genomics experiments archive (EBI BioStudies)
+tags:
+  - gene-expression
+  - microarray
+  - transcriptomics
+  - arrayexpress
+baseUrl: https://www.ebi.ac.uk/biostudies/api/v1
+tools:
+  search:
+    description: Search ArrayExpress for gene expression experiments by keyword
+    tags:
+      - experiment-search
+      - expression-search
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: query
+        description: Search term (e.g. "cancer", "BRCA1", "liver development")
+      type:
+        type: string
+        default: study
+        description: Type of entry to search (e.g. study)
+      pageSize:
+        type: integer
+        default: 10
+        mapsTo: pageSize
+        description: Number of results per page
+    response:
+      format: json
+  getStudy:
+    description: Get details of a specific study by accession
+    tags:
+      - study-info
+      - experiment-info
+    method: GET
+    path: /studies/{accession}
+    params:
+      accession:
+        type: string
+        required: true
+        description: Study accession (e.g. E-MTAB-513, S-EPMC3426205)
+    response:
+      format: json
+tests:
+  search:
+    - name: searches for cancer expression experiments
+      params:
+        query: cancer
+        type: study
+      assert:
+        - path: hits
+      allowError: true
+  getStudy:
+    - name: gets study by accession
+      params:
+        accession: E-MTAB-513
+      assert:
+        - path: accno
+      allowError: true

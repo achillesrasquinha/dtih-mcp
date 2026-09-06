@@ -22,6 +22,15 @@ tools:
         description: Species common or scientific name (e.g. "tiger", "Panthera tigris")
     response:
       format: json
+      pick:
+        - result[].taxonid
+        - result[].scientific_name
+        - result[].kingdom
+        - result[].phylum
+        - result[].class
+        - result[].order
+        - result[].family
+        - result[].category
 
   getSpecies:
     description: Get conservation details for a species by name
@@ -35,6 +44,12 @@ tools:
         description: Scientific name (e.g. Panthera tigris, Gorilla gorilla)
     response:
       format: json
+      pick:
+        - result[].taxonid
+        - result[].scientific_name
+        - result[].category
+        - result[].main_common_name
+        - result[].population_trend
 
   getThreats:
     description: Get threats facing a species
@@ -48,6 +63,13 @@ tools:
         description: Scientific name (e.g. Panthera tigris)
     response:
       format: json
+      pick:
+        - result[].code
+        - result[].title
+        - result[].timing
+        - result[].scope
+        - result[].severity
+        - result[].score
 
   getConservationActions:
     description: Get conservation measures for a species
@@ -61,6 +83,9 @@ tools:
         description: Scientific name (e.g. Panthera tigris)
     response:
       format: json
+      pick:
+        - result[].code
+        - result[].title
 
   getCountryOccurrences:
     description: Get countries where a species occurs
@@ -74,6 +99,11 @@ tools:
         description: Scientific name
     response:
       format: json
+      pick:
+        - result[].country
+        - result[].presence
+        - result[].origin
+        - result[].distribution_code
 
 tests:
   searchSpecies:

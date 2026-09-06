@@ -27,6 +27,13 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - "[].emdb_id"
+        - "[].admin.title"
+        - "[].admin.key_dates.deposition"
+        - "[].admin.key_dates.map_release"
+        - "[].admin.current_status.code.valueOf_"
+        - "[].admin.keywords"
   getEntry:
     description: Get a specific EMDB entry by ID
     tags:
@@ -41,6 +48,15 @@ tools:
         description: EMDB entry ID (e.g. EMD-1234)
     response:
       format: json
+      pick:
+        - "emdb_id"
+        - "admin.title"
+        - "admin.key_dates.deposition"
+        - "admin.key_dates.map_release"
+        - "admin.keywords"
+        - "admin.current_status.code.valueOf_"
+        - "sample"
+        - "map"
 tests:
   search:
     - name: searches for ribosome entries

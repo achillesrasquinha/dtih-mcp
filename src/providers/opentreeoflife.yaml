@@ -23,6 +23,16 @@ tools:
         description: List of taxon names to match (e.g. ["Homo sapiens", "Pan troglodytes"])
     response:
       format: json
+      pick:
+        - context
+        - governing_code
+        - matched_names
+        - results[].matches[].matched_name
+        - results[].matches[].score
+        - results[].matches[].is_approximate_match
+        - results[].matches[].taxon.name
+        - results[].matches[].taxon.ott_id
+        - results[].matches[].taxon.rank
   getSubtree:
     description: Get a phylogenetic subtree from the synthetic tree rooted at a given OTT taxon
     tags:
@@ -38,6 +48,9 @@ tools:
         description: Open Tree Taxonomy (OTT) identifier for the root node
     response:
       format: json
+      pick:
+        - newick
+        - supporting_studies
 tests:
   searchTaxa:
     - name: matches taxon names for Homo sapiens

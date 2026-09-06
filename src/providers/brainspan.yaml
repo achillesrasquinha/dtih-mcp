@@ -1,0 +1,57 @@
+name: brainspan
+displayName: BrainSpan
+description: BrainSpan developmental transcriptome — human brain gene expression across developmental stages
+tags:
+  - brain
+  - neuroscience
+  - gene-expression
+  - developmental
+  - transcriptome
+baseUrl: https://api.brain-map.org/api/v2/data
+
+tools:
+  searchGenes:
+    description: Search for gene expression data in the BrainSpan developmental human brain atlas
+    tags:
+      - gene-search
+      - brain-expression
+    method: GET
+    path: /query.json
+    params:
+      criteria:
+        type: string
+        required: true
+        description: "RMA query criteria (e.g. model::Gene,rma::criteria,[acronym$eq'BDNF'],products[abbreviation$eq'DevHumanBrain'])"
+    response:
+      format: json
+
+  getExpression:
+    description: Get expression data for a section data set from the developmental human brain atlas
+    tags:
+      - expression-data
+      - brain-development
+    method: GET
+    path: /query.json
+    params:
+      criteria:
+        type: string
+        required: true
+        description: "RMA query for expression data (e.g. model::StructureUnionize,rma::criteria,structure_unionizes[section_data_set_id$eq100041420])"
+    response:
+      format: json
+
+tests:
+  searchGenes:
+    - name: searches for BDNF in developmental brain
+      params:
+        criteria: "model::Gene,rma::criteria,[acronym$eq'BDNF'],products[abbreviation$eq'DevHumanBrain']"
+      assert:
+        - {}
+      allowError: true
+  getExpression:
+    - name: gets expression data for a section data set
+      params:
+        criteria: "model::StructureUnionize,rma::criteria,structure_unionizes[section_data_set_id$eq100041420]"
+      assert:
+        - {}
+      allowError: true

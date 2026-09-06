@@ -18,6 +18,8 @@ tools:
     params: {}
     response:
       format: json
+      pick:
+        - ucscGenomes
   getTrack:
     description: Get track data for a specific genome, track, and chromosome
     tags:
@@ -46,6 +48,13 @@ tools:
         description: End position
     response:
       format: json
+      pick:
+        - genome
+        - track
+        - chrom
+        - start
+        - end
+        - itemsReturned
 tests:
   getGenomes:
     - name: lists available genome assemblies

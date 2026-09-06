@@ -1,0 +1,50 @@
+name: movebank
+displayName: Movebank
+description: Movebank — animal tracking and movement data from global research studies
+tags: [animal-tracking, movement, telemetry, migration, ecology, gps]
+baseUrl: https://www.movebank.org/movebank/service/direct-read
+
+tools:
+  searchStudies:
+    description: Search Movebank for animal tracking studies by name
+    tags: [study-search, tracking-study]
+    method: GET
+    path: /
+    params:
+      entity_type:
+        type: string
+        default: study
+        description: Entity type to query
+      study_name:
+        type: string
+        required: true
+        mapsTo: study_name
+        description: Study name to search (e.g. "eagle", "migration", "whale shark")
+    response:
+      format: json
+
+  getTracks:
+    description: Get animal tracking event data for a study
+    tags: [tracking-data, movement-events]
+    method: GET
+    path: /
+    params:
+      entity_type:
+        type: string
+        default: event
+        description: Entity type to query
+      study_id:
+        type: integer
+        required: true
+        description: Movebank study ID (from searchStudies results)
+    response:
+      format: json
+
+tests:
+  searchStudies:
+    - name: searches for eagle tracking studies
+      params:
+        study_name: eagle
+      assert:
+        - minLength: 1
+      allowError: true

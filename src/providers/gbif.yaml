@@ -28,6 +28,15 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
+      pick:
+        - "count"
+        - "results[].key"
+        - "results[].scientificName"
+        - "results[].canonicalName"
+        - "results[].rank"
+        - "results[].kingdom"
+        - "results[].phylum"
+        - "results[].family"
   getOccurrences:
     description: Search GBIF for species occurrence records by taxon key
     tags:
@@ -46,6 +55,15 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
+      pick:
+        - "count"
+        - "results[].key"
+        - "results[].species"
+        - "results[].country"
+        - "results[].decimalLatitude"
+        - "results[].decimalLongitude"
+        - "results[].eventDate"
+        - "results[].basisOfRecord"
   getSpecies:
     description: Get detailed species information by GBIF taxon key
     tags:
@@ -60,6 +78,15 @@ tools:
         description: GBIF species key
     response:
       format: json
+      pick:
+        - "key"
+        - "scientificName"
+        - "canonicalName"
+        - "vernacularName"
+        - "rank"
+        - "kingdom"
+        - "phylum"
+        - "family"
 tests:
   searchSpecies:
     - name: searches for Panthera leo

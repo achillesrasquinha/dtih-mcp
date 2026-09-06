@@ -28,6 +28,16 @@ tools:
         description: Maximum number of results
     response:
       format: json
+      pick:
+        - total
+        - result[].id
+        - result[].usage.name.scientificName
+        - result[].usage.name.authorship
+        - result[].usage.name.rank
+        - result[].usage.status
+        - result[].usage.label
+        - result[].classification[].name
+        - result[].classification[].rank
   getTaxon:
     description: Get detailed taxon information from Catalogue of Life by ID
     tags:
@@ -42,6 +52,15 @@ tools:
         description: Catalogue of Life taxon ID
     response:
       format: json
+      pick:
+        - id
+        - name.scientificName
+        - name.authorship
+        - name.rank
+        - status
+        - parentId
+        - extinct
+        - label
 tests:
   searchTaxa:
     - name: searches taxa for Felis catus

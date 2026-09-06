@@ -23,6 +23,15 @@ tools:
         description: HMDB metabolite identifier (e.g. HMDB0000001)
     response:
       format: json
+      pick:
+        - accession
+        - name
+        - chemical_formula
+        - average_molecular_weight
+        - description
+        - kingdom
+        - super_class
+        - sub_class
   search:
     description: Search HMDB metabolites by keyword
     tags:
@@ -38,6 +47,13 @@ tools:
         description: Search query (e.g. "glucose", "cholesterol")
     response:
       format: json
+      pick:
+        - "[].accession"
+        - "[].name"
+        - "[].chemical_formula"
+        - "[].average_molecular_weight"
+        - "[].description"
+        - "[].super_class"
 tests:
   getMetabolite:
     - name: gets metabolite HMDB0000001 (1-Methylhistidine)

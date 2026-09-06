@@ -31,6 +31,18 @@ tools:
         description: Restrict to marine species only
     response:
       format: json
+      pick:
+        - "[].AphiaID"
+        - "[].scientificname"
+        - "[].authority"
+        - "[].status"
+        - "[].rank"
+        - "[].valid_name"
+        - "[].kingdom"
+        - "[].phylum"
+        - "[].class"
+        - "[].order"
+        - "[].family"
   getRecord:
     description: Get a WoRMS species record by AphiaID
     tags:
@@ -45,6 +57,18 @@ tools:
         description: WoRMS AphiaID identifier
     response:
       format: json
+      pick:
+        - AphiaID
+        - scientificname
+        - authority
+        - status
+        - rank
+        - valid_name
+        - kingdom
+        - phylum
+        - class
+        - order
+        - family
 tests:
   searchByName:
     - name: searches by name for Carcharodon

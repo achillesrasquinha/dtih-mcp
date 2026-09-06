@@ -1,6 +1,6 @@
 # life-science-mcp
 
-A unified MCP server for 138 life science APIs and databases.
+A unified MCP server for 209 life science APIs and databases.
 
 ## Installation
 
@@ -15,147 +15,220 @@ A unified MCP server for 138 life science APIs and databases.
 }
 ```
 
-## Providers (138)
+## Providers (209)
+
 
 | Provider | Description |
 |----------|-------------|
-| [Allen Brain Atlas](https://api.brain-map.org) | Allen Institute brain gene expression and connectivity data |
-| [AlphaFold DB](https://alphafold.ebi.ac.uk) | AI-predicted protein structures from DeepMind |
-| [BERN2](http://bern2.korea.ac.kr) | Biomedical named entity recognition and normalization |
-| [Bgee](https://bgee.org) | Gene expression evolution across species and tissues |
-| [BiGG Models](http://bigg.ucsd.edu) | Metabolic network reconstructions and flux balance models |
-| [BioPortal](https://bioportal.bioontology.org) | NCBO 900+ biomedical ontologies search and text annotation 🔑 |
-| [BioModels](https://biomodels.org) | Mathematical models of biological systems (SBML) |
-| [bioRxiv](https://www.biorxiv.org) | Preprint server for biology |
-| [BioSamples](https://www.ebi.ac.uk/biosamples) | EBI biological sample metadata and attributes |
-| [BOLD Systems](https://www.boldsystems.org) | Barcode of Life DNA barcode data |
-| [Catalogue of Life](https://www.catalogueoflife.org) | Global index of species names and taxonomy |
-| [cBioPortal](https://www.cbioportal.org) | Multidimensional cancer genomics data |
-| [CELLxGENE](https://cellxgene.cziscience.com) | CZ single-cell datasets and gene expression |
-| [Cellosaurus](https://www.cellosaurus.org) | Cell line identification and characterization |
-| [ChEBI](https://www.ebi.ac.uk/chebi) | Chemical Entities of Biological Interest via OLS4 |
-| [ChEMBL](https://www.ebi.ac.uk/chembl) | Bioactive drug-like small molecules |
-| [CIViC](https://civicdb.org) | Clinical Interpretations of Variants in Cancer |
-| [ClinicalTrials.gov](https://clinicaltrials.gov) | Registry of clinical studies worldwide |
-| [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar) | Genetic variants linked to clinical significance |
-| [CompTox](https://comptox.epa.gov) | EPA chemical toxicology and safety dashboard |
-| [DailyMed](https://dailymed.nlm.nih.gov) | FDA drug labeling and packaging information |
-| [DDBJ](https://ddbj.nig.ac.jp) | DNA Data Bank of Japan nucleotide sequence archive |
-| [dbSNP](https://www.ncbi.nlm.nih.gov/snp) | Single nucleotide polymorphisms and genetic variation |
-| [eBird](https://ebird.org) | Cornell Lab bird observations, hotspots, and taxonomy 🔑 |
-| [DepMap](https://depmap.org) | Cancer Dependency Map cell line data |
-| [DGIdb](https://dgidb.org) | Drug-gene interaction data |
-| [DisGeNET](https://www.disgenet.com) | Gene-disease associations |
-| [DisProt](https://disprot.org) | Intrinsically disordered proteins database |
-| [DrugCentral](https://drugcentral.org) | Drug repurposing and target data |
-| [EggNOG](http://eggnog5.embl.de) | Orthologous groups and functional annotation |
-| [EMDB](https://www.ebi.ac.uk/emdb) | Electron Microscopy Data Bank for 3D structures |
-| [EMPIAR](https://www.ebi.ac.uk/empiar) | Electron Microscopy Public Image Archive |
-| [ENA](https://www.ebi.ac.uk/ena) | European Nucleotide Archive sequence data |
-| [ENCODE](https://www.encodeproject.org) | Encyclopedia of DNA Elements regulatory data |
-| [Enrichr](https://maayanlab.cloud/Enrichr) | Gene set enrichment analysis platform |
-| [Ensembl](https://www.ensembl.org) | Genome browser and annotation |
-| [Ensembl VEP](https://www.ensembl.org/vep) | Variant Effect Predictor for functional annotation |
-| [Europe PMC](https://europepmc.org) | Open-access biomedical literature |
-| [Expression Atlas](https://www.ebi.ac.uk/gxa) | Gene expression patterns across species and conditions |
-| [FAOSTAT](https://www.fao.org/faostat) | FAO food and agriculture statistics |
-| [FishBase](https://www.fishbase.org) | Comprehensive fish species database |
-| [GBIF](https://www.gbif.org) | Global Biodiversity Information Facility |
-| [GDC](https://gdc.cancer.gov) | NCI Genomic Data Commons (TCGA and more) |
-| [Gene Ontology](http://geneontology.org) | Functional gene annotations and ontology |
-| [GEO](https://www.ncbi.nlm.nih.gov/geo) | Gene Expression Omnibus high-throughput datasets |
-| [GlyGen](https://glygen.org) | Integrated glycoscience data for glycans and glycoproteins |
-| [GlyTouCan](https://glytoucan.org) | International glycan structure repository |
-| [gnomAD](https://gnomad.broadinstitute.org) | Genome Aggregation Database allele frequencies |
-| [GPCRdb](https://gpcrdb.org) | G protein-coupled receptor database |
-| [g:Profiler](https://biit.cs.ut.ee/gprofiler) | Functional enrichment and gene ID conversion |
-| [GTEx](https://gtexportal.org) | Gene expression across human tissues |
-| [Guide to Pharmacology](https://www.guidetopharmacology.org) | Drug targets and ligands |
-| [GWAS Catalog](https://www.ebi.ac.uk/gwas) | Genome-wide association studies |
-| [HGNC](https://www.genenames.org) | Approved human gene symbols and names |
-| [HMDB](https://hmdb.ca) | Human Metabolome Database |
-| [HPO](https://hpo.jax.org) | Human Phenotype Ontology |
-| [Human Protein Atlas](https://www.proteinatlas.org) | Protein expression and localization across tissues |
-| [IEDB](https://www.iedb.org) | Immune Epitope Database and Analysis Resource |
-| [ImmPort](https://www.immport.org) | Immunology Database and Analysis Portal |
-| [iNaturalist](https://www.inaturalist.org) | Citizen science biodiversity observations |
-| [IntAct](https://www.ebi.ac.uk/intact) | Curated protein-protein interactions |
-| [InterPro](https://www.ebi.ac.uk/interpro) | Protein families, domains, and functional sites |
-| [IUCN Red List](https://www.iucnredlist.org) | Conservation status for 150,000+ threatened species 🔑 |
-| [JASPAR](https://jaspar.elixir.no) | Transcription factor binding profiles |
-| [KEGG](https://www.kegg.jp) | Pathway and molecular interaction database |
-| [LIPID MAPS](https://www.lipidmaps.org) | Lipid classification and structures |
-| [MassBank](https://massbank.eu) | Mass spectra for metabolite identification |
-| [MeSH](https://meshb.nlm.nih.gov) | Medical Subject Headings vocabulary |
-| [MSigDB](https://www.gsea-msigdb.org) | Molecular Signatures Database — curated gene sets for enrichment |
-| [MetaboLights](https://www.ebi.ac.uk/metabolights) | Metabolomics experiments and derived information |
-| [Metabolomics Workbench](https://www.metabolomicsworkbench.org) | Metabolomics data repository and tools |
-| [MGnify](https://www.ebi.ac.uk/metagenomics) | EBI metagenomics analysis and archiving |
-| [MobiDB](https://mobidb.org) | Protein disorder and mobility annotations |
-| [Monarch Initiative](https://monarchinitiative.org) | Knowledge graph for disease discovery |
-| [MyChem.info](https://mychem.info) | Aggregated chemical and drug annotations |
-| [MyDisease.info](https://mydisease.info) | Aggregated disease annotations |
-| [MyGene.info](https://mygene.info) | Aggregated gene annotations |
-| [MyVariant.info](https://myvariant.info) | Aggregated genetic variant annotations |
-| [Natural Products Atlas](https://www.npatlas.org) | Microbially-derived natural products |
-| [NCBI BioSample](https://www.ncbi.nlm.nih.gov/biosample) | Biological sample metadata for experimental assays |
-| [NCBI Datasets](https://www.ncbi.nlm.nih.gov/datasets) | Modern REST API for genes, genomes, and taxonomy |
-| [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene) | Gene-specific information from Entrez |
-| [NCBI Nucleotide](https://www.ncbi.nlm.nih.gov/nucleotide) | GenBank and RefSeq sequences |
-| [NCBI Protein](https://www.ncbi.nlm.nih.gov/protein) | Protein sequences from RefSeq, UniProt, PDB |
-| [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) | Sequence Read Archive — raw sequencing data discovery |
-| [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy) | Taxonomic classification and nomenclature |
-| [NCI Chemical Identifier Resolver](https://cactus.nci.nih.gov) | Chemical name/structure resolution and conversion |
-| [NDEx](https://www.ndexbio.org) | Biological network models exchange |
-| [OBIS](https://obis.org) | Ocean Biodiversity Information System |
-| [OLS](https://www.ebi.ac.uk/ols4) | Ontology Lookup Service for biomedical ontologies |
-| [OMA](https://omabrowser.org) | Orthologous Matrix comprehensive ortholog database |
-| [OMIM](https://www.omim.org) | Online Mendelian Inheritance in Man — genetic disorders catalog 🔑 |
-| [OpenAlex](https://openalex.org) | Open catalog of scholarly works, authors, and citations |
-| [OmniPath](https://omnipathdb.org) | Signaling pathway and molecular interaction network |
-| [OpenCitations](https://opencitations.net) | Open citation index and bibliometrics |
-| [openFDA](https://open.fda.gov) | FDA data on drugs, devices, and adverse events |
-| [Open Targets](https://www.opentargets.org) | Drug target identification and prioritization |
-| [Open Tree of Life](https://opentreeoflife.github.io) | Comprehensive synthetic phylogenetic tree |
-| [Orphanet](https://www.orpha.net) | Rare disease and orphan drug information |
-| [OrthoDB](https://www.orthodb.org) | Gene evolutionary relationships and orthologs |
-| [PANTHER](http://pantherdb.org) | Protein classification and evolutionary analysis |
-| [Pathway Commons](https://www.pathwaycommons.org) | Integrated biological pathway and interaction data |
-| [PDBe](https://www.ebi.ac.uk/pdbe) | Protein Data Bank in Europe |
-| [PharmGKB](https://www.pharmgkb.org) | Pharmacogenomics knowledge (via CPIC) |
-| [PRIDE](https://www.ebi.ac.uk/pride) | Proteomics identifications database |
-| [PubChem](https://pubchem.ncbi.nlm.nih.gov) | Open chemistry database |
-| [PubMed](https://pubmed.ncbi.nlm.nih.gov) | Biomedical literature search engine |
-| [PubTator](https://www.ncbi.nlm.nih.gov/research/pubtator3) | Biomedical text mining and entity annotation |
-| [QuickGO](https://www.ebi.ac.uk/QuickGO) | Gene Ontology browser |
-| [RCSB PDB](https://www.rcsb.org) | 3D structural data for biological macromolecules |
-| [Reactome](https://reactome.org) | Curated biological pathway database |
-| [RegulomeDB](https://regulomedb.org) | Regulatory variant annotation and scoring |
-| [Rfam](https://rfam.org) | Non-coding RNA families and structured RNA elements |
-| [Rhea](https://www.rhea-db.org) | Expert-curated biochemical reactions |
-| [RNAcentral](https://rnacentral.org) | Non-coding RNA sequence database |
-| [RxNorm](https://rxnav.nlm.nih.gov) | NLM drug terminology for normalized drug names |
-| [SABIO-RK](http://sabiork.h-its.org) | Enzyme kinetics and biochemical reaction data |
-| [Semantic Scholar](https://www.semanticscholar.org) | AI-powered academic paper search and analysis |
-| [SGD](https://www.yeastgenome.org) | Saccharomyces Genome Database — yeast genomics |
-| [SNOMED CT](https://www.snomed.org) | Standardized clinical terminology (via FHIR) |
-| [STITCH](http://stitch-db.org) | Chemical-protein interaction network |
-| [STRING](https://string-db.org) | Protein-protein interaction networks |
-| [SwissLipids](https://www.swisslipids.org) | Curated knowledge on lipid biology |
-| [TCIA](https://www.cancerimagingarchive.net) | The Cancer Imaging Archive |
-| [TimeTree](https://timetree.org) | Species divergence time estimates |
-| [UCSC Genome Browser](https://genome.ucsc.edu) | Genome browser, tracks, and annotations |
-| [UniChem](https://www.ebi.ac.uk/unichem) | Chemical structure cross-referencing |
-| [UniParc](https://www.uniprot.org/uniparc) | Non-redundant protein sequence archive |
-| [UniProt](https://www.uniprot.org) | Protein sequence and functional information |
-| [UMLS](https://www.nlm.nih.gov/research/umls) | Unified Medical Language System — biomedical terminology crosswalk 🔑 |
-| [UniRef](https://www.uniprot.org/uniref) | Clustered protein sequence sets |
-| [VDJdb](https://vdjdb.cdr3.net) | T-cell receptor sequences and specificities |
-| [WHO GHO](https://www.who.int/data/gho) | World Health Organization Global Health Observatory |
-| [WikiPathways](https://www.wikipathways.org) | Community-curated biological pathways |
-| [WormBase](https://wormbase.org) | C. elegans and nematode genomics |
-| [WoRMS](https://www.marinespecies.org) | World Register of Marine Species |
-| [ZINC](https://zinc.docking.org) | Commercially available compounds for virtual screening |
+| [1000 Genomes (IGSR)](https://www.internationalgenome.org/api) | International Genome Sample Resource — population genomics data from the 1000 Genomes Project |
+| [Addgene](https://www.addgene.org/api) | Addgene — nonprofit plasmid repository for sharing molecular biology reagents |
+| [AIRR Data Commons](https://vdjserver.org/airr/v1) | AIRR Data Commons — adaptive immune receptor repertoire sequencing data |
+| [Allen Brain Atlas](https://api.brain-map.org/api/v2) | Allen Institute brain gene expression and connectivity data |
+| [AlphaFold DB](https://alphafold.ebi.ac.uk/api) | AI-predicted protein structures from DeepMind |
+| [AquaMaps](https://aquamaps.org/webservice) | AquaMaps — predicted species distribution maps for marine and freshwater organisms |
+| [ArrayExpress](https://www.ebi.ac.uk/biostudies/api/v1) | ArrayExpress — gene expression and functional genomics experiments archive (EBI BioStudies) |
+| [ATC Classification](https://rxnav.nlm.nih.gov/REST/rxclass) | ATC (Anatomical Therapeutic Chemical) drug classification via RxNav/RxClass API |
+| [BERN2](https://bern2.korea.ac.kr) | BERN2 biomedical named entity recognition — extract genes, diseases, drugs, and other entities from text |
+| [Bgee](https://www.bgee.org/api) | Gene expression evolution database — expression across species and tissues |
+| [BiGG Models](https://bigg.ucsd.edu/api/v2) | BiGG Models — genome-scale metabolic network reconstructions |
+| [BindingDB](https://bindingdb.org/axis2/services/BDBService) | Public database of measured binding affinities between proteins and drug-like molecules |
+| [BioCyc](https://websvc.biocyc.org) | BioCyc / MetaCyc — metabolic pathway and genome database collection |
+| [BioGRID](https://webservice.thebiogrid.org) | BioGRID database of protein and genetic interactions 🔑 |
+| [BioModels](https://biomodels.org) | BioModels repository — mathematical models of biological systems in SBML and other formats |
+| [BioPortal](https://data.bioontology.org) | NCBO BioPortal — search 900+ biomedical ontologies and annotate text with ontology concepts 🔑 |
+| [bioRxiv](https://api.biorxiv.org) | bioRxiv preprint server — access preprints in biology and related sciences |
+| [BioSamples](https://www.ebi.ac.uk/biosamples) | EBI BioSamples database — biological sample metadata and attributes |
+| [BOLD](https://www.boldsystems.org/index.php/API_Public) | Barcode of Life Data Systems — DNA barcode specimens and sequences for species identification |
+| [BrainSpan](https://api.brain-map.org/api/v2/data) | BrainSpan developmental transcriptome — human brain gene expression across developmental stages |
+| [CADD](https://cadd.gs.washington.edu/api/v1.0) | Combined Annotation Dependent Depletion — variant deleteriousness scoring |
+| [Catalogue of Life](https://api.catalogueoflife.org) | Catalogue of Life — global checklist of all known species with authoritative taxonomy |
+| [cBioPortal](https://www.cbioportal.org/api) | Cancer genomics portal — explore multidimensional cancer genomics data |
+| [CDC Open Data](https://data.cdc.gov/resource) | CDC Open Data — public health datasets via the Socrata Open Data API |
+| [CDC WONDER](https://wonder.cdc.gov/controller/datarequest) | CDC WONDER — Wide-ranging Online Data for Epidemiologic Research, public health datasets |
+| [CDD](https://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cgi) | NCBI Conserved Domain Database — identify conserved domains in protein sequences |
+| [Cellosaurus](https://api.cellosaurus.org) | Knowledge resource on cell lines — cell line identification and characterization |
+| [CELLxGENE](https://api.cellxgene.cziscience.com) | CZ CELLxGENE Discover — single-cell datasets and gene expression |
+| [ChEBI (via OLS4)](https://www.ebi.ac.uk/ols4/api) | Chemical Entities of Biological Interest — ontology lookup via EBI OLS4 |
+| [ChEMBL](https://www.ebi.ac.uk/chembl/api/data) | Database of bioactive drug-like small molecules |
+| [CIViC](https://civicdb.org/api/graphql) | Clinical Interpretations of Variants in Cancer — curated clinical evidence for variants |
+| [ClassyFire](http://classyfire.wishartlab.com) | Automated chemical classification using the ChemOnt ontology |
+| [ClinGen](https://search.clinicalgenome.org/kb/rest) | Clinical Genome Resource — gene-disease validity and dosage sensitivity curation |
+| [ClinicalTrials.gov](https://clinicaltrials.gov/api/v2) | Registry of clinical studies conducted around the world |
+| [ClinVar](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Variant-disease relationship database linking genetic variants to clinical significance |
+| [Clustal Omega](https://www.ebi.ac.uk/Tools/services/rest/clustalo) | EBI Clustal Omega multiple sequence alignment service |
+| [COCONUT](https://coconut.naturalproducts.net/api) | COlleCtion of Open Natural prodUcTs — comprehensive natural products database |
+| [Comparative Toxicogenomics Database](https://ctdbase.org/tools/batchQuery.go) | CTD curated chemical-gene-disease interactions for toxicogenomics research |
+| [CompTox](https://comptox.epa.gov/dashboard-api) | EPA CompTox Chemicals Dashboard for toxicology and chemical safety |
+| [DailyMed](https://dailymed.nlm.nih.gov/dailymed/services) | DailyMed drug label information from the National Library of Medicine — SPL documents and prescribing information |
+| [DALI](http://ekhidna2.biocenter.helsinki.fi/dali) | DALI server — protein structure comparison by 3D alignment |
+| [dbGaP](https://www.ncbi.nlm.nih.gov/gap/phegeni) | dbGaP (database of Genotypes and Phenotypes) — genotype-phenotype association studies |
+| [dbSNP](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Database of single nucleotide polymorphisms and other genetic variation |
+| [dbVar](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | NCBI dbVar — database of genomic structural variants (CNVs, insertions, deletions, inversions) |
+| [DDBJ](https://getentry.ddbj.nig.ac.jp/getentry) | DNA Data Bank of Japan — nucleotide sequence archive |
+| [DeepLoc 2.0](https://api.biolib.com/app/DTU/DeepLoc-2.0) | DeepLoc 2.0 — protein subcellular localization prediction (DTU BioLib) |
+| [DepMap](https://depmap.org/portal/api) | Cancer Dependency Map — cell line genomic and dependency data |
+| [DGIdb](https://dgidb.org/api/graphql) | Drug-Gene Interaction Database — mining drug-gene interaction data |
+| [DisGeNET](https://www.disgenet.org/api) | Gene-disease association database 🔑 |
+| [DisProt](https://disprot.org/api) | Database of intrinsically disordered proteins and regions |
+| [DrugCentral](https://unmtid-shinyapps.net/download/DrugCentral) | Drug information resource integrating drug indications, mechanisms, and interactions |
+| [eBird](https://api.ebird.org/v2) | Cornell Lab eBird — bird observations, hotspots, and taxonomy worldwide 🔑 |
+| [EggNOG](http://eggnog5.embl.de) | Orthologous groups and functional annotation from EggNOG |
+| [EMDB](https://www.ebi.ac.uk/emdb/api) | Electron Microscopy Data Bank — 3D cryo-EM density maps and tomograms |
+| [EMPIAR](https://www.ebi.ac.uk/empiar/api) | Electron Microscopy Public Image Archive for raw EM data |
+| [ENCODE SCREEN](https://api.wenglab.org/screen) | ENCODE SCREEN registry of candidate cis-regulatory elements (cCREs) |
+| [ENCODE](https://www.encodeproject.org) | Encyclopedia of DNA Elements — functional annotations of the human genome |
+| [Enrichr](https://maayanlab.cloud/Enrichr) | Enrichr — gene set enrichment analysis against curated gene-set libraries |
+| [Ensembl BioMart](https://www.ensembl.org/biomart/martservice) | Ensembl BioMart bulk annotation and data retrieval service |
+| [Ensembl VEP](https://rest.ensembl.org) | Variant Effect Predictor — predict functional effects of genetic variants |
+| [Ensembl](https://rest.ensembl.org) | Genome browser and annotation database |
+| [EU Clinical Trials Register](https://euclinicaltrials.eu/ctis-public/api) | European Union Clinical Trials Register for searching EU clinical studies |
+| [Europe PMC](https://www.ebi.ac.uk/europepmc/webservices/rest) | Europe PubMed Central — open-access biomedical literature |
+| [European Genome-phenome Archive](https://ega-archive.org/metadata/v2) | EGA metadata API for controlled-access genomic and phenomic datasets |
+| [European Nucleotide Archive](https://www.ebi.ac.uk/ena) | Open-access nucleotide sequence data and associated information |
+| [Expression Atlas](https://www.ebi.ac.uk/gxa/json) | Gene expression patterns across species and biological conditions (EBI) |
+| [FAOSTAT](https://fenixservices.fao.org/faostat/api/v1/en) | FAO Statistics — food and agriculture data from the UN FAO |
+| [FDA Orange Book](https://api.fda.gov/drug) | FDA Orange Book drug patent and exclusivity data via openFDA |
+| [FHIR R4](https://hapi.fhir.org/baseR4) | FHIR R4 public test server — HL7 FHIR standard for healthcare data interoperability |
+| [FishBase](https://fishbase.ropensci.org) | FishBase — comprehensive database of fish species biology, ecology, and taxonomy |
+| [FlyBase](https://api.flybase.org/api/v1.0) | FlyBase — Drosophila melanogaster genomics, genetics, and molecular biology |
+| [g:Profiler](https://biit.cs.ut.ee/gprofiler) | g:Profiler — functional enrichment and gene ID conversion |
+| [GARD](https://rarediseases.info.nih.gov/gard-api) | GARD — Genetic and Rare Diseases Information Center from NIH |
+| [GBIF](https://api.gbif.org/v1) | Global Biodiversity Information Facility — species occurrence and taxonomy data worldwide |
+| [GDC](https://api.gdc.cancer.gov) | NCI Genomic Data Commons — cancer genomics data from TCGA and other programs |
+| [Gene Expression Omnibus](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Repository of high-throughput gene expression and genomics datasets |
+| [Gene Ontology](https://api.geneontology.org/api) | Gene Ontology API — GO terms, annotations, and bioentity information |
+| [GeneMANIA](https://genemania.org/api) | GeneMANIA — gene interaction network prediction and visualization |
+| [GlyCosmos](https://glycosmos.org/api) | GlyCosmos — integrated glycoscience portal for glycan structures, pathways, and diseases |
+| [GlyGen](https://api.glygen.org) | GlyGen — glycoscience data integration and retrieval |
+| [GlyTouCan](https://api.glycosmos.org) | GlyTouCan — international glycan structure repository |
+| [gnomAD](https://gnomad.broadinstitute.org/api) | Genome Aggregation Database — population variant frequencies and annotations |
+| [GNPS](https://gnps.ucsd.edu/ProteoSAFe) | GNPS — molecular networking and spectral library for mass spectrometry data |
+| [GPCRdb](https://gpcrdb.org/services) | GPCR database — G protein-coupled receptor structures, sequences, and pharmacology |
+| [Gramene](https://data.gramene.org) | Gramene — comparative plant genomics resource for crops and model species |
+| [GTEx Portal](https://gtexportal.org/api/v2) | Genotype-Tissue Expression project — gene expression across human tissues |
+| [Guide to Pharmacology](https://www.guidetopharmacology.org/services) | IUPHAR/BPS Guide to Pharmacology database of drug targets and ligands |
+| [GWAS Catalog](https://www.ebi.ac.uk/gwas/rest/api) | NHGRI-EBI Catalog of genome-wide association studies |
+| [HGNC](https://rest.genenames.org) | HUGO Gene Nomenclature Committee — approved human gene symbols and names |
+| [HMMER](https://www.ebi.ac.uk/Tools/hmmer) | HMMER protein sequence search using profile hidden Markov models |
+| [Human Cell Atlas](https://service.azul.data.humancellatlas.org) | Human Cell Atlas data portal — single-cell genomics projects and datasets |
+| [Human Metabolome Database](https://hmdb.ca) | HMDB — comprehensive human metabolite and biomarker database |
+| [Human Phenotype Ontology](https://ontology.jax.org/api/hp) | Human Phenotype Ontology — standardized vocabulary of human phenotypic abnormalities |
+| [Human Protein Atlas](https://www.proteinatlas.org) | Human protein expression and localization data across tissues and cell types |
+| [I-TASSER](https://zhanggroup.org/I-TASSER) | I-TASSER — protein structure and function prediction server (Zhang Lab) |
+| [IEDB](https://query-api.iedb.org) | Immune Epitope Database — curated epitope data for immune research |
+| [iGEM Registry](https://igem.org/api/v1) | iGEM Registry of Standard Biological Parts — synthetic biology parts catalog |
+| [IHEC](https://epigenomesportal.ca/ihec/api/v2) | International Human Epigenome Consortium — reference epigenome datasets and metadata |
+| [ImmPort](https://www.immport.org/shared/api) | Immunology Database and Analysis Portal — shared immunology data |
+| [iNaturalist](https://api.inaturalist.org/v1) | iNaturalist — citizen-science biodiversity observations and taxa worldwide |
+| [IntAct](https://www.ebi.ac.uk/intact/ws) | Molecular interaction database — curated protein-protein interactions |
+| [InterPro](https://www.ebi.ac.uk/interpro/api) | Protein families, domains, and functional sites classification |
+| [IPD-IMGT/HLA](https://www.ebi.ac.uk/ipd/imgt/hla/api) | IPD-IMGT/HLA allele database — HLA allele sequences, nomenclature, and immunogenetics data |
+| [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/api) | iPTMnet — post-translational modification (PTM) knowledge base for proteins |
+| [iTOL](https://itol.embl.de) | iTOL Interactive Tree of Life — phylogenetic tree upload, annotation, and export |
+| [IUCN Red List](https://apiv3.iucnredlist.org/api/v3) | IUCN Red List of Threatened Species — conservation status for 150,000+ species 🔑 |
+| [JASPAR](https://jaspar.elixir.no/api/v2) | JASPAR — open-access database of transcription factor binding profiles |
+| [KEGG](https://rest.kegg.jp) | Kyoto Encyclopedia of Genes and Genomes — pathway and molecular interaction database |
+| [LIPID MAPS](https://www.lipidmaps.org/rest) | LIPID MAPS Structure Database for lipid classification and structures |
+| [LOINC](https://fhir.loinc.org) | LOINC clinical terminology — standardized codes for lab tests, clinical observations, and measurements via FHIR 🔑 |
+| [MaizeGDB](https://www.maizegdb.org/api) | MaizeGDB — maize genetics and genomics database for corn research |
+| [MalaCards](https://www.malacards.org/api/v2) | MalaCards — human disease database integrating gene, variant, and pathway data |
+| [MassBank](https://massbank.eu/MassBank/api) | Public repository of mass spectra for metabolite identification |
+| [MeSH](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Medical Subject Headings vocabulary for indexing biomedical literature |
+| [MetaboLights](https://www.ebi.ac.uk/metabolights/ws) | EMBL-EBI database for metabolomics experiments and derived information |
+| [Metabolomics Workbench](https://www.metabolomicsworkbench.org/rest) | Metabolomics Workbench — metabolomics data repository and metadata |
+| [METLIN](https://metlin.scripps.edu/rest/api) | METLIN metabolite mass spectrometry database for metabolomics research 🔑 |
+| [MGnify](https://www.ebi.ac.uk/metagenomics/api/v1) | MGnify — EBI metagenomics analysis and archiving platform |
+| [MicrobiomeDB](https://microbiomedb.org/mbio/service) | MicrobiomeDB — microbiome study data including taxonomic and functional profiling |
+| [MobiDB](https://mobidb.org/api) | Protein disorder and mobility annotations |
+| [ModelSEED](https://modelseed.org/api/v2) | ModelSEED — automated metabolic model reconstruction and biochemistry database |
+| [Monarch Initiative](https://api.monarchinitiative.org/v3/api) | Knowledge graph integrating biological and clinical data for disease discovery |
+| [Movebank](https://www.movebank.org/movebank/service/direct-read) | Movebank — animal tracking and movement data from global research studies |
+| [MSigDB](https://www.gsea-msigdb.org/gsea/msigdb/human) | Molecular Signatures Database — curated gene set collections for enrichment analysis |
+| [MyChem.info](https://mychem.info/v1) | Chemical and drug annotation query service — aggregates compound data from multiple sources |
+| [MyDisease.info](https://mydisease.info/v1) | Disease annotation query service — aggregates disease data from multiple sources |
+| [MyGene.info](https://mygene.info/v3) | Gene annotation query service — aggregated gene info from multiple sources |
+| [MyVariant.info](https://myvariant.info/v1) | Variant annotation query service — aggregates genetic variant data from multiple sources |
+| [Natural Products Atlas](https://www.npatlas.org/api/v1) | Database of microbially-derived natural products for drug discovery |
+| [NatureServe](https://explorer.natureserve.org/api/data) | NatureServe Explorer — conservation status and biodiversity data for species across the Americas 🔑 |
+| [NCBI BioSample](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Database of biological sample metadata used in experimental assays |
+| [NCBI BLAST](https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi) | NCBI BLAST sequence similarity search — submit queries and retrieve alignment results |
+| [NCBI Datasets](https://api.ncbi.nlm.nih.gov/datasets/v2) | NCBI Datasets API v2 — modern REST interface for genes, genomes, and taxonomy |
+| [NCBI Gene](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Gene-specific information from NCBI Entrez Gene database |
+| [NCBI Nucleotide](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | GenBank and RefSeq nucleotide sequence database |
+| [NCBI Protein](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Protein sequence database including RefSeq, UniProt, and PDB sequences |
+| [NCBI SRA](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Sequence Read Archive — raw sequencing data repository |
+| [NCBI Taxonomy](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Taxonomic classification and nomenclature database |
+| [NCBO Annotator](https://data.bioontology.org) | NCBO Annotator — annotate biomedical text with ontology concepts and get ontology recommendations 🔑 |
+| [NCI Chemical Identifier Resolver](https://cactus.nci.nih.gov/chemical/structure) | NCI CADD Chemical Identifier Resolver — convert between chemical names, SMILES, InChI, and other formats |
+| [NDEx](https://www.ndexbio.org/v2) | NDEx Network Data Exchange for biological network models |
+| [NetMHCIIpan](https://services.healthtech.dtu.dk/api) | NetMHCIIpan 4.3 — MHC class II binding prediction for peptides across HLA-DR/DP/DQ alleles |
+| [NetMHCpan](https://services.healthtech.dtu.dk/api) | NetMHCpan 4.1 — MHC class I binding prediction for peptides across HLA alleles |
+| [OBIS](https://api.obis.org/v3) | Ocean Biodiversity Information System — marine species occurrence and distribution data |
+| [OLS](https://www.ebi.ac.uk/ols4/api) | Ontology Lookup Service — search and browse biomedical ontologies (GO, EFO, HPO, etc.) |
+| [OMA](https://omabrowser.org/api) | Orthologous Matrix — comprehensive ortholog database |
+| [OMIM](https://api.omim.org/api) | Online Mendelian Inheritance in Man — catalog of human genes and genetic disorders 🔑 |
+| [OmniPath](https://omnipathdb.org) | OmniPath — comprehensive signaling network and enzyme-substrate interactions |
+| [OneZoom](https://www.onezoom.org/api/v1) | OneZoom tree of life explorer — interactive visualization and species search across the tree of life |
+| [Open Targets](https://api.platform.opentargets.org/api/v4/graphql) | Drug target identification and prioritization platform |
+| [Open Tree of Life](https://api.opentreeoflife.org/v3) | Open Tree of Life — comprehensive phylogenetic tree and taxonomy synthesis |
+| [OpenAlex](https://api.openalex.org) | OpenAlex — open catalog of scholarly works, authors, institutions, and concepts |
+| [OpenCitations](https://opencitations.net/index/coci/api/v1) | OpenCitations COCI citation index — open bibliographic citation data for DOIs |
+| [openFDA](https://api.fda.gov) | Open-access FDA data on drugs, devices, and foods including adverse events |
+| [Orphanet](https://api.orphacode.org) | Orphanet — reference portal for rare diseases and orphan drugs |
+| [OrthoDB](https://data.orthodb.org/v12) | Hierarchical catalog of orthologs — gene evolutionary relationships |
+| [PANTHER](https://pantherdb.org/services/oai/pantherdb) | PANTHER — protein classification, gene ontology, and phylogenetic analysis |
+| [Pathway Commons](https://www.pathwaycommons.org/pc2) | Integrated biological pathway and interaction data from multiple sources |
+| [PDBe](https://www.ebi.ac.uk/pdbe/api) | Protein Data Bank in Europe — macromolecular structure data |
+| [PeptideAtlas](https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas) | PeptideAtlas — proteomics data repository for peptide and protein identifications |
+| [Pfam](https://www.ebi.ac.uk/interpro/api) | Pfam protein families database — protein domain classification via InterPro |
+| [PharmGKB (CPIC)](https://api.cpicpgx.org/v1) | CPIC pharmacogenomics knowledge base — drug-gene pairs, clinical guidelines, and pharmacogenomic recommendations |
+| [PhyloT](https://phylot.biobyte.de/api) | PhyloT — taxonomy-based phylogenetic tree generation from NCBI taxon IDs |
+| [pkCSM](https://biosig.lab.uq.edu.au/pkcsm) | pkCSM pharmacokinetics and toxicity prediction using graph-based signatures |
+| [Planteome](https://planteome.org/api) | Planteome — plant trait ontologies and gene annotations for plant biology |
+| [PRIDE](https://www.ebi.ac.uk/pride/ws/archive/v2) | PRIDE proteomics archive — mass spectrometry proteomics data repository |
+| [PubChem](https://pubchem.ncbi.nlm.nih.gov/rest/pug) | Open chemistry database with compound, substance, and bioassay data |
+| [PubMed](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) | Biomedical literature search engine (NCBI) |
+| [PubTator](https://www.ncbi.nlm.nih.gov/research/pubtator3-api) | PubTator3 biomedical text mining — named entity recognition and annotation of PubMed articles |
+| [QuickGO](https://www.ebi.ac.uk/QuickGO/services) | Gene Ontology browser — fast access to GO term information (EBI) |
+| [RCSB PDB](https://data.rcsb.org) | Protein Data Bank — 3D structural data for biological macromolecules |
+| [Reactome](https://reactome.org) | Curated biological pathway and reaction database |
+| [RegulomeDB](https://regulomedb.org) | RegulomeDB — annotate and score regulatory variants in the human genome |
+| [Rfam](https://rfam.org) | Database of non-coding RNA families and structured RNA elements |
+| [Rhea](https://www.rhea-db.org/rhea) | Expert-curated knowledgebase of biochemical reactions |
+| [RNAcentral](https://rnacentral.org/api/v1) | RNAcentral — comprehensive non-coding RNA sequence database |
+| [RxNorm](https://rxnav.nlm.nih.gov/REST) | NLM drug terminology for normalized drug names and interactions |
+| [SABIO-RK](https://sabiork.h-its.org/sabioRestWebServices) | SABIO-RK enzyme kinetics database — reaction kinetics data and parameters |
+| [Semantic Scholar](https://api.semanticscholar.org/graph/v1) | Semantic Scholar academic paper search — find research papers, citations, and author information 🔑 |
+| [SGD](https://www.yeastgenome.org/backend) | Saccharomyces Genome Database — yeast genomics |
+| [SignalP 6.0](https://api.biolib.com/app/DTU/SignalP-6.0) | SignalP 6.0 — signal peptide prediction for protein sequences (DTU BioLib) |
+| [SIGNOR](https://signor.uniroma2.it/API) | SIGNOR — signaling network open resource for causal interactions in signaling pathways |
+| [Single Cell Portal](https://singlecell.broadinstitute.org/single_cell/api/v1) | Broad Institute Single Cell Portal — explore and share single-cell genomics studies |
+| [SNOMED CT](https://tx.fhir.org/r4) | SNOMED CT clinical terminology via FHIR terminology server — look up and search clinical concepts |
+| [STITCH](http://stitch-db.org/api) | STITCH chemical-protein interaction database — sister project of STRING |
+| [STRING](https://string-db.org/api) | Protein-protein interaction network database |
+| [SureChEMBL](https://www.surechembl.org/api) | Patent chemistry database linking chemical structures to patent documents |
+| [SwissADME](http://www.swissadme.ch) | SwissADME drug-likeness and pharmacokinetics prediction tool |
+| [SwissLipids](https://www.swisslipids.org/api) | SwissLipids — curated knowledge resource for lipid biology and lipidomics |
+| [TCIA](https://services.cancerimagingarchive.net/nbia-api/services/v1) | The Cancer Imaging Archive — public access to cancer medical imaging data and collections |
+| [TimeTree](https://timetree.org/api) | TimeTree — divergence time estimates between species pairs |
+| [ToxCast](https://comptox.epa.gov/dashboard/api) | EPA ToxCast high-throughput toxicity assay screening data |
+| [UCSC Genome Browser](https://api.genome.ucsc.edu) | UCSC Genome Browser — genome assemblies, annotations, and track data |
+| [UMLS](https://uts-ws.nlm.nih.gov/rest) | Unified Medical Language System — biomedical concepts, terminology crosswalk, and semantic network 🔑 |
+| [UniCarb-DB](https://unicarb-db.expasy.org/api) | UniCarb-DB — glycan structure database with experimentally determined carbohydrate structures |
+| [UniChem](https://www.ebi.ac.uk/unichem/api/v1) | UniChem compound cross-referencing — map chemical identifiers across databases |
+| [UniParc](https://rest.uniprot.org/uniparc) | UniProt Archive — comprehensive non-redundant protein sequence archive |
+| [UniProt](https://rest.uniprot.org) | Universal Protein Resource — protein sequence and functional information |
+| [UniRef](https://rest.uniprot.org/uniref) | UniProt Reference Clusters — clustered sets of related protein sequences |
+| [USDA NASS](https://quickstats.nass.usda.gov/api) | USDA National Agricultural Statistics Service — US crop, livestock, and agricultural census data 🔑 |
+| [VDJdb](https://vdjdb.cdr3.net/api) | VDJdb — curated database of T-cell receptor sequences and specificities |
+| [VertNet](http://api.vertnet-portal.appspot.com/api) | VertNet — vertebrate specimen records from natural history collections worldwide |
+| [WHO Global Health Observatory](https://ghoapi.azureedge.net/api) | WHO Global Health Observatory — global health indicators, statistics, and country-level health data |
+| [WHO ICD-11](https://id.who.int/icd) | WHO ICD-11 International Classification of Diseases — search and retrieve disease classifications 🔑 |
+| [WikiPathways](https://cdn.jsdelivr.net/gh/wikipathways/wikipathways-assets@main) | Open biological pathway database — community-curated pathway data |
+| [WormBase](https://www.alliancegenome.org/api) | WormBase C. elegans and nematode genomics via the Alliance of Genome Resources API |
+| [WoRMS](https://www.marinespecies.org/rest) | World Register of Marine Species — authoritative classification and nomenclature of marine organisms |
+| [ZFIN](https://zfin.org/action/api) | ZFIN Zebrafish Information Network — zebrafish genomics, genetics, and phenotype data |
+| [ZINC](https://zinc15.docking.org) | Free database of commercially available compounds for virtual screening |
 
 ## Example Queries
 

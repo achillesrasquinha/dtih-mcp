@@ -9,6 +9,8 @@ tags:
   - ensembl
   - variant
 baseUrl: https://rest.ensembl.org
+headers:
+  Content-Type: application/json
 rateLimit:
   requestsPerSecond: 15
 tools:
@@ -18,7 +20,7 @@ tools:
       - gene-lookup
       - symbol
     method: GET
-    path: /lookup/symbol/{species}/{symbol}content-type=application/json
+    path: /lookup/symbol/{species}/{symbol}
     params:
       symbol:
         type: string
@@ -30,6 +32,15 @@ tools:
         description: Species name
     response:
       format: json
+      pick:
+        - "id"
+        - "display_name"
+        - "description"
+        - "biotype"
+        - "species"
+        - "seq_region_name"
+        - "start"
+        - "end"
   getSequence:
     description: Get sequence for an Ensembl stable ID
     tags:
@@ -37,7 +48,7 @@ tools:
       - nucleotide
       - protein
     method: GET
-    path: /sequence/id/{id}content-type=application/json
+    path: /sequence/id/{id}
     params:
       id:
         type: string
@@ -45,6 +56,13 @@ tools:
         description: Ensembl stable ID (e.g. ENSG00000139618)
     response:
       format: json
+      pick:
+        - "id"
+        - "desc"
+        - "molecule"
+        - "query"
+        - "seq"
+        - "version"
 tests:
   lookupSymbol:
     - name: looks up BRCA2 gene

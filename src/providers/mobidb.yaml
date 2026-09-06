@@ -26,6 +26,14 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - acc
+        - gene
+        - name
+        - organism
+        - length
+        - ncbi_taxon_id
+        - sequence
 tests:
   getEntry:
     - name: gets disorder annotations for P04637 (TP53)

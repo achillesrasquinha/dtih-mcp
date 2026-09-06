@@ -31,6 +31,15 @@ tools:
         description: Genome build
     response:
       format: json
+      pick:
+        - "data[].gencodeId"
+        - "data[].geneSymbol"
+        - "data[].description"
+        - "data[].chromosome"
+        - "data[].start"
+        - "data[].end"
+        - "data[].geneType"
+        - "data[].entrezGeneId"
   getExpression:
     description: Get median gene expression across tissues
     tags:
@@ -49,6 +58,12 @@ tools:
         description: GTEx dataset version
     response:
       format: json
+      pick:
+        - "data[].geneSymbol"
+        - "data[].gencodeId"
+        - "data[].tissueSiteDetailId"
+        - "data[].median"
+        - "data[].unit"
 tests:
   getGene:
     - name: looks up BRCA1 gene reference info

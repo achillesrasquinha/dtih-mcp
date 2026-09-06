@@ -31,6 +31,13 @@ tools:
         description: Columns to return
     response:
       format: json
+      pick:
+        - count
+        - results[].id
+        - results[].equation
+        - results[].status
+        - results[].balanced
+        - results[].transport
   getReaction:
     description: Get a specific Rhea reaction by ID
     tags:
@@ -49,6 +56,13 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - count
+        - results[].id
+        - results[].equation
+        - results[].status
+        - results[].balanced
+        - results[].transport
 tests:
   search:
     - name: searches for ATP reactions

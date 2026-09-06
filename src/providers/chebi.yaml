@@ -32,6 +32,14 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - response.numFound
+        - response.docs[].short_form
+        - response.docs[].label
+        - response.docs[].description
+        - response.docs[].obo_id
+        - response.docs[].ontology_name
+        - response.docs[].iri
   getTerm:
     description: Get a ChEBI term by short form identifier
     tags:
@@ -47,6 +55,13 @@ tools:
         description: ChEBI short-form ID (e.g. CHEBI_15365 for aspirin)
     response:
       format: json
+      pick:
+        - _embedded.terms[].iri
+        - _embedded.terms[].label
+        - _embedded.terms[].description
+        - _embedded.terms[].synonyms
+        - _embedded.terms[].obo_id
+        - _embedded.terms[].annotation.database_cross_reference
 tests:
   search:
     - name: searches for aspirin in ChEBI ontology

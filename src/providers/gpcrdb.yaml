@@ -23,6 +23,14 @@ tools:
         description: UniProt entry name (e.g. adrb2_human, drd2_human)
     response:
       format: json
+      pick:
+        - "entry_name"
+        - "name"
+        - "accession"
+        - "family"
+        - "species"
+        - "genes"
+        - "sequence"
   listFamilies:
     description: List GPCR receptor family classes (children of the root family)
     tags:
@@ -38,6 +46,11 @@ tools:
         description: Parent family slug (use 000 for top-level classes)
     response:
       format: json
+      pick:
+        - "[].slug"
+        - "[].name"
+        - "[].parent.slug"
+        - "[].parent.name"
 tests:
   getProtein:
     - name: gets adrb2_human protein

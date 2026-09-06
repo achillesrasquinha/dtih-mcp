@@ -29,6 +29,15 @@ tools:
         description: Taxon name or ID e.g. 'human', '9606'
     response:
       format: json
+      pick:
+        - total_count
+        - reports[].gene.gene_id
+        - reports[].gene.symbol
+        - reports[].gene.description
+        - reports[].gene.taxname
+        - reports[].gene.common_name
+        - reports[].gene.type
+        - reports[].gene.chromosomes
   getGenomeByAccession:
     description: Get genome assembly report by accession
     tags:
@@ -43,6 +52,14 @@ tools:
         description: Assembly accession e.g. 'GCF_000001405.40'
     response:
       format: json
+      pick:
+        - total_count
+        - reports[].accession
+        - reports[].organism
+        - reports[].assembly_info.assembly_level
+        - reports[].assembly_info.assembly_name
+        - reports[].assembly_stats
+        - reports[].annotation_info.name
   searchTaxonomy:
     description: Get taxonomy info by taxon name or ID
     tags:
@@ -57,6 +74,13 @@ tools:
         description: Taxon name or NCBI tax ID e.g. 'Homo sapiens', '9606'
     response:
       format: json
+      pick:
+        - taxonomy_nodes[].taxonomy.tax_id
+        - taxonomy_nodes[].taxonomy.organism_name
+        - taxonomy_nodes[].taxonomy.genbank_common_name
+        - taxonomy_nodes[].taxonomy.rank
+        - taxonomy_nodes[].taxonomy.lineage
+        - taxonomy_nodes[].taxonomy.genomic_moltype
 tests:
   getGeneBySymbol:
     - name: gets gene info for TP53 in human

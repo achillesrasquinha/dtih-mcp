@@ -34,6 +34,10 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - esearchresult.count
+        - esearchresult.idlist
+        - esearchresult.querytranslation
   getSummary:
     description: Get MeSH descriptor summary by MeSH ID
     tags:

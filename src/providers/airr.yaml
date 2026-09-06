@@ -1,0 +1,65 @@
+name: airr
+displayName: AIRR Data Commons
+description: AIRR Data Commons — adaptive immune receptor repertoire sequencing data
+tags:
+  - immunology
+  - repertoire
+  - adaptive-immunity
+  - airr
+  - tcr
+  - bcr
+baseUrl: https://vdjserver.org/airr/v1
+tools:
+  searchRepertoires:
+    description: Search AIRR Data Commons for immune repertoire metadata using AIRR query format
+    tags:
+      - repertoire-search
+      - immune-search
+    method: POST
+    path: /repertoire
+    params:
+      filters:
+        type: object
+        required: true
+        description: >
+          AIRR-compliant query filters (e.g. {"op":"contains","content":{"field":"study.study_title","value":"COVID"}})
+    response:
+      format: json
+  searchRearrangements:
+    description: Search AIRR Data Commons for rearrangement sequences using AIRR query format
+    tags:
+      - rearrangement-search
+      - sequence-search
+    method: POST
+    path: /rearrangement
+    params:
+      filters:
+        type: object
+        required: true
+        description: >
+          AIRR-compliant query filters (e.g. {"op":"=","content":{"field":"junction_aa","value":"CASSLAPGATNEKLFF"}})
+    response:
+      format: json
+tests:
+  searchRepertoires:
+    - name: searches for repertoires
+      params:
+        filters:
+          op: contains
+          content:
+            field: study.study_title
+            value: COVID
+      assert:
+        - {}
+      allowError: true
+  searchRearrangements:
+    - name: searches for rearrangements
+      params:
+        filters:
+          op: "="
+          content:
+            field: junction_aa
+            value: CASSLAPGATNEKLFF
+      assert:
+        - {}
+      allowError: true

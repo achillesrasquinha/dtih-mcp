@@ -1,0 +1,64 @@
+name: metlin
+displayName: METLIN
+description: METLIN metabolite mass spectrometry database for metabolomics research
+tags:
+  - metabolomics
+  - mass-spectrometry
+  - metabolites
+  - metlin
+baseUrl: https://metlin.scripps.edu/rest/api
+
+auth:
+  type: apiKey
+  param: token
+  env: LS_METLIN_API_KEY
+
+tools:
+  searchMass:
+    description: Search metabolites by exact mass with tolerance
+    tags:
+      - mass-search
+      - metabolite-search
+    method: GET
+    path: /search
+    params:
+      mass:
+        type: number
+        required: true
+        description: Exact molecular mass to search (e.g. 180.063 for glucose)
+      tolerance:
+        type: number
+        default: 0.01
+        description: Mass tolerance in Da (e.g. 0.01)
+    response:
+      format: json
+  getMolecule:
+    description: Get metabolite details by METLIN ID
+    tags:
+      - metabolite-info
+      - molecule-details
+    method: GET
+    path: /molecule/{id}
+    params:
+      id:
+        type: string
+        required: true
+        description: METLIN molecule ID (e.g. 5081 for glucose)
+    response:
+      format: json
+tests:
+  searchMass:
+    - name: searches metabolites by mass of glucose
+      params:
+        mass: 180.063
+        tolerance: 0.01
+      assert:
+        - minLength: 1
+      allowError: true
+  getMolecule:
+    - name: gets molecule details by METLIN ID
+      params:
+        id: "5081"
+      assert:
+        - {}
+      allowError: true

@@ -25,6 +25,10 @@ tools:
         description: Compound name (e.g. aspirin) or SMILES string
     response:
       format: json
+      pick:
+        - PC_Compounds[].id.id.cid
+        - PC_Compounds[].props[].urn.label
+        - PC_Compounds[].props[].value
   getCompound:
     description: Get compound properties by CID
     tags:

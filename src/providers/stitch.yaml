@@ -28,6 +28,12 @@ tools:
         description: NCBI taxonomy ID (9606 for human)
     response:
       format: json
+      pick:
+        - "[].stringId"
+        - "[].preferredName"
+        - "[].taxonName"
+        - "[].annotation"
+        - "[].ncbiTaxonId"
   getInteractions:
     description: Get chemical-protein interaction partners for a given chemical
     tags:
@@ -47,6 +53,13 @@ tools:
         description: NCBI taxonomy ID (9606 for human)
     response:
       format: json
+      pick:
+        - "[].stringId_A"
+        - "[].stringId_B"
+        - "[].preferredName_A"
+        - "[].preferredName_B"
+        - "[].score"
+        - "[].ncbiTaxonId"
 tests:
   resolveIdentifier:
     - name: resolves aspirin identifier

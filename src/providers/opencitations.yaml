@@ -23,6 +23,13 @@ tools:
         description: DOI to look up citations for (e.g. "10.1038/nature12373")
     response:
       format: json
+      pick:
+        - '[].citing'
+        - '[].cited'
+        - '[].creation'
+        - '[].timespan'
+        - '[].journal_sc'
+        - '[].author_sc'
   getReferences:
     description: Get all references from a DOI (papers this work cites)
     tags:
@@ -37,6 +44,13 @@ tools:
         description: DOI to look up references for (e.g. "10.1038/nature12373")
     response:
       format: json
+      pick:
+        - '[].citing'
+        - '[].cited'
+        - '[].creation'
+        - '[].timespan'
+        - '[].journal_sc'
+        - '[].author_sc'
 tests:
   getCitations:
     - name: gets citations for a CRISPR paper DOI

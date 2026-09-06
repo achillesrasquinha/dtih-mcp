@@ -24,6 +24,19 @@ tools:
         description: Ensembl gene ID (e.g. ENSG00000141510 for TP53)
     response:
       format: json
+      pick:
+        - Gene
+        - Gene synonym
+        - Ensembl
+        - Gene description
+        - Uniprot
+        - Chromosome
+        - Protein class
+        - Biological process
+        - Molecular function
+        - Disease involvement
+        - Subcellular location
+        - RNA tissue specificity
 tests:
   getGene:
     - name: gets TP53 gene data by Ensembl ID

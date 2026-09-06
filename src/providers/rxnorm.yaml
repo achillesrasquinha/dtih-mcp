@@ -24,6 +24,13 @@ tools:
         description: Drug name to search for (e.g. "metformin", "aspirin")
     response:
       format: json
+      pick:
+        - drugGroup.name
+        - drugGroup.conceptGroup[].tty
+        - drugGroup.conceptGroup[].conceptProperties[].rxcui
+        - drugGroup.conceptGroup[].conceptProperties[].name
+        - drugGroup.conceptGroup[].conceptProperties[].synonym
+        - drugGroup.conceptGroup[].conceptProperties[].tty
   getProperties:
     description: Get drug concept properties by RxCUI
     tags:
@@ -38,6 +45,12 @@ tools:
         description: RxNorm concept unique identifier (e.g. "861004")
     response:
       format: json
+      pick:
+        - properties.rxcui
+        - properties.name
+        - properties.synonym
+        - properties.tty
+        - properties.language
   getAllRelated:
     description: Get all related drug concepts (brand names, ingredients, dose forms) by RxCUI
     tags:
@@ -53,6 +66,12 @@ tools:
         description: RxNorm concept unique identifier (e.g. "6809" for metformin)
     response:
       format: json
+      pick:
+        - allRelatedGroup.rxcui
+        - allRelatedGroup.conceptGroup[].tty
+        - allRelatedGroup.conceptGroup[].conceptProperties[].rxcui
+        - allRelatedGroup.conceptGroup[].conceptProperties[].name
+        - allRelatedGroup.conceptGroup[].conceptProperties[].tty
 tests:
   search:
     - name: searches for metformin

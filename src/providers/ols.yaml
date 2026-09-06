@@ -27,6 +27,15 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - response.numFound
+        - response.docs[].label
+        - response.docs[].iri
+        - response.docs[].obo_id
+        - response.docs[].ontology_name
+        - response.docs[].description
+        - response.docs[].short_form
+        - response.docs[].type
   getOntology:
     description: Get metadata about a specific ontology
     tags:
@@ -41,6 +50,15 @@ tools:
         description: Ontology identifier (e.g. go, efo, hp, mondo)
     response:
       format: json
+      pick:
+        - ontologyId
+        - config.title
+        - config.description
+        - config.preferredPrefix
+        - config.homepage
+        - config.version
+        - numberOfTerms
+        - numberOfProperties
 tests:
   searchTerms:
     - name: searches for apoptosis terms

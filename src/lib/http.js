@@ -78,7 +78,7 @@ function mapParams(tool, params) {
       if (def.required) throw new Error(`Missing required param: ${key}`);
       continue;
     }
-    mapped[def.mapsTo || key] = value;
+    mapped[def.mapsTo || key] = def.prefix ? def.prefix + value : value;
   }
   return mapped;
 }
@@ -104,8 +104,75 @@ async function parseResponse(res, tool) {
   if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
 
   if (ct.includes("json") || (tool.response?.format === "json")) {
-    try { return JSON.parse(text); } catch { return { raw: text }; }
+    try {
+      const data = JSON.parse(text);
+      const picks = tool.response?.pick;
+      return picks?.length ? pluck(data, picks) : data;
+    } catch { return { raw: text }; }
   }
 
   return { raw: text };
+}
+
+function pluck(data, picks) {
+  const out = {};
+  for (const path of picks) {
+    setValue(out, path, getValue(data, path));
+  }
+  return out;
+}
+
+function getValue(obj, path) {
+  const parts = path.split(".");
+  return walk(obj, parts, 0);
+}
+
+function walk(node, parts, i) {
+  if (node == null || i >= parts.length) return node;
+  let key = parts[i];
+  if (key.endsWith("[]")) {
+    key = key.slice(0, -2);
+    const arr = node[key];
+    if (!Array.isArray(arr)) return undefined;
+    return arr.map((item) => walk(item, parts, i + 1));
+  }
+  return walk(node[key], parts, i + 1);
+}
+
+function setValue(obj, path, value) {
+  if (value === undefined) return;
+  const parts = path.split(".");
+  let cur = obj;
+  for (let i = 0; i < parts.length - 1; i++) {
+    let key = parts[i];
+    const isArr = key.endsWith("[]");
+    if (isArr) key = key.slice(0, -2);
+    if (!(key in cur)) cur[key] = isArr ? [] : {};
+    cur = cur[key];
+    if (isArr && Array.isArray(cur)) return spreadArray(cur, value, parts, i + 1);
+  }
+  let lastKey = parts[parts.length - 1];
+  if (lastKey.endsWith("[]")) lastKey = lastKey.slice(0, -2);
+  cur[lastKey] = value;
+}
+
+function spreadArray(arr, values, parts, i) {
+  if (!Array.isArray(values)) return;
+  for (let vi = 0; vi < values.length; vi++) {
+    if (!arr[vi]) arr[vi] = {};
+    if (i >= parts.length) { arr[vi] = values[vi]; continue; }
+    let key = parts[i];
+    const isArr = key.endsWith("[]");
+    if (isArr) key = key.slice(0, -2);
+    if (i === parts.length - 1) {
+      arr[vi][key] = values[vi];
+    } else {
+      if (!(key in arr[vi])) arr[vi][key] = isArr ? [] : {};
+      if (isArr && Array.isArray(values[vi])) {
+        spreadArray(arr[vi][key], values[vi], parts, i + 1);
+      } else {
+        setValue(arr[vi], parts.slice(i).join("."), values[vi]);
+      }
+    }
+  }
 }

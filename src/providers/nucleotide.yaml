@@ -36,6 +36,10 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - esearchresult.count
+        - esearchresult.idlist
+        - esearchresult.querytranslation
   getSummary:
     description: Get nucleotide sequence summary by GenBank accession or GI
     tags:

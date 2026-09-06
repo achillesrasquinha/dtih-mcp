@@ -23,6 +23,13 @@ tools:
         description: MetaboLights study accession (e.g. MTBLS1)
     response:
       format: json
+      pick:
+        - isaInvestigation.identifier
+        - isaInvestigation.title
+        - isaInvestigation.description
+        - isaInvestigation.submissionDate
+        - isaInvestigation.publicReleaseDate
+        - mtblsStudy.studyStatus
   listStudies:
     description: List public MetaboLights studies
     tags:
@@ -32,6 +39,8 @@ tools:
     path: /studies
     response:
       format: json
+      pick:
+        - content
 tests:
   getStudy:
     - name: gets study MTBLS1

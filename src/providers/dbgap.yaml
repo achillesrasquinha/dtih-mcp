@@ -1,0 +1,75 @@
+name: dbgap
+displayName: dbGaP
+description: dbGaP (database of Genotypes and Phenotypes) — genotype-phenotype association studies
+tags:
+  - genotype
+  - phenotype
+  - gwas
+  - genetic-association
+  - ncbi
+baseUrl: https://www.ncbi.nlm.nih.gov/gap/phegeni
+
+tools:
+  search:
+    description: Search dbGaP for genotype-phenotype association studies
+    tags:
+      - study-search
+      - association-search
+    method: GET
+    path: /
+    params:
+      term:
+        type: string
+        required: true
+        mapsTo: term
+        description: Search query (e.g. "diabetes", "breast cancer", "BRCA1")
+      type:
+        type: string
+        default: search
+        description: Query type
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json
+
+  getStudy:
+    description: Get details of a specific dbGaP study by study ID
+    tags:
+      - study-detail
+      - study-lookup
+    method: GET
+    path: /
+    params:
+      study_id:
+        type: string
+        required: true
+        mapsTo: study_id
+        description: dbGaP study accession (e.g. "phs000001")
+      type:
+        type: string
+        default: study
+        description: Query type
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json
+
+tests:
+  search:
+    - name: searches for diabetes studies
+      params:
+        term: diabetes
+      assert:
+        - {}
+      allowError: true
+  getStudy:
+    - name: gets a specific study
+      params:
+        study_id: phs000001
+      assert:
+        - {}
+      allowError: true

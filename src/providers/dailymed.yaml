@@ -24,6 +24,12 @@ tools:
         description: Drug name to search for (e.g. "aspirin", "metformin")
     response:
       format: json
+      pick:
+        - "data[].setid"
+        - "data[].title"
+        - "data[].spl_version"
+        - "data[].published_date"
+        - "metadata.total_elements"
   getSpl:
     description: Get a specific SPL drug label by set ID
     tags:
@@ -39,6 +45,11 @@ tools:
         description: SPL set ID (UUID)
     response:
       format: json
+      pick:
+        - "data[].setid"
+        - "data[].title"
+        - "data[].spl_version"
+        - "data[].published_date"
 tests:
   searchDrugs:
     - name: searches for aspirin drug labels

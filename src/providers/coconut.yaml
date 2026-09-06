@@ -1,0 +1,79 @@
+name: coconut
+displayName: COCONUT
+description: COlleCtion of Open Natural prodUcTs — comprehensive natural products database
+tags:
+  - natural-products
+  - chemistry
+  - compounds
+  - drug-discovery
+  - coconut
+baseUrl: https://coconut.naturalproducts.net/api
+tools:
+  search:
+    description: Search natural products by name or keyword
+    tags:
+      - compound-search
+      - natural-product-search
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        description: Search term (e.g. "quercetin", "caffeine")
+      limit:
+        type: integer
+        default: 10
+        description: Maximum number of results
+    response:
+      format: json
+  getCompound:
+    description: Get natural product compound details by COCONUT ID
+    tags:
+      - compound-info
+      - natural-product-details
+    method: GET
+    path: /compound/{id}
+    params:
+      id:
+        type: string
+        required: true
+        description: COCONUT compound ID (e.g. CNP0000001)
+    response:
+      format: json
+  searchByOrganism:
+    description: Search natural products by source organism
+    tags:
+      - organism-search
+      - natural-product-source
+    method: GET
+    path: /search
+    params:
+      organism:
+        type: string
+        required: true
+        description: Organism name (e.g. "Streptomyces", "Cannabis sativa")
+    response:
+      format: json
+tests:
+  search:
+    - name: searches for quercetin
+      params:
+        query: quercetin
+      assert:
+        - minLength: 1
+      allowError: true
+  getCompound:
+    - name: gets compound by COCONUT ID
+      params:
+        id: CNP0000001
+      assert:
+        - {}
+      allowError: true
+  searchByOrganism:
+    - name: searches natural products from Streptomyces
+      params:
+        organism: Streptomyces
+      assert:
+        - minLength: 1
+      allowError: true

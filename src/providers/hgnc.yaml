@@ -25,6 +25,10 @@ tools:
         description: Search query (e.g. "BRCA1", "kinase")
     response:
       format: json
+      pick:
+        - response.docs[].symbol
+        - response.docs[].hgnc_id
+        - response.docs[].score
   getGene:
     description: Get gene record by approved gene symbol
     tags:
@@ -39,6 +43,15 @@ tools:
         description: Approved gene symbol (e.g. "BRCA1", "TP53")
     response:
       format: json
+      pick:
+        - response.docs[].hgnc_id
+        - response.docs[].symbol
+        - response.docs[].name
+        - response.docs[].locus_group
+        - response.docs[].locus_type
+        - response.docs[].location
+        - response.docs[].alias_symbol
+        - response.docs[].entrez_id
 tests:
   search:
     - name: searches for BRCA1 gene

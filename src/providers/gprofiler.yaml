@@ -27,6 +27,15 @@ tools:
         description: List of gene symbols or IDs (e.g. ["BRCA1","TP53","EGFR"])
     response:
       format: json
+      pick:
+        - "result[].native"
+        - "result[].name"
+        - "result[].description"
+        - "result[].source"
+        - "result[].p_value"
+        - "result[].term_size"
+        - "result[].intersection_size"
+        - "result[].significant"
   convert:
     description: Convert gene identifiers between naming conventions
     tags:
@@ -49,6 +58,12 @@ tools:
         description: Target namespace (e.g. ENSG, ENTREZGENE_ACC, UNIPROTSWISSPROT)
     response:
       format: json
+      pick:
+        - "result[].incoming"
+        - "result[].converted"
+        - "result[].name"
+        - "result[].description"
+        - "result[].namespaces"
 tests:
   analyze:
     - name: runs enrichment analysis on BRCA1, TP53, EGFR

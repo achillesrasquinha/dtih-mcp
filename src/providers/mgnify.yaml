@@ -28,6 +28,14 @@ tools:
         description: Number of results per page
     response:
       format: json
+      pick:
+        - data[].id
+        - data[].attributes.accession
+        - data[].attributes.bioproject
+        - data[].attributes.study-name
+        - data[].attributes.study-abstract
+        - data[].attributes.samples-count
+        - data[].attributes.centre-name
   getStudy:
     description: Get details of a specific MGnify study by accession
     tags:
@@ -42,6 +50,14 @@ tools:
         description: MGnify study accession (e.g. MGYS00006822)
     response:
       format: json
+      pick:
+        - data.id
+        - data.attributes.accession
+        - data.attributes.bioproject
+        - data.attributes.study-name
+        - data.attributes.study-abstract
+        - data.attributes.samples-count
+        - data.attributes.centre-name
 tests:
   searchStudies:
     - name: searches studies for gut microbiome

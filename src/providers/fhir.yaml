@@ -1,0 +1,70 @@
+name: fhir
+displayName: FHIR R4
+description: FHIR R4 public test server — HL7 FHIR standard for healthcare data interoperability
+tags:
+  - fhir
+  - healthcare
+  - ehr
+  - clinical-data
+  - interoperability
+baseUrl: https://hapi.fhir.org/baseR4
+tools:
+  searchResource:
+    description: Search FHIR resources by type and query parameters
+    tags:
+      - fhir-search
+      - resource-search
+    method: GET
+    path: /{resourceType}
+    params:
+      resourceType:
+        type: string
+        required: true
+        description: "FHIR resource type (e.g. Patient, Condition, Observation, MedicationRequest)"
+      query:
+        type: string
+        required: true
+        mapsTo: _search
+        description: Search query string
+      _count:
+        type: integer
+        default: 5
+        description: Maximum number of results to return
+    response:
+      format: json
+  getResource:
+    description: Get a specific FHIR resource by type and ID
+    tags:
+      - fhir-resource
+      - resource-details
+    method: GET
+    path: /{resourceType}/{id}
+    params:
+      resourceType:
+        type: string
+        required: true
+        description: "FHIR resource type (e.g. Patient, Condition, Observation)"
+      id:
+        type: string
+        required: true
+        description: FHIR resource ID
+    response:
+      format: json
+tests:
+  searchResource:
+    - name: searches for Patient resources
+      params:
+        resourceType: Patient
+        query: Smith
+        _count: 5
+      assert:
+        - minLength: 1
+      allowError: true
+  getResource:
+    - name: gets a Patient resource by ID
+      params:
+        resourceType: Patient
+        id: "1"
+      assert:
+        - minLength: 1
+      allowError: true

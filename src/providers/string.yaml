@@ -31,6 +31,13 @@ tools:
         description: Maximum number of interaction partners to return
     response:
       format: json
+      pick:
+        - "[].stringId_A"
+        - "[].stringId_B"
+        - "[].preferredName_A"
+        - "[].preferredName_B"
+        - "[].score"
+        - "[].ncbiTaxonId"
   getEnrichment:
     description: Get functional enrichment analysis for protein(s)
     tags:
@@ -50,6 +57,14 @@ tools:
         description: NCBI taxon ID (9606 for human)
     response:
       format: json
+      pick:
+        - "[].category"
+        - "[].term"
+        - "[].description"
+        - "[].number_of_genes"
+        - "[].p_value"
+        - "[].fdr"
+        - "[].preferredNames"
 tests:
   getInteractions:
     - name: gets protein-protein interactions for TP53

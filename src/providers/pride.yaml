@@ -27,6 +27,8 @@ tools:
         description: Maximum number of results
     response:
       format: json
+      pick:
+        - '[]'
   getProject:
     description: Get a specific PRIDE project by accession
     tags:
@@ -41,6 +43,17 @@ tools:
         description: PRIDE project accession (e.g. PXD000001)
     response:
       format: json
+      pick:
+        - accession
+        - title
+        - projectDescription
+        - submissionType
+        - submissionDate
+        - publicationDate
+        - keywords
+        - instruments[].name
+        - submitters[].name
+        - countries
 tests:
   searchProjects:
     - name: searches projects for cancer

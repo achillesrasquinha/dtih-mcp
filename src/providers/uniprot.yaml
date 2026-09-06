@@ -30,6 +30,13 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - results[].primaryAccession
+        - results[].uniProtkbId
+        - results[].organism.scientificName
+        - results[].proteinDescription.recommendedName.fullName.value
+        - results[].genes[].geneName.value
+        - results[].sequence.length
   getEntry:
     description: Get a UniProt protein entry by accession
     tags:

@@ -1,0 +1,85 @@
+name: ncbi-blast
+displayName: NCBI BLAST
+description: NCBI BLAST sequence similarity search — submit queries and retrieve alignment results
+tags:
+  - sequence-search
+  - alignment
+  - blast
+  - ncbi
+  - homology
+baseUrl: https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi
+
+tools:
+  submit:
+    description: Submit a BLAST search job (returns a Request ID for polling results)
+    tags:
+      - blast-submit
+      - sequence-search
+    method: GET
+    path: /
+    params:
+      CMD:
+        type: string
+        required: true
+        default: Put
+        description: Command type — use "Put" to submit a new search
+      QUERY:
+        type: string
+        required: true
+        description: Nucleotide or protein sequence (FASTA format or plain sequence)
+      DATABASE:
+        type: string
+        required: true
+        default: nr
+        description: Target database (e.g. nr, nt, swissprot, refseq_protein)
+      PROGRAM:
+        type: string
+        required: true
+        default: blastn
+        description: BLAST program (blastn, blastp, blastx, tblastn, tblastx)
+    response:
+      format: text
+  getResults:
+    description: Retrieve results of a previously submitted BLAST job by Request ID (RID)
+    tags:
+      - blast-results
+      - alignment-results
+    method: GET
+    path: /
+    params:
+      CMD:
+        type: string
+        required: true
+        default: Get
+        description: Command type — use "Get" to retrieve results
+      RID:
+        type: string
+        required: true
+        description: Request ID returned from the submit step
+      FORMAT_TYPE:
+        type: string
+        default: JSON2
+        description: Output format (e.g. JSON2, XML, Text, HTML)
+    response:
+      format: json
+
+tests:
+  submit:
+    - name: submits a short nucleotide BLAST search
+      params:
+        CMD: Put
+        QUERY: ATGCGATCGATCGATCGATCGATCGATCGATCGATCGATCG
+        DATABASE: nt
+        PROGRAM: blastn
+      assert:
+        - minLength: 1
+      allowError: true
+  getResults:
+    - name: attempts to retrieve results for a placeholder RID
+      params:
+        CMD: Get
+        RID: PLACEHOLDER_RID
+        FORMAT_TYPE: JSON2
+      assert:
+        - minLength: 1
+      allowError: true

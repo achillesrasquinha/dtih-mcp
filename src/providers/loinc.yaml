@@ -1,0 +1,59 @@
+name: loinc
+displayName: LOINC
+description: LOINC clinical terminology — standardized codes for lab tests, clinical observations, and measurements via FHIR
+tags: [clinical, terminology, loinc, fhir, lab-tests, medical-codes]
+baseUrl: https://fhir.loinc.org
+
+auth:
+  type: header
+  header: Authorization
+  env: LS_LOINC_API_KEY
+
+tools:
+  searchCodes:
+    description: Look up a LOINC code by its code value
+    tags: [code-lookup, loinc-search]
+    method: GET
+    path: /CodeSystem/$lookup
+    params:
+      code:
+        type: string
+        required: true
+        description: LOINC code to look up (e.g. "2160-0" for creatinine)
+      system:
+        type: string
+        default: http://loinc.org
+        description: Code system URI
+    response:
+      format: json
+
+  searchValueSet:
+    description: Search LOINC value sets by name
+    tags: [valueset-search, terminology-search]
+    method: GET
+    path: /ValueSet
+    params:
+      name:
+        type: string
+        required: true
+        description: Value set name to search (e.g. "chemistry", "hematology")
+    response:
+      format: json
+
+tests:
+  searchCodes:
+    - name: looks up creatinine LOINC code
+      params:
+        code: "2160-0"
+      assert:
+        - path: parameter
+          minLength: 1
+      allowError: true
+  searchValueSet:
+    - name: searches for chemistry value sets
+      params:
+        name: chemistry
+      assert:
+        - path: entry
+          minLength: 1
+      allowError: true

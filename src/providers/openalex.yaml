@@ -30,6 +30,17 @@ tools:
         description: Filter e.g. 'publication_year:2024'
     response:
       format: json
+      pick:
+        - meta.count
+        - results[].id
+        - results[].doi
+        - results[].title
+        - results[].publication_year
+        - results[].type
+        - results[].authorships[].author.display_name
+        - results[].primary_location.source.display_name
+        - results[].cited_by_count
+        - results[].open_access.is_oa
   getWork:
     description: Get a specific scholarly work by OpenAlex ID
     tags:
@@ -44,6 +55,17 @@ tools:
         description: OpenAlex work ID e.g. 'W2741809807'
     response:
       format: json
+      pick:
+        - id
+        - doi
+        - title
+        - publication_year
+        - type
+        - authorships[].author.display_name
+        - primary_location.source.display_name
+        - cited_by_count
+        - open_access.is_oa
+        - abstract_inverted_index
   searchAuthors:
     description: Search authors by name
     tags:
@@ -61,6 +83,15 @@ tools:
         default: 5
     response:
       format: json
+      pick:
+        - meta.count
+        - results[].id
+        - results[].display_name
+        - results[].orcid
+        - results[].works_count
+        - results[].cited_by_count
+        - results[].summary_stats.h_index
+        - results[].last_known_institutions[].display_name
 tests:
   searchWorks:
     - name: searches works for CRISPR

@@ -28,6 +28,13 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
+      pick:
+        - total
+        - items[].id
+        - items[].category
+        - items[].name
+        - items[].description
+        - items[].synonym
   getEntity:
     description: Get detailed information for a Monarch entity by ID
     tags:
@@ -42,6 +49,14 @@ tools:
         description: Entity ID (e.g. "MONDO:0007947" for Marfan syndrome)
     response:
       format: json
+      pick:
+        - id
+        - category
+        - name
+        - description
+        - symbol
+        - synonym
+        - in_taxon_label
 tests:
   search:
     - name: searches for Marfan syndrome

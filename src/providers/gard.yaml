@@ -1,0 +1,54 @@
+name: gard
+displayName: GARD
+description: GARD — Genetic and Rare Diseases Information Center from NIH
+tags:
+  - rare-diseases
+  - genetic-diseases
+  - nih
+  - disease-info
+  - orphan-diseases
+baseUrl: https://rarediseases.info.nih.gov/gard-api
+tools:
+  searchDiseases:
+    description: Search for rare diseases by name or keyword
+    tags:
+      - disease-search
+      - rare-disease-search
+    method: GET
+    path: /diseases
+    params:
+      query:
+        type: string
+        required: true
+        description: Disease name or keyword (e.g. "Marfan syndrome", "cystic fibrosis")
+    response:
+      format: json
+  getDisease:
+    description: Get detailed information about a rare disease by GARD ID
+    tags:
+      - disease-info
+      - disease-details
+    method: GET
+    path: /diseases/{id}
+    params:
+      id:
+        type: string
+        required: true
+        description: GARD disease identifier (e.g. "6429")
+    response:
+      format: json
+tests:
+  searchDiseases:
+    - name: searches for Marfan syndrome
+      params:
+        query: Marfan syndrome
+      assert:
+        - minLength: 1
+      allowError: true
+  getDisease:
+    - name: gets disease details by GARD ID
+      params:
+        id: "6429"
+      assert:
+        - minLength: 1
+      allowError: true

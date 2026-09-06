@@ -19,6 +19,13 @@ tools:
     params: {}
     response:
       format: json
+      pick:
+        - results_count
+        - results[].bigg_id
+        - results[].organism
+        - results[].metabolite_count
+        - results[].reaction_count
+        - results[].gene_count
   getModel:
     description: Get details of a specific metabolic model by BiGG identifier
     tags:
@@ -33,6 +40,14 @@ tools:
         description: BiGG model identifier (e.g. iJO1366, e_coli_core)
     response:
       format: json
+      pick:
+        - model_bigg_id
+        - organism
+        - metabolite_count
+        - reaction_count
+        - gene_count
+        - reference_id
+        - reference_type
   searchMetabolites:
     description: Search BiGG for metabolites by name or identifier
     tags:
@@ -51,6 +66,12 @@ tools:
         description: Type of search (metabolites, reactions, genes, models)
     response:
       format: json
+      pick:
+        - results_count
+        - results[].bigg_id
+        - results[].name
+        - results[].model_bigg_id
+        - results[].organism
 tests:
   listModels:
     - name: lists available metabolic models

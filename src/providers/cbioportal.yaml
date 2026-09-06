@@ -31,6 +31,11 @@ tools:
         description: Sort direction (ASC or DESC)
     response:
       format: json
+      pick:
+        - "[].studyId"
+        - "[].name"
+        - "[].description"
+        - "[].cancerTypeId"
   getGenes:
     description: Get gene details by Hugo gene symbol
     tags:
@@ -45,6 +50,10 @@ tools:
         description: Hugo gene symbol (e.g. BRCA1, TP53, EGFR)
     response:
       format: json
+      pick:
+        - hugoGeneSymbol
+        - entrezGeneId
+        - type
 tests:
   getStudies:
     - name: lists available cancer studies

@@ -1,0 +1,66 @@
+name: hmmer
+displayName: HMMER
+description: HMMER protein sequence search using profile hidden Markov models
+tags:
+  - protein-search
+  - hmm
+  - sequence-search
+  - domain
+  - ebi
+baseUrl: https://www.ebi.ac.uk/Tools/hmmer
+
+tools:
+  search:
+    description: Submit a phmmer protein sequence search against a sequence database
+    tags:
+      - phmmer-search
+      - protein-homology
+    method: POST
+    path: /search/phmmer
+    headers:
+      Accept: application/json
+    params:
+      seqdb:
+        type: string
+        required: true
+        default: pdb
+        description: Target sequence database (e.g. pdb, swissprot, uniprotrefprot)
+      seq:
+        type: string
+        required: true
+        description: Protein sequence in FASTA format or plain amino acid sequence
+    response:
+      format: json
+  getResults:
+    description: Retrieve results of a previously submitted HMMER search job
+    tags:
+      - hmmer-results
+      - search-results
+    method: GET
+    path: /results/{jobId}
+    headers:
+      Accept: application/json
+    params:
+      jobId:
+        type: string
+        required: true
+        description: Job ID returned from the search submission
+    response:
+      format: json
+
+tests:
+  search:
+    - name: searches for a short protein sequence
+      params:
+        seqdb: pdb
+        seq: ">test\nMKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQAPILSRVGDGTQDNLSGAEKAVQVKVKALPD"
+      assert:
+        - minLength: 1
+      allowError: true
+  getResults:
+    - name: retrieves results for a placeholder job
+      params:
+        jobId: placeholder-job-id
+      assert:
+        - minLength: 1
+      allowError: true

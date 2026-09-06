@@ -34,6 +34,10 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - "esearchresult.count"
+        - "esearchresult.idlist"
+        - "esearchresult.querytranslation"
   getSummary:
     description: Get SNP summary information by dbSNP ID
     tags:
@@ -54,6 +58,15 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - "result.*.snp_id"
+        - "result.*.genes"
+        - "result.*.chr"
+        - "result.*.chrpos"
+        - "result.*.snp_class"
+        - "result.*.clinical_significance"
+        - "result.*.global_mafs"
+        - "result.*.docsum"
 tests:
   search:
     - name: searches for rs7412 variant

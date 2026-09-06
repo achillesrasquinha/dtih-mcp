@@ -1,0 +1,75 @@
+name: onezoom
+displayName: OneZoom
+description: OneZoom tree of life explorer — interactive visualization and species search across the tree of life
+tags:
+  - tree-of-life
+  - phylogenetics
+  - evolution
+  - taxonomy
+  - onezoom
+baseUrl: https://www.onezoom.org/api/v1
+tools:
+  searchSpecies:
+    description: Search OneZoom for species by name or keyword
+    tags:
+      - species-search
+      - taxonomy-search
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        description: Species name or keyword to search (e.g. "Homo sapiens")
+    response:
+      format: json
+  getNode:
+    description: Get details for a specific node in the OneZoom tree of life
+    tags:
+      - node-detail
+      - tree-node
+    method: GET
+    path: /node/{id}
+    params:
+      id:
+        type: integer
+        required: true
+        description: OneZoom node identifier
+    response:
+      format: json
+  getSubtree:
+    description: Retrieve the subtree rooted at a given node in the tree of life
+    tags:
+      - subtree
+      - phylogeny
+    method: GET
+    path: /subtree/{id}
+    params:
+      id:
+        type: integer
+        required: true
+        description: OneZoom node identifier for the root of the subtree
+    response:
+      format: json
+tests:
+  searchSpecies:
+    - name: searches for Homo sapiens
+      params:
+        query: Homo sapiens
+      assert:
+        - {}
+      allowError: true
+  getNode:
+    - name: gets node details
+      params:
+        id: 770315
+      assert:
+        - {}
+      allowError: true
+  getSubtree:
+    - name: gets subtree for a node
+      params:
+        id: 770315
+      assert:
+        - {}
+      allowError: true

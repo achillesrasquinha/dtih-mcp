@@ -23,6 +23,14 @@ tools:
         description: SGD gene name or systematic name e.g. 'CDC28' or 'S000000364'
     response:
       format: json
+      pick:
+        - display_name
+        - format_name
+        - gene_name
+        - sgdid
+        - description
+        - locus_type
+        - qualifier
   getLocusGOTerms:
     description: Get GO annotations for a yeast gene
     tags:
@@ -37,6 +45,13 @@ tools:
         description: SGD gene name or systematic name
     response:
       format: json
+      pick:
+        - "[].qualifier"
+        - "[].go.display_name"
+        - "[].go.go_id"
+        - "[].go.go_aspect"
+        - "[].annotation_type"
+        - "[].locus.display_name"
   getLocusPhenotypes:
     description: Get phenotype annotations for a yeast gene
     tags:
@@ -51,6 +66,13 @@ tools:
         description: SGD gene name or systematic name
     response:
       format: json
+      pick:
+        - "[].phenotype.display_name"
+        - "[].mutant_type"
+        - "[].locus.display_name"
+        - "[].experiment.display_name"
+        - "[].experiment.category"
+        - "[].strain.display_name"
 tests:
   getLocusDetails:
     - name: gets locus details for CDC28

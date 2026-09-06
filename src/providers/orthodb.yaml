@@ -30,6 +30,9 @@ tools:
         description: NCBI taxonomy ID for species filter (9606=human)
     response:
       format: json
+      pick:
+        - status
+        - data
   getGroup:
     description: Get orthologous group details by OrthoDB group ID
     tags:
@@ -44,6 +47,16 @@ tools:
         description: OrthoDB group ID (e.g. 733642at2759)
     response:
       format: json
+      pick:
+        - status
+        - data.id
+        - data.name
+        - data.level_name
+        - data.tax_id
+        - data.evolutionary_rate
+        - data.phyletic_profile.gene_count
+        - data.phyletic_profile.species_count
+        - data.interpro_domains[].description
 tests:
   search:
     - name: searches for BRCA1 orthologous groups

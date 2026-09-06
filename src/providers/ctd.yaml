@@ -1,0 +1,111 @@
+name: ctd
+displayName: Comparative Toxicogenomics Database
+description: CTD curated chemical-gene-disease interactions for toxicogenomics research
+tags:
+  - toxicogenomics
+  - chemical-gene
+  - chemical-disease
+  - gene-pathways
+  - ctd
+baseUrl: https://ctdbase.org/tools/batchQuery.go
+tools:
+  getChemicalInteractions:
+    description: Get curated gene interactions for a chemical
+    tags:
+      - chemical-gene
+      - gene-interactions
+    method: GET
+    path: /
+    params:
+      inputType:
+        type: string
+        default: chem
+        description: Input type
+      inputTerms:
+        type: string
+        required: true
+        description: Chemical name or MeSH ID (e.g. "bisphenol A", "D001564")
+      report:
+        type: string
+        default: genes_curated
+        description: Report type
+      format:
+        type: string
+        default: json
+        description: Output format
+    response:
+      format: json
+  getDiseases:
+    description: Get curated disease associations for a chemical
+    tags:
+      - chemical-disease
+      - disease-associations
+    method: GET
+    path: /
+    params:
+      inputType:
+        type: string
+        default: chem
+        description: Input type
+      inputTerms:
+        type: string
+        required: true
+        description: Chemical name or MeSH ID (e.g. "bisphenol A", "D001564")
+      report:
+        type: string
+        default: diseases_curated
+        description: Report type
+      format:
+        type: string
+        default: json
+        description: Output format
+    response:
+      format: json
+  getPathways:
+    description: Get enriched pathways for a gene
+    tags:
+      - gene-pathways
+      - pathway-enrichment
+    method: GET
+    path: /
+    params:
+      inputType:
+        type: string
+        default: gene
+        description: Input type
+      inputTerms:
+        type: string
+        required: true
+        description: Gene symbol (e.g. "TP53", "BRCA1")
+      report:
+        type: string
+        default: pathways_enriched
+        description: Report type
+      format:
+        type: string
+        default: json
+        description: Output format
+    response:
+      format: json
+tests:
+  getChemicalInteractions:
+    - name: gets gene interactions for bisphenol A
+      params:
+        inputTerms: bisphenol A
+      assert:
+        - minLength: 1
+      allowError: true
+  getDiseases:
+    - name: gets disease associations for bisphenol A
+      params:
+        inputTerms: bisphenol A
+      assert:
+        - minLength: 1
+      allowError: true
+  getPathways:
+    - name: gets enriched pathways for TP53
+      params:
+        inputTerms: TP53
+      assert:
+        - minLength: 1
+      allowError: true

@@ -29,6 +29,12 @@ tools:
         description: Maximum number of results (1-100)
     response:
       format: json
+      pick:
+        - results[].openfda.brand_name
+        - results[].openfda.generic_name
+        - results[].openfda.route
+        - results[].openfda.substance_name
+        - results[].indications_and_usage
   searchEvents:
     description: Search FDA adverse event reports for drugs
     tags:
@@ -49,6 +55,11 @@ tools:
         description: Maximum number of results (1-100)
     response:
       format: json
+      pick:
+        - results[].patient.drug[].medicinalproduct
+        - results[].patient.reaction[].reactionmeddrapt
+        - results[].serious
+        - results[].receivedate
 tests:
   searchDrugs:
     - name: searches drug labels for aspirin

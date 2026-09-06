@@ -34,6 +34,10 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - esearchresult.count
+        - esearchresult.idlist
+        - esearchresult.querytranslation
   getSummary:
     description: Get protein summary by NCBI Protein ID or accession
     tags:

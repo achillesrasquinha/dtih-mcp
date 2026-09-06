@@ -23,6 +23,12 @@ tools:
         description: WikiPathways ID (e.g. "WP254" for apoptosis)
     response:
       format: json
+      pick:
+        - pathway.id
+        - pathway.displayName
+        - pathway.organism
+        - pathway.dataSourceVersion
+        - pathway.lastModified
   getDataNodes:
     description: Get pathway gene/protein/metabolite data nodes as TSV
     tags:

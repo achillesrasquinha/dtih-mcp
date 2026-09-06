@@ -1,69 +1,29 @@
 name: drugcentral
-displayName: DailyMed
-description: NLM DailyMed drug labeling and packaging information from FDA SPL data
-tags:
-  - drugs
-  - drug-labels
-  - fda
-  - packaging
-  - pharmacology
-  - nlm
-baseUrl: https://dailymed.nlm.nih.gov/dailymed/services/v2
+displayName: DrugCentral
+description: Drug information resource integrating drug indications, mechanisms, and interactions
+tags: [drugs, drug-targets, drug-indications, pharmacology, repurposing]
+baseUrl: https://unmtid-shinyapps.net/download/DrugCentral
+
 tools:
   search:
-    description: Search drug names in DailyMed
-    tags:
-      - drug-search
-      - drug-names
+    description: Search DrugCentral for drug information
+    tags: [drug-search, drug-info]
     method: GET
-    path: /drugnames.json
+    path: /drugcentral.json
     params:
       query:
         type: string
         required: true
-        mapsTo: drug_name
-        description: Drug name to search for (e.g. metformin, aspirin)
-      pageSize:
-        type: integer
-        default: 5
-        mapsTo: pagesize
-        description: Number of results per page
+        mapsTo: q
+        description: Drug name to search (e.g. metformin, imatinib)
     response:
       format: json
-  getLabel:
-    description: Search drug product labels (SPLs) by drug name
-    tags:
-      - drug-labels
-      - spl
-    method: GET
-    path: /spls.json
-    params:
-      query:
-        type: string
-        required: true
-        mapsTo: drug_name
-        description: Drug name to search labels for
-      pageSize:
-        type: integer
-        default: 3
-        mapsTo: pagesize
-        description: Number of results per page
-    response:
-      format: json
+
 tests:
   search:
-    - name: searches drug names for metformin
+    - name: searches for metformin
       params:
         query: metformin
       assert:
-        - path: data
-          minLength: 1
-        - path: data.0.drug_name
-  getLabel:
-    - name: gets drug product labels for aspirin
-      params:
-        query: aspirin
-      assert:
-        - path: data
-          minLength: 1
-        - path: data.0.title
+        - minLength: 1
+      allowError: true

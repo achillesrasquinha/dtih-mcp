@@ -23,8 +23,30 @@ tools:
           chrom
           start
           stop
+          gnomad_constraint {
+            pLI
+            oe_mis
+            oe_mis_lower
+            oe_mis_upper
+            oe_lof
+            oe_lof_lower
+            oe_lof_upper
+          }
         }
       }
+    response:
+      format: json
+      pick:
+        - gene.symbol
+        - gene.name
+        - gene.gene_id
+        - gene.gnomad_constraint.pLI
+        - gene.gnomad_constraint.oe_mis
+        - gene.gnomad_constraint.oe_mis_lower
+        - gene.gnomad_constraint.oe_mis_upper
+        - gene.gnomad_constraint.oe_lof
+        - gene.gnomad_constraint.oe_lof_lower
+        - gene.gnomad_constraint.oe_lof_upper
     params:
       geneSymbol:
         type: string

@@ -34,6 +34,10 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - esearchresult.count
+        - esearchresult.idlist
+        - esearchresult.querytranslation
   getSummary:
     description: Get taxonomic summary by NCBI Taxonomy ID
     tags:

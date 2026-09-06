@@ -28,6 +28,13 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - _embedded.samples[].accession
+        - _embedded.samples[].name
+        - _embedded.samples[].taxId
+        - _embedded.samples[].status
+        - _embedded.samples[].release
+        - _embedded.samples[].characteristics
   getSample:
     description: Get a specific BioSample by accession
     tags:
@@ -42,6 +49,13 @@ tools:
         description: BioSample accession (e.g. SAMD00065372)
     response:
       format: json
+      pick:
+        - accession
+        - name
+        - taxId
+        - status
+        - release
+        - characteristics
 tests:
   search:
     - name: searches for human liver samples

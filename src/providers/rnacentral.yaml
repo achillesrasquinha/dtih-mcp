@@ -30,6 +30,13 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - results[].rnacentral_id
+        - results[].description
+        - results[].rna_type
+        - results[].length
+        - results[].count_distinct_organisms
+        - results[].distinct_databases
   getEntry:
     description: Get a specific RNA entry by its URS identifier
     tags:
@@ -48,6 +55,15 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - rnacentral_id
+        - description
+        - rna_type
+        - sequence
+        - length
+        - is_active
+        - count_distinct_organisms
+        - distinct_databases
 tests:
   search:
     - name: searches for BRCA1 non-coding RNA

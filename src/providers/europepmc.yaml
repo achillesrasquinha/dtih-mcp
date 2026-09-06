@@ -36,6 +36,14 @@ tools:
         description: Result detail level (lite or core)
     response:
       format: json
+      pick:
+        - resultList.result[].id
+        - resultList.result[].title
+        - resultList.result[].authorString
+        - resultList.result[].journalTitle
+        - resultList.result[].pubYear
+        - resultList.result[].doi
+        - resultList.result[].citedByCount
   getArticle:
     description: Get a specific article by PubMed ID
     tags:

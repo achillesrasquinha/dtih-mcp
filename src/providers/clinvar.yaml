@@ -34,6 +34,11 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - esearchresult.count
+        - esearchresult.retmax
+        - esearchresult.idlist
+        - esearchresult.querytranslation
   getSummary:
     description: Get ClinVar variant summary by ClinVar ID
     tags:
@@ -54,6 +59,16 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - result.uids
+        - result.*.uid
+        - result.*.title
+        - result.*.obj_type
+        - result.*.accession
+        - result.*.germline_classification
+        - result.*.genes
+        - result.*.protein_change
+        - result.*.molecular_consequence_list
 tests:
   search:
     - name: searches for BRCA1 pathogenic variants

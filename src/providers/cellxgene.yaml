@@ -19,6 +19,14 @@ tools:
     params: {}
     response:
       format: json
+      pick:
+        - "[].collection_id"
+        - "[].name"
+        - "[].description"
+        - "[].doi"
+        - "[].contact_name"
+        - "[].consortia"
+        - "[].published_at"
   getCollection:
     description: Get collection details by ID
     tags:
@@ -32,6 +40,20 @@ tools:
         description: Collection identifier
     response:
       format: json
+      pick:
+        - collection_id
+        - name
+        - description
+        - doi
+        - contact_name
+        - consortia
+        - datasets[].dataset_id
+        - datasets[].title
+        - datasets[].tissue
+        - datasets[].disease
+        - datasets[].organism
+        - datasets[].cell_count
+        - datasets[].assay
   getDatasets:
     description: List datasets
     tags:
@@ -42,6 +64,16 @@ tools:
     params: {}
     response:
       format: json
+      pick:
+        - "[].dataset_id"
+        - "[].title"
+        - "[].collection_id"
+        - "[].collection_name"
+        - "[].cell_count"
+        - "[].organism"
+        - "[].tissue"
+        - "[].disease"
+        - "[].assay"
 tests:
   getCollections:
     - name: lists dataset collections

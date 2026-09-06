@@ -23,6 +23,13 @@ tools:
         description: Alliance gene ID with WB prefix (e.g. WB:WBGene00006763)
     response:
       format: json
+      pick:
+        - gene.primaryExternalId
+        - gene.symbol
+        - gene.taxon.name
+        - gene.dataProvider.abbreviation
+        - gene.relatedNotes[].freeText
+        - gene.relatedNotes[].noteType.name
   searchGene:
     description: Search WormBase genes by name or keyword via autocomplete
     tags:
@@ -42,6 +49,11 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - results[].symbol
+        - results[].curie
+        - results[].name
+        - results[].category
 tests:
   getGene:
     - name: gets gene detail for unc-26 (WB:WBGene00006763)

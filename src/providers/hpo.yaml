@@ -28,6 +28,12 @@ tools:
         description: Maximum number of results
     response:
       format: json
+      pick:
+        - terms[].id
+        - terms[].name
+        - terms[].definition
+        - terms[].descendantCount
+        - terms[].synonyms
   getTerm:
     description: Get a specific HPO term by its identifier
     tags:
@@ -42,6 +48,13 @@ tools:
         description: HPO term identifier (e.g. HP:0001250, HP:0001263)
     response:
       format: json
+      pick:
+        - id
+        - name
+        - definition
+        - comment
+        - descendantCount
+        - synonyms
 tests:
   searchTerms:
     - name: searches for epilepsy phenotype terms

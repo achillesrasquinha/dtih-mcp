@@ -30,6 +30,14 @@ tools:
         type: string
         required: true
         description: Search keyword (e.g. EGFR, BRAF, insulin)
+    response:
+      format: json
+      pick:
+        - data[].id
+        - data[].approvedSymbol
+        - data[].approvedName
+        - data[].biotype
+        - data[].functionDescriptions
   getTarget:
     description: Get target details and top associated diseases
     tags:

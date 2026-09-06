@@ -31,6 +31,13 @@ tools:
         description: Search type (ortholog, paralog, etc.)
     response:
       format: json
+      pick:
+        - search.product.source
+        - search.product.version
+        - search.mapped_genes.gene.family_id
+        - search.mapped_genes.gene.sf_id
+        - search.mapped_genes.gene.annotation_type_list.annotation_data_type[].content
+        - search.mapped_genes.gene.annotation_type_list.annotation_data_type[].annotation_list
   getEnrichment:
     description: Run gene ontology enrichment analysis via PANTHER overrepresentation test
     tags:
@@ -62,6 +69,16 @@ tools:
         description: Multiple test correction method
     response:
       format: json
+      pick:
+        - results.result[].term.id
+        - results.result[].term.label
+        - results.result[].number_in_list
+        - results.result[].number_in_reference
+        - results.result[].expected
+        - results.result[].fold_enrichment
+        - results.result[].pValue
+        - results.result[].fdr
+        - results.result[].plus_minus
 tests:
   searchGenes:
     - name: searches gene info for BRCA1

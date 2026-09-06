@@ -34,6 +34,10 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - "esearchresult.count"
+        - "esearchresult.idlist"
+        - "esearchresult.querytranslation"
   getSummary:
     description: Get GEO dataset summary by GDS ID
     tags:
@@ -54,6 +58,15 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - "result.*.accession"
+        - "result.*.title"
+        - "result.*.summary"
+        - "result.*.taxon"
+        - "result.*.gdstype"
+        - "result.*.n_samples"
+        - "result.*.pdat"
+        - "result.*.pubmedids"
 tests:
   search:
     - name: searches for breast cancer RNA-seq datasets

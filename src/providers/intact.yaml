@@ -29,6 +29,17 @@ tools:
         default: 10
     response:
       format: json
+      pick:
+        - content[].ac
+        - content[].moleculeA
+        - content[].moleculeB
+        - content[].uniqueIdA
+        - content[].uniqueIdB
+        - content[].typeA
+        - content[].typeB
+        - content[].taxIdA
+        - content[].taxIdB
+        - content[].miscore
   findInteractor:
     description: Find interactor details by gene or protein name
     tags:

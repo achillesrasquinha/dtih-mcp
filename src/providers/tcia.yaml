@@ -19,6 +19,8 @@ tools:
     params: {}
     response:
       format: json
+      pick:
+        - "[].Collection"
   getPatients:
     description: Get patient study data for a specific TCIA collection
     tags:
@@ -34,6 +36,13 @@ tools:
         description: Collection name (e.g. "TCGA-LUAD", "TCGA-BRCA")
     response:
       format: json
+      pick:
+        - "[].PatientID"
+        - "[].PatientSex"
+        - "[].PatientAge"
+        - "[].Collection"
+        - "[].StudyDate"
+        - "[].SeriesCount"
 tests:
   getCollections:
     - name: lists available collections

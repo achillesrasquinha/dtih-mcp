@@ -1,0 +1,111 @@
+name: screen
+displayName: ENCODE SCREEN
+description: ENCODE SCREEN registry of candidate cis-regulatory elements (cCREs)
+tags:
+  - cis-regulatory
+  - ccre
+  - encode
+  - epigenomics
+  - regulatory-elements
+baseUrl: https://api.wenglab.org/screen
+protocol: graphql
+
+tools:
+  searchCCREs:
+    description: Search ENCODE SCREEN candidate cis-regulatory elements by genomic region or gene
+    tags:
+      - ccre-search
+      - regulatory-search
+    query: |
+      query($assembly: String!, $range: [ChromRange]!, $limit: Int) {
+        cCREQuery(assembly: $assembly, range: $range, limit: $limit) {
+          accession
+          group
+          zScores {
+            dnase
+            h3k4me3
+            h3k27ac
+            ctcf
+          }
+          range {
+            chrom
+            start
+            end
+          }
+        }
+      }
+    params:
+      assembly:
+        type: string
+        required: true
+        default: GRCh38
+        description: Genome assembly (GRCh38 or mm10)
+      range:
+        type: array
+        required: true
+        description: "Genomic range(s) as objects with chrom, start, end (e.g. [{chrom: 'chr1', start: 1000000, end: 1100000}])"
+      limit:
+        type: integer
+        default: 10
+        description: Maximum number of cCREs to return
+    response:
+      format: json
+  getCCRE:
+    description: Get detailed information about a specific candidate cis-regulatory element
+    tags:
+      - ccre-detail
+      - regulatory-detail
+    query: |
+      query($accession: String!, $assembly: String!) {
+        cCREQuery(assembly: $assembly, accession: $accession) {
+          accession
+          group
+          zScores {
+            dnase
+            h3k4me3
+            h3k27ac
+            ctcf
+          }
+          range {
+            chrom
+            start
+            end
+          }
+        }
+      }
+    params:
+      accession:
+        type: string
+        required: true
+        description: SCREEN cCRE accession (e.g. EH38E1516972)
+      assembly:
+        type: string
+        required: true
+        default: GRCh38
+        description: Genome assembly (GRCh38 or mm10)
+    response:
+      format: json
+
+tests:
+  searchCCREs:
+    - name: searches for cCREs in a genomic region
+      params:
+        assembly: GRCh38
+        range:
+          - chrom: chr1
+            start: 1000000
+            end: 1100000
+        limit: 5
+      assert:
+        - path: cCREQuery
+          minLength: 1
+      allowError: true
+  getCCRE:
+    - name: gets a specific cCRE by accession
+      params:
+        accession: EH38E1516972
+        assembly: GRCh38
+      assert:
+        - path: cCREQuery
+          minLength: 1
+      allowError: true

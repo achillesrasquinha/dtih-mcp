@@ -27,6 +27,13 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - total
+        - hits[]._id
+        - hits[]._score
+        - hits[].mondo
+        - hits[].disease_ontology
+        - hits[].hpo
   getDisease:
     description: Get disease annotation by ID
     tags:
@@ -41,6 +48,12 @@ tools:
         description: Disease ID (e.g. "MONDO:0004975" for Alzheimer disease)
     response:
       format: json
+      pick:
+        - _id
+        - mondo
+        - disease_ontology
+        - hpo
+        - umls
 tests:
   search:
     - name: searches for alzheimer disease

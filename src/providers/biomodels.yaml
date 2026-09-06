@@ -31,6 +31,14 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - matches
+        - models[].id
+        - models[].name
+        - models[].format
+        - models[].submitter
+        - models[].submissionDate
+        - models[].url
   getModel:
     description: Get a specific BioModel by its identifier
     tags:
@@ -49,6 +57,15 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - name
+        - description
+        - format.name
+        - format.version
+        - publication.title
+        - publication.journal
+        - publication.year
+        - publication.authors[].name
 tests:
   search:
     - name: searches for apoptosis models

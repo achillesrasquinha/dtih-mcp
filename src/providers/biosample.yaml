@@ -33,6 +33,11 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - esearchresult.count
+        - esearchresult.retmax
+        - esearchresult.idlist
+        - esearchresult.querytranslation
   getSummary:
     description: Get BioSample summary by BioSample ID
     tags:
@@ -53,6 +58,14 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - result.uids
+        - result.*.uid
+        - result.*.title
+        - result.*.accession
+        - result.*.organism
+        - result.*.organization
+        - result.*.identifiers
 tests:
   search:
     - name: searches for human liver biosamples

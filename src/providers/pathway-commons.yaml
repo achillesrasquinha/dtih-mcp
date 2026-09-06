@@ -30,6 +30,15 @@ tools:
         description: Filter by source e.g. 'reactome'
     response:
       format: json
+      pick:
+        - numHits
+        - searchHit[].uri
+        - searchHit[].name
+        - searchHit[].biopaxClass
+        - searchHit[].dataSource
+        - searchHit[].numParticipants
+        - searchHit[].numProcesses
+        - searchHit[].pathway
   get:
     description: Get entity details by URI
     tags:
@@ -48,6 +57,13 @@ tools:
         description: Response format
     response:
       format: json
+      pick:
+        - '@id'
+        - '@type'
+        - name
+        - dataSource
+        - displayName
+        - comment
   graph:
     description: Get interaction neighborhood graph
     tags:
@@ -70,6 +86,12 @@ tools:
         description: Output format
     response:
       format: json
+      pick:
+        - '[].PARTICIPANT_A'
+        - '[].INTERACTION_TYPE'
+        - '[].PARTICIPANT_B'
+        - '[].INTERACTION_DATA_SOURCE'
+        - '[].INTERACTION_PUBMED_ID'
 tests:
   search:
     - name: searches for BRCA1 pathways

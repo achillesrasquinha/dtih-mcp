@@ -24,6 +24,12 @@ tools:
         description: Gene name or symbol to search for
     response:
       format: json
+      pick:
+        - "[].geneId"
+        - "[].symbol"
+        - "[].name"
+        - "[].entrezId"
+        - "[].description"
   getGeneDependency:
     description: Get gene dependency scores across cell lines
     tags:
@@ -38,6 +44,12 @@ tools:
         description: Gene identifier
     response:
       format: json
+      pick:
+        - "[].cellLineName"
+        - "[].cellLineId"
+        - "[].dependencyScore"
+        - "[].geneId"
+        - "[].dataset"
 tests:
   searchGene:
     - name: searches for BRAF gene

@@ -29,6 +29,12 @@ tools:
         description: Number of results per page
     response:
       format: json
+      pick:
+        - results[].metadata.accession
+        - results[].metadata.name
+        - results[].metadata.type
+        - results[].metadata.source_database
+        - results[].metadata.go_terms
   getEntry:
     description: Get an InterPro entry by accession
     tags:
@@ -43,6 +49,14 @@ tools:
         description: InterPro accession (e.g. IPR000719)
     response:
       format: json
+      pick:
+        - metadata.accession
+        - metadata.name
+        - metadata.type
+        - metadata.source_database
+        - metadata.go_terms
+        - metadata.member_databases
+        - metadata.counters
 tests:
   search:
     - name: searches for kinase domains

@@ -29,6 +29,13 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - results[].uniParcId
+        - results[].uniProtKBAccessions
+        - results[].sequence.length
+        - results[].sequence.molWeight
+        - results[].crossReferenceCount
+        - results[].commonTaxons[].commonTaxon
   getEntry:
     description: Get UniParc entry by UPI identifier
     tags:
@@ -43,6 +50,15 @@ tools:
         description: UniParc identifier (e.g. UPI0000050F30)
     response:
       format: json
+      pick:
+        - uniParcId
+        - sequence.length
+        - sequence.molWeight
+        - oldestCrossRefCreated
+        - mostRecentCrossRefUpdated
+        - uniParcCrossReferences[].database
+        - uniParcCrossReferences[].id
+        - uniParcCrossReferences[].active
 tests:
   search:
     - name: searches for EGFR protein sequences

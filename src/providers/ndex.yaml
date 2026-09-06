@@ -31,6 +31,15 @@ tools:
         description: Number of results to return
     response:
       format: json
+      pick:
+        - numFound
+        - networks[].externalId
+        - networks[].name
+        - networks[].description
+        - networks[].owner
+        - networks[].nodeCount
+        - networks[].edgeCount
+        - networks[].visibility
   getNetwork:
     description: Get network summary by NDEx UUID
     tags:
@@ -45,6 +54,15 @@ tools:
         description: NDEx network UUID
     response:
       format: json
+      pick:
+        - externalId
+        - name
+        - description
+        - owner
+        - version
+        - nodeCount
+        - edgeCount
+        - visibility
 tests:
   search:
     - name: searches networks for EGFR signaling

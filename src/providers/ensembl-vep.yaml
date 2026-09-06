@@ -27,6 +27,15 @@ tools:
         description: HGVS notation e.g. 'ENST00000366667:c.803C>T'
     response:
       format: json
+      pick:
+        - "[].id"
+        - "[].allele_string"
+        - "[].most_severe_consequence"
+        - "[].start"
+        - "[].strand"
+        - "[].transcript_consequences[].gene_symbol"
+        - "[].transcript_consequences[].consequence_terms"
+        - "[].transcript_consequences[].impact"
   predictByRegion:
     description: Predict variant effects by genomic region
     tags:
@@ -46,6 +55,15 @@ tools:
         description: Variant allele e.g. 'C'
     response:
       format: json
+      pick:
+        - "[].id"
+        - "[].allele_string"
+        - "[].most_severe_consequence"
+        - "[].start"
+        - "[].strand"
+        - "[].transcript_consequences[].gene_symbol"
+        - "[].transcript_consequences[].consequence_terms"
+        - "[].transcript_consequences[].impact"
 tests:
   predictByHgvs:
     - name: predicts variant effects by HGVS notation

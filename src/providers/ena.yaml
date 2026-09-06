@@ -40,6 +40,10 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - "[].accession"
+        - "[].description"
+        - "[].tax_id"
   getSummary:
     description: Get summary information for an ENA accession
     tags:
@@ -54,6 +58,13 @@ tools:
         description: ENA accession (e.g. AB000100)
     response:
       format: json
+      pick:
+        - "summaries[].accession"
+        - "summaries[].description"
+        - "summaries[].moleculeType"
+        - "summaries[].sequenceLength"
+        - "summaries[].taxon"
+        - "summaries[].firstPublic"
 tests:
   search:
     - name: searches for insulin sequences

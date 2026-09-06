@@ -32,6 +32,13 @@ tools:
         description: Type of identifier (sourceID or inchikey)
     response:
       format: json
+      pick:
+        - response
+        - compounds[].standardInchiKey
+        - compounds[].sources[].compoundId
+        - compounds[].sources[].shortName
+        - compounds[].sources[].longName
+        - compounds[].inchi.formula
   getConnectivity:
     description: Find all compounds connected to a given compound across databases
     tags:
@@ -56,6 +63,15 @@ tools:
         description: Type of identifier (sourceID or inchikey)
     response:
       format: json
+      pick:
+        - response
+        - totalCompounds
+        - totalSources
+        - searchedCompound.standardInchiKey
+        - sources[].compoundId
+        - sources[].shortName
+        - sources[].longName
+        - sources[].typeOfSearch
 tests:
   getConnectivity:
     - name: finds connectivity for CHEMBL25 (aspirin)
