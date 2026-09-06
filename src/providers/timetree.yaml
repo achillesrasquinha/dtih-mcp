@@ -1,0 +1,36 @@
+name: timetree
+displayName: TimeTree
+description: TimeTree — divergence time estimates between species pairs
+tags: [evolution, divergence, phylogenetics, timetree, species]
+baseUrl: https://timetree.org/api
+
+tools:
+  getPairwiseTime:
+    description: Get estimated divergence time between two species
+    tags: [divergence-time, species-pair]
+    method: GET
+    path: /pairwise/{taxonA}/{taxonB}
+    params:
+      taxonA:
+        type: string
+        required: true
+        description: "First taxon name e.g. 'Homo sapiens'"
+      taxonB:
+        type: string
+        required: true
+        description: "Second taxon name e.g. 'Mus musculus'"
+    response:
+      format: json
+
+  getTimeline:
+    description: Get evolutionary timeline for a taxon
+    tags: [timeline, evolution-history]
+    method: GET
+    path: /timeline/{taxon}
+    params:
+      taxon:
+        type: string
+        required: true
+        description: "Taxon name e.g. 'Homo sapiens'"
+    response:
+      format: json

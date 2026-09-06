@@ -1,0 +1,45 @@
+name: sgd
+displayName: SGD
+description: Saccharomyces Genome Database — yeast genomics
+tags: [yeast, saccharomyces, model-organism, sgd, genomics]
+baseUrl: https://www.yeastgenome.org/backend
+
+tools:
+  getLocusDetails:
+    description: Get locus details by gene name or SGD ID
+    tags: [locus-info, yeast-gene]
+    method: GET
+    path: /locus/{sgdId}
+    params:
+      sgdId:
+        type: string
+        required: true
+        description: "SGD gene name or systematic name e.g. 'CDC28' or 'S000000364'"
+    response:
+      format: json
+
+  getLocusGOTerms:
+    description: Get GO annotations for a yeast gene
+    tags: [go-annotation, gene-ontology]
+    method: GET
+    path: /locus/{sgdId}/go_details
+    params:
+      sgdId:
+        type: string
+        required: true
+        description: SGD gene name or systematic name
+    response:
+      format: json
+
+  getLocusPhenotypes:
+    description: Get phenotype annotations for a yeast gene
+    tags: [phenotype, yeast-phenotype]
+    method: GET
+    path: /locus/{sgdId}/phenotype_details
+    params:
+      sgdId:
+        type: string
+        required: true
+        description: SGD gene name or systematic name
+    response:
+      format: json

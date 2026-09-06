@@ -1,0 +1,36 @@
+name: eggnog
+displayName: EggNOG
+description: Orthologous groups and functional annotation from EggNOG
+tags: [ortholog, annotation, eggnog, evolution, functional]
+baseUrl: http://eggnog5.embl.de
+
+tools:
+  searchOG:
+    description: Search orthologous groups
+    tags: [ortholog-search, functional-annotation]
+    method: GET
+    path: /search
+    params:
+      q:
+        type: string
+        required: true
+        description: "Search query e.g. 'kinase'"
+      limit:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+
+  getMembers:
+    description: Get members of an orthologous group
+    tags: [ortholog-members, group-members]
+    method: GET
+    path: /og/{ogId}/members
+    params:
+      ogId:
+        type: string
+        required: true
+        description: "Orthologous group ID e.g. 'COG0515'"
+    response:
+      format: json

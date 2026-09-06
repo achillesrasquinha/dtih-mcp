@@ -1,0 +1,32 @@
+name: comptox
+displayName: CompTox
+description: EPA CompTox Chemicals Dashboard for toxicology and chemical safety
+tags: [toxicology, chemical, epa, safety, environmental, comptox]
+baseUrl: https://comptox.epa.gov/dashboard-api
+
+tools:
+  searchChemical:
+    description: Search chemicals by name prefix in CompTox
+    tags: [chemical-search, comptox-search]
+    method: GET
+    path: /ccdapp1/search/chemical/start-with/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Chemical name prefix to search (e.g. "bisphenol", "atrazine")
+    response:
+      format: json
+
+  searchContain:
+    description: Search chemicals by name substring in CompTox
+    tags: [chemical-search, comptox-contain]
+    method: GET
+    path: /ccdapp1/search/chemical/contain/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Chemical name substring to search (e.g. "bisphenol", "phthalate")
+    response:
+      format: json

@@ -1,0 +1,23 @@
+name: mobidb
+displayName: MobiDB
+description: Protein disorder and mobility annotations
+tags: [disorder, protein, mobility, annotation, mobidb]
+baseUrl: https://mobidb.org/api
+
+tools:
+  getEntry:
+    description: Get disorder annotations for a protein by UniProt accession
+    tags: [disorder-annotation, protein-mobility]
+    method: GET
+    path: /download
+    params:
+      acc:
+        type: string
+        required: true
+        description: "UniProt accession e.g. 'P04637'"
+      format:
+        type: string
+        default: json
+    response:
+      format: json
+

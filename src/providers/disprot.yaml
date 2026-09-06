@@ -1,0 +1,38 @@
+name: disprot
+displayName: DisProt
+description: Database of intrinsically disordered proteins and regions
+tags: [disorder, protein, intrinsically-disordered, disprot, structure]
+baseUrl: https://disprot.org/api
+
+tools:
+  search:
+    description: Search DisProt for disordered proteins
+    tags: [disorder-search, disordered-protein]
+    method: GET
+    path: /search
+    params:
+      q:
+        type: string
+        required: true
+        description: "Search query e.g. 'p53'"
+      page:
+        type: integer
+        default: 0
+      size:
+        type: integer
+        default: 10
+    response:
+      format: json
+
+  getEntry:
+    description: Get a disordered protein entry by DisProt ID
+    tags: [disorder-entry, disordered-protein]
+    method: GET
+    path: /{disprotId}
+    params:
+      disprotId:
+        type: string
+        required: true
+        description: "DisProt ID e.g. 'DP00086'"
+    response:
+      format: json

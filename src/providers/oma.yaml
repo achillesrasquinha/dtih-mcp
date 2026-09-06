@@ -1,0 +1,45 @@
+name: oma
+displayName: OMA
+description: Orthologous Matrix — comprehensive ortholog database
+tags: [ortholog, evolution, comparative-genomics, oma, homolog]
+baseUrl: https://omabrowser.org/api
+
+tools:
+  getProtein:
+    description: Get protein info with orthologs
+    tags: [protein, ortholog-lookup]
+    method: GET
+    path: /protein/{proteinId}/
+    params:
+      proteinId:
+        type: string
+        required: true
+        description: "Protein ID e.g. UniProt accession 'P04637' or OMA ID"
+    response:
+      format: json
+
+  getOrthologs:
+    description: Get orthologs for a protein
+    tags: [ortholog-list, comparative]
+    method: GET
+    path: /protein/{proteinId}/orthologs/
+    params:
+      proteinId:
+        type: string
+        required: true
+        description: Protein ID
+    response:
+      format: json
+
+  getHOG:
+    description: Get hierarchical orthologous group details
+    tags: [hog, ortholog-group]
+    method: GET
+    path: /hog/{hogId}/
+    params:
+      hogId:
+        type: string
+        required: true
+        description: Hierarchical orthologous group ID
+    response:
+      format: json

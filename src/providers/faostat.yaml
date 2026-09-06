@@ -1,0 +1,37 @@
+name: faostat
+displayName: FAOSTAT
+description: FAO Statistics — food and agriculture data from the UN FAO
+tags: [agriculture, food, statistics, fao, crop, livestock]
+baseUrl: https://fenixservices.fao.org/faostat/api/v1/en
+
+tools:
+  getDomains:
+    description: List available data domains
+    tags: [domain-list, data-catalog]
+    method: GET
+    path: /domains
+    params: {}
+    response:
+      format: json
+
+  getData:
+    description: Get statistical data for a domain
+    tags: [statistical-data, agriculture-data]
+    method: GET
+    path: /data/{domainCode}
+    params:
+      domainCode:
+        type: string
+        required: true
+        description: "Domain code e.g. 'QCL' for crop production"
+      area:
+        type: string
+        description: "Country code e.g. '231' for USA"
+      item:
+        type: string
+        description: "Item code e.g. '15' for wheat"
+      year:
+        type: string
+        description: "Year e.g. '2020'"
+    response:
+      format: json

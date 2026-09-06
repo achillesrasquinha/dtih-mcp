@@ -1,0 +1,45 @@
+name: rxnorm
+displayName: RxNorm
+description: NLM drug terminology for normalized drug names and interactions
+tags: [drug, terminology, rxnorm, medication, prescription, nlm]
+baseUrl: https://rxnav.nlm.nih.gov/REST
+
+tools:
+  search:
+    description: Search drugs by name in RxNorm
+    tags: [drug-search, rxnorm-search]
+    method: GET
+    path: /drugs.json
+    params:
+      name:
+        type: string
+        required: true
+        description: Drug name to search for (e.g. "metformin", "aspirin")
+    response:
+      format: json
+
+  getProperties:
+    description: Get drug concept properties by RxCUI
+    tags: [drug-properties, rxcui]
+    method: GET
+    path: /rxcui/{rxcui}/properties.json
+    params:
+      rxcui:
+        type: string
+        required: true
+        description: RxNorm concept unique identifier (e.g. "861004")
+    response:
+      format: json
+
+  getAllRelated:
+    description: Get all related drug concepts (brand names, ingredients, dose forms) by RxCUI
+    tags: [drug-related, rxcui, concepts]
+    method: GET
+    path: /rxcui/{rxcui}/allrelated.json
+    params:
+      rxcui:
+        type: string
+        required: true
+        description: RxNorm concept unique identifier (e.g. "6809" for metformin)
+    response:
+      format: json

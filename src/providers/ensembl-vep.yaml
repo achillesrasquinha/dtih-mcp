@@ -1,0 +1,38 @@
+name: ensembl-vep
+displayName: Ensembl VEP
+description: Variant Effect Predictor — predict functional effects of genetic variants
+tags: [variant, annotation, vep, ensembl, effect-prediction, snp]
+baseUrl: https://rest.ensembl.org
+headers:
+  Content-Type: application/json
+
+tools:
+  predictByHgvs:
+    description: Predict variant effects by HGVS notation
+    tags: [variant-effect, hgvs, prediction]
+    method: GET
+    path: /vep/human/hgvs/{hgvs}?content-type=application/json
+    params:
+      hgvs:
+        type: string
+        required: true
+        description: "HGVS notation e.g. 'ENST00000366667:c.803C>T'"
+    response:
+      format: json
+
+  predictByRegion:
+    description: Predict variant effects by genomic region
+    tags: [variant-effect, region, prediction]
+    method: GET
+    path: /vep/human/region/{region}/{allele}?content-type=application/json
+    params:
+      region:
+        type: string
+        required: true
+        description: "Genomic region e.g. '9:22125503-22125502:1'"
+      allele:
+        type: string
+        required: true
+        description: "Variant allele e.g. 'C'"
+    response:
+      format: json

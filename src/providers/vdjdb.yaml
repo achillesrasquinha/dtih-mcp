@@ -1,0 +1,32 @@
+name: vdjdb
+displayName: VDJdb
+description: VDJdb — curated database of T-cell receptor sequences and specificities
+tags: [tcr, immunology, t-cell, receptor, vdjdb, adaptive-immunity]
+baseUrl: https://vdjdb.cdr3.net/api
+
+tools:
+  search:
+    description: Search TCR sequences by CDR3
+    tags: [tcr-search, cdr3-search]
+    method: POST
+    path: /search
+    params:
+      cdr3:
+        type: string
+        required: true
+        description: "CDR3 sequence e.g. 'CASSLAPGATNEKLFF'"
+      species:
+        type: string
+        default: "HomoSapiens"
+        description: "Species: HomoSapiens or MusMusculus"
+    response:
+      format: json
+
+  getSummary:
+    description: Get database summary statistics
+    tags: [database-summary, statistics]
+    method: GET
+    path: /summary
+    params: {}
+    response:
+      format: json

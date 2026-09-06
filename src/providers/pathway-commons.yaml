@@ -1,0 +1,64 @@
+name: pathway-commons
+displayName: Pathway Commons
+description: Integrated biological pathway and interaction data from multiple sources
+tags: [pathway, interaction, signaling, metabolism, pathway-commons]
+baseUrl: https://www.pathwaycommons.org/pc2
+
+tools:
+  search:
+    description: Search pathways and interactions
+    tags: [pathway-search, interaction-search]
+    method: GET
+    path: /search
+    params:
+      q:
+        type: string
+        required: true
+        description: "Search query e.g. 'BRCA1'"
+      type:
+        type: string
+        default: Pathway
+        description: "BioPAX type filter"
+      datasource:
+        type: string
+        description: "Filter by source e.g. 'reactome'"
+    response:
+      format: json
+
+  get:
+    description: Get entity details by URI
+    tags: [entity-detail, biopax]
+    method: GET
+    path: /get
+    params:
+      uri:
+        type: string
+        required: true
+        description: BioPAX URI of the entity
+      format:
+        type: string
+        default: json
+        description: Response format
+    response:
+      format: json
+
+  graph:
+    description: Get interaction neighborhood graph
+    tags: [graph-query, neighborhood]
+    method: GET
+    path: /graph
+    params:
+      source:
+        type: string
+        required: true
+        description: Gene symbol or URI
+      kind:
+        type: string
+        default: neighborhood
+        description: Graph query type
+      format:
+        type: string
+        default: EXTENDED_BINARY_SIF
+        description: Output format
+    response:
+      format: json

@@ -1,0 +1,32 @@
+name: depmap
+displayName: DepMap
+description: Cancer Dependency Map — cell line genomic and dependency data
+tags: [cancer, cell-line, dependency, depmap, ccle, genomics]
+baseUrl: https://depmap.org/portal/api
+
+tools:
+  searchGene:
+    description: Search genes in DepMap
+    tags: [gene-search, cancer-dependency]
+    method: GET
+    path: /v1/gene/search
+    params:
+      query:
+        type: string
+        required: true
+        description: Gene name or symbol to search for
+    response:
+      format: json
+
+  getGeneDependency:
+    description: Get gene dependency scores across cell lines
+    tags: [dependency-score, cell-line]
+    method: GET
+    path: /v1/gene/{geneId}/dependency
+    params:
+      geneId:
+        type: string
+        required: true
+        description: Gene identifier
+    response:
+      format: json

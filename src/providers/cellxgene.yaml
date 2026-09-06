@@ -1,0 +1,37 @@
+name: cellxgene
+displayName: CELLxGENE
+description: CZ CELLxGENE Discover — single-cell datasets and gene expression
+tags: [single-cell, rna-seq, gene-expression, cellxgene, cziscience]
+baseUrl: https://api.cellxgene.cziscience.com
+
+tools:
+  getCollections:
+    description: List dataset collections
+    tags: [collections, datasets]
+    method: GET
+    path: /curation/v1/collections
+    params: {}
+    response:
+      format: json
+
+  getCollection:
+    description: Get collection details by ID
+    tags: [collection-detail]
+    method: GET
+    path: /curation/v1/collections/{collectionId}
+    params:
+      collectionId:
+        type: string
+        required: true
+        description: Collection identifier
+    response:
+      format: json
+
+  getDatasets:
+    description: List datasets
+    tags: [datasets, single-cell]
+    method: GET
+    path: /curation/v1/datasets
+    params: {}
+    response:
+      format: json
