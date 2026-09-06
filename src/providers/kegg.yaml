@@ -5,7 +5,7 @@ tags: [pathway, gene, compound, metabolism, kegg]
 baseUrl: https://rest.kegg.jp
 
 tools:
-  search:
+  searchGenes:
     description: Search KEGG for genes matching a keyword
     tags: [gene-search, kegg-search]
     method: GET
@@ -14,12 +14,51 @@ tools:
       query:
         type: string
         required: true
-        description: Search term (e.g. "insulin human", "p53")
+        description: Search term (e.g. "insulin human", "CYP3A4")
+    response:
+      format: text
+
+  searchDrugs:
+    description: Search KEGG for drugs by name
+    tags: [drug-search, kegg-drug]
+    method: GET
+    path: /find/drug/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Drug name (e.g. "metformin", "atorvastatin")
+    response:
+      format: text
+
+  searchCompounds:
+    description: Search KEGG for chemical compounds by name
+    tags: [compound-search, kegg-compound]
+    method: GET
+    path: /find/compound/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Compound name (e.g. "amlodipine", "glucose")
+    response:
+      format: text
+
+  searchPathways:
+    description: Search KEGG for pathways by keyword
+    tags: [pathway-search, kegg-pathway]
+    method: GET
+    path: /find/pathway/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Pathway keyword (e.g. "drug metabolism cytochrome", "glycolysis")
     response:
       format: text
 
   getEntry:
-    description: Get a KEGG database entry by ID
+    description: Get a KEGG database entry by ID (gene, drug, compound, pathway, enzyme)
     tags: [entry-info, kegg-entry]
     method: GET
     path: /get/{entryId}
@@ -27,6 +66,23 @@ tools:
       entryId:
         type: string
         required: true
-        description: KEGG entry ID (e.g. "hsa:3630" for human insulin)
+        description: KEGG entry ID (e.g. "hsa:3630", "dr:D00944", "cpd:C07151", "map00982", "ec:1.14.14.1")
+    response:
+      format: text
+
+  getLinked:
+    description: Find cross-references between KEGG databases (e.g. drug→enzyme, compound→pathway)
+    tags: [cross-reference, kegg-link]
+    method: GET
+    path: /link/{targetDb}/{sourceId}
+    params:
+      targetDb:
+        type: string
+        required: true
+        description: Target database (e.g. "enzyme", "pathway", "compound", "drug", "genes")
+      sourceId:
+        type: string
+        required: true
+        description: Source entry ID (e.g. "dr:D00944", "cpd:C07151", "hsa:1576")
     response:
       format: text
