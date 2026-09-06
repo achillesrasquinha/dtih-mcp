@@ -1,6 +1,6 @@
 # life-science-mcp
 
-A unified MCP server for 127 life science APIs and databases.
+A unified MCP server for 133 life science APIs and databases.
 
 ## Installation
 
@@ -15,7 +15,7 @@ A unified MCP server for 127 life science APIs and databases.
 }
 ```
 
-## Providers (127)
+## Providers (133)
 
 | Provider | Description |
 |----------|-------------|
@@ -39,6 +39,7 @@ A unified MCP server for 127 life science APIs and databases.
 | [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar) | Genetic variants linked to clinical significance |
 | [CompTox](https://comptox.epa.gov) | EPA chemical toxicology and safety dashboard |
 | [DailyMed](https://dailymed.nlm.nih.gov) | FDA drug labeling and packaging information |
+| [DDBJ](https://ddbj.nig.ac.jp) | DNA Data Bank of Japan nucleotide sequence archive |
 | [dbSNP](https://www.ncbi.nlm.nih.gov/snp) | Single nucleotide polymorphisms and genetic variation |
 | [DepMap](https://depmap.org) | Cancer Dependency Map cell line data |
 | [DGIdb](https://dgidb.org) | Drug-gene interaction data |
@@ -83,6 +84,7 @@ A unified MCP server for 127 life science APIs and databases.
 | [LIPID MAPS](https://www.lipidmaps.org) | Lipid classification and structures |
 | [MassBank](https://massbank.eu) | Mass spectra for metabolite identification |
 | [MeSH](https://meshb.nlm.nih.gov) | Medical Subject Headings vocabulary |
+| [MSigDB](https://www.gsea-msigdb.org) | Molecular Signatures Database — curated gene sets for enrichment |
 | [MetaboLights](https://www.ebi.ac.uk/metabolights) | Metabolomics experiments and derived information |
 | [Metabolomics Workbench](https://www.metabolomicsworkbench.org) | Metabolomics data repository and tools |
 | [MGnify](https://www.ebi.ac.uk/metagenomics) | EBI metagenomics analysis and archiving |
@@ -94,15 +96,18 @@ A unified MCP server for 127 life science APIs and databases.
 | [MyVariant.info](https://myvariant.info) | Aggregated genetic variant annotations |
 | [Natural Products Atlas](https://www.npatlas.org) | Microbially-derived natural products |
 | [NCBI BioSample](https://www.ncbi.nlm.nih.gov/biosample) | Biological sample metadata for experimental assays |
+| [NCBI Datasets](https://www.ncbi.nlm.nih.gov/datasets) | Modern REST API for genes, genomes, and taxonomy |
 | [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene) | Gene-specific information from Entrez |
 | [NCBI Nucleotide](https://www.ncbi.nlm.nih.gov/nucleotide) | GenBank and RefSeq sequences |
 | [NCBI Protein](https://www.ncbi.nlm.nih.gov/protein) | Protein sequences from RefSeq, UniProt, PDB |
+| [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) | Sequence Read Archive — raw sequencing data discovery |
 | [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy) | Taxonomic classification and nomenclature |
 | [NCI Chemical Identifier Resolver](https://cactus.nci.nih.gov) | Chemical name/structure resolution and conversion |
 | [NDEx](https://www.ndexbio.org) | Biological network models exchange |
 | [OBIS](https://obis.org) | Ocean Biodiversity Information System |
 | [OLS](https://www.ebi.ac.uk/ols4) | Ontology Lookup Service for biomedical ontologies |
 | [OMA](https://omabrowser.org) | Orthologous Matrix comprehensive ortholog database |
+| [OpenAlex](https://openalex.org) | Open catalog of scholarly works, authors, and citations |
 | [OmniPath](https://omnipathdb.org) | Signaling pathway and molecular interaction network |
 | [OpenCitations](https://opencitations.net) | Open citation index and bibliometrics |
 | [openFDA](https://open.fda.gov) | FDA data on drugs, devices, and adverse events |
@@ -121,6 +126,7 @@ A unified MCP server for 127 life science APIs and databases.
 | [QuickGO](https://www.ebi.ac.uk/QuickGO) | Gene Ontology browser |
 | [RCSB PDB](https://www.rcsb.org) | 3D structural data for biological macromolecules |
 | [Reactome](https://reactome.org) | Curated biological pathway database |
+| [RegulomeDB](https://regulomedb.org) | Regulatory variant annotation and scoring |
 | [Rfam](https://rfam.org) | Non-coding RNA families and structured RNA elements |
 | [Rhea](https://www.rhea-db.org) | Expert-curated biochemical reactions |
 | [RNAcentral](https://rnacentral.org) | Non-coding RNA sequence database |

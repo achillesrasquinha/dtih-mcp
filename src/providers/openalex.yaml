@@ -1,0 +1,54 @@
+name: openalex
+displayName: OpenAlex
+description: OpenAlex — open catalog of scholarly works, authors, institutions, and concepts
+tags: [literature, scholarly, citations, openalex, publications, open-access]
+baseUrl: https://api.openalex.org
+
+tools:
+  searchWorks:
+    description: Search scholarly works by keyword
+    tags: [work-search, publication-search]
+    method: GET
+    path: /works
+    params:
+      search:
+        type: string
+        required: true
+        description: Search query e.g. 'CRISPR gene editing'
+      per_page:
+        type: integer
+        default: 10
+      filter:
+        type: string
+        description: Filter e.g. 'publication_year:2024'
+    response:
+      format: json
+
+  getWork:
+    description: Get a specific scholarly work by OpenAlex ID
+    tags: [work-info, publication-detail]
+    method: GET
+    path: /works/{id}
+    params:
+      id:
+        type: string
+        required: true
+        description: OpenAlex work ID e.g. 'W2741809807'
+    response:
+      format: json
+
+  searchAuthors:
+    description: Search authors by name
+    tags: [author-search, researcher-search]
+    method: GET
+    path: /authors
+    params:
+      search:
+        type: string
+        required: true
+        description: Author name e.g. 'Jennifer Doudna'
+      per_page:
+        type: integer
+        default: 5
+    response:
+      format: json

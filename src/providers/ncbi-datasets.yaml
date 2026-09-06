@@ -1,0 +1,50 @@
+name: ncbi-datasets
+displayName: NCBI Datasets
+description: NCBI Datasets API v2 — modern REST interface for genes, genomes, and taxonomy
+tags: [ncbi, gene, genome, assembly, taxonomy, datasets]
+baseUrl: https://api.ncbi.nlm.nih.gov/datasets/v2
+
+tools:
+  getGeneBySymbol:
+    description: Get gene info by symbol and taxon
+    tags: [gene-info, gene-symbol]
+    method: GET
+    path: /gene/symbol/{symbol}/taxon/{taxon}
+    params:
+      symbol:
+        type: string
+        required: true
+        description: Gene symbol e.g. 'TP53'
+      taxon:
+        type: string
+        required: true
+        default: human
+        description: Taxon name or ID e.g. 'human', '9606'
+    response:
+      format: json
+
+  getGenomeByAccession:
+    description: Get genome assembly report by accession
+    tags: [genome-info, assembly-report]
+    method: GET
+    path: /genome/accession/{accession}/dataset_report
+    params:
+      accession:
+        type: string
+        required: true
+        description: Assembly accession e.g. 'GCF_000001405.40'
+    response:
+      format: json
+
+  searchTaxonomy:
+    description: Get taxonomy info by taxon name or ID
+    tags: [taxonomy-info, taxonomy-search]
+    method: GET
+    path: /taxonomy/taxon/{taxon}
+    params:
+      taxon:
+        type: string
+        required: true
+        description: Taxon name or NCBI tax ID e.g. 'Homo sapiens', '9606'
+    response:
+      format: json
