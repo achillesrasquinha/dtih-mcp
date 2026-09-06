@@ -1,0 +1,97 @@
+name: omim
+displayName: OMIM
+description: Online Mendelian Inheritance in Man — catalog of human genes and genetic disorders
+tags: [mendelian-disease, genetics, gene-phenotype, clinical-genetics, omim]
+baseUrl: https://api.omim.org/api
+
+auth:
+  type: apiKey
+  param: apiKey
+  env: LS_OMIM_API_KEY
+
+tools:
+  search:
+    description: Search OMIM entries by keyword (genes, diseases, phenotypes)
+    tags: [gene-search, disease-search, phenotype-search]
+    method: GET
+    path: /entry/search
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: search
+        description: Search query (e.g. "BRCA1", "Marfan syndrome", "cardiomyopathy")
+      limit:
+        type: integer
+        default: 10
+        description: Number of results
+      start:
+        type: integer
+        default: 0
+        description: Result offset for pagination
+      include:
+        type: string
+        default: geneMap
+        description: Data to include (geneMap, text, clinicalSynopsis)
+      format:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getEntry:
+    description: Get an OMIM entry by MIM number
+    tags: [gene-info, disease-info, entry-details]
+    method: GET
+    path: /entry
+    params:
+      mimNumber:
+        type: string
+        required: true
+        description: OMIM MIM number (e.g. 147920, 176000)
+      include:
+        type: string
+        default: geneMap,clinicalSynopsis
+        description: Data to include (geneMap, text, clinicalSynopsis, externalLinks)
+      format:
+        type: string
+        default: json
+    response:
+      format: json
+
+  getClinicalSynopsis:
+    description: Get clinical synopsis for an OMIM phenotype entry
+    tags: [clinical-features, phenotype-details]
+    method: GET
+    path: /clinicalSynopsis
+    params:
+      mimNumber:
+        type: string
+        required: true
+        description: OMIM MIM number for a phenotype entry
+      include:
+        type: string
+        default: clinicalSynopsis
+      format:
+        type: string
+        default: json
+    response:
+      format: json
+
+tests:
+  search:
+    - name: searches for Marfan syndrome
+      params:
+        query: Marfan syndrome
+      assert:
+        - path: omim.searchResponse.totalResults
+          gt: 0
+      allowError: true
+  getEntry:
+    - name: gets BRCA1 entry
+      params:
+        mimNumber: "113705"
+      assert:
+        - path: omim.entryList
+          minLength: 1
+      allowError: true

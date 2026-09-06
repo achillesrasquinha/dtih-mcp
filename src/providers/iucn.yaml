@@ -1,0 +1,94 @@
+name: iucn
+displayName: IUCN Red List
+description: IUCN Red List of Threatened Species — conservation status for 150,000+ species
+tags: [conservation, endangered-species, biodiversity, ecology, iucn, red-list]
+baseUrl: https://apiv3.iucnredlist.org/api/v3
+
+auth:
+  type: apiKey
+  param: token
+  env: LS_IUCN_API_KEY
+
+tools:
+  searchSpecies:
+    description: Search species by name on the IUCN Red List
+    tags: [species-search, conservation-search]
+    method: GET
+    path: /species/search/{query}
+    params:
+      query:
+        type: string
+        required: true
+        description: Species common or scientific name (e.g. "tiger", "Panthera tigris")
+    response:
+      format: json
+
+  getSpecies:
+    description: Get conservation details for a species by name
+    tags: [species-info, conservation-status]
+    method: GET
+    path: /species/{name}
+    params:
+      name:
+        type: string
+        required: true
+        description: Scientific name (e.g. Panthera tigris, Gorilla gorilla)
+    response:
+      format: json
+
+  getThreats:
+    description: Get threats facing a species
+    tags: [threat-assessment, conservation-threats]
+    method: GET
+    path: /threats/species/name/{name}
+    params:
+      name:
+        type: string
+        required: true
+        description: Scientific name (e.g. Panthera tigris)
+    response:
+      format: json
+
+  getConservationActions:
+    description: Get conservation measures for a species
+    tags: [conservation-actions, protection-measures]
+    method: GET
+    path: /measures/species/name/{name}
+    params:
+      name:
+        type: string
+        required: true
+        description: Scientific name (e.g. Panthera tigris)
+    response:
+      format: json
+
+  getCountryOccurrences:
+    description: Get countries where a species occurs
+    tags: [species-distribution, country-occurrence]
+    method: GET
+    path: /species/countries/name/{name}
+    params:
+      name:
+        type: string
+        required: true
+        description: Scientific name
+    response:
+      format: json
+
+tests:
+  searchSpecies:
+    - name: searches for tiger
+      params:
+        query: tiger
+      assert:
+        - path: result
+          minLength: 1
+      allowError: true
+  getSpecies:
+    - name: gets Panthera tigris conservation status
+      params:
+        name: Panthera tigris
+      assert:
+        - path: result
+          minLength: 1
+      allowError: true

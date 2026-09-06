@@ -8,6 +8,12 @@ tags:
   - semanticscholar
   - papers
 baseUrl: https://api.semanticscholar.org/graph/v1
+
+auth:
+  type: header
+  header: x-api-key
+  env: LS_SEMANTIC_SCHOLAR_API_KEY
+
 rateLimit:
   requestsPerSecond: 1
 tools:

@@ -1,6 +1,6 @@
 # life-science-mcp
 
-A unified MCP server for 133 life science APIs and databases.
+A unified MCP server for 138 life science APIs and databases.
 
 ## Installation
 
@@ -15,7 +15,7 @@ A unified MCP server for 133 life science APIs and databases.
 }
 ```
 
-## Providers (133)
+## Providers (138)
 
 | Provider | Description |
 |----------|-------------|
@@ -24,6 +24,7 @@ A unified MCP server for 133 life science APIs and databases.
 | [BERN2](http://bern2.korea.ac.kr) | Biomedical named entity recognition and normalization |
 | [Bgee](https://bgee.org) | Gene expression evolution across species and tissues |
 | [BiGG Models](http://bigg.ucsd.edu) | Metabolic network reconstructions and flux balance models |
+| [BioPortal](https://bioportal.bioontology.org) | NCBO 900+ biomedical ontologies search and text annotation 🔑 |
 | [BioModels](https://biomodels.org) | Mathematical models of biological systems (SBML) |
 | [bioRxiv](https://www.biorxiv.org) | Preprint server for biology |
 | [BioSamples](https://www.ebi.ac.uk/biosamples) | EBI biological sample metadata and attributes |
@@ -41,6 +42,7 @@ A unified MCP server for 133 life science APIs and databases.
 | [DailyMed](https://dailymed.nlm.nih.gov) | FDA drug labeling and packaging information |
 | [DDBJ](https://ddbj.nig.ac.jp) | DNA Data Bank of Japan nucleotide sequence archive |
 | [dbSNP](https://www.ncbi.nlm.nih.gov/snp) | Single nucleotide polymorphisms and genetic variation |
+| [eBird](https://ebird.org) | Cornell Lab bird observations, hotspots, and taxonomy 🔑 |
 | [DepMap](https://depmap.org) | Cancer Dependency Map cell line data |
 | [DGIdb](https://dgidb.org) | Drug-gene interaction data |
 | [DisGeNET](https://www.disgenet.com) | Gene-disease associations |
@@ -79,6 +81,7 @@ A unified MCP server for 133 life science APIs and databases.
 | [iNaturalist](https://www.inaturalist.org) | Citizen science biodiversity observations |
 | [IntAct](https://www.ebi.ac.uk/intact) | Curated protein-protein interactions |
 | [InterPro](https://www.ebi.ac.uk/interpro) | Protein families, domains, and functional sites |
+| [IUCN Red List](https://www.iucnredlist.org) | Conservation status for 150,000+ threatened species 🔑 |
 | [JASPAR](https://jaspar.elixir.no) | Transcription factor binding profiles |
 | [KEGG](https://www.kegg.jp) | Pathway and molecular interaction database |
 | [LIPID MAPS](https://www.lipidmaps.org) | Lipid classification and structures |
@@ -107,6 +110,7 @@ A unified MCP server for 133 life science APIs and databases.
 | [OBIS](https://obis.org) | Ocean Biodiversity Information System |
 | [OLS](https://www.ebi.ac.uk/ols4) | Ontology Lookup Service for biomedical ontologies |
 | [OMA](https://omabrowser.org) | Orthologous Matrix comprehensive ortholog database |
+| [OMIM](https://www.omim.org) | Online Mendelian Inheritance in Man — genetic disorders catalog 🔑 |
 | [OpenAlex](https://openalex.org) | Open catalog of scholarly works, authors, and citations |
 | [OmniPath](https://omnipathdb.org) | Signaling pathway and molecular interaction network |
 | [OpenCitations](https://opencitations.net) | Open citation index and bibliometrics |
@@ -144,6 +148,7 @@ A unified MCP server for 133 life science APIs and databases.
 | [UniChem](https://www.ebi.ac.uk/unichem) | Chemical structure cross-referencing |
 | [UniParc](https://www.uniprot.org/uniparc) | Non-redundant protein sequence archive |
 | [UniProt](https://www.uniprot.org) | Protein sequence and functional information |
+| [UMLS](https://www.nlm.nih.gov/research/umls) | Unified Medical Language System — biomedical terminology crosswalk 🔑 |
 | [UniRef](https://www.uniprot.org/uniref) | Clustered protein sequence sets |
 | [VDJdb](https://vdjdb.cdr3.net) | T-cell receptor sequences and specificities |
 | [WHO GHO](https://www.who.int/data/gho) | World Health Organization Global Health Observatory |

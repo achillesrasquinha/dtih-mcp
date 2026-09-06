@@ -1,0 +1,92 @@
+name: bioportal
+displayName: BioPortal
+description: NCBO BioPortal — search 900+ biomedical ontologies and annotate text with ontology concepts
+tags: [ontology, biomedical, annotation, entity-linking, bioportal, ncbo]
+baseUrl: https://data.bioontology.org
+
+auth:
+  type: apiKey
+  param: apikey
+  env: LS_BIOPORTAL_API_KEY
+
+tools:
+  search:
+    description: Search across all biomedical ontologies for terms and concepts
+    tags: [ontology-search, term-search, concept-lookup]
+    method: GET
+    path: /search
+    params:
+      query:
+        type: string
+        required: true
+        mapsTo: q
+        description: Search query (e.g. "melanoma", "diabetes mellitus", "apoptosis")
+      ontologies:
+        type: string
+        description: Comma-separated ontology acronyms to filter (e.g. NCIT,SNOMEDCT)
+      pagesize:
+        type: integer
+        default: 10
+        description: Number of results per page
+      page:
+        type: integer
+        default: 1
+        description: Page number
+    response:
+      format: json
+
+  annotate:
+    description: Annotate free text with matching biomedical ontology concepts
+    tags: [text-annotation, entity-recognition, ner]
+    method: GET
+    path: /annotator
+    params:
+      text:
+        type: string
+        required: true
+        description: Text to annotate (e.g. "Melanoma is a malignant tumor of melanocytes")
+      ontologies:
+        type: string
+        description: Comma-separated ontology acronyms to limit annotations
+      longest_only:
+        type: boolean
+        default: true
+        description: Return only the longest matches
+    response:
+      format: json
+
+  getClass:
+    description: Get details of a specific ontology class/concept
+    tags: [ontology-lookup, concept-details]
+    method: GET
+    path: /ontologies/{ontology}/classes/{classId}
+    params:
+      ontology:
+        type: string
+        required: true
+        description: Ontology acronym (e.g. SNOMEDCT, NCIT, GO)
+      classId:
+        type: string
+        required: true
+        description: Class URI (e.g. http://purl.bioontology.org/ontology/SNOMEDCT/73211009)
+    response:
+      format: json
+
+tests:
+  search:
+    - name: searches for melanoma across ontologies
+      params:
+        query: melanoma
+        pagesize: 5
+      assert:
+        - path: collection
+          minLength: 1
+        - path: collection.0.prefLabel
+      allowError: true
+  annotate:
+    - name: annotates text about cancer
+      params:
+        text: "The patient was diagnosed with breast cancer and started chemotherapy"
+      assert:
+        - minLength: 1
+      allowError: true

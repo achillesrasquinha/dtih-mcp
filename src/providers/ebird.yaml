@@ -1,0 +1,123 @@
+name: ebird
+displayName: eBird
+description: Cornell Lab eBird — bird observations, hotspots, and taxonomy worldwide
+tags: [birds, ornithology, observations, biodiversity, citizen-science, ebird]
+baseUrl: https://api.ebird.org/v2
+
+auth:
+  type: header
+  header: X-eBirdApiToken
+  env: LS_EBIRD_API_KEY
+
+tools:
+  recentObservations:
+    description: Get recent bird observations near a location
+    tags: [bird-sightings, recent-observations]
+    method: GET
+    path: /data/obs/geo/recent
+    params:
+      lat:
+        type: number
+        required: true
+        description: Latitude (-90 to 90)
+      lng:
+        type: number
+        required: true
+        description: Longitude (-180 to 180)
+      maxResults:
+        type: integer
+        default: 20
+        description: Maximum observations to return
+      back:
+        type: integer
+        default: 7
+        description: Days back from today (1-30)
+    response:
+      format: json
+
+  notableObservations:
+    description: Get notable/rare bird sightings near a location
+    tags: [rare-birds, notable-sightings]
+    method: GET
+    path: /data/obs/geo/recent/notable
+    params:
+      lat:
+        type: number
+        required: true
+        description: Latitude
+      lng:
+        type: number
+        required: true
+        description: Longitude
+      maxResults:
+        type: integer
+        default: 20
+      back:
+        type: integer
+        default: 14
+        description: Days back (1-30)
+    response:
+      format: json
+
+  hotspots:
+    description: Get birding hotspots near a location
+    tags: [birding-hotspots, locations]
+    method: GET
+    path: /ref/hotspot/geo
+    params:
+      lat:
+        type: number
+        required: true
+        description: Latitude
+      lng:
+        type: number
+        required: true
+        description: Longitude
+      dist:
+        type: integer
+        default: 25
+        description: Search radius in km (max 50)
+      fmt:
+        type: string
+        default: json
+    response:
+      format: json
+
+  regionObservations:
+    description: Get recent observations for a region (country/state)
+    tags: [region-birds, country-observations]
+    method: GET
+    path: /data/obs/{regionCode}/recent
+    params:
+      regionCode:
+        type: string
+        required: true
+        description: Region code (e.g. US, US-NY, CA-ON)
+      maxResults:
+        type: integer
+        default: 20
+      back:
+        type: integer
+        default: 7
+    response:
+      format: json
+
+tests:
+  recentObservations:
+    - name: gets recent bird observations near Central Park NYC
+      params:
+        lat: 40.78
+        lng: -73.97
+        maxResults: 5
+      assert:
+        - minLength: 1
+        - path: 0.comName
+      allowError: true
+  hotspots:
+    - name: gets birding hotspots near San Francisco
+      params:
+        lat: 37.77
+        lng: -122.42
+      assert:
+        - minLength: 1
+      allowError: true

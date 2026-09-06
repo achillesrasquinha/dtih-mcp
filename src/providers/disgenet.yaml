@@ -4,6 +4,11 @@ description: Gene-disease association database
 tags: [gene-disease, disease-associations, variants, genetics]
 baseUrl: https://www.disgenet.org/api
 
+auth:
+  type: header
+  header: Authorization
+  env: LS_DISGENET_API_KEY
+
 tools:
   getGeneAssociations:
     description: Get diseases associated with a gene by NCBI gene ID
@@ -39,6 +44,11 @@ tools:
         default: json
     response:
       format: json
+      pick:
+        - payload[].diseaseid
+        - payload[].disease_name
+        - payload[].disease_type
+        - payload[].disease_class_name
 
 tests:
   getGeneAssociations:
