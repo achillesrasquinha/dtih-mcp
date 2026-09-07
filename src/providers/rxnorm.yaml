@@ -24,7 +24,7 @@ tools:
         description: Drug name to search for (e.g. "metformin", "aspirin")
     response:
       format: json
-      pick:
+      fields:
         - drugGroup.name
         - drugGroup.conceptGroup[].tty
         - drugGroup.conceptGroup[].conceptProperties[].rxcui
@@ -45,7 +45,7 @@ tools:
         description: RxNorm concept unique identifier (e.g. "861004")
     response:
       format: json
-      pick:
+      fields:
         - properties.rxcui
         - properties.name
         - properties.synonym
@@ -66,7 +66,7 @@ tools:
         description: RxNorm concept unique identifier (e.g. "6809" for metformin)
     response:
       format: json
-      pick:
+      fields:
         - allRelatedGroup.rxcui
         - allRelatedGroup.conceptGroup[].tty
         - allRelatedGroup.conceptGroup[].conceptProperties[].rxcui

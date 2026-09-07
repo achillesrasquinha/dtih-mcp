@@ -32,6 +32,16 @@ tools:
         description: Number of results per page
     response:
       format: json
+      fields:
+        - totalHits
+        - hits[].accession
+        - hits[].type
+        - hits[].title
+        - hits[].author
+        - hits[].release_date
+        - hits[].links
+        - hits[].files
+        - hits[].isPublic
   getStudy:
     description: Get details of a specific study by accession
     tags:
@@ -46,6 +56,15 @@ tools:
         description: Study accession (e.g. E-MTAB-513, S-EPMC3426205)
     response:
       format: json
+      fields:
+        - accno
+        - attributes[].name
+        - attributes[].value
+        - section.type
+        - section.attributes[].name
+        - section.attributes[].value
+        - section.links
+        - section.subsections
 tests:
   search:
     - name: searches for cancer expression experiments

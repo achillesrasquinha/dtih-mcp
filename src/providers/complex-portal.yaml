@@ -1,0 +1,75 @@
+name: complex-portal
+displayName: Complex Portal
+description: Macromolecular complex database — curated stable protein complexes from EBI
+tags:
+  - complex
+  - protein-complex
+  - macromolecular
+  - interaction
+  - ebi
+baseUrl: https://www.ebi.ac.uk/intact/complex-ws
+tools:
+  search:
+    description: Search for macromolecular complexes
+    tags:
+      - complex-search
+      - protein-complex
+    method: GET
+    path: /search/{species}
+    params:
+      species:
+        type: string
+        default: homo%20sapiens
+        description: Species name (URL-encoded, e.g. "homo%20sapiens")
+      query:
+        type: string
+        required: true
+        description: Search query (e.g. gene name, complex name, GO term)
+      first:
+        type: integer
+        default: 0
+        description: Index of the first result to return
+      number:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+      fields:
+        - "totalNumberOfResults"
+        - "elements[].complexAC"
+        - "elements[].complexName"
+        - "elements[].organismName"
+        - "elements[].description"
+  getComplex:
+    description: Get complex details by accession
+    tags:
+      - complex-details
+      - accession
+    method: GET
+    path: /details/{complexAC}
+    params:
+      complexAC:
+        type: string
+        required: true
+        description: Complex Portal accession (e.g. "CPX-5966")
+    response:
+      format: json
+tests:
+  search:
+    - name: searches for TP53 complexes in human
+      params:
+        query: TP53
+        species: homo%20sapiens
+      assert:
+        - path: totalNumberOfResults
+        - path: elements
+          minLength: 1
+        - path: elements.0.complexAC
+  getComplex:
+    - name: gets complex details for CPX-5966
+      params:
+        complexAC: CPX-5966
+      assert:
+        - path: complexAC
+          equals: CPX-5966

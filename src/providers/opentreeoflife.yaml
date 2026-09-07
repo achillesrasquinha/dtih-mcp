@@ -23,7 +23,7 @@ tools:
         description: List of taxon names to match (e.g. ["Homo sapiens", "Pan troglodytes"])
     response:
       format: json
-      pick:
+      fields:
         - context
         - governing_code
         - matched_names
@@ -48,7 +48,7 @@ tools:
         description: Open Tree Taxonomy (OTT) identifier for the root node
     response:
       format: json
-      pick:
+      fields:
         - newick
         - supporting_studies
 tests:

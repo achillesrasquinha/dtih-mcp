@@ -28,7 +28,7 @@ tools:
         description: Number of results per page
     response:
       format: json
-      pick:
+      fields:
         - results[].id
         - results[].species_guess
         - results[].observed_on
@@ -51,7 +51,7 @@ tools:
         description: iNaturalist taxon ID
     response:
       format: json
-      pick:
+      fields:
         - results[].id
         - results[].name
         - results[].rank
@@ -79,7 +79,7 @@ tools:
         description: Number of results per page
     response:
       format: json
-      pick:
+      fields:
         - results[].id
         - results[].name
         - results[].rank

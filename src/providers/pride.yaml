@@ -27,7 +27,7 @@ tools:
         description: Maximum number of results
     response:
       format: json
-      pick:
+      fields:
         - '[]'
   getProject:
     description: Get a specific PRIDE project by accession
@@ -43,7 +43,7 @@ tools:
         description: PRIDE project accession (e.g. PXD000001)
     response:
       format: json
-      pick:
+      fields:
         - accession
         - title
         - projectDescription

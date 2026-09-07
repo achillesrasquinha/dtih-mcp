@@ -23,6 +23,9 @@ tools:
         description: User list ID returned from the addList endpoint
     response:
       format: json
+      fields:
+        - genes
+        - description
   enrich:
     description: Get enrichment results for a gene list against a specified library
     tags:
@@ -41,7 +44,7 @@ tools:
         description: Gene-set library name (e.g. KEGG_2021_Human, GO_Biological_Process_2023)
     response:
       format: json
-      pick:
+      fields:
         - KEGG_2021_Human[]
         - GO_Biological_Process_2023[]
         - GO_Molecular_Function_2023[]
@@ -70,7 +73,12 @@ tools:
         default: enrichment
         description: Output filename prefix
     response:
-      format: text
+      format: tsv
+      columns: [rank, name, score]
+      fields:
+        - "[].rank"
+        - "[].name"
+        - "[].score"
 tests:
   viewList:
     - name: views a previously submitted gene list
@@ -87,3 +95,11 @@ tests:
         - path: KEGG_2021_Human
         - path: KEGG_2021_Human
           minLength: 1
+  export:
+    - name: exports enrichment results as TSV
+      params:
+        backgroundType: KEGG_2021_Human
+      assert:
+        - path: "[].rank"
+        - path: "[].name"
+        - path: "[].score"

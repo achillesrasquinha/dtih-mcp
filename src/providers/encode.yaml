@@ -37,7 +37,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - "total"
         - "@graph[].accession"
         - "@graph[].assay_term_name"
@@ -64,7 +64,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - "accession"
         - "assay_term_name"
         - "description"

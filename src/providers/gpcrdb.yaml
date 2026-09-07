@@ -23,7 +23,7 @@ tools:
         description: UniProt entry name (e.g. adrb2_human, drd2_human)
     response:
       format: json
-      pick:
+      fields:
         - "entry_name"
         - "name"
         - "accession"
@@ -46,7 +46,7 @@ tools:
         description: Parent family slug (use 000 for top-level classes)
     response:
       format: json
-      pick:
+      fields:
         - "[].slug"
         - "[].name"
         - "[].parent.slug"

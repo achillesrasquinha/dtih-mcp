@@ -28,7 +28,7 @@ tools:
         description: Maximum number of results
     response:
       format: json
-      pick:
+      fields:
         - numberOfHits
         - results[].id
         - results[].name
@@ -49,7 +49,7 @@ tools:
         description: GO term ID (e.g. GO:0006915)
     response:
       format: json
-      pick:
+      fields:
         - numberOfHits
         - results[].id
         - results[].name

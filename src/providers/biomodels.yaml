@@ -31,7 +31,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - matches
         - models[].id
         - models[].name
@@ -57,7 +57,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - name
         - description
         - format.name

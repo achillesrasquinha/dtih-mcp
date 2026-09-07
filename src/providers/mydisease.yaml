@@ -27,7 +27,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - total
         - hits[]._id
         - hits[]._score
@@ -48,7 +48,7 @@ tools:
         description: Disease ID (e.g. "MONDO:0004975" for Alzheimer disease)
     response:
       format: json
-      pick:
+      fields:
         - _id
         - mondo
         - disease_ontology

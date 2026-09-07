@@ -27,7 +27,7 @@ tools:
         description: List of gene symbols or IDs (e.g. ["BRCA1","TP53","EGFR"])
     response:
       format: json
-      pick:
+      fields:
         - "result[].native"
         - "result[].name"
         - "result[].description"
@@ -58,7 +58,7 @@ tools:
         description: Target namespace (e.g. ENSG, ENTREZGENE_ACC, UNIPROTSWISSPROT)
     response:
       format: json
-      pick:
+      fields:
         - "result[].incoming"
         - "result[].converted"
         - "result[].name"

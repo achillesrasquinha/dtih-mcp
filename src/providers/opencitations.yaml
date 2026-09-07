@@ -23,7 +23,7 @@ tools:
         description: DOI to look up citations for (e.g. "10.1038/nature12373")
     response:
       format: json
-      pick:
+      fields:
         - '[].citing'
         - '[].cited'
         - '[].creation'
@@ -44,7 +44,7 @@ tools:
         description: DOI to look up references for (e.g. "10.1038/nature12373")
     response:
       format: json
-      pick:
+      fields:
         - '[].citing'
         - '[].cited'
         - '[].creation'

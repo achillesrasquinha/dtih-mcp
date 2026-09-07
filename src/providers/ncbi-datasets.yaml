@@ -29,7 +29,7 @@ tools:
         description: Taxon name or ID e.g. 'human', '9606'
     response:
       format: json
-      pick:
+      fields:
         - total_count
         - reports[].gene.gene_id
         - reports[].gene.symbol
@@ -52,7 +52,7 @@ tools:
         description: Assembly accession e.g. 'GCF_000001405.40'
     response:
       format: json
-      pick:
+      fields:
         - total_count
         - reports[].accession
         - reports[].organism
@@ -74,7 +74,7 @@ tools:
         description: Taxon name or NCBI tax ID e.g. 'Homo sapiens', '9606'
     response:
       format: json
-      pick:
+      fields:
         - taxonomy_nodes[].taxonomy.tax_id
         - taxonomy_nodes[].taxonomy.organism_name
         - taxonomy_nodes[].taxonomy.genbank_common_name

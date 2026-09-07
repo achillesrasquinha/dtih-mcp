@@ -28,7 +28,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - total
         - results[].scientificName
         - results[].species
@@ -53,7 +53,7 @@ tools:
         description: Scientific name to search (e.g. "Carcharodon carcharias")
     response:
       format: json
-      pick:
+      fields:
         - total
         - results[].scientificName
         - results[].taxonID
@@ -80,7 +80,7 @@ tools:
         description: WoRMS AphiaID of the taxon
     response:
       format: json
-      pick:
+      fields:
         - total
         - results[].scientificName
         - results[].taxonID

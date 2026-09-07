@@ -29,6 +29,16 @@ tools:
         description: Maximum number of records to return
     response:
       format: json
+      fields:
+        - "[].accession"
+        - "[].title"
+        - "[].compound.names"
+        - "[].compound.formula"
+        - "[].compound.mass"
+        - "[].compound.classes"
+        - "[].acquisition.instrument_type"
+        - "[].acquisition.mass_spectrometry.ms_type"
+        - "[].acquisition.mass_spectrometry.ion_mode"
   getRecord:
     description: Get a specific MassBank record by accession number
     tags:
@@ -43,6 +53,17 @@ tools:
         description: MassBank accession number (e.g. EA000101)
     response:
       format: json
+      fields:
+        - accession
+        - title
+        - compound.names
+        - compound.formula
+        - compound.mass
+        - compound.classes
+        - compound.inchi
+        - compound.smiles
+        - acquisition.instrument_type
+        - peak
 tests:
   search:
     - name: searches records for caffeine

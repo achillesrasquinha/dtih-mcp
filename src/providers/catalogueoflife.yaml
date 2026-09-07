@@ -28,7 +28,7 @@ tools:
         description: Maximum number of results
     response:
       format: json
-      pick:
+      fields:
         - total
         - result[].id
         - result[].usage.name.scientificName
@@ -52,7 +52,7 @@ tools:
         description: Catalogue of Life taxon ID
     response:
       format: json
-      pick:
+      fields:
         - id
         - name.scientificName
         - name.authorship

@@ -28,7 +28,7 @@ tools:
         description: Number of results per page
     response:
       format: json
-      pick:
+      fields:
         - data[].id
         - data[].attributes.accession
         - data[].attributes.bioproject
@@ -50,7 +50,7 @@ tools:
         description: MGnify study accession (e.g. MGYS00006822)
     response:
       format: json
-      pick:
+      fields:
         - data.id
         - data.attributes.accession
         - data.attributes.bioproject

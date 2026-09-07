@@ -23,7 +23,7 @@ tools:
         description: LIPID MAPS identifier (e.g. LMFA01010001)
     response:
       format: json
-      pick:
+      fields:
         - lm_id
         - name
         - sys_name
@@ -46,7 +46,7 @@ tools:
         description: Abbreviated lipid chain name (e.g. DHA, AA, EPA)
     response:
       format: json
-      pick:
+      fields:
         - lm_id
         - name
         - sys_name

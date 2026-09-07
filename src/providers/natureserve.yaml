@@ -22,6 +22,16 @@ tools:
         description: Scientific name or taxonomy query (e.g. "Danaus plexippus", "Canis lupus")
     response:
       format: json
+      fields:
+        - results[].elementGlobalId
+        - results[].uniqueId
+        - results[].scientificName
+        - results[].primaryCommonName
+        - results[].roundedGRank
+        - results[].nsxUrl
+        - results[].elcode
+        - results[].nations[].nationCode
+        - results[].nations[].roundedNRank
 
   getSpecies:
     description: Get detailed conservation data for a species by its global element ID
@@ -35,6 +45,15 @@ tools:
         description: NatureServe element global ID (e.g. "ELEMENT_GLOBAL.2.100925")
     response:
       format: json
+      fields:
+        - elementGlobalId
+        - scientificName
+        - primaryCommonName
+        - roundedGRank
+        - classificationStatus
+        - speciesGlobal
+        - nations[].nationCode
+        - nations[].roundedNRank
 
 tests:
   searchSpecies:

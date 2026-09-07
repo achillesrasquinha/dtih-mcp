@@ -23,7 +23,7 @@ tools:
         mapsTo: q
         description: Search query (e.g. Pathway:glycolysis, Organism:Human)
     response:
-      format: text
+      format: lines
   getEntry:
     description: Get a specific kinetic law entry by ID
     tags:
@@ -37,7 +37,7 @@ tools:
         required: true
         description: Kinetic law entry ID
     response:
-      format: text
+      format: xml
 tests:
   searchReactions:
     - name: attempts to search glycolysis pathway reactions

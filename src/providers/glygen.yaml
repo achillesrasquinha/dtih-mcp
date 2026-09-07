@@ -19,7 +19,7 @@ tools:
     params: {}
     response:
       format: json
-      pick:
+      fields:
         - "glycan_mass.native"
         - "glycan_mass.permethylated"
         - "number_monosaccharides"
@@ -40,7 +40,7 @@ tools:
         description: UniProt accession number (e.g. P00734 for prothrombin)
     response:
       format: json
-      pick:
+      fields:
         - "mass"
         - "gene_names[].name"
         - "gene_names[].type"

@@ -24,7 +24,7 @@ tools:
         description: Ensembl gene ID (e.g. ENSG00000141510 for TP53)
     response:
       format: json
-      pick:
+      fields:
         - Gene
         - Gene synonym
         - Ensembl

@@ -27,6 +27,11 @@ tools:
         description: Second taxon name e.g. 'Mus musculus'
     response:
       format: json
+      fields:
+        - studies[].time
+        - studies[].citation
+        - studies[].taxon_a
+        - studies[].taxon_b
   getTimeline:
     description: Get evolutionary timeline for a taxon
     tags:
@@ -41,6 +46,12 @@ tools:
         description: Taxon name e.g. 'Homo sapiens'
     response:
       format: json
+      fields:
+        - "[].scientific_name"
+        - "[].common_name"
+        - "[].rank"
+        - "[].branch_length"
+        - "[].ncbi-id"
 tests:
   getPairwiseTime:
     - name: gets pairwise divergence time between Homo sapiens and Mus musculus

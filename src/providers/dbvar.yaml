@@ -36,6 +36,11 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
+      fields:
+        - esearchresult.count
+        - esearchresult.retmax
+        - esearchresult.idlist
+        - esearchresult.querytranslation
 
   getSummary:
     description: Get summary information for dbVar structural variants by ID

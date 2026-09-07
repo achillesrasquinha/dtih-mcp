@@ -28,7 +28,7 @@ tools:
         description: NCBI taxonomy ID (9606 for human)
     response:
       format: json
-      pick:
+      fields:
         - "[].stringId"
         - "[].preferredName"
         - "[].taxonName"
@@ -53,7 +53,7 @@ tools:
         description: NCBI taxonomy ID (9606 for human)
     response:
       format: json
-      pick:
+      fields:
         - "[].stringId_A"
         - "[].stringId_B"
         - "[].preferredName_A"

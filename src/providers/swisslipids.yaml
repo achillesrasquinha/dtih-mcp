@@ -23,6 +23,12 @@ tools:
         description: Search term (e.g. "cholesterol", "sphingomyelin")
     response:
       format: json
+      fields:
+        - "[].id"
+        - "[].name"
+        - "[].synonyms"
+        - "[].formula"
+        - "[].mass"
   getEntity:
     description: Get detailed lipid entity information by SwissLipids identifier
     tags:
@@ -37,6 +43,13 @@ tools:
         description: SwissLipids entity ID (e.g. SLM:000000224)
     response:
       format: json
+      fields:
+        - id
+        - name
+        - level
+        - formula
+        - mass
+        - smiles
 tests:
   search:
     - name: searches for cholesterol

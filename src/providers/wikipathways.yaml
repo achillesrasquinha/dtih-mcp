@@ -23,7 +23,7 @@ tools:
         description: WikiPathways ID (e.g. "WP254" for apoptosis)
     response:
       format: json
-      pick:
+      fields:
         - pathway.id
         - pathway.displayName
         - pathway.organism
@@ -42,7 +42,7 @@ tools:
         required: true
         description: WikiPathways ID (e.g. "WP254")
     response:
-      format: text
+      format: xml
 tests:
   getPathway:
     - name: gets pathway graph data for WP254 (apoptosis)
@@ -57,5 +57,4 @@ tests:
       params:
         pwId: WP254
       assert:
-        - path: raw
-          minLength: 1
+        - minLength: 1

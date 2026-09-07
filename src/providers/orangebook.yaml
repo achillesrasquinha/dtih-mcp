@@ -30,7 +30,7 @@ tools:
         description: Maximum number of results (1-100)
     response:
       format: json
-      pick:
+      fields:
         - results[].products[].brand_name
         - results[].products[].active_ingredients
         - results[].products[].dosage_form
@@ -52,7 +52,7 @@ tools:
         description: Active ingredient search (e.g. "products.active_ingredients.name:atorvastatin")
     response:
       format: json
-      pick:
+      fields:
         - results[].products[].active_ingredients
         - results[].products[].brand_name
         - results[].application_number

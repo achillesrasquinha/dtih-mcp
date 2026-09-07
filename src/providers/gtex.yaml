@@ -31,7 +31,7 @@ tools:
         description: Genome build
     response:
       format: json
-      pick:
+      fields:
         - "data[].gencodeId"
         - "data[].geneSymbol"
         - "data[].description"
@@ -58,7 +58,7 @@ tools:
         description: GTEx dataset version
     response:
       format: json
-      pick:
+      fields:
         - "data[].geneSymbol"
         - "data[].gencodeId"
         - "data[].tissueSiteDetailId"

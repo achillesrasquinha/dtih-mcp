@@ -27,7 +27,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - response.numFound
         - response.docs[].label
         - response.docs[].iri
@@ -50,7 +50,7 @@ tools:
         description: Ontology identifier (e.g. go, efo, hp, mondo)
     response:
       format: json
-      pick:
+      fields:
         - ontologyId
         - config.title
         - config.description

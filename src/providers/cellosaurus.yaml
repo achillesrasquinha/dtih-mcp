@@ -26,7 +26,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - Cellosaurus.cell-line-list[].accession-list
         - Cellosaurus.cell-line-list[].name-list
         - Cellosaurus.cell-line-list[].category
@@ -52,7 +52,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - Cellosaurus.cell-line-list[].accession-list
         - Cellosaurus.cell-line-list[].name-list
         - Cellosaurus.cell-line-list[].category

@@ -22,7 +22,7 @@ tools:
         description: Species common or scientific name (e.g. "tiger", "Panthera tigris")
     response:
       format: json
-      pick:
+      fields:
         - result[].taxonid
         - result[].scientific_name
         - result[].kingdom
@@ -44,7 +44,7 @@ tools:
         description: Scientific name (e.g. Panthera tigris, Gorilla gorilla)
     response:
       format: json
-      pick:
+      fields:
         - result[].taxonid
         - result[].scientific_name
         - result[].category
@@ -63,7 +63,7 @@ tools:
         description: Scientific name (e.g. Panthera tigris)
     response:
       format: json
-      pick:
+      fields:
         - result[].code
         - result[].title
         - result[].timing
@@ -83,7 +83,7 @@ tools:
         description: Scientific name (e.g. Panthera tigris)
     response:
       format: json
-      pick:
+      fields:
         - result[].code
         - result[].title
 
@@ -99,7 +99,7 @@ tools:
         description: Scientific name
     response:
       format: json
-      pick:
+      fields:
         - result[].country
         - result[].presence
         - result[].origin

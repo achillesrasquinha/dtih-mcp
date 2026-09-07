@@ -30,7 +30,7 @@ tools:
         description: Filter e.g. 'publication_year:2024'
     response:
       format: json
-      pick:
+      fields:
         - meta.count
         - results[].id
         - results[].doi
@@ -55,7 +55,7 @@ tools:
         description: OpenAlex work ID e.g. 'W2741809807'
     response:
       format: json
-      pick:
+      fields:
         - id
         - doi
         - title
@@ -83,7 +83,7 @@ tools:
         default: 5
     response:
       format: json
-      pick:
+      fields:
         - meta.count
         - results[].id
         - results[].display_name

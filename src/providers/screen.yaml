@@ -50,6 +50,16 @@ tools:
         description: Maximum number of cCREs to return
     response:
       format: json
+      fields:
+        - cCREQuery[].accession
+        - cCREQuery[].group
+        - cCREQuery[].zScores.dnase
+        - cCREQuery[].zScores.h3k4me3
+        - cCREQuery[].zScores.h3k27ac
+        - cCREQuery[].zScores.ctcf
+        - cCREQuery[].range.chrom
+        - cCREQuery[].range.start
+        - cCREQuery[].range.end
   getCCRE:
     description: Get detailed information about a specific candidate cis-regulatory element
     tags:
@@ -85,6 +95,16 @@ tools:
         description: Genome assembly (GRCh38 or mm10)
     response:
       format: json
+      fields:
+        - cCREQuery[].accession
+        - cCREQuery[].group
+        - cCREQuery[].zScores.dnase
+        - cCREQuery[].zScores.h3k4me3
+        - cCREQuery[].zScores.h3k27ac
+        - cCREQuery[].zScores.ctcf
+        - cCREQuery[].range.chrom
+        - cCREQuery[].range.start
+        - cCREQuery[].range.end
 
 tests:
   searchCCREs:

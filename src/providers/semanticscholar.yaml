@@ -40,7 +40,7 @@ tools:
         description: Comma-separated fields to return
     response:
       format: json
-      pick:
+      fields:
         - total
         - data[].paperId
         - data[].title
@@ -65,7 +65,7 @@ tools:
         description: Comma-separated fields to return
     response:
       format: json
-      pick:
+      fields:
         - paperId
         - title
         - abstract

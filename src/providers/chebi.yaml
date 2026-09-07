@@ -32,7 +32,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - response.numFound
         - response.docs[].short_form
         - response.docs[].label
@@ -55,7 +55,7 @@ tools:
         description: ChEBI short-form ID (e.g. CHEBI_15365 for aspirin)
     response:
       format: json
-      pick:
+      fields:
         - _embedded.terms[].iri
         - _embedded.terms[].label
         - _embedded.terms[].description

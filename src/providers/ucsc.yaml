@@ -18,7 +18,7 @@ tools:
     params: {}
     response:
       format: json
-      pick:
+      fields:
         - ucscGenomes
   getTrack:
     description: Get track data for a specific genome, track, and chromosome
@@ -48,7 +48,7 @@ tools:
         description: End position
     response:
       format: json
-      pick:
+      fields:
         - genome
         - track
         - chrom

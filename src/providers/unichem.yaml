@@ -32,7 +32,7 @@ tools:
         description: Type of identifier (sourceID or inchikey)
     response:
       format: json
-      pick:
+      fields:
         - response
         - compounds[].standardInchiKey
         - compounds[].sources[].compoundId
@@ -63,7 +63,7 @@ tools:
         description: Type of identifier (sourceID or inchikey)
     response:
       format: json
-      pick:
+      fields:
         - response
         - totalCompounds
         - totalSources

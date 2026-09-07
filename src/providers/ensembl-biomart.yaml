@@ -23,7 +23,7 @@ tools:
         required: true
         description: BioMart XML query string defining dataset, filters, and attributes
     response:
-      format: text
+      format: tsv
   getRegistry:
     description: List available BioMart databases and datasets
     tags:
@@ -38,7 +38,7 @@ tools:
         default: registry
         description: Request type — use "registry" to list available marts and datasets
     response:
-      format: text
+      format: xml
 
 tests:
   getRegistry:

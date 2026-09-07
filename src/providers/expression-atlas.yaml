@@ -22,7 +22,7 @@ tools:
         description: Species filter (e.g. "Homo sapiens", "Mus musculus")
     response:
       format: json
-      pick:
+      fields:
         - "experiments[].experimentAccession"
         - "experiments[].experimentDescription"
         - "experiments[].species"
@@ -43,7 +43,7 @@ tools:
         description: Experiment accession (e.g. E-MTAB-513)
     response:
       format: json
-      pick:
+      fields:
         - "experiment.accession"
         - "experiment.description"
         - "experiment.species"

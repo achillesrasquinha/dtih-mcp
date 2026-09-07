@@ -23,7 +23,7 @@ tools:
         description: Alliance gene ID with WB prefix (e.g. WB:WBGene00006763)
     response:
       format: json
-      pick:
+      fields:
         - gene.primaryExternalId
         - gene.symbol
         - gene.taxon.name
@@ -49,7 +49,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - results[].symbol
         - results[].curie
         - results[].name

@@ -31,7 +31,7 @@ tools:
         mapsTo: types
     response:
       format: json
-      pick:
+      fields:
         - results[].entries[].stId
         - results[].entries[].name
         - results[].entries[].type
@@ -51,6 +51,17 @@ tools:
         description: Reactome stable ID (e.g. R-HSA-109581)
     response:
       format: json
+      fields:
+        - stId
+        - displayName
+        - speciesName
+        - isInDisease
+        - releaseDate
+        - goBiologicalProcess.displayName
+        - goBiologicalProcess.accession
+        - goBiologicalProcess.definition
+        - literatureReference[].title
+        - literatureReference[].pubMedIdentifier
 tests:
   search:
     - name: searches for apoptosis pathways

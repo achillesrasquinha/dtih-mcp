@@ -23,6 +23,17 @@ tools:
         description: ChEMBL molecule ID (e.g. CHEMBL25 for aspirin)
     response:
       format: json
+      fields:
+        - molecule_chembl_id
+        - pref_name
+        - molecule_type
+        - max_phase
+        - first_approval
+        - molecule_properties.full_mwt
+        - molecule_properties.alogp
+        - molecule_properties.full_molformula
+        - molecule_structures.canonical_smiles
+        - natural_product
   search:
     description: Search molecules by name or keyword
     tags:
@@ -38,7 +49,7 @@ tools:
         description: Search query (e.g. aspirin)
     response:
       format: json
-      pick:
+      fields:
         - molecules[].molecule_chembl_id
         - molecules[].pref_name
         - molecules[].molecule_type

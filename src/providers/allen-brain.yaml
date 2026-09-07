@@ -24,7 +24,7 @@ tools:
         description: RMA query e.g. 'model::Gene,rma::criteria,[acronym$eq'BDNF']'
     response:
       format: json
-      pick:
+      fields:
         - msg[].id
         - msg[].acronym
         - msg[].name
@@ -45,7 +45,7 @@ tools:
         description: RMA criteria for brain structures
     response:
       format: json
-      pick:
+      fields:
         - msg[].id
         - msg[].acronym
         - msg[].name

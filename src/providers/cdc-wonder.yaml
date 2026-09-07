@@ -34,5 +34,5 @@ tests:
       params:
         request_xml: "<request-parameters><parameter><name>B_1</name><value>D76.V1</value></parameter></request-parameters>"
       assert:
-        - minLength: 1
+        - isNonEmpty: true
       allowError: true

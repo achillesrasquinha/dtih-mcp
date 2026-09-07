@@ -33,6 +33,12 @@ tools:
         description: "Comma-separated list of columns to return (e.g. \"yearstart,locationdesc,topic\")"
     response:
       format: json
+      fields:
+        - "[].year"
+        - "[].cause_name"
+        - "[].state"
+        - "[].deaths"
+        - "[].aadr"
   searchDatasets:
     description: Search the CDC data catalog for available datasets
     tags:
@@ -56,7 +62,7 @@ tools:
         description: Maximum number of results
     response:
       format: json
-      pick:
+      fields:
         - results[].resource.name
         - results[].resource.description
         - results[].resource.id

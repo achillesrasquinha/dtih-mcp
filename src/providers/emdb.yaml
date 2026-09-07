@@ -27,7 +27,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - "[].emdb_id"
         - "[].admin.title"
         - "[].admin.key_dates.deposition"
@@ -48,7 +48,7 @@ tools:
         description: EMDB entry ID (e.g. EMD-1234)
     response:
       format: json
-      pick:
+      fields:
         - "emdb_id"
         - "admin.title"
         - "admin.key_dates.deposition"

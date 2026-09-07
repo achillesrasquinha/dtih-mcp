@@ -31,7 +31,7 @@ tools:
         description: Sort direction (ASC or DESC)
     response:
       format: json
-      pick:
+      fields:
         - "[].studyId"
         - "[].name"
         - "[].description"
@@ -50,7 +50,7 @@ tools:
         description: Hugo gene symbol (e.g. BRCA1, TP53, EGFR)
     response:
       format: json
-      pick:
+      fields:
         - hugoGeneSymbol
         - entrezGeneId
         - type

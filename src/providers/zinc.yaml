@@ -23,6 +23,12 @@ tools:
         description: Search query (compound name or SMILES)
     response:
       format: json
+      fields:
+        - "[].zinc_id"
+        - "[].name"
+        - "[].smiles"
+        - "[].mwt"
+        - "[].logp"
   getSubstance:
     description: Get substance details by ZINC ID
     tags:
@@ -37,6 +43,13 @@ tools:
         description: ZINC substance ID (e.g. ZINC000000000001)
     response:
       format: json
+      fields:
+        - zinc_id
+        - name
+        - smiles
+        - mwt
+        - logp
+        - purchasability
 tests:
   search:
     - name: searches for aspirin

@@ -29,7 +29,7 @@ tools:
         description: Genome assembly
     response:
       format: json
-      pick:
+      fields:
         - total
         - regulome_score.probability
         - regulome_score.ranking

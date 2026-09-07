@@ -24,7 +24,7 @@ tools:
         description: OData filter expression (e.g. "contains(IndicatorName,'malaria')")
     response:
       format: json
-      pick:
+      fields:
         - value[].IndicatorCode
         - value[].IndicatorName
         - value[].Language
@@ -51,7 +51,7 @@ tools:
         description: Number of records to return
     response:
       format: json
-      pick:
+      fields:
         - value[].IndicatorCode
         - value[].SpatialDim
         - value[].TimeDim

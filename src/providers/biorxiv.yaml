@@ -31,6 +31,17 @@ tools:
         description: Pagination cursor (0-based offset)
     response:
       format: json
+      fields:
+        - collection[].doi
+        - collection[].title
+        - collection[].authors
+        - collection[].author_corresponding
+        - collection[].author_corresponding_institution
+        - collection[].date
+        - collection[].version
+        - collection[].type
+        - collection[].category
+        - collection[].abstract
   getByDoi:
     description: Get a specific bioRxiv preprint by DOI suffix
     tags:
@@ -45,6 +56,17 @@ tools:
         description: DOI suffix after 10.1101/ (e.g. "2024.01.01.573838")
     response:
       format: json
+      fields:
+        - collection[].doi
+        - collection[].title
+        - collection[].authors
+        - collection[].author_corresponding
+        - collection[].author_corresponding_institution
+        - collection[].date
+        - collection[].version
+        - collection[].type
+        - collection[].category
+        - collection[].abstract
 tests:
   getRecent:
     - name: gets recent preprints from a date range

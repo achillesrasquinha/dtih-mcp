@@ -28,7 +28,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - total
         - hits[]._id
         - hits[]._score
@@ -50,7 +50,7 @@ tools:
         description: HGVS variant ID (e.g. "chr19:g.44908684T>C")
     response:
       format: json
-      pick:
+      fields:
         - _id
         - chrom
         - dbsnp

@@ -24,7 +24,7 @@ tools:
         description: Chemical name prefix to search (e.g. "bisphenol", "atrazine")
     response:
       format: json
-      pick:
+      fields:
         - "[].dtxsid"
         - "[].dtxcid"
         - "[].searchWord"
@@ -45,7 +45,7 @@ tools:
         description: Chemical name substring to search (e.g. "bisphenol", "phthalate")
     response:
       format: json
-      pick:
+      fields:
         - "[].dtxsid"
         - "[].dtxcid"
         - "[].searchWord"

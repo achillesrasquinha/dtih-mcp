@@ -39,7 +39,7 @@ tools:
         description: EMPIAR ID e.g. 'EMPIAR-10028'
     response:
       format: json
-      pick:
+      fields:
         - "*.title"
         - "*.imagesets[].name"
         - "*.imagesets[].category"

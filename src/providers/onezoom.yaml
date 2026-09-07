@@ -23,6 +23,11 @@ tools:
         description: Species name or keyword to search (e.g. "Homo sapiens")
     response:
       format: json
+      fields:
+        - nodes.headers
+        - nodes.leaf_hits
+        - nodes.node_hits
+        - nodes.lang
   getNode:
     description: Get details for a specific node in the OneZoom tree of life
     tags:
@@ -37,6 +42,13 @@ tools:
         description: OneZoom node identifier
     response:
       format: json
+      fields:
+        - colnames_nodes
+        - colnames_leaves
+        - nodes
+        - leaves
+        - vernacular_by_ott
+        - vernacular_by_name
   getSubtree:
     description: Retrieve the subtree rooted at a given node in the tree of life
     tags:

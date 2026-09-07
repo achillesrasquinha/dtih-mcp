@@ -32,11 +32,15 @@ tools:
         description: Number of results per page
     response:
       format: json
-      pick:
-        - _embedded.associations[].pvalue
-        - _embedded.associations[].riskFrequency
-        - _embedded.associations[].strongestRiskAlleles[].riskAlleleName
-        - _embedded.associations[].loci[].strongestRiskAlleles[].riskAlleleName
+      fields:
+        - _embedded.studies[].accessionId
+        - _embedded.studies[].diseaseTrait.trait
+        - _embedded.studies[].initialSampleSize
+        - _embedded.studies[].snpCount
+        - _embedded.studies[].publicationInfo.pubmedId
+        - _embedded.studies[].publicationInfo.title
+        - _embedded.studies[].publicationInfo.publication
+        - _embedded.studies[].publicationInfo.author.fullname
   getStudy:
     description: Get GWAS study details by study accession ID
     tags:
@@ -51,6 +55,17 @@ tools:
         description: GWAS study accession (e.g. "GCST90038633")
     response:
       format: json
+      fields:
+        - accessionId
+        - diseaseTrait.trait
+        - initialSampleSize
+        - replicationSampleSize
+        - snpCount
+        - publicationInfo.pubmedId
+        - publicationInfo.title
+        - publicationInfo.publication
+        - publicationInfo.author.fullname
+        - genotypingTechnologies[].genotypingTechnology
 tests:
   search:
     - name: searches for diabetes studies by trait

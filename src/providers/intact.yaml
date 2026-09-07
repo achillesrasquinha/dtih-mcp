@@ -29,7 +29,7 @@ tools:
         default: 10
     response:
       format: json
-      pick:
+      fields:
         - content[].ac
         - content[].moleculeA
         - content[].moleculeB
@@ -60,6 +60,15 @@ tools:
         default: 10
     response:
       format: json
+      fields:
+        - content[].interactorAc
+        - content[].interactorName
+        - content[].interactorPreferredIdentifier
+        - content[].interactorDescription
+        - content[].interactorType
+        - content[].interactorSpecies
+        - content[].interactorTaxId
+        - content[].interactionCount
 tests:
   search:
     - name: searches for TP53 interactions

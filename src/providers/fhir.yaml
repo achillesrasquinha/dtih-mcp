@@ -32,6 +32,15 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
+      fields:
+        - resourceType
+        - entry[].resource.resourceType
+        - entry[].resource.id
+        - entry[].resource.identifier
+        - entry[].resource.name
+        - entry[].resource.gender
+        - entry[].resource.birthDate
+        - entry[].resource.active
   getResource:
     description: Get a specific FHIR resource by type and ID
     tags:
@@ -50,6 +59,14 @@ tools:
         description: FHIR resource ID
     response:
       format: json
+      fields:
+        - resourceType
+        - id
+        - identifier
+        - name
+        - gender
+        - birthDate
+        - active
 tests:
   searchResource:
     - name: searches for Patient resources

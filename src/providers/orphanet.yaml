@@ -24,7 +24,7 @@ tools:
         description: Disease name to search (e.g. Marfan, Huntington, cystic fibrosis)
     response:
       format: json
-      pick:
+      fields:
         - '[].ORPHAcode'
         - '[].Preferred term'
         - '[].Date'
@@ -42,7 +42,7 @@ tools:
         description: ORPHAcode number (e.g. 558 for Marfan syndrome)
     response:
       format: json
-      pick:
+      fields:
         - ORPHAcode
         - Preferred term
         - Date

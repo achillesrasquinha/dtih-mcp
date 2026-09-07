@@ -28,7 +28,7 @@ tools:
         description: Columns to return
     response:
       format: json
-      pick:
+      fields:
         - "[].structure_id"
         - "[].structure_descriptions"
         - "[].curated_source_antigens"
@@ -47,7 +47,7 @@ tools:
         description: Epitope structure ID (e.g. eq.35572). Prefix value with eq.
     response:
       format: json
-      pick:
+      fields:
         - "[].structure_id"
         - "[].structure_type"
         - "[].linear_sequence"

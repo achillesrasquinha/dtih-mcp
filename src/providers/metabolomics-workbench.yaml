@@ -22,6 +22,15 @@ tools:
         description: Study title search text (e.g. "diabetes", "cancer")
     response:
       format: json
+      fields:
+        - "{n}.study_id"
+        - "{n}.study_title"
+        - "{n}.species"
+        - "{n}.institute"
+        - "{n}.analysis_type"
+        - "{n}.number_of_samples"
+        - "{n}.submission_date"
+        - "{n}.release_date"
   getMetabolite:
     description: Get metabolite information from RefMet by name
     tags:
@@ -36,7 +45,7 @@ tools:
         description: Metabolite name (e.g. "Glucose", "Cholesterol")
     response:
       format: json
-      pick:
+      fields:
         - name
         - formula
         - exactmass
@@ -45,6 +54,8 @@ tools:
         - sub_class
         - pubchem_cid
         - inchi_key
+        - smiles
+        - refmet_id
 tests:
   searchStudies:
     - name: searches studies by title keyword diabetes

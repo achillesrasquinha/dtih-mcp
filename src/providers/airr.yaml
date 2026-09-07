@@ -25,6 +25,17 @@ tools:
           AIRR-compliant query filters (e.g. {"op":"contains","content":{"field":"study.study_title","value":"COVID"}})
     response:
       format: json
+      fields:
+        - Repertoire[].repertoire_id
+        - Repertoire[].repertoire_name
+        - Repertoire[].study.study_id
+        - Repertoire[].study.study_title
+        - Repertoire[].study.study_description
+        - Repertoire[].subject.subject_id
+        - Repertoire[].subject.species.label
+        - Repertoire[].subject.sex
+        - Repertoire[].subject.diagnosis[].study_group_description
+        - Repertoire[].sample[].sample_id
   searchRearrangements:
     description: Search AIRR Data Commons for rearrangement sequences using AIRR query format
     tags:
@@ -40,6 +51,17 @@ tools:
           AIRR-compliant query filters (e.g. {"op":"=","content":{"field":"junction_aa","value":"CASSLAPGATNEKLFF"}})
     response:
       format: json
+      fields:
+        - Rearrangement[].sequence_id
+        - Rearrangement[].sequence
+        - Rearrangement[].productive
+        - Rearrangement[].v_call
+        - Rearrangement[].d_call
+        - Rearrangement[].j_call
+        - Rearrangement[].junction_aa
+        - Rearrangement[].locus
+        - Rearrangement[].cdr3_aa
+        - Rearrangement[].repertoire_id
 tests:
   searchRepertoires:
     - name: searches for repertoires

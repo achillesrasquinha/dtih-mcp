@@ -38,7 +38,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - expansion.contains[].code
         - expansion.contains[].display
         - expansion.contains[].system
@@ -64,7 +64,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - resourceType
         - parameter[].name
         - parameter[].valueString

@@ -29,7 +29,7 @@ tools:
         description: Number of results per page
     response:
       format: json
-      pick:
+      fields:
         - results[].metadata.accession
         - results[].metadata.name
         - results[].metadata.type
@@ -49,7 +49,7 @@ tools:
         description: InterPro accession (e.g. IPR000719)
     response:
       format: json
-      pick:
+      fields:
         - metadata.accession
         - metadata.name
         - metadata.type

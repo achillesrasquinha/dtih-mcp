@@ -31,7 +31,7 @@ tools:
         description: Restrict to marine species only
     response:
       format: json
-      pick:
+      fields:
         - "[].AphiaID"
         - "[].scientificname"
         - "[].authority"
@@ -57,7 +57,7 @@ tools:
         description: WoRMS AphiaID identifier
     response:
       format: json
-      pick:
+      fields:
         - AphiaID
         - scientificname
         - authority

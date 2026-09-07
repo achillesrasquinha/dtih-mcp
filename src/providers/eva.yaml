@@ -1,0 +1,56 @@
+name: eva
+displayName: European Variation Archive
+description: European Variation Archive — open-access database of genetic variants across species
+tags:
+  - variant
+  - variation
+  - genomics
+  - eva
+  - snp
+baseUrl: https://www.ebi.ac.uk/eva/webservices/rest/v1
+tools:
+  listSpecies:
+    description: List all species with variation data in EVA
+    tags:
+      - species
+      - metadata
+    method: GET
+    path: /meta/species/list
+    params: {}
+    response:
+      format: json
+      fields:
+        - "response[].result"
+  searchVariants:
+    description: Search variants by genomic region
+    tags:
+      - variant-search
+      - region
+    method: GET
+    path: /segments/{region}/variants
+    params:
+      region:
+        type: string
+        required: true
+        description: Genomic region (e.g. "20:60000-62000")
+      species:
+        type: string
+        required: true
+        description: Species code (e.g. "hsapiens_grch37")
+    response:
+      format: json
+tests:
+  listSpecies:
+    - name: lists species with variation data
+      params: {}
+      assert:
+        - path: response
+          minLength: 1
+  searchVariants:
+    - name: searches variants in human chromosome 20 region
+      params:
+        region: "20:60000-62000"
+        species: hsapiens_grch37
+      assert:
+        - path: response
+          minLength: 1

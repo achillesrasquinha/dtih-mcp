@@ -26,7 +26,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - "docs[].id"
         - "docs[].label"
         - "docs[].name"
@@ -47,7 +47,7 @@ tools:
         description: GO term identifier (e.g. GO:0006915 for apoptotic process)
     response:
       format: json
-      pick:
+      fields:
         - "goid"
         - "label"
         - "definition"

@@ -25,10 +25,8 @@ tools:
         description: Compound name (e.g. aspirin) or SMILES string
     response:
       format: json
-      pick:
-        - PC_Compounds[].id.id.cid
-        - PC_Compounds[].props[].urn.label
-        - PC_Compounds[].props[].value
+      fields:
+        - IdentifierList.CID
   getCompound:
     description: Get compound properties by CID
     tags:
@@ -43,6 +41,15 @@ tools:
         description: PubChem Compound ID (e.g. 2244 for aspirin)
     response:
       format: json
+      fields:
+        - PropertyTable.Properties[].CID
+        - PropertyTable.Properties[].MolecularFormula
+        - PropertyTable.Properties[].MolecularWeight
+        - PropertyTable.Properties[].IUPACName
+        - PropertyTable.Properties[].CanonicalSMILES
+        - PropertyTable.Properties[].InChI
+        - PropertyTable.Properties[].XLogP
+        - PropertyTable.Properties[].ExactMass
   getSynonyms:
     description: Get all known synonyms/names for a compound
     tags:
@@ -58,6 +65,9 @@ tools:
         description: PubChem Compound ID
     response:
       format: json
+      fields:
+        - InformationList.Information[].CID
+        - InformationList.Information[].Synonym
   similaritySearch:
     description: Find structurally similar compounds by SMILES
     tags:

@@ -34,7 +34,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - data.result.geneMatches[].gene.geneId
         - data.result.geneMatches[].gene.name
         - data.result.geneMatches[].gene.description
@@ -69,7 +69,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - data.genes[].geneId
         - data.genes[].name
         - data.genes[].description

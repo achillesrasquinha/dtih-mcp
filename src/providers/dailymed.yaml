@@ -24,7 +24,7 @@ tools:
         description: Drug name to search for (e.g. "aspirin", "metformin")
     response:
       format: json
-      pick:
+      fields:
         - "data[].setid"
         - "data[].title"
         - "data[].spl_version"
@@ -45,7 +45,7 @@ tools:
         description: SPL set ID (UUID)
     response:
       format: json
-      pick:
+      fields:
         - "data[].setid"
         - "data[].title"
         - "data[].spl_version"

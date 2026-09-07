@@ -29,7 +29,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - results[].uniParcId
         - results[].uniProtKBAccessions
         - results[].sequence.length
@@ -50,7 +50,7 @@ tools:
         description: UniParc identifier (e.g. UPI0000050F30)
     response:
       format: json
-      pick:
+      fields:
         - uniParcId
         - sequence.length
         - sequence.molWeight

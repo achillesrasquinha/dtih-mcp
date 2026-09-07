@@ -19,7 +19,7 @@ tools:
     params: {}
     response:
       format: json
-      pick:
+      fields:
         - "[].collection_id"
         - "[].name"
         - "[].description"
@@ -40,7 +40,7 @@ tools:
         description: Collection identifier
     response:
       format: json
-      pick:
+      fields:
         - collection_id
         - name
         - description
@@ -64,7 +64,7 @@ tools:
     params: {}
     response:
       format: json
-      pick:
+      fields:
         - "[].dataset_id"
         - "[].title"
         - "[].collection_id"

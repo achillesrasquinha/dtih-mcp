@@ -23,7 +23,7 @@ tools:
         required: true
         description: Chemical name to resolve (e.g. aspirin, caffeine, glucose)
     response:
-      format: text
+      format: lines
   convertFormat:
     description: Convert a chemical identifier to another representation format
     tags:
@@ -41,18 +41,18 @@ tools:
         required: true
         description: Target format (smiles, inchi, names, iupac_name, formula, mw, sdf, etc.)
     response:
-      format: text
+      format: lines
 tests:
   resolveName:
     - name: resolves aspirin to SMILES
       params:
         name: aspirin
       assert:
-        - path: raw
+        - minLength: 1
   convertFormat:
     - name: converts aspirin to InChI
       params:
         identifier: aspirin
         format: inchi
       assert:
-        - path: raw
+        - minLength: 1

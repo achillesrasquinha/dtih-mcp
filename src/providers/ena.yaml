@@ -40,7 +40,7 @@ tools:
         default: json
     response:
       format: json
-      pick:
+      fields:
         - "[].accession"
         - "[].description"
         - "[].tax_id"
@@ -58,7 +58,7 @@ tools:
         description: ENA accession (e.g. AB000100)
     response:
       format: json
-      pick:
+      fields:
         - "summaries[].accession"
         - "summaries[].description"
         - "summaries[].moleculeType"

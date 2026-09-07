@@ -36,7 +36,7 @@ tools:
         description: Result detail level (lite or core)
     response:
       format: json
-      pick:
+      fields:
         - resultList.result[].id
         - resultList.result[].title
         - resultList.result[].authorString
@@ -65,6 +65,17 @@ tools:
         default: core
     response:
       format: json
+      fields:
+        - resultList.result[].id
+        - resultList.result[].pmid
+        - resultList.result[].pmcid
+        - resultList.result[].doi
+        - resultList.result[].title
+        - resultList.result[].authorString
+        - resultList.result[].journalTitle
+        - resultList.result[].pubYear
+        - resultList.result[].abstractText
+        - resultList.result[].citedByCount
 tests:
   search:
     - name: searches for CRISPR literature

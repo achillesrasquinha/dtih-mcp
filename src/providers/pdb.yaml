@@ -24,7 +24,7 @@ tools:
         description: PDB entry ID (e.g. 4HHB for hemoglobin)
     response:
       format: json
-      pick:
+      fields:
         - rcsb_id
         - struct.title
         - struct_keywords.pdbx_keywords
@@ -54,7 +54,7 @@ tools:
         description: Entity ID (e.g. 1)
     response:
       format: json
-      pick:
+      fields:
         - rcsb_id
         - rcsb_polymer_entity.pdbx_description
         - entity_poly.type

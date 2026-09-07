@@ -29,6 +29,13 @@ tools:
         description: Number of results per page
     response:
       format: json
+      fields:
+        - count
+        - results[].metadata.accession
+        - results[].metadata.name
+        - results[].metadata.source_database
+        - results[].metadata.type
+        - results[].metadata.integrated
   getFamily:
     description: Get detailed information for a specific Pfam family
     tags:
@@ -43,6 +50,17 @@ tools:
         description: Pfam accession (e.g. PF00069 for protein kinase domain)
     response:
       format: json
+      fields:
+        - metadata.accession
+        - metadata.name.name
+        - metadata.name.short
+        - metadata.type
+        - metadata.integrated
+        - metadata.set_info.accession
+        - metadata.set_info.name
+        - metadata.counters.proteins
+        - metadata.counters.structures
+        - metadata.counters.taxa
   getProteins:
     description: Get UniProt proteins associated with a Pfam family
     tags:
@@ -62,6 +80,16 @@ tools:
         description: Number of results per page
     response:
       format: json
+      fields:
+        - count
+        - results[].metadata.accession
+        - results[].metadata.name
+        - results[].metadata.source_database
+        - results[].metadata.length
+        - results[].metadata.source_organism.scientificName
+        - results[].metadata.gene
+        - results[].entries[].accession
+        - results[].entries[].entry_type
 tests:
   searchFamily:
     - name: searches for kinase families

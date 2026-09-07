@@ -24,7 +24,7 @@ tools:
         description: Target name to search for (e.g. EGFR, dopamine)
     response:
       format: json
-      pick:
+      fields:
         - "[].targetId"
         - "[].name"
         - "[].abbreviation"
@@ -45,7 +45,7 @@ tools:
         description: Ligand name to search for (e.g. erlotinib, morphine)
     response:
       format: json
-      pick:
+      fields:
         - "[].ligandId"
         - "[].name"
         - "[].type"

@@ -29,7 +29,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - results[].id
         - results[].name
         - results[].memberCount
@@ -51,7 +51,7 @@ tools:
         description: UniRef cluster ID (e.g. UniRef90_P01308 for insulin)
     response:
       format: json
-      pick:
+      fields:
         - id
         - name
         - memberCount

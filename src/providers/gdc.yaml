@@ -30,7 +30,7 @@ tools:
         description: Number of results
     response:
       format: json
-      pick:
+      fields:
         - "data.hits[].case_id"
         - "data.hits[].primary_site"
         - "data.hits[].disease_type"
@@ -54,7 +54,7 @@ tools:
         description: Number of results
     response:
       format: json
-      pick:
+      fields:
         - "data.hits[].gene_id"
         - "data.hits[].symbol"
         - "data.hits[].biotype"
@@ -78,7 +78,7 @@ tools:
         description: Number of results
     response:
       format: json
-      pick:
+      fields:
         - "data.hits[].project_id"
         - "data.hits[].name"
         - "data.hits[].primary_site"

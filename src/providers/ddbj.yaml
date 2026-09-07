@@ -25,13 +25,17 @@ tools:
         type: string
         default: flatfile
     response:
-      format: text
+      format: keyvalue
+      fields:
+        - LOCUS
+        - DEFINITION
+        - ACCESSION
+        - ORGANISM
+        - REFERENCE
 tests:
   getEntry:
     - name: gets entry for AB000001
       params:
         id: AB000001
       assert:
-        - path: raw
-        - path: raw
-          minLength: 1
+        - isNonEmpty: true

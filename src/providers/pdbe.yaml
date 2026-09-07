@@ -22,7 +22,7 @@ tools:
         description: PDB entry ID in lowercase (e.g. 1cbs, 4hhb)
     response:
       format: json
-      pick:
+      fields:
         - '*.0.title'
         - '*.0.experimental_method'
         - '*.0.deposition_date'
@@ -44,7 +44,7 @@ tools:
         description: PDB entry ID in lowercase (e.g. 1cbs, 4hhb)
     response:
       format: json
-      pick:
+      fields:
         - '*.0.molecule_name'
         - '*.0.molecule_type'
         - '*.0.entity_id'

@@ -30,7 +30,7 @@ tools:
         description: Filter by source e.g. 'reactome'
     response:
       format: json
-      pick:
+      fields:
         - numHits
         - searchHit[].uri
         - searchHit[].name
@@ -57,7 +57,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - '@id'
         - '@type'
         - name
@@ -86,7 +86,7 @@ tools:
         description: Output format
     response:
       format: json
-      pick:
+      fields:
         - '[].PARTICIPANT_A'
         - '[].INTERACTION_TYPE'
         - '[].PARTICIPANT_B'

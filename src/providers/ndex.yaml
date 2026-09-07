@@ -31,7 +31,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - numFound
         - networks[].externalId
         - networks[].name
@@ -54,7 +54,7 @@ tools:
         description: NDEx network UUID
     response:
       format: json
-      pick:
+      fields:
         - externalId
         - name
         - description

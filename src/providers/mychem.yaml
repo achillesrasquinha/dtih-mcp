@@ -28,7 +28,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - total
         - hits[]._id
         - hits[]._score
@@ -50,7 +50,7 @@ tools:
         description: Chemical ID (e.g. CHEMBL25 for aspirin)
     response:
       format: json
-      pick:
+      fields:
         - _id
         - chebi
         - chembl

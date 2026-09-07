@@ -30,7 +30,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - results[].primaryAccession
         - results[].uniProtkbId
         - results[].organism.scientificName
@@ -54,6 +54,17 @@ tools:
         default: json
     response:
       format: json
+      fields:
+        - primaryAccession
+        - uniProtkbId
+        - entryType
+        - organism.scientificName
+        - organism.commonName
+        - organism.taxonId
+        - proteinDescription.recommendedName.fullName.value
+        - genes[].geneName.value
+        - sequence.length
+        - annotationScore
 tests:
   search:
     - name: searches for BRCA1 human

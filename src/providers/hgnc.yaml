@@ -25,7 +25,7 @@ tools:
         description: Search query (e.g. "BRCA1", "kinase")
     response:
       format: json
-      pick:
+      fields:
         - response.docs[].symbol
         - response.docs[].hgnc_id
         - response.docs[].score
@@ -43,7 +43,7 @@ tools:
         description: Approved gene symbol (e.g. "BRCA1", "TP53")
     response:
       format: json
-      pick:
+      fields:
         - response.docs[].hgnc_id
         - response.docs[].symbol
         - response.docs[].name

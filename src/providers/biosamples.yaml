@@ -28,7 +28,7 @@ tools:
         description: Number of results to return
     response:
       format: json
-      pick:
+      fields:
         - _embedded.samples[].accession
         - _embedded.samples[].name
         - _embedded.samples[].taxId
@@ -49,7 +49,7 @@ tools:
         description: BioSample accession (e.g. SAMD00065372)
     response:
       format: json
-      pick:
+      fields:
         - accession
         - name
         - taxId

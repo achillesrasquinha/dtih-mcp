@@ -22,7 +22,13 @@ tools:
         required: true
         description: Search term (e.g. "insulin human", "CYP3A4")
     response:
-      format: text
+      format: tsv
+      columns:
+        - id
+        - description
+      fields:
+        - "[].id"
+        - "[].description"
   searchDrugs:
     description: Search KEGG for drugs by name
     tags:
@@ -36,7 +42,13 @@ tools:
         required: true
         description: Drug name (e.g. "metformin", "atorvastatin")
     response:
-      format: text
+      format: tsv
+      columns:
+        - id
+        - description
+      fields:
+        - "[].id"
+        - "[].description"
   searchCompounds:
     description: Search KEGG for chemical compounds by name
     tags:
@@ -50,7 +62,13 @@ tools:
         required: true
         description: Compound name (e.g. "amlodipine", "glucose")
     response:
-      format: text
+      format: tsv
+      columns:
+        - id
+        - description
+      fields:
+        - "[].id"
+        - "[].description"
   searchPathways:
     description: Search KEGG for pathways by keyword
     tags:
@@ -64,7 +82,13 @@ tools:
         required: true
         description: Pathway keyword (e.g. "drug metabolism cytochrome", "glycolysis")
     response:
-      format: text
+      format: tsv
+      columns:
+        - id
+        - description
+      fields:
+        - "[].id"
+        - "[].description"
   getEntry:
     description: Get a KEGG database entry by ID (gene, drug, compound, pathway, enzyme)
     tags:
@@ -78,7 +102,19 @@ tools:
         required: true
         description: KEGG entry ID (e.g. "hsa:3630", "dr:D00944", "cpd:C07151", "map00982", "ec:1.14.14.1")
     response:
-      format: text
+      format: keyvalue
+      fields:
+        - ENTRY
+        - NAME
+        - FORMULA
+        - MOL_WEIGHT
+        - EFFICACY
+        - TARGET
+        - METABOLISM
+        - PATHWAY
+        - ORTHOLOGY
+        - ORGANISM
+        - DBLINKS
   getLinked:
     description: Find cross-references between KEGG databases (e.g. drug→enzyme, compound→pathway)
     tags:
@@ -96,33 +132,38 @@ tools:
         required: true
         description: Source entry ID (e.g. "dr:D00944", "cpd:C07151", "hsa:1576")
     response:
-      format: text
+      format: tsv
+      columns:
+        - source
+        - target
+      fields:
+        - "[].source"
+        - "[].target"
 tests:
   searchGenes:
     - name: searches for insulin genes
       params:
         query: insulin
       assert:
-        - path: raw
-          minLength: 1
+        - isArray: true
+        - path: 0.id
   searchDrugs:
     - name: searches for metformin drug
       params:
         query: metformin
       assert:
-        - path: raw
-          minLength: 1
+        - isArray: true
+        - path: 0.id
   searchPathways:
     - name: searches for drug metabolism pathways
       params:
         query: drug metabolism cytochrome
       assert:
-        - path: raw
-          minLength: 1
+        - isArray: true
+        - path: 0.id
   getEntry:
     - name: gets KEGG entry for human insulin gene
       params:
         entryId: hsa:3630
       assert:
-        - path: raw
-          minLength: 1
+        - path: ENTRY

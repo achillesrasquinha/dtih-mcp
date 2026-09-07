@@ -22,7 +22,7 @@ tools:
         description: UniProt accession (e.g. P00533 for EGFR)
     response:
       format: json
-      pick:
+      fields:
         - "[].uniprotAccession"
         - "[].gene"
         - "[].uniprotDescription"
@@ -46,7 +46,7 @@ tools:
         description: UniProt accession (e.g. Q9Y6K9)
     response:
       format: json
-      pick:
+      fields:
         - "[].uniprotAccession"
         - "[].gene"
         - "[].globalMetricValue"

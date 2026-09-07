@@ -28,6 +28,14 @@ tools:
         description: "Species: HomoSapiens or MusMusculus"
     response:
       format: json
+      fields:
+        - "[].cdr3"
+        - "[].gene"
+        - "[].species"
+        - "[].antigen.epitope"
+        - "[].antigen.gene"
+        - "[].antigen.species"
+        - "[].score"
   getSummary:
     description: Get database summary statistics
     tags:
@@ -38,6 +46,11 @@ tools:
     params: {}
     response:
       format: json
+      fields:
+        - recordCount
+        - speciesCount
+        - epitopeCount
+        - geneCount
 tests:
   getSummary:
     - name: gets database summary statistics

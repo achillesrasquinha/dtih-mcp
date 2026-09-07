@@ -23,7 +23,7 @@ tools:
         description: MetaboLights study accession (e.g. MTBLS1)
     response:
       format: json
-      pick:
+      fields:
         - isaInvestigation.identifier
         - isaInvestigation.title
         - isaInvestigation.description
@@ -39,7 +39,7 @@ tools:
     path: /studies
     response:
       format: json
-      pick:
+      fields:
         - content
 tests:
   getStudy:

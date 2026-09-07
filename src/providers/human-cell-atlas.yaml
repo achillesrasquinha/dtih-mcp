@@ -27,10 +27,20 @@ tools:
         description: Number of results to return
       catalog:
         type: string
-        default: dcp2
-        description: Data catalog to search (e.g. dcp2)
+        default: dcp60
+        description: Data catalog to search (e.g. dcp60)
     response:
       format: json
+      fields:
+        - hits[].entryId
+        - hits[].projects[].projectId
+        - hits[].projects[].projectTitle
+        - hits[].projects[].projectShortname
+        - hits[].projects[].projectDescription
+        - hits[].projects[].laboratory
+        - hits[].projects[].estimatedCellCount
+        - hits[].protocols[].libraryConstructionApproach
+        - hits[].protocols[].instrumentManufacturerModel
   getProject:
     description: Get details for a specific Human Cell Atlas project by ID
     tags:
@@ -45,16 +55,25 @@ tools:
         description: HCA project UUID
       catalog:
         type: string
-        default: dcp2
-        description: Data catalog (e.g. dcp2)
+        default: dcp60
+        description: Data catalog (e.g. dcp60)
     response:
       format: json
+      fields:
+        - projects[].projectId
+        - projects[].projectTitle
+        - projects[].projectShortname
+        - projects[].projectDescription
+        - projects[].laboratory
+        - projects[].estimatedCellCount
+        - projects[].contributors[].contactName
+        - projects[].contributors[].institution
 tests:
   searchProjects:
     - name: searches for HCA projects
       params:
         size: 5
-        catalog: dcp2
+        catalog: dcp60
       assert:
         - path: hits
           minLength: 1
@@ -63,7 +82,7 @@ tests:
     - name: gets a specific HCA project
       params:
         id: 4a95101c-9ffc-4f30-a809-f04518a23803
-        catalog: dcp2
+        catalog: dcp60
       assert:
         - path: projects
       allowError: true

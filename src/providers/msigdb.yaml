@@ -27,6 +27,13 @@ tools:
         default: json
     response:
       format: json
+      fields:
+        - "{geneSetName}.systematicName"
+        - "{geneSetName}.collection"
+        - "{geneSetName}.geneSymbols"
+        - "{geneSetName}.pmid"
+        - "{geneSetName}.msigdbURL"
+        - "{geneSetName}.exactSource"
 tests:
   getGeneSet:
     - name: gets HALLMARK_APOPTOSIS gene set

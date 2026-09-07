@@ -44,7 +44,7 @@ tools:
         default: json
     response:
       format: json
-      pick:
+      fields:
         - payload[].diseaseid
         - payload[].disease_name
         - payload[].disease_type

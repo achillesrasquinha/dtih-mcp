@@ -24,7 +24,7 @@ tools:
         description: PubMed ID (e.g. "35153516")
     response:
       format: json
-      pick:
+      fields:
         - PubTator3[].pmid
         - PubTator3[].journal
         - PubTator3[].authors
@@ -52,7 +52,7 @@ tools:
         description: Sort order (e.g. "score desc", "date desc")
     response:
       format: json
-      pick:
+      fields:
         - results[].pmid
         - results[].title
         - results[].journal

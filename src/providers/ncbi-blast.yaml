@@ -38,7 +38,7 @@ tools:
         default: blastn
         description: BLAST program (blastn, blastp, blastx, tblastn, tblastx)
     response:
-      format: text
+      format: lines
   getResults:
     description: Retrieve results of a previously submitted BLAST job by Request ID (RID)
     tags:
@@ -62,6 +62,17 @@ tools:
         description: Output format (e.g. JSON2, XML, Text, HTML)
     response:
       format: json
+      fields:
+        - BlastOutput2[].report.program
+        - BlastOutput2[].report.params.expect
+        - BlastOutput2[].report.results.search.query_title
+        - BlastOutput2[].report.results.search.query_len
+        - BlastOutput2[].report.results.search.hits[].description[].accession
+        - BlastOutput2[].report.results.search.hits[].description[].title
+        - BlastOutput2[].report.results.search.hits[].hsps[].bit_score
+        - BlastOutput2[].report.results.search.hits[].hsps[].evalue
+        - BlastOutput2[].report.results.search.hits[].hsps[].identity
+        - BlastOutput2[].report.results.search.hits[].hsps[].align_len
 
 tests:
   submit:

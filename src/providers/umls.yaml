@@ -39,7 +39,7 @@ tools:
         description: Page number
     response:
       format: json
-      pick:
+      fields:
         - result.results[].ui
         - result.results[].name
         - result.results[].rootSource
@@ -57,7 +57,7 @@ tools:
         description: UMLS CUI (e.g. C0011849 for diabetes mellitus)
     response:
       format: json
-      pick:
+      fields:
         - result.ui
         - result.name
         - result.semanticTypes[].name
@@ -79,7 +79,7 @@ tools:
         default: 25
     response:
       format: json
-      pick:
+      fields:
         - result[].relatedIdName
         - result[].relationLabel
         - result[].additionalRelationLabel
@@ -108,7 +108,7 @@ tools:
         default: 25
     response:
       format: json
-      pick:
+      fields:
         - result[].name
         - result[].rootSource
         - result[].termType

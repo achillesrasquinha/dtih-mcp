@@ -21,6 +21,15 @@ tools:
         description: Search category (e.g. "genes", "pathways")
     response:
       format: json
+      fields:
+        - response.numFound
+        - response.docs[].id
+        - response.docs[].name
+        - response.docs[].description
+        - response.docs[].taxon_id
+        - response.docs[].biotype
+        - response.docs[].system_name
+        - response.docs[].score
 
   getPathway:
     description: Get details of a plant metabolic or signaling pathway

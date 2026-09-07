@@ -57,7 +57,7 @@ tests:
         fn: PATHWAY
         detail: full
       assert:
-        - minLength: 1
+        - isNonEmpty: true
       allowError: true
   searchCompound:
     - name: gets compounds of TCA cycle
@@ -65,5 +65,5 @@ tests:
         id: "META:TCA"
         fn: compounds-of-pathway
       assert:
-        - minLength: 1
+        - isNonEmpty: true
       allowError: true

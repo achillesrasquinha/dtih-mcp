@@ -31,7 +31,7 @@ tools:
         description: Search type (ortholog, paralog, etc.)
     response:
       format: json
-      pick:
+      fields:
         - search.product.source
         - search.product.version
         - search.mapped_genes.gene.family_id
@@ -69,7 +69,7 @@ tools:
         description: Multiple test correction method
     response:
       format: json
-      pick:
+      fields:
         - results.result[].term.id
         - results.result[].term.label
         - results.result[].number_in_list

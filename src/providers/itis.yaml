@@ -1,0 +1,81 @@
+name: itis
+displayName: ITIS
+description: Integrated Taxonomic Information System — authoritative taxonomic information for plants, animals, fungi, and microbes
+tags:
+  - taxonomy
+  - species
+  - classification
+  - itis
+  - biodiversity
+baseUrl: https://www.itis.gov/ITISWebService/jsonservice
+tools:
+  searchByScientificName:
+    description: Search taxa by scientific name
+    tags:
+      - taxonomy-search
+      - scientific-name
+    method: GET
+    path: /searchByScientificName
+    params:
+      srchKey:
+        type: string
+        required: true
+        description: Scientific name to search for (e.g. Apis mellifera)
+    response:
+      format: json
+      fields:
+        - scientificNames
+  searchByCommonName:
+    description: Search taxa by common name
+    tags:
+      - taxonomy-search
+      - common-name
+    method: GET
+    path: /searchByCommonNameBeginsWith
+    params:
+      srchKey:
+        type: string
+        required: true
+        description: Common name to search for (e.g. honey bee)
+    response:
+      format: json
+      fields:
+        - commonNames
+  getHierarchy:
+    description: Get taxonomic hierarchy for a TSN (Taxonomic Serial Number)
+    tags:
+      - taxonomy-hierarchy
+      - classification
+    method: GET
+    path: /getFullHierarchyFromTSN
+    params:
+      tsn:
+        type: string
+        required: true
+        description: Taxonomic Serial Number (e.g. 154395)
+    response:
+      format: json
+      fields:
+        - hierarchyList
+tests:
+  searchByScientificName:
+    - name: searches for Apis mellifera
+      params:
+        srchKey: Apis mellifera
+      assert:
+        - path: scientificNames
+          minLength: 1
+  searchByCommonName:
+    - name: searches for honey bee
+      params:
+        srchKey: honey bee
+      assert:
+        - path: commonNames
+          minLength: 1
+  getHierarchy:
+    - name: gets hierarchy for honey bee TSN
+      params:
+        tsn: "154395"
+      assert:
+        - path: hierarchyList
+          minLength: 1

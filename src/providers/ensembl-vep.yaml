@@ -27,7 +27,7 @@ tools:
         description: HGVS notation e.g. 'ENST00000366667:c.803C>T'
     response:
       format: json
-      pick:
+      fields:
         - "[].id"
         - "[].allele_string"
         - "[].most_severe_consequence"
@@ -55,7 +55,7 @@ tools:
         description: Variant allele e.g. 'C'
     response:
       format: json
-      pick:
+      fields:
         - "[].id"
         - "[].allele_string"
         - "[].most_severe_consequence"

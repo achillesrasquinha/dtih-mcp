@@ -33,7 +33,7 @@ tools:
         default: json
     response:
       format: json
-      pick:
+      fields:
         - esearchresult.count
         - esearchresult.retmax
         - esearchresult.idlist
@@ -58,7 +58,7 @@ tools:
         default: json
     response:
       format: json
-      pick:
+      fields:
         - result.uids
         - result.*.uid
         - result.*.title

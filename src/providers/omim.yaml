@@ -38,7 +38,7 @@ tools:
         default: json
     response:
       format: json
-      pick:
+      fields:
         - omim.searchResponse.totalResults
         - omim.searchResponse.startIndex
         - omim.searchResponse.endIndex
@@ -66,7 +66,7 @@ tools:
         default: json
     response:
       format: json
-      pick:
+      fields:
         - omim.entryList[].entry.mimNumber
         - omim.entryList[].entry.prefix
         - omim.entryList[].entry.status
@@ -94,7 +94,7 @@ tools:
         default: json
     response:
       format: json
-      pick:
+      fields:
         - omim.clinicalSynopsisList[].clinicalSynopsis.mimNumber
         - omim.clinicalSynopsisList[].clinicalSynopsis.preferredTitle
         - omim.clinicalSynopsisList[].clinicalSynopsis.inheritanceExists

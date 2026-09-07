@@ -17,6 +17,12 @@ tools:
         description: JSON search configuration string for dataset query
     response:
       format: json
+      fields:
+        - records[].displayName
+        - records[].recordClassName
+        - records[].id[].name
+        - records[].id[].value
+        - records[].attributes
 
   getTaxonomy:
     description: Search taxon records in MicrobiomeDB

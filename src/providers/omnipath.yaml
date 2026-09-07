@@ -35,7 +35,7 @@ tools:
         description: Response format (json or tsv)
     response:
       format: json
-      pick:
+      fields:
         - '[].source_genesymbol'
         - '[].target_genesymbol'
         - '[].is_directed'
@@ -70,7 +70,7 @@ tools:
         description: Response format (json or tsv)
     response:
       format: json
-      pick:
+      fields:
         - '[].enzyme_genesymbol'
         - '[].substrate_genesymbol'
         - '[].residue_type'

@@ -29,7 +29,7 @@ tools:
         mapsTo: pageSize
     response:
       format: json
-      pick:
+      fields:
         - studies[].protocolSection.identificationModule.nctId
         - studies[].protocolSection.identificationModule.briefTitle
         - studies[].protocolSection.statusModule.overallStatus
@@ -50,6 +50,17 @@ tools:
         description: NCT identifier (e.g. NCT04280705)
     response:
       format: json
+      fields:
+        - protocolSection.identificationModule.nctId
+        - protocolSection.identificationModule.briefTitle
+        - protocolSection.identificationModule.officialTitle
+        - protocolSection.statusModule.overallStatus
+        - protocolSection.designModule.phases
+        - protocolSection.designModule.enrollmentInfo
+        - protocolSection.conditionsModule.conditions
+        - protocolSection.descriptionModule.briefSummary
+        - protocolSection.armsInterventionsModule.interventions
+        - protocolSection.sponsorCollaboratorsModule.leadSponsor
 tests:
   search:
     - name: searches for lung cancer trials

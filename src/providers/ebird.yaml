@@ -34,7 +34,7 @@ tools:
         description: Days back from today (1-30)
     response:
       format: json
-      pick:
+      fields:
         - "[].speciesCode"
         - "[].comName"
         - "[].sciName"
@@ -67,7 +67,7 @@ tools:
         description: Days back (1-30)
     response:
       format: json
-      pick:
+      fields:
         - "[].speciesCode"
         - "[].comName"
         - "[].sciName"
@@ -100,7 +100,7 @@ tools:
         default: json
     response:
       format: json
-      pick:
+      fields:
         - "[].locId"
         - "[].locName"
         - "[].lat"
@@ -126,7 +126,7 @@ tools:
         default: 7
     response:
       format: json
-      pick:
+      fields:
         - "[].speciesCode"
         - "[].comName"
         - "[].sciName"

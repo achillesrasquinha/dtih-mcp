@@ -27,7 +27,7 @@ tools:
         description: Response content type
     response:
       format: json
-      pick:
+      fields:
         - families[].acc
         - families[].id
         - families[].description
@@ -52,7 +52,7 @@ tools:
         description: Response content type
     response:
       format: json
-      pick:
+      fields:
         - rfam.acc
         - rfam.id
         - rfam.description

@@ -1,0 +1,108 @@
+name: pharos
+displayName: Pharos
+description: Illuminating the Druggable Genome — comprehensive target, disease, and ligand knowledge base
+tags:
+  - drug-targets
+  - druggable-genome
+  - pharos
+  - ligands
+  - diseases
+baseUrl: https://pharos-api.ncats.io/graphql
+protocol: graphql
+tools:
+  searchTargets:
+    description: Search drug targets by name or keyword
+    tags:
+      - target-search
+      - druggable-genome
+    query: |
+      query($term: String!, $top: Int) {
+        targets(filter: { term: $term }, top: $top) {
+          targets {
+            name
+            uniprot
+            tdl
+            sym
+            description
+            fam
+          }
+        }
+      }
+    params:
+      term:
+        type: string
+        required: true
+        description: Search term for target name or keyword (e.g. BRCA1, kinase)
+      top:
+        type: integer
+        default: 10
+        description: Number of results to return
+    response:
+      format: json
+      fields:
+        - targets.targets[].name
+        - targets.targets[].uniprot
+        - targets.targets[].tdl
+        - targets.targets[].sym
+        - targets.targets[].description
+        - targets.targets[].fam
+  getTarget:
+    description: Get detailed info for a target by UniProt accession
+    tags:
+      - target-info
+      - uniprot
+    query: |
+      query($uniprot: String!) {
+        target(q: { uniprot: $uniprot }) {
+          name
+          uniprot
+          tdl
+          sym
+          description
+          fam
+          novelty
+          diseases {
+            name
+          }
+          ligands {
+            name
+          }
+        }
+      }
+    params:
+      uniprot:
+        type: string
+        required: true
+        description: UniProt accession (e.g. P04637)
+    response:
+      format: json
+      fields:
+        - target.name
+        - target.uniprot
+        - target.tdl
+        - target.sym
+        - target.description
+        - target.novelty
+        - target.diseases[].name
+        - target.ligands[].name
+tests:
+  searchTargets:
+    - name: searches for EGFR targets
+      params:
+        term: EGFR
+        top: 5
+      assert:
+        - path: targets.targets
+          minLength: 1
+        - path: targets.targets.0.name
+        - path: targets.targets.0.uniprot
+  getTarget:
+    - name: gets target details for TP53
+      params:
+        uniprot: P04637
+      assert:
+        - path: target.name
+        - path: target.uniprot
+          equals: P04637
+        - path: target.sym
+          equals: TP53

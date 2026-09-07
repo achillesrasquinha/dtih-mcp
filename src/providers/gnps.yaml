@@ -42,6 +42,18 @@ tools:
         description: GNPS spectrum identifier (e.g. CCMSLIB00005436077)
     response:
       format: json
+      fields:
+        - annotations[].Compound_Name
+        - annotations[].Ion_Source
+        - annotations[].Instrument
+        - annotations[].Adduct
+        - annotations[].Precursor_MZ
+        - annotations[].ExactMass
+        - annotations[].Smiles
+        - annotations[].SpectrumID
+        - annotations[].Ion_Mode
+        - spectruminfo.spectrum_id
+        - spectruminfo.library_membership
 tests:
   searchLibrary:
     - name: searches spectral library for aspirin

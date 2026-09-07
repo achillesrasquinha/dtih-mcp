@@ -1,0 +1,94 @@
+name: pdc
+displayName: Proteomic Data Commons
+description: NCI Proteomic Data Commons — proteomics data from cancer research studies
+tags:
+  - proteomics
+  - cancer
+  - mass-spectrometry
+  - pdc
+  - nci
+baseUrl: https://proteomic.datacommons.cancer.gov/graphql
+protocol: graphql
+tools:
+  searchStudies:
+    description: Search proteomics studies from NCI programs and projects
+    tags:
+      - study-search
+      - cancer-proteomics
+    query: |
+      {
+        programsProjectsStudies {
+          program_id
+          program_manager
+          projects {
+            project_id
+            studies {
+              study_id
+              study_name
+              pdc_study_id
+              disease_type
+              primary_site
+              analytical_fraction
+              experiment_type
+            }
+          }
+        }
+      }
+    params: {}
+    response:
+      format: json
+      fields:
+        - programsProjectsStudies[].program_id
+        - programsProjectsStudies[].projects[].project_id
+        - programsProjectsStudies[].projects[].studies[].study_name
+        - programsProjectsStudies[].projects[].studies[].pdc_study_id
+        - programsProjectsStudies[].projects[].studies[].disease_type
+        - programsProjectsStudies[].projects[].studies[].analytical_fraction
+        - programsProjectsStudies[].projects[].studies[].experiment_type
+  getGeneData:
+    description: Get protein spectral count data for a gene across studies
+    tags:
+      - gene-expression
+      - spectral-count
+    query: |
+      query($geneName: String!) {
+        geneSpectralCount(gene_name: $geneName) {
+          gene_name
+          NCBI_gene_id
+          spectral_counts {
+            project_id
+            plex
+            spectral_count
+            distinct_peptide
+          }
+        }
+      }
+    params:
+      geneName:
+        type: string
+        required: true
+        description: Gene symbol (e.g. BRCA1, TP53)
+    response:
+      format: json
+      fields:
+        - geneSpectralCount[].gene_name
+        - geneSpectralCount[].NCBI_gene_id
+        - geneSpectralCount[].spectral_counts[].project_id
+        - geneSpectralCount[].spectral_counts[].spectral_count
+        - geneSpectralCount[].spectral_counts[].distinct_peptide
+tests:
+  searchStudies:
+    - name: lists proteomics studies
+      params: {}
+      assert:
+        - path: programsProjectsStudies
+          minLength: 1
+  getGeneData:
+    - name: gets spectral count data for BRCA1
+      params:
+        geneName: BRCA1
+      assert:
+        - path: geneSpectralCount
+          minLength: 1
+        - path: geneSpectralCount.0.gene_name
+          equals: BRCA1

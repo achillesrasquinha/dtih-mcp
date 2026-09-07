@@ -28,7 +28,7 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
-      pick:
+      fields:
         - "count"
         - "results[].key"
         - "results[].scientificName"
@@ -55,7 +55,7 @@ tools:
         description: Maximum number of results to return
     response:
       format: json
-      pick:
+      fields:
         - "count"
         - "results[].key"
         - "results[].species"
@@ -78,7 +78,7 @@ tools:
         description: GBIF species key
     response:
       format: json
-      pick:
+      fields:
         - "key"
         - "scientificName"
         - "canonicalName"

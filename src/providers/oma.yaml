@@ -23,7 +23,7 @@ tools:
         description: Protein ID e.g. UniProt accession 'P04637' or OMA ID
     response:
       format: json
-      pick:
+      fields:
         - entry_nr
         - omaid
         - canonicalid
@@ -48,7 +48,7 @@ tools:
         description: Protein ID
     response:
       format: json
-      pick:
+      fields:
         - '[].entry_nr'
         - '[].omaid'
         - '[].canonicalid'
@@ -72,7 +72,7 @@ tools:
         description: Hierarchical orthologous group ID
     response:
       format: json
-      pick:
+      fields:
         - '[].hog_id'
         - '[].level'
         - '[].levels_url'

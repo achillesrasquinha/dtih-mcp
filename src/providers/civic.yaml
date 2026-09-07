@@ -31,6 +31,13 @@ tools:
         type: array
         required: true
         description: Gene symbols to search for (e.g. ["BRAF", "EGFR"])
+    response:
+      format: json
+      fields:
+        - genes.totalCount
+        - genes.nodes[].id
+        - genes.nodes[].name
+        - genes.nodes[].description
   getEvidence:
     description: Get clinical evidence items by molecular profile ID
     tags:
@@ -60,6 +67,17 @@ tools:
         type: integer
         default: 10
         description: Number of evidence items to return
+    response:
+      format: json
+      fields:
+        - evidenceItems.totalCount
+        - evidenceItems.nodes[].id
+        - evidenceItems.nodes[].status
+        - evidenceItems.nodes[].evidenceType
+        - evidenceItems.nodes[].evidenceLevel
+        - evidenceItems.nodes[].evidenceDirection
+        - evidenceItems.nodes[].significance
+        - evidenceItems.nodes[].description
 tests:
   searchGenes:
     - name: searches for BRAF gene

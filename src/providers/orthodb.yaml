@@ -30,7 +30,7 @@ tools:
         description: NCBI taxonomy ID for species filter (9606=human)
     response:
       format: json
-      pick:
+      fields:
         - status
         - data
   getGroup:
@@ -47,7 +47,7 @@ tools:
         description: OrthoDB group ID (e.g. 733642at2759)
     response:
       format: json
-      pick:
+      fields:
         - status
         - data.id
         - data.name

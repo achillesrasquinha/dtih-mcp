@@ -36,7 +36,7 @@ tools:
       }
     response:
       format: json
-      pick:
+      fields:
         - gene.symbol
         - gene.name
         - gene.gene_id
@@ -78,6 +78,17 @@ tools:
           }
         }
       }
+    response:
+      format: json
+      fields:
+        - variant.variantId
+        - variant.rsids
+        - variant.exome.ac
+        - variant.exome.an
+        - variant.exome.af
+        - variant.genome.ac
+        - variant.genome.an
+        - variant.genome.af
     params:
       variantId:
         type: string

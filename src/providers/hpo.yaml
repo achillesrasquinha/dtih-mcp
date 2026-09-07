@@ -28,7 +28,7 @@ tools:
         description: Maximum number of results
     response:
       format: json
-      pick:
+      fields:
         - terms[].id
         - terms[].name
         - terms[].definition
@@ -48,7 +48,7 @@ tools:
         description: HPO term identifier (e.g. HP:0001250, HP:0001263)
     response:
       format: json
-      pick:
+      fields:
         - id
         - name
         - definition

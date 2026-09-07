@@ -34,7 +34,7 @@ tools:
         default: json
     response:
       format: json
-      pick:
+      fields:
         - esearchresult.count
         - esearchresult.idlist
         - esearchresult.querytranslation

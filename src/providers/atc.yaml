@@ -28,6 +28,14 @@ tools:
         description: Relationship source (ATC for ATC classification)
     response:
       format: json
+      fields:
+        - rxclassDrugInfoList.rxclassDrugInfo[].minConcept.rxcui
+        - rxclassDrugInfoList.rxclassDrugInfo[].minConcept.name
+        - rxclassDrugInfoList.rxclassDrugInfo[].minConcept.tty
+        - rxclassDrugInfoList.rxclassDrugInfo[].rxclassMinConceptItem.classId
+        - rxclassDrugInfoList.rxclassDrugInfo[].rxclassMinConceptItem.className
+        - rxclassDrugInfoList.rxclassDrugInfo[].rxclassMinConceptItem.classType
+        - rxclassDrugInfoList.rxclassDrugInfo[].relaSource
 
   getClassMembers:
     description: Get drugs belonging to an ATC class
@@ -47,6 +55,12 @@ tools:
         description: Relationship source
     response:
       format: json
+      fields:
+        - drugMemberGroup.drugMember[].minConcept.rxcui
+        - drugMemberGroup.drugMember[].minConcept.name
+        - drugMemberGroup.drugMember[].minConcept.tty
+        - drugMemberGroup.drugMember[].nodeAttr[].attrName
+        - drugMemberGroup.drugMember[].nodeAttr[].attrValue
 
 tests:
   searchByDrug:

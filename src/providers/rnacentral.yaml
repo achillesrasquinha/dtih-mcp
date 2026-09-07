@@ -30,7 +30,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - results[].rnacentral_id
         - results[].description
         - results[].rna_type
@@ -55,7 +55,7 @@ tools:
         description: Response format
     response:
       format: json
-      pick:
+      fields:
         - rnacentral_id
         - description
         - rna_type

@@ -27,6 +27,16 @@ tools:
         description: Maximum number of results
     response:
       format: json
+      fields:
+        - data.data[].identifier
+        - data.data[].name
+        - data.data[].canonical_smiles
+        - data.data[].iupac_name
+        - data.data[].annotation_level
+        - data.data[].organism_count
+        - data.data[].citation_count
+        - data.data[].collection_count
+        - data.total
   getCompound:
     description: Get natural product compound details by COCONUT ID
     tags:
@@ -55,6 +65,14 @@ tools:
         description: Organism name (e.g. "Streptomyces", "Cannabis sativa")
     response:
       format: json
+      fields:
+        - data.data[].identifier
+        - data.data[].name
+        - data.data[].canonical_smiles
+        - data.data[].iupac_name
+        - data.data[].organism_count
+        - data.data[].citation_count
+        - data.total
 tests:
   search:
     - name: searches for quercetin

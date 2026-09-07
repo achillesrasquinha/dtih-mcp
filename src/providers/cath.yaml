@@ -1,0 +1,58 @@
+name: cath
+displayName: CATH
+description: Protein structure classification database — hierarchical domain classification
+tags:
+  - protein-structure
+  - classification
+  - domain
+  - superfamily
+  - cath
+baseUrl: https://www.cathdb.info/version/v4_3_0/api/rest
+tools:
+  getSuperfamily:
+    description: Get details of a CATH superfamily
+    tags:
+      - superfamily
+      - classification
+    method: GET
+    path: /superfamily/{superfamilyId}
+    params:
+      superfamilyId:
+        type: string
+        required: true
+        description: CATH superfamily ID (e.g. "1.10.10.10")
+    response:
+      format: json
+      fields:
+        - "data.classification_description"
+        - "data.cath_id_depth"
+        - "data.example_domain_id"
+        - "data.child_count_s35_code"
+  getDomain:
+    description: Get domain summary by CATH domain ID
+    tags:
+      - domain
+      - protein-domain
+    method: GET
+    path: /id/{domainId}
+    params:
+      domainId:
+        type: string
+        required: true
+        description: CATH domain ID (e.g. "1xmkA00")
+    response:
+      format: json
+tests:
+  getSuperfamily:
+    - name: gets superfamily details for 1.10.10.10
+      params:
+        superfamilyId: "1.10.10.10"
+      assert:
+        - path: data.classification_description
+        - path: data.example_domain_id
+  getDomain:
+    - name: gets domain summary for 1xmkA00
+      params:
+        domainId: 1xmkA00
+      assert:
+        - path: data

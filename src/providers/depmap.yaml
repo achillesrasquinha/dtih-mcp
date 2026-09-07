@@ -24,7 +24,7 @@ tools:
         description: Gene name or symbol to search for
     response:
       format: json
-      pick:
+      fields:
         - "[].geneId"
         - "[].symbol"
         - "[].name"
@@ -44,7 +44,7 @@ tools:
         description: Gene identifier
     response:
       format: json
-      pick:
+      fields:
         - "[].cellLineName"
         - "[].cellLineId"
         - "[].dependencyScore"
